@@ -1,5 +1,6 @@
 # 微信
 
+![](/image/rainupupwx.jpg)
 <table>
   <tr>
     <td align="center" style="width: 200px;">

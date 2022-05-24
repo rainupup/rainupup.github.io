@@ -1,4 +1,288 @@
-# JAVA基础
+JAVA基础
+
+## IDEA快捷键
+
+| 快捷键             | 作用                                                         |
+| ------------------ | :----------------------------------------------------------- |
+| Alt + Enter        | 引入类                                                       |
+| Ctrl  + O          | 查看我们继承的类或者接口中的方法，以及我们要实现的方法       |
+| Ctrl + Alt + b     | 查看接口实现类中方法（就是我们使用接口编程时，在调用实现类方法处直接Ctrl+鼠标左键方法，只能进入到接口中定义的方法处，但是使用该快捷键则直接到实现类的该方法中了） |
+| Alt  + Insert      | set/get; 构造方法;   toString; 重写方法。。。                |
+| Ctrl+Alt+T         | 将代码包在一个块中，例如try/catch   ;synchronized等          |
+| Ctrl+E             | 最近使用的文件                                               |
+| Ctrl+Shift+E       | 最近更改的文件                                               |
+| Ctrl+F12           | 可以显示当前文件的结构                                       |
+| Ctrl+N             | 可以快速打开类                                               |
+| Ctrl+P             | 可以显示参数信息                                             |
+| **ctrl+alt+L**     | **格式化代码（可能会有快捷键冲突，需要注意）**               |
+| **Ctrl+Alt+O**     | **优化导入的类和包**                                         |
+| Alt+Shift+C        | 最近的更改                                                   |
+| **调试部分、编译** |                                                              |
+| Ctrl+F2            | 停止                                                         |
+| Alt+Shift+F9       | 选择 Debug                                                   |
+| Alt+Shift+F10      | 选择 Run                                                     |
+| Ctrl+Shift+F9      | 编译                                                         |
+| Ctrl+Shift+F10     | 运行                                                         |
+| Ctrl+Shift+F8      | 查看断点                                                     |
+| F8                 | 步过                                                         |
+| F7                 | 步入                                                         |
+| Shift+F7           | 智能步入                                                     |
+| Shift+F8           | 步出                                                         |
+| Alt+Shift+F8       | 强制步过                                                     |
+| Alt+Shift+F7       | 强制步入                                                     |
+| Alt+F9             | 运行至光标处                                                 |
+| Ctrl+Alt+F9        | 强制运行至光标处                                             |
+| F9                 | 恢复程序                                                     |
+| Alt+F10            | 定位到断点                                                   |
+| Ctrl+F8            | 切换行断点                                                   |
+| Ctrl+F9            | 生成项目                                                     |
+| **重构**           |                                                              |
+| Ctrl+Alt+Shift+T   | 弹出重构菜单                                                 |
+| Shift+F6           | 重命名                                                       |
+| F6                 | 移动                                                         |
+| F5                 | 复制                                                         |
+| Alt+Delete         | 安全删除                                                     |
+| Ctrl+Alt+N         | 内联                                                         |
+| **查找**           |                                                              |
+| Ctrl+F             | 查找                                                         |
+| Ctrl+R             | 替换                                                         |
+| F3                 | 查找下一个                                                   |
+| Shift+F3           | 查找上一个                                                   |
+| Ctrl+Shift+F       | 在路径中查找                                                 |
+| Ctrl+Shift+R       | 在路径中替换                                                 |
+| Ctrl+Shift+S       | 搜索结构                                                     |
+| Ctrl+Shift+M       | 替换结构                                                     |
+| Alt+F7             | 查找用法                                                     |
+| Ctrl+Alt+F7        | 显示用法                                                     |
+| Ctrl+F7            | 在文件中查找用法                                             |
+| Ctrl+Shift+F7      | 在文件中高亮显示用法                                         |
+| **在上一行插入**   | **Ctrl + Alt + Enter**                                       |
+| **在下一行插入**   | **Shift + Enter**                                            |
+
+ 
+
+Ctrl
+
+| 快捷键                     | 介绍                                                         |
+| -------------------------- | ------------------------------------------------------------ |
+| Ctrl + F                   | 在当前文件进行文本查找（必备）                               |
+| Ctrl + R                   | 在当前文件进行文本替换（必备）                               |
+| Ctrl + Z                   | 撤销（必备）                                                 |
+| Ctrl + Y                   | 删除光标所在行 或 删除选中的行（必备）                       |
+| Ctrl + X                   | 剪切光标所在行 或 剪切选择内容                               |
+| Ctrl + C                   | 复制光标所在行 或 复制选择内容                               |
+| Ctrl + D                   | 复制光标所在行 或 复制选择内容，并把复制内容插入光标位置下面（必备） |
+| Ctrl + W                   | 递进式选择代码块。可选中光标所在的单词或段落，连续按会在原有选中的基础上再扩展选中范围（必备） |
+| Ctrl + E                   | 显示最近打开的文件记录列表                                   |
+| Ctrl + N                   | 根据输入的类名查找类文件                                     |
+| Ctrl + G                   | 在当前文件跳转到指定行处                                     |
+| Ctrl + J                   | 插入自定义动态代码模板                                       |
+| Ctrl + P                   | 方法参数提示显示                                             |
+| Ctrl + Q                   | 光标所在的变量 / 类名 / 方法名等上面（也可以在提示补充的时候按），显示文档内容 |
+| Ctrl + U                   | 前往当前光标所在的方法的父类的方法 / 接口定义                |
+| Ctrl + B                   | 进入光标所在的方法/变量的接口或是定义出，等效于Ctrl + 左键单击 |
+| Ctrl + K                   | 版本控制提交项目，需要此项目有加入到版本控制才可用           |
+| Ctrl + T                   | 版本控制更新项目，需要此项目有加入到版本控制才可用           |
+| Ctrl + H                   | 显示当前类的层次结构                                         |
+| Ctrl + O                   | 选择可重写的方法                                             |
+| Ctrl + I                   | 选择可继承的方法                                             |
+| Ctrl + +                   | 展开代码                                                     |
+| Ctrl + -                   | 折叠代码                                                     |
+| Ctrl + /                   | 注释光标所在行代码，会根据当前不同文件类型使用不同的注释符号（必备） |
+| Ctrl + \[                  | 移动光标到当前所在代码的花括号开始位置                       |
+| Ctrl + \]                  | 移动光标到当前所在代码的花括号结束位置                       |
+| Ctrl + F1                  | 在光标所在的错误代码出显示错误信息                           |
+| Ctrl + F3                  | 调转到所选中的词的下一个引用位置                             |
+| Ctrl + F4                  | 关闭当前编辑文件                                             |
+| Ctrl + F8                  | 在 Debug 模式下，设置光标当前行为断点，如果当前已经是断点则去掉断点 |
+| Ctrl + F9                  | 执行 Make Project 操作                                       |
+| Ctrl + F11                 | 选中文件 / 文件夹，使用助记符设定 / 取消书签                 |
+| Ctrl + F12                 | 弹出当前文件结构层，可以在弹出的层上直接输入，进行筛选       |
+| Ctrl + Tab                 | 编辑窗口切换，如果在切换的过程又加按上delete，则是关闭对应选中的窗口 |
+| Ctrl + Enter               | 智能分隔行                                                   |
+| Ctrl + End                 | 跳到文件尾                                                   |
+| Ctrl + Home                | 跳到文件头                                                   |
+| Ctrl + Space               | 基础代码补全，默认在 Windows 系统上被输入法占用，需要进行修改，建议修改为Ctrl + 逗号（必备） |
+| Ctrl + Delete              | 删除光标后面的单词或是中文句                                 |
+| Ctrl + BackSpace           | 删除光标前面的单词或是中文句                                 |
+| Ctrl + 1,2,3...9           | 定位到对应数值的书签位置                                     |
+| Ctrl + 左键单击            | 在打开的文件标题上，弹出该文件路径                           |
+| Ctrl + 光标定位            | 按 Ctrl 不要松开，会显示光标所在的类信息摘要                 |
+| Ctrl + 左方向键            | 光标跳转到当前单词 / 中文句的左侧开头位置                    |
+| Ctrl + 右方向键            | 光标跳转到当前单词 / 中文句的右侧开头位置                    |
+| Ctrl + 前方向键            | 等效于鼠标滚轮向前效果                                       |
+| Ctrl + 后方向键            | 等效于鼠标滚轮向后效果                                       |
+| Alt                        |                                                              |
+| 快捷键                     | 介绍                                                         |
+| -----------------          | ----------------------------------------------------------------------------------------------- |
+| Alt + \`                   | 显示版本控制常用操作菜单弹出层                               |
+| Alt + Q                    | 弹出一个提示，显示当前类的声明 / 上下文信息                  |
+| Alt + F1                   | 显示当前文件选择目标弹出层，弹出层中有很多目标可以进行选择   |
+| Alt + F2                   | 对于前面页面，显示各类浏览器打开目标选择弹出层               |
+| Alt + F3                   | 选中文本，逐个往下查找相同文本，并高亮显示                   |
+| Alt + F7                   | 查找光标所在的方法 / 变量 / 类被调用的地方                   |
+| Alt + F8                   | 在 Debug 的状态下，选中对象，弹出可输入计算表达式调试框，查看该输入内容的调试结果 |
+| Alt + Home                 | 定位 / 显示到当前文件的Navigation Bar                        |
+| Alt + Enter                | IntelliJ IDEA 根据光标所在问题，提供快速修复选择，光标放在的位置不同提示的结果也不同（必备） |
+| Alt + Insert               | 代码自动生成，如生成对象的 set / get 方法，构造函数，toString() 等 |
+| Alt + 左方向键             | 按左方向切换当前已打开的文件视图                             |
+| Alt + 右方向键             | 按右方向切换当前已打开的文件视图                             |
+| Alt + 前方向键             | 当前光标跳转到当前文件的前一个方法名位置                     |
+| Alt + 后方向键             | 当前光标跳转到当前文件的后一个方法名位置                     |
+| Alt + 1,2,3...9            | 显示对应数值的选项卡，其中 1 是 Project 用得最多             |
+| Shift                      |                                                              |
+| 快捷键                     | 介绍                                                         |
+| ----------------------     | --------------------------------------------------------------------------- |
+| Shift + F1                 | 如果有外部文档可以连接外部文档                               |
+| Shift + F2                 | 跳转到上一个高亮错误 或 警告位置                             |
+| Shift + F3                 | 在查找模式下，查找匹配上一个                                 |
+| Shift + F4                 | 对当前打开的文件，使用新Windows窗口打开，旧窗口保留          |
+| Shift + F6                 | 对文件 / 文件夹 重命名                                       |
+| Shift + F7                 | 在 Debug 模式下，智能步入。断点所在行上有多个方法调用，会弹出进入哪个方法 |
+| Shift + F8                 | 在 Debug 模式下，跳出，表现出来的效果跟F9一样                |
+| Shift + F9                 | 等效于点击工具栏的Debug按钮                                  |
+| Shift + F10                | 等效于点击工具栏的Run按钮                                    |
+| Shift + F11                | 弹出书签显示层                                               |
+| Shift + Tab                | 取消缩进                                                     |
+| Shift + ESC                | 隐藏当前 或 最后一个激活的工具窗口                           |
+| Shift + End                | 选中光标到当前行尾位置                                       |
+| Shift + Home               | 选中光标到当前行头位置                                       |
+| Shift + Enter              | 开始新一行。光标所在行下空出一行，光标定位到新行位置         |
+| Shift + 左键单击           | 在打开的文件名上按此快捷键，可以关闭当前打开文件             |
+| Shift + 滚轮前后滚动       | 当前文件的横向滚动轴滚动                                     |
+| Ctrl + Alt                 |                                                              |
+| 快捷键                     | 介绍                                                         |
+| -----------------------    | ------------------------------------------------------------------------ |
+| Ctrl + Alt + L             | 格式化代码，可以对当前文件和整个包目录使用（必备）           |
+| Ctrl + Alt + O             | 优化导入的类，可以对当前文件和整个包目录使用（必备）         |
+| Ctrl + Alt + I             | 光标所在行 或 选中部分进行自动代码缩进，有点类似格式化       |
+| Ctrl + Alt + T             | 对选中的代码弹出环绕选项弹出层                               |
+| Ctrl + Alt + J             | 弹出模板选择窗口，讲选定的代码加入动态模板中                 |
+| Ctrl + Alt + H             | 调用层次                                                     |
+| Ctrl + Alt + B             | 在某个调用的方法名上使用会跳到具体的实现处，可以跳过接口     |
+| Ctrl + Alt + V             | 快速引进变量                                                 |
+| Ctrl + Alt + Y             | 同步、刷新                                                   |
+| Ctrl + Alt + S             | 打开 IntelliJ IDEA 系统设置                                  |
+| Ctrl + Alt + F7            | 显示使用的地方。寻找被该类或是变量被调用的地方，用弹出框的方式找出来 |
+| Ctrl + Alt + F11           | 切换全屏模式                                                 |
+| Ctrl + Alt + Enter         | 光标所在行上空出一行，光标定位到新行                         |
+| Ctrl + Alt + Home          | 弹出跟当前文件有关联的文件弹出层                             |
+| Ctrl + Alt + Space         | 类名自动完成                                                 |
+| Ctrl + Alt + 左方向键      | 退回到上一个操作的地方（必备）<u>（注意与其他软件快捷键冲突）</u> |
+| Ctrl + Alt + 右方向键      | 前进到上一个操作的地方（必备）<u>（注意与其他软件快捷键冲突）</u> |
+| Ctrl + Alt + 前方向键      | 在查找模式下，跳到上个查找的文件                             |
+| Ctrl + Alt + 后方向键      | 在查找模式下，跳到下个查找的文件                             |
+| Ctrl + Shift               |                                                              |
+| 快捷键                     | 介绍                                                         |
+| -------------------------- | --------------------------------------------------------------------------------------------------------- |
+| Ctrl + Shift + F           | 根据输入内容查找整个项目 或 指定目录内文件（必备）           |
+| Ctrl + Shift + R           | 根据输入内容替换对应内容，范围为整个项目 或 指定目录内文件（必备） |
+| Ctrl + Shift + J           | 自动将下一行合并到当前行末尾（必备）                         |
+| Ctrl + Shift + Z           | 取消撤销（必备）                                             |
+| Ctrl + Shift + W           | 递进式取消选择代码块。可选中光标所在的单词或段落，连续按会在原有选中的基础上再扩展取消选中范围（必备） |
+| Ctrl + Shift + N           | 通过文件名定位 / 打开文件 / 目录，打开目录需要在输入的内容后面多加一个正斜杠（必备） |
+| Ctrl + Shift + U           | 对选中的代码进行大 / 小写轮流转换（必备）                    |
+| Ctrl + Shift + T           | 对当前类生成单元测试类，如果已经存在的单元测试类则可以进行选择 |
+| Ctrl + Shift + C           | 复制当前文件磁盘路径到剪贴板                                 |
+| Ctrl + Shift + V           | 弹出缓存的最近拷贝的内容管理器弹出层                         |
+| Ctrl + Shift + E           | 显示最近修改的文件列表的弹出层                               |
+| Ctrl + Shift + H           | 显示方法层次结构                                             |
+| Ctrl + Shift + B           | 跳转到类型声明处                                             |
+| Ctrl + Shift + I           | 快速查看光标所在的方法 或 类的定义                           |
+| Ctrl + Shift + A           | 查找动作 / 设置                                              |
+| Ctrl + Shift + /           | 代码块注释（必备）                                           |
+| Ctrl + Shift + \[          | 选中从光标所在位置到它的顶部中括号位置                       |
+| Ctrl + Shift + \]          | 选中从光标所在位置到它的底部中括号位置                       |
+| Ctrl + Shift + +           | 展开所有代码                                                 |
+| Ctrl + Shift + -           | 折叠所有代码                                                 |
+| Ctrl + Shift + F7          | 高亮显示所有该选中文本，按Esc高亮消失                        |
+| Ctrl + Shift + F8          | 在 Debug 模式下，指定断点进入条件                            |
+| Ctrl + Shift + F9          | 编译选中的文件 / 包 / Module                                 |
+| Ctrl + Shift + F12         | 编辑器最大化                                                 |
+| Ctrl + Shift + Space       | 智能代码提示                                                 |
+| Ctrl + Shift + Enter       | 自动结束代码，行末自动添加分号（必备）                       |
+| Ctrl + Shift + Backspace   | 退回到上次修改的地方                                         |
+| Ctrl + Shift + 1,2,3...9   | 快速添加指定数值的书签                                       |
+| Ctrl + Shift + 左方向键    | 在代码文件上，光标跳转到当前单词 / 中文句的左侧开头位置，同时选中该单词 / 中文句 |
+| Ctrl + Shift + 右方向键    | 在代码文件上，光标跳转到当前单词 / 中文句的右侧开头位置，同时选中该单词 / 中文句 |
+| Ctrl + Shift + 左方向键    | 在光标焦点是在工具选项卡上，缩小选项卡区域                   |
+| Ctrl + Shift + 右方向键    | 在光标焦点是在工具选项卡上，扩大选项卡区域                   |
+| Ctrl + Shift + 前方向键    | 光标放在方法名上，将方法移动到上一个方法前面，调整方法排序   |
+| Ctrl + Shift + 后方向键    | 光标放在方法名上，将方法移动到下一个方法前面，调整方法排序   |
+| Alt + Shift                |                                                              |
+| 快捷键                     | 介绍                                                         |
+| ------------------------   | ----------------------------------------------------------------------------------------------------- |
+| Alt + Shift + N            | 选择 / 添加 task                                             |
+| Alt + Shift + F            | 显示添加到收藏夹弹出层                                       |
+| Alt + Shift + C            | 查看最近操作项目的变化情况列表                               |
+| Alt + Shift + F            | 添加到收藏夹                                                 |
+| Alt + Shift + I            | 查看项目当前文件                                             |
+| Alt + Shift + F7           | 在 Debug 模式下，下一步，进入当前方法体内，如果方法体还有方法，则会进入该内嵌的方法中，依此循环进入 |
+| Alt + Shift + F9           | 弹出Debug的可选择菜单                                        |
+| Alt + Shift + F10          | 弹出Run的可选择菜单                                          |
+| Alt + Shift + 左键双击     | 选择被双击的单词 / 中文句，按住不放，可以同时选择其他单词 / 中文句 |
+| Alt + Shift + 前方向键     | 移动光标所在行向上移动                                       |
+| Alt + Shift + 后方向键     | 移动光标所在行向下移动                                       |
+| Ctrl + Shift + Alt         |                                                              |
+| 快捷键                     | 介绍                                                         |
+| ------------------------   | -----------------------                                      |
+| Ctrl + Shift + Alt + V     | 无格式黏贴                                                   |
+| Ctrl + Shift + Alt + N     | 前往指定的变量 / 方法                                        |
+| Ctrl + Shift + Alt + S     | 打开当前项目设置                                             |
+| Ctrl + Shift + Alt + C     | 复制参考信息                                                 |
+| 其他                       |                                                              |
+| 快捷键                     | 介绍                                                         |
+| ---------------            | --------------------------------------------------------------------------------------------------------------------------- |
+| F2                         | 跳转到下一个高亮错误 或 警告位置（必备）                     |
+| F3                         | 在查找模式下，定位到下一个匹配处                             |
+| F4                         | 编辑源                                                       |
+| F7                         | 在 Debug 模式下，进入下一步，如果当前行断点是一个方法，则进入当前方法体内，如果该方法体还有方法，则不会进入该内嵌的方法中 |
+| F8                         | 在 Debug 模式下，进入下一步，如果当前行断点是一个方法，则不进入当前方法体内 |
+| F9                         | 在 Debug 模式下，恢复程序运行，但是如果该断点下面代码还有断点则停在下一个断点上 |
+| F11                        | 添加书签                                                     |
+| F12                        | 回到前一个工具窗口                                           |
+| Tab                        | 缩进                                                         |
+| ESC                        | 从工具窗口进入代码文件窗口                                   |
+| 连按两次Shift              | 弹出Search Everywhere弹出层                                  |
+
+## IDEA模板
+
+1.  main方法：psvm
+
+2.  输出：sout
+    sout的几种变形：
+
+-   打印方法的参数：soutp
+-   打印方法名称：soutm
+-   就近打印变量：soutv
+-   打印指定内容：xxx.sout
+
+-   使用for循环遍历
+    -   普通for循环遍历：fori
+    -   增强for循环：iter
+    -   有局部变量的普通for循环：itar
+
+4.  遍历List
+    -   增强for循环遍历：list.for
+    -   普通for循环顺序遍历：list.fori
+    -   普通for循环逆序遍历：list.forr
+
+5.  条件判断
+    -   判断是否为null：ifn
+    -   判断是否不为空：inn
+    -   判断指定内容是否为空：xxx.null
+    -   判断指定内容是否非空：xxx.nn
+6.  静态常量常量定义
+    -   public static final：psf
+    -   private static final：prsf
+    -   public static final int：psfi
+    -   public static final String：psfs
+7.  自动生成返回值xxx.var
+8.  强转：xxx.cast
+9.  返回值：xxx.return
+
+
+
 ## 基本语法
 
 **获取随机值函数：**
@@ -26,17 +310,17 @@
  2. 引用数据类型
     类(`class`)
 
-    ​		接口(`interface`)
+​		接口(`interface`)
 
-    ​		数组(\[\])
+​		数组(\[\])
 
 **基本数据类型介绍**
 
-1. 整型：`byte(1字节) \\ short(2字节) \\ int(4字节) \\ long(8字节)`
+1. 整型：byte(1字节) \\ short(2字节) \\ int(4字节) \\ long(8字节)
 
-2. 浮点型：`float(4字节) \\ double(8字节)`
+2. 浮点型：float(4字节) \\ double(8字节)
 
-3. 字符型：`char (1字符=2字节)`
+3. 字符型：char (1字符=2字节)
 
    	byte范围：-128 ~ 127
    	声明long型变量，必须以"l"或"L"结尾
@@ -52,7 +336,7 @@
 
    `byte 、char 、short --> int --> long --> float --> double`
 
-   特别的：当`byte、char、short`三种类型的变量做运算时，结果为`int`型
+   特别的：当byte、char、short三种类型的变量做运算时，结果为int型
 
 2. **强制类型转换：自动类型提升运算的逆运算。**
    需要使用强转符：()
@@ -116,8 +400,7 @@ System.out.println(str + num + c);    //hello10a
 | \|             | 或运算     | 二进制位进行\| 运算，只有0 \| 0时结果是0，否则是1            |
 | ^              | 异或运算   | 相同二进制位进行^ 运算，结果是0；1^1=0 , 0^0=0不相同二进制位^ 运算结果是1。1^0=1 , 0^1=1 |
 | ~              | 取反运算   | 正数取反，各二进制码按补码各位取反负数取反，各二进制码按补码各位取反 |
-
-**三元运算符**
+| **三元运算符** |            |                                                              |
 
 ``(条件表达式)?表达式1：表达式2；``条件表达式为真：运算的结果为表达式1,条件表达式为假：运算的结果为表达式2
 
@@ -126,11 +409,8 @@ System.out.println(str + num + c);    //hello10a
 ### 获取输入
 
 具体实现步骤：
-
 1.导包：``import java.util.Scanner;``
-
 2.``Scanner``的实例化:``Scanner 变量 = new Scanner(System.in);``
-
 3.调用``Scanner``类的相关方法（``next() / nextXxx()``），来获取指定类型的变量
 
 注意：
@@ -151,13 +431,16 @@ System.out.println(str + num + c);    //hello10a
 
 **if - else**
 
-**switch - case** (`break,continue,default`)
+**switch - case (break,continue,default)**
+① 根据`switch`表达式中的值，依次匹配各个`case`中的常量。一旦匹配成功，则进入相应`case`结构中，
 
-① 根据`switch`表达式中的值，依次匹配各个`case`中的常量。一旦匹配成功，则进入相应`case`结构中， MLML调用其执行语句。当调用完执行语句以后，则仍然继续向下执行其他`case`结构中的执行语句，直到遇到`break`关键字或此`switch-case`结构末尾结束为止。
+MLML调用其执行语句。当调用完执行语句以后，则仍然继续向下执行其他`case`结构中的执行语句，直到遇到`break`关键字或此`switch-case`结构末尾结束为止。
 
 ② `break`,可以使用在`switch-case`结构中，表示一旦执行到此关键字，就跳出`switch-case`结构
 
-③` switch`结构中的表达式，只能是如下的6种数据类型之一(没有浮点型)： ​	``byte 、short、char、int、枚举类型(JDK5.0新增)、String类型(JDK7.0新增)``
+③` switch`结构中的表达式，只能是如下的6种数据类型之一(没有浮点型)：
+
+​	``byte 、short、char、int、枚举类型(JDK5.0新增)、String类型(JDK7.0新增)``
 
 ④ `case `之后只能声明常量。不能声明范围。(例：case 1 \~ 10 错误)
 
@@ -348,6 +631,51 @@ public void show(String ... strs){
 
 
 
+## 代码块
+
+**作用**：用来初始化类、对象的信息。如果使用修饰符，只能使用**static**
+
+**格式：**
+
+````java
+{
+    
+}
+static{
+    
+}
+````
+
+**分类**：静态代码块 vs 非静态代码块
+
+* **静态代码块**：
+
+  * 内部可以输出语句
+
+  * 随着类的加载而执行,而且**只执行一次**
+
+  * 作用：初始化类的信息
+
+  * 如果一个类中定义了多个静态代码块，则按照声明的先后顺序执行
+
+  * **静态代码块的执行要优先于非静态代码块的执行**
+
+  * 静态代码块内只能调用静态的属性、静态的方法，不能调用非静态的结构
+
+* **非静态代码块：**
+  * 内部可以输出语句
+  * 随着对象的创建而执行
+  * 每创建一个对象，就执行一次非静态代码块
+  * 作用：可以在创建对象时，对对象的属性等进行初始化
+  * 如果一个类中定义了多个非静态代码块，则按照声明的先后顺序执行（先继承父类，再执行非静态代码块）
+  * 非静态代码块内可以调用静态的属性、静态的方法，或非静态的属性、非静态的方法
+
+ **执行顺序**:静态代码块-->构造代码块-->构造方法
+
+
+
+
+
 ## 封装性
 
 四种权限修饰符
@@ -450,6 +778,56 @@ public class FieldMethodTest {
 
 
 
+## 接口
+使用`interface`来定义,使用`implements`来实现
+
+````java
+interface 接口名{
+		……
+}
+class 类名 implements 接口{
+		……
+}
+````
+
+`Java`中，接口和类是并列的两个结构
+
+
+
+> **如何定义接口**：定义接口中的成员
+
+* JDK7及以前：只能定义全局常量和抽象方法
+  * 全局常量：public static final的.  但是书写时，可以省略不写(默认添加)
+  * 抽象方法：public abstract的.    但是书写时，可以省略不写(默认添加)
+* JDK8：除了定义全局常量和抽象方法之外，还可以定义静态方法（只能通过接口自己调用）、默认方法（`default`）
+
+````java
+public default void 方法名（）{}
+//通过实现类的对象，可以调用接口中的默认方法 
+````
+
+
+
+> 知识点
+
+* 接口中定义的静态方法，只能通过接口来调用。
+* 通过实现类的对象，可以调用接口中的默认方法。
+* 如果实现类重写了接口中的默认方法，调用时，调用的是重写以后的方法
+* 如果子类(或实现类)继承的父类和实现的接口中声明了同名同参数的默认方法，那么子类在没有重写此方法的情况下，默认调用的是父类中的同名同参数的方法。-->**类优先原则**
+* 如果实现类实现了多个接口，而这多个接口中定义了同名同参数的默认方法，那么在实现类没有重写此方法的情况下，报错。-->**接口冲突**，这就需要我们必须在实现类中重写此方法
+* **接口中不能定义构造器的！意味着接口不可以实例化**
+* 如果实现类覆盖了接口中的所抽象方法，则此实现类就可以实例化
+* 如果实现类没覆盖接口中所的抽象方法，则此实现类仍为一个抽象类
+* Java类可以实现多个接口  --->弥补了Java单继承性的局限性
+
+​			格式：`class AA extends BB implements CC,DD,EE`
+
+* 接口与接口之间可以**继承**，而且可以多继承(因为没有构造器 )
+
+
+
+
+
 ## Object类
 
 **java.lang.Object类**
@@ -464,7 +842,7 @@ Object类是所有Java类的根父类
 
 **Object类方法如下：**
 
-![图形用户界面, 文本, 应用程序  描述已自动生成](java.assets/clip_image001.png)
+![图形用户界面, 文本, 应用程序  描述已自动生成](java1.assets/clip_image001.png)
 
 
 
@@ -578,11 +956,11 @@ public void test3() {
 
 ## 关键字
 
-**this**
+### **this**
 
 
 
-**super**
+### **super**
 
 > super调用构造器：
 
@@ -594,13 +972,5270 @@ public void test3() {
 
 
 
-**package**“ 
+### **package** 
 
 包”，指：类所在的包
 
 
-**import**
+
+### **import**
 
 “引入”，指：引入类中需要的类。
 
 `import static`: 导入指定类或接口中的静态结构、属性或方法。 
+
+
+
+### **Static**
+
+可以用来修饰的结构：主要用来修饰类的内部结构
+
+​	属性、方法、代码块、内部类（注意是内部类）
+
+> **static修饰属性：静态变量（或类变量）**
+
+**属性**，是否使用static修饰，又分为：静态属性 vs 非静态属性(实例变量
+
+* 实例变量：我们创建了类的多个对象，每个对象都独立的拥一套类中的非静态属性。当修改其中一个对象中的非静态属性时，不会导致其他对象中同样的属性值的修改。
+
+* 静态变量：我们创建了类的多个对象，多个对象共享同一个静态变量。当通过某一个对象修改静态变量时，会导致其他对象调用此静态变量时，是修改过了的。
+
+**static修饰属性的其他说明：**
+
+* 静态变量随着类的加载而加载。可以通过"类.静态变量"的方式进行调用
+
+* 静态变量的加载要早于对象的创建。
+
+* 由于类只会加载一次，则静态变量在内存中也只会存在一份：存在方法区的静态域中。
+
+|      | 类变量 | 实例变量 |
+| ---- | ------ | -------- |
+| 类   | yes    | no       |
+| 对象 | yes    | yes      |
+
+ 
+
+> **static修饰方法：静态方法、类方法（静态方法不能被覆盖，重写）**
+
+* 随着类的加载而加载，可以通过"类.静态方法"的方式进行调用    
+
+|      | 静态方法 | 非静态方法 |
+| ---- | -------- | ---------- |
+| 类   | yes      | no         |
+| 对象 | yes      | yes        |
+
+* 静态方法中，只能调用静态的方法或属性
+* 非静态方法中，既可以调用非静态的方法或属性，也可以调用静态的方法或属性
+
+ 
+
+> **static的注意点：**
+
+* 在静态的方法内，不能使用`this`关键字、`super`关键字
+
+* 关于静态属性和静态方法的使用，从生命周期的角度去理解。
+
+
+
+### final
+
+* 修饰类:此类不能被其他类所继承。
+
+* 修饰方法：表明此方法不可以被重写 
+* 修饰变量：此时的"变量"就称为是一个常量
+  * 修饰属性：可以考虑赋值的置：显式初始化、代码块中初始化、构造器中初始化 (注意：默认初始化不可以)
+  * 修饰局部变量：
+    * 尤其是使用`final`修饰形参时，表明此形参是一个常量。当我们调用此方法时，给常量形参赋一个实参。一旦赋值以后，就只能在方法体内使用此形参，但不能进行重新赋值。
+  * final修饰的数组等类型(如`StringBuilder`)：数组的内容可以改变，但是数组不可以指向其他引用
+
+* `static final` 用来修饰属性：全局常量
+
+
+
+### abstract
+
+**abstract修饰类：抽象类**
+
+* 此类不能实例化
+* 抽象类中一定有构造器，便于子类实例化时调用（涉及：子类对象实例化的全过程）
+* 开发中，都会提供抽象类的子类，让子类对象实例化，完成相关的操作 --->抽象的使用前提：继承性
+
+
+
+**abstract修饰方法：抽象方法**
+
+* 抽象方法只有方法的声明，没方法体
+* 包含抽象方法的类，一定是一个抽象类。反之，抽象类中可以没有抽象方法的。
+* 若子类重写了父类中的所的抽象方法后，此子类方可实例化 
+* 若子类没重写父类中的所的抽象方法，则此子类也是一个抽象类，需要使用**abstract**修饰
+
+
+
+**注意点**：
+
+* `abstract`不能用来修饰：属性、构造器等结构
+* `abstract`不能用来修饰私方法（子类无法重写）、静态方法（静态方法不能被重写，随着类的加载而加载，但是`abstract`类不能声明对象）、final的方法、`final`的类
+
+
+
+
+
+# 异常
+
+## 常见异常
+
+**RuntimeException子类**
+
+| 序号 | 异常                                     | 异常描述                                                     |
+| ---- | ---------------------------------------- | ------------------------------------------------------------ |
+| 1    | java.lang.ArrayIndexOutOfBoundsException | 数组索引越界异常。当对数组的索引值为负数或大于等于数组大小时抛出。 |
+| 2    | java.lang.ArithmeticException            | 算术条件异常。譬如：整数除零等。                             |
+| 3    | java.lang.NullPointerException           | 空指针异常。当应用试图在要求使用对象的地方使用了null时，抛出该异常。  譬如：调用null对象的实例方法、访问null对象的属性、计算null对象的长度、使用throw语句抛出null等等 |
+| 4    | java.lang.ClassNotFoundException         | 找不到类异常。当应用试图根据字符串形式的类名构造类，而在遍历CLASSPAH  之后找不到对应名称的class文件时，抛出该异常。 |
+| 5    | java.lang.NegativeArraySizeException     | 数组长度为负异常                                             |
+| 6    | java.lang.ArrayStoreException            | 数组中包含不兼容的值抛出的异常                               |
+| 7    | java.lang.SecurityException              | 安全性异常                                                   |
+| 8    | java.lang.IllegalArgumentException       | 非法参数异常                                                 |
+
+**IOException**
+
+| 序号 | 异常                  | 异常描述                             |
+| ---- | --------------------- | ------------------------------------ |
+| 1    | IOException           | 操作输入流和输出流时可能出现的异常。 |
+| 2    | EOFException          | 文件已结束异常                       |
+| 3    | FileNotFoundException | 文件未找到异常                       |
+
+**其他**
+
+| 序号 | 异常                            | 异常描述                                                     |
+| ---- | ------------------------------- | ------------------------------------------------------------ |
+| 1    | ClassCastException              | 类型转换异常类                                               |
+| 2    | ArrayStoreException             | 数组中包含不兼容的值抛出的异常                               |
+| 3    | SQLException                    | 操作数据库异常类                                             |
+| 4    | NoSuchFieldException            | 字段未找到异常                                               |
+| 5    | NoSuchMethodException           | 方法未找到抛出的异常                                         |
+| 6    | NumberFormatException           | 字符串转换为数字抛出的异常                                   |
+| 7    | StringIndexOutOfBoundsException | 字符串索引超出范围抛出的异常                                 |
+| 8    | IllegalAccessException          | 不允许访问某类异常                                           |
+| 9    | InstantiationException          | 当应用程序试图使用Class类中的newInstance()方法创建一个类的实例，而指定的类对象无法被实例化时，抛出该异常 |
+
+
+
+##  JAVA异常
+
+Java异常类层次结构图：
+
+![img](java1.assets/clip_image002.jpg)
+
+
+
+**Throwable**： 有两个重要的子类：`Exception`（异常）和 `Error`（错误），二者都是 `Java` 异常处理的重要子类，各自都包含大量子类。
+
+**Error**（错误）:是程序无法处理的错误，表示运行应用程序中较严重问题。大多数错误与代码编写者执行的操作无关，而表示代码运行时 JVM（Java 虚拟机）出现的问题。
+
+**Exception**（异常）:是程序本身可以处理的异常。
+
+
+
+## 处理异常机制
+
+在 `Java` 应用程序中，异常处理机制为：抛出异常，捕捉异常。
+
+**捕获异常：try、catch和 finally**
+
+````java
+try{
+    //可能出现异常的代码
+}catch(异常类型 变量名){
+    //处理异常的方式
+}finally{
+    //一定会执行的代码
+}
+````
+
+**try 块：**用于捕获异常。其后可接零个或多个`catch`块，如果没有`catch`块，则必须跟一个`finally`块。
+
+**catch块：**用于处理`try`捕获到的异常。
+
+**finally 块：**无论是否捕获或处理异常，`finally`块里的语句都会被执行。当在`try`块或catch块中遇到`return`语句时，`finally`语句块将在方法返回之前被执行。
+
+> **在以下4种特殊情况下，finally块不会被执行：**
+
+* 在`finally`语句块中发生了异常
+* 在前面的代码中用了`System.exit()`退出程序
+* 程序所在的线程死亡
+* 关闭CPU
+
+ 
+
+**抛出异常：throws**
+
+````java
+权限修饰符 返回类型 方法名 throws 异常类型{
+		
+}
+````
+
+**手动抛出异常：throw**
+
+​	格式：`throw new 异常类型`
+
+````java
+public void regist(int id) throws Exception {
+	throw new MyException("自定义异常");
+}
+
+````
+
+
+
+**Throwable类中的常用方法**
+
+注意：`catch`关键字后面括号中的`Exception`类型的参数`e`。`Exception`就是`try`代码块传递给`catch`代码块的变量类型，`e`就是变量名。
+
+| 序号 | 方法              | 描述                                                        |
+| ---- | ----------------- | ----------------------------------------------------------- |
+| 1    | getCause()        | 返回抛出异常的原因。如果 cause 不存在或未知，则返回 null。  |
+| 2    | getMeage()        | 返回异常的消息信息。                                        |
+| 3    | printStackTrace() | 对象的堆栈跟踪输出至错误输出流，作为字段  System.err 的值。 |
+
+ ````java
+ try {
+     ……
+ }catch (Exception e){
+     e.getCause();
+ }finally {
+     ……
+ }
+ ````
+
+
+
+## return
+
+**try中有return语句和最后有return：**
+
+````java
+public class test {
+    public static void main(String[] args) {
+        test test = new test();
+        System.out.println(test.returnTets());
+    }
+
+    public String returnTets(){
+        try {
+            return "返回的语句";
+        }catch (Exception e){
+            e.getCause();
+        }finally {
+            System.out.println("finally中的语句");
+        }
+        return "微笑";
+    }
+}
+
+----------------------
+输出：
+    finally中的语句
+    返回的语句
+````
+
+合理的解释是，在`try`中执行到`return`语句时，不会真正的`return`，即只是会计算`return`中的表达式，之后将结果保存在一个临时栈中，接着执行`finally`中的语句，最后才会从临时栈中取出之前的结果返回。
+
+
+
+**try和finally都有return语句：**
+
+````java
+public class test {
+    public static void main(String[] args) {
+        test test = new test();
+        System.out.println(test.returnTets());
+    }
+
+    public String returnTets(){
+        try {
+            return "try中返回的语句";
+        }catch (Exception e){
+            e.getCause();
+        }finally {
+            System.out.println("finally中的语句");
+            return "finally中返回的语句";
+        }
+    }
+}
+
+----------------
+输出：
+    finally中的语句
+    finally中返回的语句   
+````
+
+`finnaly`会覆盖`try`的`return`语句。
+
+
+
+## 自定义异常
+
+创建自定义异常类：一般会选择继承`Exception`和`RuntimeException`，如果不要求调用者一定要处理抛出的异常，就继承`RuntimeException`。
+
+ ````java
+ class MyException extends Exception { // 创建自定义异常类
+     String message; // 定义String类型变量
+     public MyException(String ErrorMessagr) { // 父类方法
+         message = ErrorMessagr;
+     }
+  
+     public String getMessage() { // 覆盖getMessage()方法
+         return message;
+     }
+ }
+ ````
+
+````java
+public void testException() throws Exception {
+	throw new MyException("自定义异常");             //抛出自定义异常
+}
+````
+
+
+
+ 
+
+# 多线程
+
+## 理解
+
+* 程序(programm)
+
+​			概念：是为完成特定任务、用某种语言编写的一组指令的集合。即指一段静态的代码。
+
+* 进程(process)
+
+​			概念：程序的一次执行过程，或是正在运行的一个程序。
+
+​			说明：进程作为资源分配的单位，系统在运行时会为每个进程分配不同的内存区域
+
+* 线程(thread)
+
+​			概念：进程可进一步细化为线程，是一个程序内部的一条执行路径。
+
+​			说明：线程作为调度和执行的单位，每个线程拥有独立的运行栈和程序计数器(pc)，线程切换的开销小。
+
+​			 分类：守护线程，用户线程。
+
+ 
+
+![img](java1.assets/clip_image002-16530223928411.jpg)
+
+
+
+**内存结构**：
+
+![img](java1.assets/clip_image004.jpg)
+
+* 进程可以细化为多个线程。
+
+* 每个线程，拥有自己独立的：栈、程序计数器
+
+* 多个线程，共享同一个进程中的结构：方法区、堆。
+
+ 
+
+**并行与并发的理解**
+
+- 并行：多个CPU同时执行多个任务。
+- 并发：一个CPU(采用时间片)同时执行多个任务。
+
+
+
+ ## 创建多线程的方法
+
+### 方法一：继承Thread类
+
+**步骤**
+
+* 创建一个继承于`Thread`类的子类
+* 重写`Thread`类的`run()` --> 将此线程执行的操作声明在run()中
+* 创建`Thread`类的子类的对象
+* 通过此对象调用`start()`：①启动当前线程 ② 调用当前线程的run()
+
+**格式：**
+
+```java
+class testThread extends Thread{         			//创建一个继承于Thread类的子类
+    public void run(){         						//重写Thread类的run()
+    	线程;
+    }
+}
+
+public class Test{
+    public static void main(String[] args){
+        testThread testthread = new testThread();   //创建Thread类的子类的对象
+        testthread.start()              			//通过此对象调用start()，start启动多线程并调用run方法
+    }
+}
+```
+
+**两个问题：**
+
+问题一：我们启动一个线程，必须调用`start()`，不能调用`run()`的方式启动线程。
+
+问题二：如果再启动一个线程，必须重新创建一个`Thread`子类的对象，调用此对象的`start().`
+
+
+
+### 方式二：实现Runnable接口
+
+**步骤**
+
+* 创建一个实现了`Runnable`接口的类
+* 实现`Runnable`中的抽象方法：`run()`
+* 创建实现类的对象
+* 将此对象作为参数传递到`Thread`类的构造器中，创建`Thread`类的对象
+* 通过`Thread`类的对象调用`start()`
+* 如果创建多个线程，则需要创建多个`Thread`类，并把`Runnable`传入`Thread`类的构造器中
+
+**格式:**
+
+```java
+class testRunnable implements Runnable{      //创建一个实现了Runnable接口的类
+    public void run(){          			 //重写Thread类的run()
+    	线程;
+    }
+}
+public class Test{
+    public static void main(String[] args){
+        testRunnable testrunnable = new testRunnable();       //创建实现类的对象
+        Thread thread1 = new Thread(testrunnable);   //将此对象作为参数传递到Thread类的构造器中，创建Thread类的对象
+        thread1.start();           					//通过Thread类的对象调用start()
+        
+        Thread thread2 = new Thread(testrunnable);
+        thread2.start();
+    }
+}
+```
+
+
+
+
+
+### 方法三：实现Callable接口
+
+**步骤**
+
+* 创建一个实现`Callable`的实现类
+* 实现`call`方法，将此线程需要执行的操作声明在`call()`中
+* 创建`Callable`接口实现类的对象
+* 将此`Callable`接口实现类的 对象作为传递到`FutureTask`构造器中，创建`FutureTask`的对象
+* 将`FutureTask`的对象作为参数传递到`Thread`类的构造器中，创建`Thread`对象，并调用`start()`
+* 使用`FutureTask.get()`获取`Callable`中call方法的返回值
+
+````java
+//1.创建一个实现Callable的实现类
+class NumThread implements Callable{
+    //2.实现call方法，将此线程需要执行的操作声明在call()中
+    @Override
+    public Object call() throws Exception {
+        int sum = 0;
+        for (int i = 1; i <= 100; i++) {
+            if(i % 2 == 0){
+                System.out.println(i);
+                sum += i;
+            }
+        }
+        return sum;
+    }
+}
+
+public class ThreadNew {
+    public static void main(String[] args) {
+        //3.创建Callable接口实现类的对象
+        NumThread numThread = new NumThread();
+        //4.将此Callable接口实现类的 对象作为传递到FutureTask构造器中，创建FutureTask的对象
+        FutureTask futureTask = new FutureTask(numThread);
+        //5.将FutureTask的对象作为参数传递到Thread类的构造器中，创建Thread对象，并调用start()
+        new Thread(futureTask).start();
+
+        try {
+            //6.获取Callable中call方法的返回值
+            //get()返回值即为FutureTask构造器参数Callable实现类重写的call()的返回值。
+            Object sum = futureTask.get();
+            System.out.println("总和为：" + sum);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+    }
+}
+````
+
+
+
+**对比实现Runnable接口的区别**
+
+* call()可以返回值的。
+* call()可以抛出异常，被外面的操作捕获，获取异常的信息
+* Callable是支持泛型的
+
+ 
+
+### 方式四：线程池
+
+````java
+class NumberThread implements Runnable{
+
+    @Override
+    public void run() {
+        for(int i = 0;i <= 100;i++){
+            if(i % 2 == 0){
+                System.out.println(Thread.currentThread().getName() + ": " + i);
+            }
+        }
+    }
+}
+
+class NumberThread1 implements Runnable{
+
+    @Override
+    public void run() {
+        for(int i = 0;i <= 100;i++){
+            if(i % 2 != 0){
+                System.out.println(Thread.currentThread().getName() + ": " + i);
+            }
+        }
+    }
+}
+
+public class ThreadPool {
+
+    public static void main(String[] args) {
+        //1. 提供指定线程数量的线程池
+        ExecutorService service = Executors.newFixedThreadPool(10);
+        ThreadPoolExecutor service1 = (ThreadPoolExecutor) service;
+        //设置线程池的属性
+//        System.out.println(service.getClass());
+//        service1.setCorePoolSize(15);
+//        service1.setKeepAliveTime();
+
+
+        //2.执行指定的线程的操作。需要提供实现Runnable接口或Callable接口实现类的对象
+        service.execute(new NumberThread());//适合适用于Runnable
+        service.execute(new NumberThread1());//适合适用于Runnable
+
+//        service.submit(Callable callable);//适合使用于Callable
+        //3.关闭连接池
+        service.shutdown();
+    }
+
+}
+
+````
+
+**说明：**
+
+* `corePoolSize`：核心池的大小
+
+* `maximumPoolSize`：最大线程数
+
+* keepAliveTime：线程没任务时最多保持多长时间后会终止
+
+
+
+## Thread类中的方法
+
+**Thread类中的常用的方法:**
+
+* `start():`启动当前线程；调用当前线程的`run()`
+* `run():` 通常需要重写`Thread`类中的此方法，将创建的线程要执行的操作声明在此方法中
+* `currentThread():`静态方法，返回执行当前代码的线程
+* `getName():`获取当前线程的名字
+* `setName():`设置当前线程的名字
+* `yield():`释放当前`cpu`的执行权
+* `join():`在线程a中调用线程b的join(),此时线程a就进入阻塞状态，直到线程b完全执行完以后，线程a才结束阻塞状态。
+* `stop():`已过时。当执行此方法时，强制结束当前线程。
+* `sleep(long millitime):`让当前线程“睡眠”指定的millitime毫秒。在指定的millitime毫秒时间内，当前线程是阻塞状态。格式sleep(参数);单位毫秒
+* `isAlive():`判断当前线程是否存活
+
+ 
+
+**线程的优先级：**
+
+* MAX_PRIORITY：10
+* MIN _PRIORITY：1
+* NORM_PRIORITY：5 -->默认优先级
+
+**获取和设置当前线程的优先级：**
+
+* `getPriority():`获取线程的优先级
+
+* `setPriority(int p):`设置线程的优先级
+
+说明：高优先级的线程要抢占低优先级线程cpu的执行权。但是只是从概率上讲，高优先级的线程高概率的情况下被执行。
+
+并不意味着只当高优先级的线程执行完以后，低优先级的线程才执行。
+
+
+
+**线程通信**：`wait() / notify() / notifyAll()` 此三个方法定义在Object类中的。
+
+
+
+## 生命周期
+
+ 
+
+![img](java1.assets/clip_image002.png)
+
+**阻塞：**临时状态，不可以作为最终状态
+
+**死亡：**最终状态。
+
+ 
+
+## 线程同步
+
+### 方式一：同步代码块
+
+````java
+synchronized(同步监视器){
+	//需要被同步的代码
+}
+````
+
+ **说明：**
+
+* 操作共享数据的代码，即为需要被同步的代码。 -->不能包含代码多了，也不能包含代码少了。
+* 共享数据：多个线程共同操作的变量。
+* 同步监视器，俗称：锁。任何一个类的对象，都可以充当锁。
+  * 要求：**多个线程必须要共用同一把锁。**
+
+* 补充：
+  * 在实现`Runnable`接口创建多线程的方式中，我们可以考虑使用`this`充当同步监视器。
+  * 在继承`Thread`类创建多线程的方式中，慎用`this`充当同步监视器，考虑使用当前类充当同步监视器。
+
+**实现runnable接口**
+
+````java
+class Window1 implements Runnable{
+    private int ticket = 100;
+    @Override
+    public void run() {
+        while(true){
+            synchronized (this){//此时的this:唯一的Window1的对象   //方式二：synchronized (dog) {
+                if (ticket > 0) {
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println(Thread.currentThread().getName() + ":卖票，票号为：" + ticket);
+                    ticket--;
+                } else {
+                    break;
+                }
+            }
+        }
+    }
+}
+public class WindowTest1 {
+    public static void main(String[] args) {
+        Window1 w = new Window1();
+        Thread t1 = new Thread(w);
+        Thread t2 = new Thread(w);
+        Thread t3 = new Thread(w);
+        t1.setName("窗口1");
+        t2.setName("窗口2");
+        t3.setName("窗口3");
+        t1.start();
+        t2.start();
+        t3.start();
+    }
+}
+````
+
+**继承thread类**
+
+````java
+class Window2 extends Thread{
+    private static int ticket = 100;
+    private static Object obj = new Object();
+    @Override
+    public void run() {
+        while(true){
+ 
+            synchronized (Window2.class){//Class clazz = Window2.class,Window2.class只会加载一次
+                if(ticket > 0){
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println(getName() + "：卖票，票号为：" + ticket);
+                    ticket--;
+                }else{
+                    break;
+                }
+            }
+        }
+    }
+}
+public class WindowTest2 {
+    public static void main(String[] args) {
+        Window2 t1 = new Window2();
+        Window2 t2 = new Window2();
+        Window2 t3 = new Window2();
+        t1.setName("窗口1");
+        t2.setName("窗口2");
+        t3.setName("窗口3")；
+        t1.start();
+        t2.start();
+        t3.start();
+    }
+}
+
+````
+
+### 方式二：同步方法
+
+ 如果操作共享数据的代码完整的声明在一个方法中，我们不妨将此方法声明同步的。
+
+````java
+修饰符 synchronize 返回类型 方法名(){
+	//方法体
+}
+````
+
+ 
+
+**关于同步方法的总结：**
+
+* 同步方法仍然涉及到同步监视器，只是不需要我们显式的声明。
+
+* 非静态的同步方法，同步监视器是：this 
+* 静态的同步方法，同步监视器是：当前类本身(类.class)
+
+
+
+**实现runnable接口**
+
+````java
+class Window3 implements Runnable {
+    private int ticket = 100;
+    @Override
+    public void run() {
+        while (ticket > 0) {
+            show();             //调用同步方法
+        }
+    }
+    private synchronized void show(){//同步监视器：this
+            if (ticket > 0) {
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println(Thread.currentThread().getName() + ":卖票，票号为：" + ticket);
+                ticket--;
+            }
+    }
+}
+````
+
+
+
+**继承thread类**
+
+````java
+class Window4 extends Thread {
+    private static int ticket = 100;
+    @Override
+    public void run() {
+        while (ticket > 0) {
+            show();
+        }
+    }
+    private static synchronized void show(){//同步监视器：Window4.class//声明为静态方法
+        //private synchronized void show(){ //同步监视器：t1,t2,t3。此种解决方式是错误的
+        if (ticket > 0) {
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println(Thread.currentThread().getName() + "：卖票，票号为：" + ticket);
+            ticket--;
+        }
+    }
+}
+//static声明的方法只会被初始化一次
+````
+
+
+
+### 方式三：Lock锁
+
+**使用的优先顺序：**Lock ---> 同步代码块（已经进入了方法体，分配了相应资源 ) ---> 同步方法（在方法体之外)
+
+**步骤**
+
+* 实例化`ReentrantLock()`
+* 调用锁定方法`lock()`  (开启)
+* 调用解锁方法：`unlock()` (关闭)
+
+```java
+class 类名 implements Runnable{
+    private ReentrantLock 对象名 = new ReentrantLock();
+    //private static ReentrantLock 对象名 = new ReentrantLock();     //如果继承Thread，则使用static
+    对象名.lock();
+    ……要同步的代码
+    对象名.unlock()；
+}
+```
+
+**实现runnable接口**
+
+````java
+class Window implements Runnable{
+    private int ticket = 100;
+    //1.实例化ReentrantLock
+    private ReentrantLock lock = new ReentrantLock();
+    @Override
+    public void run() {
+        while(true){
+            try{
+                //2.调用锁定方法lock()
+                lock.lock();
+                if(ticket > 0){
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println(Thread.currentThread().getName() + "：售票，票号为：" + ticket);
+                    ticket--;
+                }else{
+                    break;
+                }
+            }finally {
+                //3.调用解锁方法：unlock()
+                lock.unlock();
+            }
+        }
+    }
+}
+````
+
+**继承thread类**
+
+````java
+class myThread extends Thread{
+    private static int t=100;
+    private static ReentrantLock lock = new ReentrantLock();
+   
+    @Override
+    publicvoid run(){
+        while(true){
+            try{
+                lock.lock();
+                if(t>0){
+                    System.out.println(Thread.currentThread().getName()+"卖票,票号:"+t);
+                    t--;
+                }else{
+                    break;
+                }
+            }finally{
+                lock.unlock();
+            }
+        }
+    }
+}
+
+````
+
+
+
+
+
+## 线程死锁
+
+**理解：**不同的线程分别占用对方需要的同步资源不放弃，都在等待对方放弃自己需要的同步资源，就形成了线程的死锁
+
+ 
+
+**说明：**
+
+* 出现死锁后，不会出现异常，不会出现提示，只是所的线程都处于阻塞状态，无法继续
+* 我们使用同步时，要避免出现死锁。
+
+
+
+## 线程通信
+
+| 方法                | 作用                                                         |
+| ------------------- | :----------------------------------------------------------- |
+| wait()              | 线程进入waiting状态，释放锁，唤醒后从被暂停的位置开始运行    |
+| wait(long  timeout) | 如果在timeout的时间内没被唤醒，则退出                        |
+| notify()            | 随机（优先级高的先唤醒）唤醒一个waiting状态的线程 （同一个监视器） |
+| notifyAll()         | 唤醒全部waiting状态的线程（同一个监视器）                    |
+
+**说明**：
+
+* `wait()，notify()，notifyAll()`三个方法必须使用在同步代码块或同步方法中，`LOCK`不行。
+
+* `wait()，notify()，notifyAll()`三个方法的调用者必须是同步代码块或同步方法中的**同步监视器**。否则，会出现`IllegalMonitorStateException`异常
+
+  
+
+**释放锁的操作：**
+
+![img](java1.assets/clip_image002-16530254575042.jpg)
+
+**不会释放锁的操作：**
+
+![img](java1.assets/clip_image004-16530254575053.jpg)
+
+
+
+
+
+
+
+
+
+# 常用类
+
+## String
+
+**概述**
+
+* `String`声明为`final`的，不可被继承
+
+* `String`实现了`Serializable`接口：表示字符串是支持序列化的。
+
+  实现了`Comparable`接口：表示`String`可以比较大小
+
+* `String`内部定义了`final char[] value`用于存储字符串数据
+
+​			`String` 代表不可变的字符序列(`value`不可变，但是`String`的引用可变)
+
+* 通过字面量的方式（区别于new给一个字符串赋值，此时的字符串值声明在字符串常量池中)。
+* 字符串常量池中是不会储存相同内容(使用`String`类的`equals()`比较，返回`true`)的字符串的。
+
+ 
+
+**`String`的不可变性**
+
+1.当对字符串重新赋值时，需要重写指定内存区域赋值，不能使用原有的`value`进行赋值。
+
+2.当对现有的字符串进行连接操作时，也需要重新指定内存区域赋值，不能使用原有的`value`进行赋值。
+
+3.当调用`String`的`replace()`方法修改指定字符或字符串时，也需要重新指定内存区域赋值，不能使用原有的value进行赋值。
+
+![img](java1.assets/clip_image002-16530436976841.jpg)
+
+ 
+
+**String实例化的不同方式**
+
+方式一：通过字面量定义的方式
+
+方式二：通过new + 构造器的方式
+
+````java
+//通过字面量定义的方式：此时的s1和s2的数据javaEE声明在方法区中的字符串常量池中。
+
+String s1 = "javaEE";
+
+String s2 = "javaEE";
+
+//通过new + 构造器的方式:此时的s3和s4保存的地址值，是数据在堆空间中开辟空间以后对应的地址值。
+
+String s3 = new String("javaEE");
+
+String s4 = new String("javaEE");
+
+ 
+
+System.out.println(s1 == s2);//true
+
+System.out.println(s1 == s3);//false
+
+System.out.println(s1 == s4);//false
+
+System.out.println(s3 == s4);//false
+````
+
+**面试题**
+
+`String s = new String("abc");`方式创建对象，在内存中创建了几个对象？
+
+两个:一个是堆空间中new结构，另一个是char[]对应的常量池中的数据："abc"
+
+![img](java1.assets/clip_image004-16530436976842.jpg)
+
+**字符串拼接方式赋值的对比**
+
+* **常量**与**常量**的拼接结果在**常量池**。且常量池中不会存在相同内容的常量。
+* 只要其中一个是**变量**，结果就在**堆**中(堆中可重复)。
+* 如果拼接的结果调用`intern()`方法，返回值就在常量池中
+
+````java
+String s1 = "javaEE";
+String s2 = "hadoop";
+
+String s3 = "javaEEhadoop";
+String s4 = "javaEE" + "hadoop";
+String s5 = s1 + "hadoop";
+String s6 = "javaEE" + s2;
+String s7 = s1 + s2;
+
+
+System.out.println(s3 == s4);//true
+System.out.println(s3 == s5);//false
+System.out.println(s3 == s6);//false
+System.out.println(s3 == s7);//false
+System.out.println(s5 == s6);//false
+System.out.println(s5 == s7);//false
+System.out.println(s6 == s7);//false
+
+
+String s8 = s6.intern();//返回值得到的s8使用的常量值中已经存在的“javaEEhadoop”
+
+System.out.println(s3 == s8);//true
+
+****************************
+
+String s1 = "javaEEhadoop";
+String s2 = "javaEE";
+String s3 = s2 + "hadoop";
+System.out.println(s1 == s3);//false
+
+final String s4 = "javaEE";//s4:常量
+String s5 = s4 + "hadoop";
+System.out.println(s1 == s5);//true
+````
+
+
+
+**常用方法：**
+
+| 方法                                               | 作用                                                         |
+| -------------------------------------------------- | ------------------------------------------------------------ |
+| int length()：                                     | 返回字符串的长度： return  value.length                      |
+| char charAt(int index)：                           | 返回某索引处的字符return  value[index]                       |
+| boolean isEmpty()：                                | 判断是否是空字符串：return value.length  == 0                |
+| String toLowerCase()：                             | 使用默认语言环境，将 String 中的所字符转换为小写(原字符不变，建立新字符串) |
+| String toUpperCase()：                             | 使用默认语言环境，将 String 中的所字符转换为大写             |
+| String trim()：                                    | 返回字符串的副本，忽略前导空白和尾部空白 (底层使用的还是substring做的切割) |
+| boolean equals(Object obj)：                       | 比较字符串的内容是否相同                                     |
+| boolean equalsIgnoreCase(String  anotherString)：  | 与equals方法类似，忽略大小写                                 |
+| String concat(String str)：                        | 将指定字符串连接到此字符串的结尾。 等价于用“+”(String类型 变量.concat("字符串")) |
+| int compareTo(String anotherString)：              | 比较两个字符串的大小                                         |
+| String substring(int beginIndex)：                 | 返回一个新的字符串，它是此字符串的从beginIndex开始截取到最后  的一个子字符串。 |
+| String substring(int beginIndex, int  endIndex) ： | 返回一个新字符串，它是此字符串从beginIndex开始截取到endIndex(不包含)的一个子字符串。左闭右开[ ) |
+| boolean endsWith(String suffix)：                  | 测试此字符串是否以指定的后缀结束                             |
+| boolean startsWith(String prefix)：                | 测试此字符串是否以指定的前缀开始                             |
+| boolean startsWith(String prefix, int  toffset)：  | 测试此字符串从指定索引（位置）开始的子字符串是否以指定前缀开始 |
+| boolean contains(Char Sequence s)：                | 当且仅当此字符串包含指定的 char 值序列时，返回 true          |
+| int indexOf(String str)：                          | 返回指定子字符串在此字符串中第一次出现处的索引               |
+| int indexOf(String str, int fromIndex)：           | 返回指定子字符串在此字符串中第一次出现处的索引，从指定的索引开始 |
+| int lastIndexOf(String str)：                      | 返回指定子字符串在此字符串中最右边出现处的索引(从后往前找)   |
+| int lastIndexOf(String str, int  fromIndex)：      | 返回指定子字符串在此字符串中最后一次出现处的索引，从指定的索引开始反向搜索；从fronIndex位置向左找str第一次出现的索引 |
+|                                                    | 注：indexOf和lastIndexOf方法如果未找到都是返回-1             |
+
+> **替换：**
+
+| 方法                                                         | 作用                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| String replace(char oldChar, char  newChar)：                | 返回一个新的字符串，它是通过用 newChar  替换此字符串中出现的所 oldChar 得到的。(所有的oldChar 替换为 nerChar；原字符串不变，建立新的字符串) |
+| String replace(CharSequence target,  CharSequence replacement)： | 使用指定的字面值替换序列替换此字符串所匹配字面值目标序列的子字符串。 |
+| String replaceAll(String regex, String  replacement)：       | 使用给定的 replacement 替换此字符串所匹配给定的正则表达式的子字符串。 |
+| String replaceFirst(String regex, String  replacement)：     | 使用给定的 replacement 替换此字符串匹配给定的正则表达式的第一个子字符串。 |
+
+ 
+
+> **匹配:**
+
+| 方法                             | 作用                                   |
+| -------------------------------- | -------------------------------------- |
+| boolean  matches(String regex)： | 告知此字符串是否匹配给定的正则表达式。 |
+
+> **切片：**
+
+| 方法                                      | 作用                                                         |
+| ----------------------------------------- | ------------------------------------------------------------ |
+| String[] split(String regex)：            | 根据给定正则表达式的匹配拆分此字符串。                       |
+| String[] split(String regex, int limit)： | 根据匹配给定的正则表达式来拆分此字符串，最多不超过limit个，如果超过了，剩下的全部都放到最后一个元素中。 |
+
+````java
+String str = "sgs#jkc#eer"; 
+String[] str1 = str.split("#"); 
+for (int i = 0; i < str1.length; i++) {
+ System.out.println(str1[i]);
+ //输出结果是sgs jkc ee
+}
+````
+
+
+
+**String与其它结构的转换**    
+
+> **与基本数据类型、包装类之间的转换**
+
+  `String --> 基本数据类型、包装类：调用包装类的静态方法：parseXxx(str)`
+
+  `基本数据类型、包装类 --> String:调用String重载的valueOf(xxx)`
+
+
+
+> **与字符数组之间的转换**
+
+`String --> char[]:调用String的toCharArray()`
+
+`char[] --> String:调用String的构造器`
+
+
+
+> **与字节数组之间的转换**
+
+编码：String --> byte[]:调用String的getBytes()
+
+解码：`byte[] --> String:调用String的构造器`
+
+说明：解码时，要求解码使用的字符集必须与编码时使用的字符集一致，否则会出现乱码。
+
+ ````java
+ 
+ public void test3() throws UnsupportedEncodingException {
+   String str1 = "Java我爱你";
+   byte[] bytes = str1.getBytes();//使用默认的字符集，进行编码。
+   byte[] gbks = str1.getBytes("gbk");//使用gbk字符集进行编码。
+ 
+   String str2 = new String(bytes);//使用默认的字符集，进行解码。
+   String str4 = new String(gbks, "gbk"); //指定解码方式
+ }
+ ````
+
+
+
+> **与StringBuffer、StringBuilder之间的转换**
+
+`String -->StringBuffer、StringBuilder:调用StringBuffer、StringBuilder构造器`
+
+`StringBuffer、StringBuilder -->String:①调用String构造器；②StringBuffer、StringBuilder的toString()`
+
+
+
+**JVM中字符串常量池存放位置：**
+
+jdk 1.6:字符串常量池存储在方法区（永久区）
+
+jdk 1.7:字符串常量池存储在堆空间
+
+jdk 1.8:字符串常量池存储在方法区（元空间）
+
+ 
+
+
+
+## Stringbuffer/StringBuilder
+
+**String、StringBuffer、StringBuilder三者的对比**
+
+**String:**不可变的字符序列；底层使用char[]存储
+
+**StringBuffer:**可变的字符序列；线程安全的，效率低；底层使用char[]存储
+
+**StringBuilder:**可变的字符序列；jdk5.0新增的，线程不安全的，效率高；底层使用char[] 存储
+
+ 
+
+**StringBuffer与StringBuilder的内存解析**
+
+以StringBuffer为例：
+
+````java
+String str = new String();//char[] value = new char[0];
+
+String str1 = new String("abc");//char[] value = new char[]{'a','b','c'};
+
+StringBuffer sb1 = new StringBuffer();//char[] value = new char[16];底层创建了一个长度是16的数组。
+
+System.out.println(sb1.length());//
+
+sb1.append('a');//value[0] = 'a';
+
+sb1.append('b');//value[1] = 'b';
+
+
+StringBuffer sb2 = new StringBuffer("abc");//char[] value = new char["abc".length() + 16];
+````
+
+ **扩容问题:**
+
+* 如果要添加的数据底层数组盛不下了，那就需要扩容底层的数组。
+* 默认情况下，扩容为原来容量的2倍 + 2，同时将原数组中的元素复制到新的数组中。
+
+**对比String、StringBuffer、StringBuilder三者的执行效率**
+
+从高到低排列：`StringBuilder > StringBuffer > String`
+
+ 
+
+**常用方法**
+
+| 作用     | 方法                                                         |
+| -------- | ------------------------------------------------------------ |
+| 增：     | append(xxx)                                                  |
+| 删：     | delete(int start,int end)                                    |
+| 改：     | setCharAt(int n ,char ch) / replace(int  start, int end, String str) |
+| 查：     | charAt(int n )                                               |
+| 插：     | insert(int offset, xxx)                                      |
+| 长度：   | length();                                                    |
+| 遍历：   | for() + charAt() / toString()                                |
+| 反转     | reverse()                                                    |
+| 截取     | substring(int start,int  end):                               |
+| 返回位置 | indexOf(String str):                                         |
+
+ 
+
+
+
+## 时间
+
+### JDK8之前：
+
+**获取系统当前时间：**`System类中的currentTimeMillis()`
+
+````java
+long time = System.currentTimeMillis();
+//返回当前时间与1970年1月1日0时0分0秒之间以毫秒为单位的时间差。
+//称为时间戳
+````
+
+
+
+**java.util.Date类与java.sql.Date类**
+
+  `java.util.Date类`
+
+​      `|---java.sql.Date类    （子父类）`
+
+ **使用**
+
+​    构造器一：`Date()`创建一个对应当前时间的Date对象
+
+​    构造器二：创建指定毫秒数的Date对象(相当于翻译时间戳)
+
+​    `toString():`显示当前的年、月、日、时、分、秒
+
+​    `getTime():`获取当前Date对象对应的毫秒数。（时间戳）
+
+ 
+
+**java.sql.Date**对应着数据库中的日期类型的变量(一般数据库交互才使用)
+
+````java
+@Test
+public void test2(){
+    //构造器一：Date()：创建一个对应当前时间的Date对象
+    Date date1 = new Date();
+    System.out.println(date1.toString());//Sat Feb 16 16:35:31 GMT+08:00 2019
+
+    System.out.println(date1.getTime());//1550306204104
+
+    //构造器二：创建指定毫秒数的Date对象
+    Date date2 = new Date(155030620410L);(相当于翻译时间戳)
+    System.out.println(date2.toString());
+
+    //创建java.sql.Date对象
+    java.sql.Date date3 = new java.sql.Date(35235325345L);
+    System.out.println(date3);//1971-02-13
+
+    //如何将java.util.Date对象转换为java.sql.Date对象
+    //情况一：
+	//        Date date4 = new java.sql.Date(2343243242323L);(多态，sql.data是util.data的子类)
+	//        java.sql.Date date5 = (java.sql.Date) date4;
+    //情况二：
+    Date date6 = new Date();
+    java.sql.Date date7 = new java.sql.Date(date6.getTime());
+}
+
+````
+
+
+
+**java.text.SimpleDataFormat类**
+
+> **两个操作：**
+
+* 格式化：日期 --->字符串,`实例化对象.format(Data类型)`
+* 解析：格式化的逆过程，字符串 ---> 日期,`实例化对象.parse()` 
+
+````java
+SimpleDateFormat sdf = new SimpleDateFormat();
+Date date = new Date();
+System.out.println(date);
+String sdf1 = sdf.format(date);
+System.out.println(sdf1);
+
+
+try {
+  Date date1 = sdf.parse(sdf1);
+  System.out.println(date1);
+
+} catch (ParseException e) {
+  e.printStackTrace();
+}
+````
+
+
+
+> **照指定的方式格式化和解析：**调用带参的构造器
+
+````java
+//SimpleDateFormat sdf1 = new SimpleDateFormat("yyyyy.MMMMM.dd GGG hh:mm aaa");
+SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+//格式化
+String format1 = sdf1.format(date);
+System.out.println(format1);//2019-02-18 11:48:27
+
+//解析:要求字符串必须是符合SimpleDateFormat识别的格式(通过构造器参数体现),
+//否则，抛异常
+Date date2 = sdf1.parse("2020-02-18 11:48:27");
+System.out.println(date2);
+格式：
+yyyy MM dd  hh:mm:ss
+y年 M月 d日 h时 m分 s秒
+````
+
+
+
+**Calendar类：**日历类、抽象类
+
+> **实例化**
+
+方式一：创建其子类（`GregorianCalendar`的对象)
+
+方式二：调用其静态方法 `Calender.getInstance()`
+
+`Calendar calendar = Calendar.getInstance();`    
+
+ 
+
+> **常用方法**
+
+````java
+//get()
+int days = calendar.get(Calendar.DAY_OF_MONTH);//当前日期是本月的第几天
+System.out.println(days);
+System.out.println(calendar.get(Calendar.DAY_OF_YEAR));//当前日期是本年的第几天
+
+//set()//修改时间
+//calendar可变性
+calendar.set(Calendar.DAY_OF_MONTH,22);//修改为本月的22号
+days = calendar.get(Calendar.DAY_OF_MONTH);
+System.out.println(days);
+
+//add()//在原有基础添加
+calendar.add(Calendar.DAY_OF_MONTH,-3);
+days = calendar.get(Calendar.DAY_OF_MONTH);
+System.out.println(days);
+
+//getTime():日历类---> Date
+````
+
+
+
+
+
+### JDK8之后
+
+**涉及到的包**
+
+![img](java1.assets/clip_image002-16531845469601.jpg)
+
+**本地日期、本地时间、本地日期时间的使用：**`LocalDate / LocalTime / LocalDateTime`
+
+> **常用方法：**
+
+![img](java1.assets/clip_image004-16531845469602.jpg)
+
+> **实例化**
+
+`LocalDate localDate = LocalDate.now();`
+
+`LocalTime localTime = LocalTime.now();`
+
+`LocalDateTime localDateTime = LocalDateTime.now();`
+
+
+
+**时间点：Instant** 
+
+① 时间线上的一个瞬时点。 概念上讲，它只是简单的表示自1970年1月1日0时0分0秒（UTC开始的秒数。）
+
+② 类似于 java.util.Date类
+
+> **常用方法**：
+
+![img](java1.assets/clip_image006.jpg)
+
+> 实例化：
+
+`Instant.now`
+
+ 
+
+**日期时间格式化类：DateTimeFormatter**
+
+
+
+> **常用方法**：
+
+① 实例化方式：
+
+预定义的标准格式。如：`ISO_LOCAL_DATE_TIME;ISO_LOCAL_DATE;ISO_LOCAL_TIME`
+
+本地化相关的格式。如：`ofLocalizedDateTime(FormatStyle.LONG)`
+
+自定义的格式。如：`ofPattern(“yyyy-MM-dd hh:mm:ss”)`
+
+② 常用方法：
+
+ 
+
+![img](java1.assets/clip_image008.jpg)
+
+ 
+
+自定义的格式。如：`ofPattern(“yyyy-MM-dd hh:mm:ss”)`
+
+````JAVA
+DateTimeFormatter formatter3 = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss");
+//格式化
+String str4 = formatter3.format(LocalDateTime.now());
+System.out.println(str4);//2019-02-18 03:52:09
+
+//解析
+TemporalAccessor accessor = formatter3.parse("2019-02-18 03:52:09");
+System.out.println(accessor);
+````
+
+
+
+**其它API**
+
+> **时间间隔：**Duration--用于计算两个“时间”间隔，以秒和纳秒为基准
+
+![img](java1.assets/clip_image010.jpg)
+
+````JAVA
+@Test
+public void test3(){
+        LocalTime localTime = LocalTime.now();
+        LocalTime localTime1 = LocalTime.of(15, 23, 32);
+        //between():静态方法，返回Duration对象，表示两个时间的间隔
+        Duration duration = Duration.between(localTime1, localTime);
+        System.out.println(duration);
+
+        System.out.println(duration.getSeconds());
+        System.out.println(duration.getNano());
+
+        LocalDateTime localDateTime = LocalDateTime.of(2016, 6, 12, 15, 23, 32);
+        LocalDateTime localDateTime1 = LocalDateTime.of(2017, 6, 12, 15, 23, 32);
+
+        Duration duration1 = Duration.between(localDateTime1, localDateTime);
+        System.out.println(duration1.toDays());
+}
+````
+
+
+
+
+
+> **日期间隔**：Period --用于计算两个“日期”间隔，以年、月、日衡量
+
+![img](java1.assets/clip_image012.jpg)
+
+````JAVA
+@Test
+public void test4(){
+        LocalDate localDate = LocalDate.now();
+        LocalDate localDate1 = LocalDate.of(2028, 3, 18);
+
+        Period period = Period.between(localDate, localDate1);
+        System.out.println(period);
+
+        System.out.println(period.getYears());
+        System.out.println(period.getMonths());
+        System.out.println(period.getDays());
+
+        Period period1 = period.withYears(2);
+        System.out.println(period1);
+}
+````
+
+
+
+
+
+## 比较器
+
+使用`Arrays.sort()、Collections.sort()`进行排序
+
+
+
+> 两种排序方式对比
+
+* Comparable接口的方式一旦一定，保证Comparable接口实现类的对象在任何位置都可以比较大小。
+
+* Comparator接口属于临时性的比较。
+
+  
+
+### 自然排序：Comparable接口
+
+**说明**
+
+* 像`String、包装类等实现了Comparable`接口，重写了`compareTo(obj)`方法，给出了比较两个对象大小的方式。
+* 像`String、包装类重写compareTo()`方法以后，进行了从小到大的排列
+* 重写`compareTo(obj)`的规则：
+  * 如果当前对象this大于形参对象obj，则返回正整数
+  * 如果当前对象this小于形参对象obj，则返回负整数
+  * 如果当前对象this等于形参对象obj，则返回零。
+
+* 对于自定义类来说，如果需要排序，我们可以让自定义类实现`Comparable`接口，重写`compareTo(obj)`方法。
+
+  ````java
+  String[] arr = new String[]{"AA","CC","KK","MM","GG","JJ","DD"};
+  Arrays.sort(arr)
+  ````
+
+````java
+public class Goods implements  Comparable{
+
+    private String name;
+    private double price;
+
+    //指明商品比较大小的方式:照价格从低到高排序,再照产品名称从高到低排序
+    @Override
+    public int compareTo(Object o) {
+        if(o instanceof Goods){
+            Goods goods = (Goods)o;
+            //方式一：
+            if(this.price > goods.price){
+                return 1;
+            }else if(this.price < goods.price){
+                return -1;
+            }else{
+				//return 0;
+               return this.name.compareTo(goods.name);//调用的是String下重写的compareTo，因为name是String类型，不属于自定义类产品名称从高到低排序
+            }
+            //方式二：
+			//return Double.compare(this.price,goods.price);
+        }
+		//return 0;
+        throw new RuntimeException("传入的数据类型不一致！");
+    }
+	// getter、setter、toString()、构造器：省略
+}
+````
+
+
+
+### 定制排序：Comparator接口
+
+**说明**
+
+* 当元素的类型没实现`java.lang.Comparable`接口而又不方便修改代码，或者实现了`java.lang.Comparable`接口的排序规则不适合当前的操作，那么可以考虑使用 `Comparator` 的对象来排序
+
+* 重写`compare(Object o1,Object o2)`方法，比较o1和o2的大小：
+  * 如果方法返回正整数，则表示o1大于o2 ；
+  * 如果返回0，表示相等；
+  * 返回负整数，表示o1小于o2。
+
+````java
+Comparator com = new Comparator() {
+    //指明商品比较大小的方式:照产品名称从低到高排序,再照价格从高到低排序
+    @Override
+    public int compare(Object o1, Object o2) {
+        if(o1 instanceof Goods && o2 instanceof Goods){
+            Goods g1 = (Goods)o1;
+            Goods g2 = (Goods)o2;
+            if(g1.getName().equals(g 2.getName())){
+                return -Double.compare(g1.getPrice(),g2.getPrice());//相当于if else 比较大小
+            }else{
+                return g1.getName().compareTo(g2.getName());
+            }
+        }
+        throw new RuntimeException("输入的数据类型不一致");
+    }
+}
+````
+
+
+
+**商品名从大到小排列，价格从大到小排列**
+
+> 接口Comparable
+
+````java
+public class Goods implements Comparable{
+    private String name;
+    private int Price;
+    public Goods(String name, int Price) {
+        this.name = name;
+        this.Price = Price;
+    }
+    @Override
+    public String toString() {
+        return "Goods{" +
+                "name='" + name + '\'' +
+                ", Price=" + Price +
+                '}';
+    }
+    @Override
+    public int compareTo(Object o) {
+        if(o instanceof Goods){
+            Goods comparableTest = (Goods)o;
+            if(!this.name.equals(comparableTest.name)){
+                return this.name.compareTo(comparableTest.name);
+            }else{
+                if(this.Price > comparableTest.Price){
+                    return -1;
+                }else if(this.Price < comparableTest.Price){
+                    return 1;
+                }else{
+                    return 0;
+                }
+            }
+        }
+        throw new RuntimeException("类型不一致");
+    }
+}
+
+public class ComparableTest {
+    public static void main(String[] args) {
+        List<Goods> list = new ArrayList<Goods>();
+        list.add(new Goods("D",18));
+        list.add(new Goods("A",20));
+        list.add(new Goods("A",18));
+        list.add(new Goods("B",18));
+        list.add(new Goods("A",19));
+        list.add(new Goods("C",18));
+
+        System.out.println(list);
+        Collections.sort(list);     //使用内部排序
+        System.out.println(list);
+    }
+}
+````
+
+
+
+> 接口Comparator
+
+````java
+public class Goods {
+    String name;
+    int Price;
+    public Goods(String name, int Price) {
+        this.name = name;
+        this.Price = Price;
+    }
+    @Override
+    public String toString() {
+        return "Goods{" +
+                "name='" + name + '\'' +
+                ", age=" + Price +
+                '}';
+    }
+}
+
+public class ComparatorTest {
+    public static void main(String[] args) {
+        List<Goods> list = new ArrayList<>();
+        Comparator comparator = new Comparator() {
+            @Override
+            public int compare(Object o1, Object o2) {
+                if(o1 instanceof Goods && o2 instanceof  Goods){
+                    Goods g1 = (Goods) o1;
+                    Goods g2 = (Goods) o2;
+                    if(!g1.name.equals(g2.name)){
+                        return g1.name.compareTo(g2.name);
+                    }else{
+                        if(g1.Price > g2.Price){
+                            return -1;
+                        }else if(g1.Price < g2.Price){
+                            return 1;
+                        }else{
+                            return 0;
+                        }
+                    }
+                }
+                throw new RuntimeException("类型不一致");
+            }
+        };
+        list.add(new Goods("D",18));
+        list.add(new Goods("A",20));
+        list.add(new Goods("A",18));
+        list.add(new Goods("B",18));
+        list.add(new Goods("A",19));
+        list.add(new Goods("C",18));
+
+        System.out.println(list);
+        Collections.sort(list,comparator); //使用外部排序
+        System.out.println(list);
+    }
+}
+````
+
+例二：
+
+````java
+import javax.imageio.plugins.tiff.ExifParentTIFFTagSet;
+import java.util.Arrays;
+import java.util.Comparator;
+
+class Goods{
+    private String name;
+    private double price;
+
+    public Goods(String name, double price) {
+        this.name = name;
+        this.price = price;
+    }
+
+    public Goods() {
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "Goods{" +
+                "name='" + name + '\'' +
+                ", price=" + price +
+                '}';
+    }
+}
+
+public class test {
+    public static void main(String[] args) {
+        Goods[] goods = new Goods[5];
+
+        goods[0] = new Goods("xiaomi", 239);
+        goods[1] = new Goods("luoji", 369);
+        goods[2] = new Goods("huawei", 29);
+        goods[3] = new Goods("leishe", 129);
+        goods[4] = new Goods("xiaomi", 239);
+
+
+        Comparator comparator = new Comparator() {
+            @Override
+            public int compare(Object o1, Object o2) {
+                if (o1 instanceof Goods && o2 instanceof Goods) {
+                    Goods g1 = (Goods) o1;
+                    Goods g2 = (Goods) o2;
+
+                    if (g1.getPrice() > g2.getPrice()) {
+                        return 1;
+                    } else if (g1.getPrice() < g2.getPrice()) {
+                        return -1;
+                    } else {
+                        return g1.getName().compareTo(g2.getName());
+                    }
+                }
+                throw new RuntimeException("输入的数据类型不一致");
+            }
+        };
+        Arrays.sort(goods,comparator);
+        System.out.println(Arrays.toString(goods));
+    }
+
+    //Arrays.sort(goods, new Comparator() {
+    //        //指明商品比较大小的方式:照产品名称从低到高排序,再照价格从高到低排序
+    //        @Override
+    //        public int compare(Object o1, Object o2) {
+    //            if(o1 instanceof Goods && o2 instanceof Goods){
+    //                Goods g1 = (Goods)o1;
+    //                Goods g2 = (Goods)o2;
+    //                if(g1.getName().equals(g2.getName())){
+    //                    return -Double.compare(g1.getPrice(),g2.getPrice());
+    //                }else{
+    //                    return -g1.getName().compareTo(g2.getName());
+    //                }
+    //            }
+    //            throw new RuntimeException("输入的数据类型不一致");
+    //        }
+    //    });
+    //
+    //    System.out.println(Arrays.toString(goods));
+    //
+    //}
+}
+````
+
+
+
+
+
+## 其他类
+
+**System**类
+
+`System`类代表系统，系统级的很多属性和控制方法都放置在该类的内部。该类位于`java.lang`包。
+
+由于该类的构造器是`private`的，所以无法创建该类的对象，也就是无法实例化该类。其内部的成员变量和成员方法都是`static`的，所以也可以很方便的进行调用。
+
+> 方法：
+
+| 方法                            | 作用                                                     |
+| ------------------------------- | -------------------------------------------------------- |
+| native long currentTimeMillis() | 返回但前系统时间                                         |
+| void exit(int status)           | 退出程序,其中status的值为0代表正常退出，非零代表异常退出 |
+| void gc()                       | 请求系统进行垃圾回收                                     |
+| String getProperty(String key)  |                                                          |
+
+
+
+**Math类**
+
+`java.lang.Math`提供了一系列静态方法用于科学计算。其方法的参数和返回值类型一般为`double`型。
+
+ 
+
+**BigInteger类、BigDecimal类**
+
+* `java.math`包的`BigInteger`可以表示不可变的任意精度的整数。
+* 要求数字精度比较高，用到`java.math.BigDecimal`类
+* 代码举例：
+
+![img](java1.assets/clip_image002-16531867975869.jpg)
+
+ 
+
+
+
+
+
+# 枚举类
+
+**枚举博客：**
+
+[Enum（枚举类）](https://blog.csdn.net/qq_31655965/article/details/55049192)
+
+[深入理解Java枚举类型(enum)](https://blog.csdn.net/javazejian/article/details/71333103)
+
+
+
+**实例方法**：由于枚举类的构造器是私有化的，所以不能通过`new`的形式实例化对象
+
+* `枚举类.valueOf()` 方法：它的作用是传来一个字符串，然后将它转变为对应的枚举变量。前提是你传的字符串和定义枚举变量的字符串一模一样，区分大小写。如果你传了一个不存在的字符串，那么会抛出异常。 (根据字符串获取名称)
+* `枚举类.values()方法`： 这个方法会返回包括所有枚举变量的数组。
+
+
+
+**常用方法**
+
+* `枚举变量.toString()`：该方法直接返回枚举定义枚举变量的字符串，比如MON就返回【”MON”】。
+* `枚举变量.ordinal()`：枚举类会给所有的枚举变量一个默认的次序，该次序从0开始，类似于数组的下标。而.ordinal()方法就是获取这个次序（获取下标）
+* `枚举变量.compareTo()`：该方法用来比较两个枚举变量的”大小”，实际上比较的是两个枚举变量的次序，返回两个次序相减后的结果，如果为负数，就证明变量1”小于”变量2 （变量1.compareTo(变量2)，返回【变量1.ordinal() - 变量2.ordinal()】）
+
+![image-20220522110344258](java1.assets/image-20220522110344258.png)
+
+
+
+* `枚举类.name()`：它和toString()方法的返回值一样，事实上，这两个方法本来就是一样的：
+
+* `getDeclaringClass`：返回与此枚举常量的枚举类型相对应的 Class 对象
+
+ 
+
+**自定义枚举类** 
+
+````java
+//自定义枚举类
+class Season{
+    //1.声明Season对象的属性:private final修饰
+    private final String seasonName;
+    private final String seasonDesc;
+
+    //2.私有化的构造器,并给对象属性赋值;
+    private Season(String seasonName,String seasonDesc){
+        this.seasonName = seasonName;
+        this.seasonDesc = seasonDesc;
+    }
+
+    //3.提供当前枚举类的多个对象：因为是public static final，不会陷入递归循环
+    public static final Season SPRING = new Season("春天","春暖花开");
+    public static final Season SUMMER = new Season("夏天","夏日炎炎");
+    public static final Season AUTUMN = new Season("秋天","秋高气爽");
+    public static final Season WINTER = new Season("冬天","冰天雪地");
+
+    //4.其他诉求1：获取枚举类对象的属性
+    public String getSeasonName() {
+        return seasonName;
+    }
+
+    public String getSeasonDesc() {
+        return seasonDesc;
+    }
+    //4.其他诉求1：提供toString()
+    @Override
+    public String toString() {
+        return "Season{" +
+                "seasonName='" + seasonName + '\'' +
+                ", seasonDesc='" + seasonDesc + '\'' +
+                '}';
+    }
+}
+````
+
+
+
+**jdk 5.0 新增使用enum定义枚举类。**
+
+使用`enum`关键字枚举类
+
+````java
+enum Season1 {
+    //1.当前枚举类的对象，多个对象之间用","隔开，末尾对象";"结束
+    SPRING("春天","春暖花开"),
+    SUMMER("夏天","夏日炎炎"),
+    AUTUMN("秋天","秋高气爽"),
+    WINTER("冬天","冰天雪地");
+
+    //2.声明Season对象的属性:private final修饰
+    private final String seasonName;
+    private final String seasonDesc;
+
+    //3.私化类的构造器,并给对象属性赋值
+    private Season1(String seasonName,String seasonDesc){
+        this.seasonName = seasonName;
+        this.seasonDesc = seasonDesc;
+    }
+
+    //4.其他诉求1：获取枚举类对象的属性
+    public String getSeasonName() {
+        return seasonName;
+    }
+
+    public String getSeasonDesc() {
+        return seasonDesc;
+    }
+
+}
+````
+
+**原理**
+
+> 实际上在使用关键字`enum`创建枚举类型并编译后，编译器会为我们生成一个相关的类，这个类继承了Java API中的`java.lang.Enum`类
+
+````java
+//定义枚举类型
+enum Day {
+    MONDAY, TUESDAY, WEDNESDAY,
+    THURSDAY, FRIDAY, SATURDAY, SUNDAY
+}
+````
+
+````java
+//反编译Day.class
+final class Day extends Enum
+{
+    //编译器为我们添加的静态的values()方法
+    public static Day[] values()
+    {
+        return (Day[])$VALUES.clone();
+    }
+    //编译器为我们添加的静态的valueOf()方法，注意间接调用了Enum也类的valueOf方法
+    public static Day valueOf(String s)
+    {
+        return (Day)Enum.valueOf(com/zejian/enumdemo/Day, s);
+    }
+    //私有构造函数
+    private Day(String s, int i)
+    {
+        super(s, i);
+    }
+     //前面定义的7种枚举实例
+    public static final Day MONDAY;
+    public static final Day TUESDAY;
+    public static final Day WEDNESDAY;
+    public static final Day THURSDAY;
+    public static final Day FRIDAY;
+    public static final Day SATURDAY;
+    public static final Day SUNDAY;
+    private static final Day $VALUES[];
+
+    static 
+    {    
+        //实例化枚举实例
+        MONDAY = new Day("MONDAY", 0);
+        TUESDAY = new Day("TUESDAY", 1);
+        WEDNESDAY = new Day("WEDNESDAY", 2);
+        THURSDAY = new Day("THURSDAY", 3);
+        FRIDAY = new Day("FRIDAY", 4);
+        SATURDAY = new Day("SATURDAY", 5);
+        SUNDAY = new Day("SUNDAY", 6);
+        $VALUES = (new Day[] {
+            MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
+        });
+    }
+}
+````
+
+
+
+**枚举类对象分别实现接口**
+
+> 例一
+
+````java
+interface Info{
+    void show();
+}
+
+//使用enum关键字枚举类
+enum Season1 implements Info{
+    //1.提供当前枚举类的对象，多个对象之间用","隔开，末尾对象";"结束
+    SPRING("春天","春暖花开"){
+        @Override
+        public void show() {
+            System.out.println("春天在哪里？");
+        }
+    },
+    SUMMER("夏天","夏日炎炎"){
+        @Override
+        public void show() {
+            System.out.println("宁夏");
+        }
+    },
+    AUTUMN("秋天","秋高气爽"){
+        @Override
+        public void show() {
+            System.out.println("秋天不回来");
+        }
+    },
+    WINTER("冬天","冰天雪地"){
+        @Override
+        public void show() {
+            System.out.println("大约在冬季");
+        }
+    };
+}
+````
+
+
+
+> 例二
+
+````java
+//有时候，我们可能需要对一组数据进行分类，比如进行食物菜单分类而且希望这些菜单都属于food类型，appetizer(开胃菜)、mainCourse(主菜)、dessert(点心)、Coffee等，每种分类下有多种具体的菜式或食品，此时可以利用接口来组织，如下(代码引用自Thinking in Java)：
+public interface Food {
+  enum Appetizer implements Food {
+    SALAD, SOUP, SPRING_ROLLS;
+  }
+  enum MainCourse implements Food {
+    LASAGNE, BURRITO, PAD_THAI,
+    LENTILS, HUMMOUS, VINDALOO;
+  }
+  enum Dessert implements Food {
+    TIRAMISU, GELATO, BLACK_FOREST_CAKE,
+    FRUIT, CREME_CARAMEL;
+  }
+  enum Coffee implements Food {
+    BLACK_COFFEE, DECAF_COFFEE, ESPRESSO,
+    LATTE, CAPPUCCINO, TEA, HERB_TEA;
+  }
+}
+public class TypeOfFood {
+  public static void main(String[] args) {
+    Food food = Appetizer.SALAD;
+    food = MainCourse.LASAGNE;
+    food = Dessert.GELATO;
+    food = Coffee.CAPPUCCINO;
+  }
+} 
+//通过这种方式可以很方便组织上述的情景，同时确保每种具体类型的食物也属于Food，现在我们利用一个枚举嵌套枚举的方式，把前面定义的菜谱存放到一个Meal菜单中，通过这种方式就可以统一管理菜单的数据了。
+public enum Meal{
+  APPETIZER(Food.Appetizer.class),
+  MAINCOURSE(Food.MainCourse.class),
+  DESSERT(Food.Dessert.class),
+  COFFEE(Food.Coffee.class);
+  private Food[] values;
+  private Meal(Class<? extends Food> kind) {
+    //通过class对象获取枚举实例
+    values = kind.getEnumConstants();
+  }
+  public interface Food {
+    enum Appetizer implements Food {
+      SALAD, SOUP, SPRING_ROLLS;
+    }
+    enum MainCourse implements Food {
+      LASAGNE, BURRITO, PAD_THAI,
+      LENTILS, HUMMOUS, VINDALOO;
+    }
+    enum Dessert implements Food {
+      TIRAMISU, GELATO, BLACK_FOREST_CAKE,
+      FRUIT, CREME_CARAMEL;
+    }
+    enum Coffee implements Food {
+      BLACK_COFFEE, DECAF_COFFEE, ESPRESSO,
+      LATTE, CAPPUCCINO, TEA, HERB_TEA;
+    }
+  }
+} 
+````
+
+
+
+**enum类中定义抽象方法**
+
+> 与常规抽象类一样，enum类允许我们为其定义抽象方法，然后使每个枚举实例都实现该方法，以便产生不同的行为方式
+
+````java
+public enum EnumDemo3 {
+    FIRST{
+        @Override
+        public String getInfo() {
+            return "FIRST TIME";
+        }
+    },
+    SECOND{
+        @Override
+        public String getInfo() {
+            return "SECOND TIME";
+        }
+    };
+    
+    /**
+     * 定义抽象方法
+     * @return
+     */
+    public abstract String getInfo();
+    
+    //测试
+    public static void main(String[] args){
+        System.out.println("F:"+EnumDemo3.FIRST.getInfo());
+        System.out.println("S:"+EnumDemo3.SECOND.getInfo());
+        /**
+         输出结果:
+         F:FIRST TIME
+         S:SECOND TIME
+         */
+    }
+}
+````
+
+通过这种方式就可以轻而易举地定义每个枚举实例的不同行为方式。enum类的实例似乎表现出了多态的特性，可惜的是枚举类型的实例终究不能作为类型传递使用，就像下面的使用方式，编译器是不可能答应的：
+
+````java
+//无法通过编译,毕竟EnumDemo3.FIRST是个实例对象
+public void text(EnumDemo3.FIRST instance){ }
+````
+
+
+
+**枚举与switch**
+
+使用`switch`进行条件判断时，条件参数一般只能是整型，字符型。而枚举型确实也被`switch`所支持，在java 1.7后`switch`也对字符串进行了支持。
+
+````java
+enum Color {
+    GREEN,RED,BLUE
+}
+
+public class EnumDemo4 {
+
+    public static void printName(Color color){
+        switch (color){
+            case BLUE: //无需使用Color进行引用
+                System.out.println("蓝色");
+                break;
+            case RED:
+                System.out.println("红色");
+                break;
+            case GREEN:
+                System.out.println("绿色");
+                break;
+        }
+    }
+    public static void main(String[] args){
+        printName(Color.BLUE);
+        printName(Color.RED);
+        printName(Color.GREEN);
+
+        //蓝色
+        //红色
+        //绿色
+    }
+}
+````
+
+
+
+ ## EnumMap/EnumSet
+
+
+
+
+
+
+
+
+
+# 注解
+
+参考博客
+
+[深入理解Java注解类型](https://blog.csdn.net/javazejian/article/details/71860633)
+
+[java注解](https://blog.csdn.net/qq1404510094/article/details/80577555)
+
+
+
+## **基本语法**                                                                                                                                                                                 
+
+**声明注解**
+
+注解通过 `@interface` 关键字进行定义。
+
+````java
+@Retention(RetentionPolicy.RUNTIME)  //保留期(生命周期)
+@Target({ElementType.METHOD})        //使用的位置
+public @interface Test {              
+	……
+}
+````
+
+
+
+**Java内置注解**
+
+`@Override`：用于标明此方法覆盖了父类的方法
+
+`@Deprecated`：用于标明已经过时的方法或类
+
+`@SuppressWarnnings`:用于有选择的关闭编译器对类、方法、成员变量、变量初始化的警告，其实现源码如下：
+
+````java
+@Target({TYPE, FIELD, METHOD, PARAMETER, CONSTRUCTOR, LOCAL_VARIABLE})
+@Retention(RetentionPolicy.SOURCE)
+public @interface SuppressWarnings {
+	String[] value();
+}
+````
+
+其内部有一个String数组，主要接收值如下：
+
+* `deprecation`：使用了不赞成使用的类或方法时的警告；
+* `unchecked`：执行了未检查的转换时的警告，例如当使用集合时没有用泛型 (`Generics`) 来指定集合保存的类型; 
+* `fallthrough`：当 `Switch` 程序块直接通往下一种情况而没有 `Break` 时的警告;
+* `path`：在类路径、源文件路径等中有不存在的路径时的警告; 
+* `serial`：当在可序列化的类上缺少 `serialVersionUID` 定义时的警告; 
+* `finally`：任何 `finally` 子句不能正常完成时的警告; 
+* `all`：关于以上所有情况的警告。
+
+ 
+
+
+
+**元注解**
+
+元注解是可以注解到注解上的注解
+
+元标签有 `@Retention、@Documented、@Target、@Inherited、@Repeatable(JDK8引入)` 5 种。
+
+>  **@Targer**
+
+`@Target` 用来约束注解可以应用的地方（如方法、类或字段），传入`ElementType`类型的参数，其中`ElementType`是枚举类型，其定义如下，也代表可能的取值范围
+
+````java
+public enum ElementType {
+    /**标明该注解可以用于类、接口（包括注解类型）或enum声明*/
+    TYPE,
+
+    /** 标明该注解可以用于字段(域)声明，包括enum实例 */
+    FIELD,
+
+    /** 标明该注解可以用于方法声明 */
+    METHOD,
+
+    /** 标明该注解可以用于参数声明 */
+    PARAMETER,
+
+    /** 标明注解可以用于构造函数声明 */
+    CONSTRUCTOR,
+
+    /** 标明注解可以用于局部变量声明 */
+    LOCAL_VARIABLE,
+
+    /** 标明注解可以用于注解声明(应用于另一个注解上)*/
+    ANNOTATION_TYPE,
+
+    /** 标明注解可以用于包声明 */
+    PACKAGE,
+
+    /**
+    \* 标明注解可以用于类型参数声明（1.8新加入）
+    \* @since 1.8
+    */
+    TYPE_PARAMETER,
+
+    /**
+    \* 类型使用声明（1.8新加入)
+    \* @since 1.8
+    */
+    TYPE_USE
+}
+````
+
+当注解未指定`Target`值时，则此注解可以用于任何元素之上，多个值使用{}包含并用逗号隔开，如下：
+
+​	`@Target(value={CONSTRUCTOR, FIELD, LOCAL_VARIABLE, METHOD, PACKAGE, PARAMETER, TYPE})`
+
+ 
+
+> **@Retention**
+
+`@Retention`用来约束注解的生命周期，分别有三个值，源码级别（source），类文件级别（class）或者运行时级别（runtime），其含有如下：
+
+````java
+public enum RetentionPolicy {
+  SOURCE,
+  CLASS,
+  RUNTIME
+}
+````
+* `SOURCE：`注解将被编译器丢弃（该类型的注解信息只会保留在源码里，源码经过编译后，注解信息会被丢弃，不会保留在编译好的class文件里）
+
+- `CLASS：`注解在`class`文件中可用，但会被VM丢弃（该类型的注解信息会保留在源码里和class文件里，在执行的时候，不会加载到虚拟机中），请注意，当注解未定义`Retention`值时，默认值是`CLASS`，如Java内置注解，`@Override、@Deprecated、@SuppressWarnning`等
+
+- `RUNTIME：`注解信息将在运行期(JVM)也保留，因此可以通过反射机制读取注解的信息
+
+ 
+
+> **@Inherited** 
+
+`Inherited` 是继承的意思，但是它并不是说注解本身可以继承，而是说如果一个超类被 `@Inherited` 注解过的注解进行注解的话，那么如果它的子类没有被任何注解应用的话，那么这个子类就继承了超类的注解。
+
+ 
+
+> **@Documented:**表示所修饰的注解在被javadoc解析时，保留下来。(javadoc就是生成Java文档)
+
+> **@Repeatable：**JDK8引入的注解，可重复注解
+
+ 
+
+
+
+**注解元素**：注解中的属性
+
+以`@Test`为例，由于`@Test`内部没有定义其他元素，所以`@Test`也称为标记注解（marker annotation），但在自定义注解中，一般都会包含一些元素以表示某些值，方便处理器使用
+
+例：
+
+````java
+@Target(ElementType.TYPE)//只能应用于类上
+@Retention(RetentionPolicy.RUNTIME)//保存到运行时
+public @interface DBTable {
+	String name() default "";  //default默认赋值
+}
+````
+
+String类型的name元素，其默认值为空字符，但是必须注意到对应任何元素的声明应采用方法的声明方式，同时可选择使用default提供默认值
+
+````java
+@DBTable使用方式如下：
+//在类上使用该注解
+@DBTable(name = "MEMBER")
+public class Member {
+	//.......
+}
+````
+
+
+
+**快捷方式**
+
+所谓的快捷方式就是注解中定义了名为value的元素，并且在使用该注解时，如果该元素是唯一需要赋值的一个元素，那么此时无需使用key=value的语法，而只需在括号内给出value元素所需的值即可。
+
+````java
+//定义注解
+@Target(ElementType.FIELD)
+@Retention(RetentionPolicy.RUNTIME)
+@interface IntegerVaule{
+	int value() default 0;
+	String name() default "";
+}
+
+//使用注解
+public class QuicklyWay {
+    //当只想给value赋值时,可以使用以下快捷方式
+    @IntegerVaule(20)
+    public int age;
+
+    //当name也需要赋值时必须采用key=value的方式赋值
+	@IntegerVaule(value = 10000,name = "MONEY")
+    public int money;
+}
+````
+
+
+
+**数据类型**
+
+关于注解支持的元素数据类型除了上述的String，还支持如下数据类型
+
+- 所有基本类型（int,float,boolean,byte,double,char,long,short）
+- String
+- Class
+- enum
+- Annotation
+- 上述类型的数组
+
+
+
+倘若使用了其他数据类型，编译器将会丢出一个编译错误，注意，声明注解元素时可以使用基本类型但不允许使用包装类型，注意注解也可以作为元素的类型，也就是嵌套注解
+
+ ````java
+ @Target(ElementType.TYPE)
+ @Retention(RetentionPolicy.RUNTIME)
+ @interface Reference{
+     boolean next() default false;
+ }
+ 
+ public @interface AnnotationElementDemo {
+     //枚举类型
+     enum Status {FIXED,NORMAL};
+ 
+     //声明枚举
+     Status status() default Status.FIXED;
+ 
+     //布尔类型
+     boolean showSupport() default false;
+ 
+     //String类型
+     String name()default "";
+ 
+     //class类型
+     Class<?> testCase() default Void.class;
+ 
+     //注解嵌套
+     Reference reference() default @Reference(next=true);
+ 
+     //数组类型
+     long[] value();
+ }
+ ````
+
+
+
+**默认值**
+
+- default默认赋值,如：`String name() default "";`
+
+- 限制：元素不能有不确定的值。也就是说，元素必须要么具有默认值，要么在使用注解时提供元素的值。其次，对于非基本类型的元素，无论是在源代码中声明，还是在注解接口中定义默认值，都不能以null作为值，但造成一个元素的存在或缺失状态，因为每个注解的声明中，所有的元素都存在，并且都具有相应的值，为了绕开这个限制，只能定义一些特殊的值，例如空字符串或负数，表示某个元素不存在。
+
+ 
+
+**注解不支持继承**
+
+注解本身是不支持继承的，因此不能使用关键字`extends`来继承某个`@interface`，但注解在编译后，编译器会自动继承`java.lang.annotation.Annotation`接口，这里我们反编译前面定义的DBTable注解
+
+````java
+//反编译后的代码
+public interface DBTable extends Annotation
+{
+	public abstract String name();
+}
+````
+
+ 
+
+## **注解与反射机制**                                                                                                                                    
+
+框架 = 注解 + 反射机制 + 设计模式
+
+Java所有注解都继承了`Annotation`接口，同时为了运行时能准确获取到注解的相关信息，Java在`java.lang.reflect` 反射包下新增了`AnnotatedElement`接口，用于表示目前正在 VM 中运行的程序中已使用注解的元素，通过该接口提供的方法可以利用反射技术地读取注解的信息，如反射包的`Constructor`类、`Field`类、`Method`类、`Package`类和`Class`类都实现了`AnnotatedElement`接口
+
+* Class：类的Class对象定义 　 
+* Constructor：代表类的构造器定义 　 
+* Field：代表类的成员变量定义 
+* Method：代表类的方法定义 　 
+* Package：代表类的包定义
+
+AnnotatedElement中相关的API方法，以上5个类都实现以下的方法
+
+| 返回值                  | 方法名称                                                     | 说明                                                         |
+| ----------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| \<A extends Annotation> | getAnnotation(Class\<A> annotationClass)                     | 该元素如果存在指定类型的注解，则返回这些注解，否则返回 null。 |
+| Annotation[]            | getAnnotations()                                             | 返回此元素上存在的所有注解，包括从父类继承的                 |
+| boolean                 | isAnnotationPresent(Class<? extends Annotation> annotationClass) | 如果指定类型的注解存在于此元素上，则返回 true，否则返回 false。 |
+| Annotation[]            | getDeclaredAnnotations()                                     | 返回直接存在于此元素上的所有注解，注意，不包括父类的注解，调用者可以随意修改返回的数组；这不会对其他调用者返回的数组产生任何影响，没有则返回长度为0的数组 |
+
+````java
+//类注解
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface AnnoClass {
+    String name() default "";
+    int age() default 0;
+}
+
+//方法注解
+@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface AnnoMethod {
+}
+
+//类
+@AnnoClass(name = "张三",age = 20)
+public class ClassA {
+    @AnnoMethod()
+    public void method1(){};
+}
+
+//测试类
+public class TestAnno {
+
+    public static void main(String[] args) throws ClassNotFoundException {
+        Class<?> aClass = Class.forName("com.sofen.java.annotationDemo.ClassA");
+
+        System.out.println("___________________类_______________________");
+        //获取类上的所有注解
+        Annotation[] classAnnotations = aClass.getAnnotations();
+        System.out.println("类上的所有注解:" + Arrays.toString(classAnnotations));
+
+        //获取类上指定的注解
+        AnnoClass annotation = aClass.getAnnotation(AnnoClass.class);
+        System.out.println("类上的指定注解:" + annotation);
+        System.out.println("AnnoClass：name:" + annotation.name());
+        System.out.println("AnnoClass：age:" + annotation.age());
+
+        //判断类上是否有指定的注解
+        boolean b = aClass.isAnnotationPresent(AnnoClass.class);
+        System.out.println("类上是否有AnnoClass注解:" + b);
+        boolean b1 = aClass.isAnnotationPresent(AnnoMethod.class);
+        System.out.println("类上是否有AnnoMethod注解:" + b1);
+
+        System.out.println("___________________方法_______________________");
+        Method[] methods = aClass.getMethods();
+        //获取方法的注解
+        for (Method m : methods){
+            Annotation[] methodAnnotations = m.getAnnotations();
+            System.out.println(m.getName() + "方法上的所有注解:" + Arrays.toString(methodAnnotations));
+
+            AnnoMethod methodAnnotation = m.getAnnotation(AnnoMethod.class);
+            System.out.println("方法上指定的注解：" + methodAnnotation);
+
+            boolean mb = m.isAnnotationPresent(AnnoMethod.class);
+            System.out.println("方法上是否有AnnoMethod注解:" + mb);
+        }
+    }
+
+    输出
+    ___________________类_______________________
+    类上的所有注解:[@com.sofen.java.annotationDemo.AnnoClass(name=张三, age=20)]
+    类上的指定注解:@com.sofen.java.annotationDemo.AnnoClass(name=张三, age=20)
+    AnnoClass：name:张三
+    AnnoClass：age:20
+    类上是否有AnnoClass注解:true
+    类上是否有AnnoMethod注解:false
+    ___________________方法_______________________
+    method1方法上的所有注解:[@com.sofen.java.annotationDemo.AnnoMethod()]
+    方法上指定的注解：@com.sofen.java.annotationDemo.AnnoMethod()
+    方法上是否有AnnoMethod注解:true
+````
+
+
+
+
+
+## **Java 8中注解增强**                                                                                                              
+
+**可重复注解@Repeatable**
+
+表示在同一个位置重复相同的注解。在没有该注解前，一般是无法在同一个类型上使用相同的注解的
+
+````java
+//Java8前无法这样使用
+@Name("李四")
+@Name("张三")
+public class A {}
+````
+
+Java8前如果是想实现类似的功能，我们需要在定义@FilterPath注解时定义一个数组元素接收多个值如下
+
+````java
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface Name {
+	String [] value();
+}
+
+//使用
+@Name({"张三","李四"})
+public class A { }
+````
+
+
+
+Java8新增了`@Repeatable`注解后就可以采用如下的方式定义并使用了
+
+````java
+//使用Java8新增@Repeatable原注解
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+@Repeatable(Names.class)    //参数指明接收的注解class
+public @interface Name {
+  String value();
+}
+
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface Names {
+  Name[] value();       //此处的还是Name
+}
+
+//使用
+@Name("李四2")
+@Name("王五3")
+@Name("秦六4")
+public class AA
+````
+
+- 简单理解为通过使用`@Repeatable`后，将使用`@Names`注解作为接收同一个类型上重复注解的容器，而每个`@Name`则负责保存指定的内容。
+
+- 为了处理`@Repeatable`，Java8还在`AnnotatedElement`接口新增了`getDeclaredAnnotationsByType()` 和`getAnnotationsByType()`两个方法并在接口给出了默认实现，在指定`@Repeatable`的注解时，可以通过这两个方法获取到注解相关信息。
+
+- 注意，旧版API中的`getDeclaredAnnotation()`和`getAnnotation()`是不对`@Repeatable`注解的处理的
+
+  除非
+
+  - 该注解没有在同一个声明上重复出现
+
+  - `@Name` 和`@Name` 都使用的`@Inherited`。
+
+
+
+
+注意`getDeclaredAnnotationsByType`方法获取到的注解不包括父类，其实当 `getAnnotationsByType()`方法调用时，其内部先执行了`getDeclaredAnnotationsByType`方法，**只有当前类不存在指定注解时，`getAnnotationsByType()`才会继续从其父类寻找**，但请注意如果`@Name`和`@Names`没有使用了`@Inherited`的话，仍然无法获取。
+
+> 例1：
+
+````java
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+@Repeatable(Names.class)
+public @interface Name {
+    String value();
+}
+
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface Names {
+    Name[] value();
+}
+
+@Name("张三1")
+public class BB {
+}
+
+@Name("李四2")
+@Name("王五3")
+@Name("秦六4")
+public class AA extends BB{
+
+    public static void main(String[] args) throws ClassNotFoundException {
+        Class<?> AAclass = Class.forName("com.sofen.java.annotationDemo.repeatable.AA");
+        //获取所有重复注解的注解
+        Name[] annotationsByType = AAclass.getAnnotationsByType(Name.class);
+        Name[] annotationsByType2 = AAclass.getDeclaredAnnotationsByType(Name.class);
+
+        System.out.println(Arrays.toString(annotationsByType));
+        System.out.println(Arrays.toString(annotationsByType2));
+
+        Name annotation = AAclass.getAnnotation(Name.class);
+        System.out.println("使用getAnnotat的结果：" + annotation);
+     }
+}
+
+输出
+[@com.sofen.java.annotationDemo.repeatable.Name(value=李四2), 
+@com.sofen.java.annotationDemo.repeatable.Name(value=王五3), 
+@com.sofen.java.annotationDemo.repeatable.Name(value=秦六4)]
+
+[@com.sofen.java.annotationDemo.repeatable.Name(value=李四2), 
+@com.sofen.java.annotationDemo.repeatable.Name(value=王五3), 
+@com.sofen.java.annotationDemo.repeatable.Name(value=秦六4)]
+
+使用getAnnotat的结果：null
+````
+
+从执行结果来看如果当前类拥有该注解@Name,则getAnnotationsByType方法不会从CC父类寻找
+
+
+
+
+
+> 例2：当@Name 和@Names 添加了@@Inherited注解
+
+````java
+[@com.sofen.java.annotationDemo.repeatable.Name(value=李四2), 
+@com.sofen.java.annotationDemo.repeatable.Name(value=王五3),
+ @com.sofen.java.annotationDemo.repeatable.Name(value=秦六4)]
+
+[@com.sofen.java.annotationDemo.repeatable.Name(value=李四2), 
+@com.sofen.java.annotationDemo.repeatable.Name(value=王五3), 
+@com.sofen.java.annotationDemo.repeatable.Name(value=秦六4)]
+
+使用getAnnotat的结果：@com.sofen.java.annotationDemo.repeatable.Name(value=张三1)
+````
+
+可以看到`getDeclaredAnnotationsByType()` 和 `getAnnotationsByType()`方法仍然获取不到父类声明的@Name方法 (获取不到BB类的@Name("张三1")),但是旧版的getAnnotat可以获取
+
+
+
+> 例3：当 AA类上没有@Name注解
+
+````java
+结果
+[@com.sofen.java.annotationDemo.repeatable.Name(value=张三1)]
+[]
+使用getAnnotat的结果：@com.sofen.java.annotationDemo.repeatable.Name(value=张三1)
+````
+
+可以看到当前类没有`@Name`时，`getAnnotationByType`方法从父类BB中寻找
+
+注意定义`@Name`和`@Names`时必须指明`@Inherited`，`getAnnotationsByType`方法否则依旧无法从父类获取`@Name`注解，这是为什么呢，不妨看看`getAnnotationsByType`方法的实现源码：
+
+````java
+//接口默认实现方法
+default <T extends Annotation> T[] getAnnotationsByType(Class<T> annotationClass) {
+    //先调用getDeclaredAnnotationsByType方法
+    T[] result = getDeclaredAnnotationsByType(annotationClass);
+
+    //判断当前类获取到的注解数组是否为0
+    if (result.length == 0 && this instanceof Class && 
+        //判断定义注解上是否使用了@Inherited元注解 
+        AnnotationType.getInstance(annotationClass).isInherited()) { // Inheritable
+        //从父类获取
+        Class<?> superClass = ((Class<?>) this).getSuperclass();
+        if (superClass != null) {
+        result = superClass.getAnnotationsByType(annotationClass);
+        }
+    }
+	return result;
+}
+````
+
+
+
+**新增的两种ElementType**
+
+在Java8中 `ElementType` 新增两个枚举成员，`TYPE_PARAMETER` 和 `TYPE_USE` ，在Java8前注解只能标注在一个声明(如字段、类、方法)上，Java8后，新增的`TYPE_PARAMETER`可以用于标注类型参数，而`TYPE_USE`则可以用于标注任意类型(不包括class)。
+
+````java
+//TYPE_PARAMETER 标注在类型参数上
+class D<@Parameter T> { }
+
+//TYPE_USE则可以用于标注任意类型(不包括class)
+//用于父类或者接口
+class Image implements @Rectangular Shape { }
+
+//用于构造函数
+new @Path String("/usr/bin")
+
+//用于强制转换和instanceof检查,注意这些注解中用于外部工具，它们不会对类型转换或者instanceof的检查行为带来任何影响。
+String path=(@Path String)input;
+if(input instanceof @Path String)
+
+//用于指定异常
+public Person read() throws @Localized IOException.
+
+//用于通配符绑定
+List<@ReadOnly ? extends Person>
+List<? extends @ReadOnly Person>
+
+@NotNull String.class //非法，不能标注class
+import java.lang.@NotNull String //非法，不能标注import
+````
+
+
+
+
+
+# 集合
+
+**总结**
+
+| 实现类        | 底层实现              | 是否同步 | null       | 是否有序 | 是否重复 | 默认长度 | 扩容  |
+| ------------- | --------------------- | -------- | ---------- | -------- | -------- | -------- | ----- |
+| ArrayList     | 动态数组              | 不同步   | 可以       | 是       | 是       | 10       | 1.5   |
+| LinkedList    | 双向链表              | 不同步   | 可以       | 是       | 是       |          |       |
+| Vector        | 动态数组              | 同步     | 可以       | 是       | 是       | 10       | 2     |
+| HashSet       | HashMap               | 不同步   | 可以       | 否       | 否       | 16       | 2     |
+| TreeSet       | TreeMap               | 不同步   | 不可以     | 是       | 否       |          |       |
+| HashMap       | 数组+链表+红黑树 Node | 不同步   | 可以       | 否       | 否       | 16       | 2     |
+| LinkedHashMap | 数组+双向链表+红黑树  | 不同步   | 可以       | 是       | 否       |          |       |
+| TreeMap       | 红黑树                | 不同步   | 不可以     | 是       | 否       |          |       |
+| Hashtable     | 数组+双向链表 Entry   | 同步     | kv都不可以 | 是       | 否       | 11       | 2 + 1 |
+
+**Collection**
+
+- ArrayList：线程不同步。默认初始容量为 10，当数组大小不足时容量扩大为 1.5 倍。为追求效率，ArrayList 没有实现同步（synchronized），如果需要多个线程并发访问，用户可以手动同步，也可使用 Vector 替代。
+
+- LinkedList：线程不同步。双向链接实现。LinkedList 同时实现了 List 接口和 Deque 接口，也就是说它既可以看作一个顺序容器，又可以看作一个队列（Queue），同时又可以看作一个栈（Stack）。这样看来，LinkedList 简直就是个全能冠军。当你需要使用栈或者队列时，可以考虑使用 LinkedList，一方面是因为 Java 官方已经声明不建议使用 Stack 类，更遗憾的是，Java 里根本没有一个叫做 Queue 的类（它是个接口名字）。关于栈或队列，现在的首选是 ArrayDeque，它有着比 LinkedList（当作栈或队列使用时）有着更好的性能。
+
+- Stack and Queue：Java 里有一个叫做 Stack 的类，却没有叫做 Queue 的类（它是个接口名字）。当需要使用栈时，Java 已不推荐使用 Stack，而是推荐使用更高效的 ArrayDeque；既然 Queue 只是一个接口，当需要使用队列时也就首选 ArrayDeque 了（次选是 LinkedList ）。
+
+- Vector：线程同步。默认初始容量为 10，当数组大小不足时容量扩大为 2 倍。它的同步是通过 Iterator 方法加 synchronized 实现的。
+
+- Stack：线程同步。继承自 Vector，添加了几个方法来完成栈的功能。现在已经不推荐使用 Stack，在栈和队列中有限使用 ArrayDeque，其次是 LinkedList。
+
+- TreeSet：线程不同步，内部使用 NavigableMap 操作。默认元素 “自然顺序”     排列，可以通过 Comparator 改变排序。TreeSet 里面有一个 TreeMap（适配器模式）
+
+- HashSet：线程不同步，内部使用 HashMap 进行数据存储，提供的方法基本都是调用 HashMap 的方法，所以两者本质是一样的。集合元素可以为 NULL。
+
+- Set：Set 是一种不包含重复元素的 Collection，Set 最多只有一个 null 元素。Set 集合通常可以通过 Map 集合通过适配器模式得到。
+
+- PriorityQueue：Java 中 PriorityQueue     实现了 Queue 接口，不允许放入 null 元素；其通过堆实现，具体说是通过完全二叉树（complete binary tree）实现的小顶堆（任意一个非叶子节点的权值，都不大于其左右子节点的权值），也就意味着可以通过数组来作为 PriorityQueue 的底层实现。
+
+- - 优先队列的作用是能保证每次取出的元素都是队列中权值最小的（Java 的优先队列每次取最小元素，C++ 的优先队列每次取最大元素）。这里牵涉到了大小关系，元素大小的评判可以通过元素本身的自然顺序（natural ordering），也可以通过构造时传入的比较器（*Comparator*，类似于 C++ 的仿函数）。
+
+- NavigableSet：添加了搜索功能，可以对给定元素进行搜索：小于、小于等于、大于、大于等于，放回一个符合条件的最接近给定元素的 key。
+
+- EnumSet：线程不同步。内部使用 Enum 数组实现，速度比 HashSet 快。只能存储在构造函数传入的枚举类的枚举值。
+
+ 
+
+**Map**
+
+- TreeMap：线程不同步，基于 红黑树 （Red-Black tree）的 NavigableMap 实现，能够把它保存的记录根据键排序，默认是按键值的升序排序，也可以指定排序的比较器，当用 Iterator 遍历 TreeMap 时，得到的记录是排过序的。
+
+- - TreeMap 底层通过红黑树（Red-Black tree）实现，也就意味着 containsKey(), get(), put(), remove() 都有着 log(n) 的时间复杂度。其具体算法实现参照了《算法导论》。
+
+- Hashtable：线程安全，HashMap 的迭代器 (Iterator) 是 fail-fast 迭代器。Hashtable 不能存储 NULL 的 key 和 value。
+
+- HashMap：线程不同步。根据 key 的 hashcode 进行存储，内部使用静态内部类 Node 的数组进行存储，默认初始大小为 16，每次扩大一倍。当发生 Hash 冲突时，采用拉链法（链表）。JDK 1.8中：当单个桶中元素个数大于等于8时，链表实现改为红黑树实现；当元素个数小于6时，变回链表实现。由此来防止hashCode攻击。
+
+- - Java HashMap 采用的是冲突链表方式。
+  - HashMap 是 Hashtable 的轻量级实现，可以接受为 null 的键值 (key) 和值 (value)，而 Hashtable 不允许。
+
+- LinkedHashMap：保存了记录的插入顺序，在用 Iterator 遍历 LinkedHashMap 时，先得到的记录肯定是先插入的。也可以在构造时用带参数，按照应用次数排序。在遍历的时候会比 HashMap 慢，不过有种情况例外，当 HashMap 容量很大，实际数据较少时，遍历起来可能会比 LinkedHashMap 慢，因为 LinkedHashMap 的遍历速度只和实际数据有关，和容量无关，而 HashMap 的遍历速度和他的容量有关。
+
+- WeakHashMap：从名字可以看出它是某种 Map。它的特殊之处在于 WeakHashMap 里的 entry 可能会被 GC 自动删除，即使程序员没有调用 remove() 或者 clear() 方法。 WeakHashMap 的存储结构类似于HashMap
+
+- - 既然有 WeekHashMap，是否有 WeekHashSet 呢？答案是没有！不过 Java Collections 工具类给出了解决方案，Collections.newSetFromMap(Map<E,Boolean>      map) 方法可以将任何 Map包装成一个Set。
+
+工具类
+
+- Collections、Arrays：集合类的一个工具类帮助类，其中提供了一系列静态方法，用于对集合中元素进行排序、搜索以及线程安全等各种操作。
+
+- Comparable、Comparator：一般是用于对象的比较来实现排序，两者略有区别。
+
+- - 类设计者没有考虑到比较问题而没有实现 Comparable 接口。这是我们就可以通过使用 Comparator，这种情况下，我们是不需要改变对象的。
+  - 一个集合中，我们可能需要有多重的排序标准，这时候如果使用 Comparable 就有些捉襟见肘了，可以自己继承 Comparator 提供多种标准的比较器进行排序。
+
+说明：线程不同步的时候可以通过，Collections.synchronizedList() 方法来包装一个线程同步方法
+
+ 
+
+
+
+## Collection接口
+
+| 接口 | 实现       | 历史集合类 |
+| ---- | ---------- | ---------- |
+| Set  | HashSet    |            |
+|      | Treeset    |            |
+| List | ArrayList  | Vector     |
+|      | LinkedList | Stack      |
+| Map  | HashMap    | Hashtable  |
+|      | TreeMap    | Properties |
+
+
+
+**单列集合框架结构**
+
+|----Collection接口：单列集合，用来存储一个一个的对象
+
+​     |----List接口：存储有序的、可重复的数据。 -->“动态”数组
+
+​       |----ArrayList、LinkedList、Vector
+
+​     |----Set接口：存储无序的、不可重复的数据  -->高中讲的“集合”
+
+​       |----HashSet、LinkedHashSet、TreeSet
+
+![img](java1.assets/clip_image002-16532894998601.jpg)
+
+ 
+
+**常用方法**
+
+- 添加
+
+- - add(Objectobj)
+  - addAll(Collection  coll) 添加集合coll
+
+- 获取效元素的个数
+
+  - int size()
+
+- 清空集合
+
+- - void clear()
+
+- 是否是空集合
+
+- - boolean isEmpty()
+
+- 是否包含某个元素
+
+- - boolean  contains(Object obj)：判断集合中是否包含 obj；是通过元素的equals方法来判断是否是同一个对象
+  - boolean  containsAll(Collection coll)：判断集合是否包含coll集合；也是调用元素的equals方法来比较的。拿两个集合的元素挨个比较。
+
+- 删除
+
+- - boolean remove(Object      obj) ：通过元素的equals方法判断是否是要删除的那个元素。只会删除找到的第一个元素
+  - boolean removeAll(Collection coll)：取当前集合的差集，差集：从当前集合中移除coll1中所有的元素。
+
+- 取两个集合的交集
+
+- - boolean  retainAll(Collection c)：把交集的结果存在当前集合中，不影响c
+
+- 集合是否相等
+
+- - boolean equals(Object  obj)：判断当前集合是否和obj集和相等(分先后顺序)
+
+- 转成对象数组
+
+- - Object[] toArray()：返回Object类型
+
+- 获取集合对象的哈希值
+
+- - hashCode()
+
+- 遍历
+
+- - iterator()：返回迭代器对象，用于集合遍历
+
+ 
+
+**集合与数组的转换**
+
+> **集合 --->数组**：toArray()
+
+````java
+Object[] arr = coll.toArray();
+
+for(int i = 0;i < arr.length;i++){
+  System.out.println(arr[i]);
+}
+````
+
+不过，这样做的结果是一个对象数组。
+
+尽管你知道集合中包含一个特定类型的对象，但不能使用强制类型转换**,**方法返回的数组是一个`Object[]`数组，不能改变它的类型。
+
+实际上，必须使用`toArray`方法的一个变体形式，提供一个所需类型而且长度为0的数组。
+
+这样一来，返回的数组就会创建为相同的数组类型：`String[] values = staff.toArray(new String[O]);`
+
+如果愿意，可以构造一个指定大小的 数组：
+
+`staff.toArray(newString[staff.size()]);`
+
+在这种情况下，不会创建新数组。
+
+ 
+
+> **数组 --->集合:** 调用Arrays类的静态方法asList(T ... t)
+
+````JAV
+List<String> list = Arrays.asList(new String[]{"AA", "BB", "CC"});
+
+List arr1 = Arrays.asList(new int[]{123, 456});
+
+List arr2 = Arrays.asList(new Integer[]{123, 456});
+````
+
+
+
+
+
+**使用Collection集合存储对象，要求对象所属的类满足：**
+
+向`Collection`接口的实现类的对象中添加数据obj时，要求obj所在类要重写`equals()`
+
+ 
+
+**对比**
+
+* Linked 改快读慢
+* Array 读快改慢
+* Hash 两都之间
+
+
+
+Collection是集合接口
+
+* Set子接口:无序，不允许重复。
+
+* List子接口:有序，可以有重复元素。
+
+
+
+**Set和List对比：**
+
+  `Set`：检索元素效率低下，删除和插入效率高，插入和删除不会引起元素位置改变。
+
+  `List`：和数组类似，List可以动态增长，查找元素效率高，插入删除元素效率低，因为会引起其他元素位置改变。
+
+  Set和List具体子类：
+
+  Set
+
+   |————HashSet：以哈希表的形式存放元素，插入删除速度很快。
+
+  List
+
+   |————ArrayList：动态数组
+
+   |————LinkedList：链表、队列、堆栈。
+
+  
+
+`Array`和`java.util.Vector`
+
+  `Vector`是一种老的动态数组，是线程同步的，效率很低，一般不赞成使用。
+
+ 
+
+
+
+## iterator与foreach
+
+**遍历Collection的两种方式：**
+
+* 使用迭代器`Iterator` 
+* `foreach`循环
+
+ 
+
+**Iterator**
+
+`Iterator` 仅用于遍历集合，`Iterator`本身并不提供承装对象的能力。如果需要创建`Iterator` 对象，则必须一个被迭代的集合。
+
+集合对象每次调用`iterator()`方法都得到一个全新的迭代器对象，默认游标都在集合的第一个元素之前。
+
+> **Iteratorf常用方法：**
+
+| 方法             | 作用                                     |
+| ---------------- | ---------------------------------------- |
+| 集合.iterator(); | 返回iterator对象                         |
+| hasNext()        | 判断是否还有下一个元素                   |
+| next()           | 指针下移，将下移以后集合位置上的元素返回 |
+| remove()         | 移除                                     |
+
+````java
+Iterator iterator = 集合.iterator();
+//hasNext():判断是否还下一个元素
+while(iterator.hasNext()){
+  //next():①指针下移 ②将下移以后集合位置上的元素返回
+  System.out.println(iterator.next());
+}
+````
+
+> **remove()的使用：**
+
+* 如果还未调用`next()`或在上一次调用 `next` 方法之后已经调用了 `remove` 方法，再调用`remove`都会报`IllegalStateException`。(没调用next前默认游标在集合的第一个元素之前。)
+* 内部定义了`remove(),`可以在遍历的时候，删除集合中的元素。此方法不同于集合直接调用`remove()`
+
+````java
+public void test2(){
+    Collection coll = new ArrayList();
+    coll.add(123);
+    coll.add(456);
+    coll.add(new Person("Jerry",20));
+    coll.add(new String("Tom"));
+    coll.add(false);
+
+    //错误方式一：
+    //        Iterator iterator = coll.iterator();
+    //        while((iterator.next()) != null){
+    //            System.out.println(iterator.next());
+    //        }
+
+    //错误方式二：
+    //集合对象每次调用iterator()方法都得到一个全新的迭代器对象，默认游标都在集合的第一个元素之前。
+    while (coll.iterator().hasNext()){
+        System.out.println(coll.iterator().next());
+    }
+}
+````
+
+ 
+
+**foreach循环**
+
+内部仍然调用了迭代器。
+
+> **格式**：
+
+````java
+for(集合元素的类型 局部变量 : 集合对象名){
+	System.out.println(局部变量);      //对元素的操作，局部变量是重新赋值的变量，改变它不会改变原有数组
+}
+````
+
+举例：
+
+````java
+public void test1(){
+  Collection coll = new ArrayList();
+  coll.add(123);
+  coll.add(456);
+
+  //for(集合元素的类型 局部变量 : 集合对象)
+  for(Object obj : coll){
+	System.out.println(obj);
+  }
+}
+````
+
+
+
+## List
+
+**常用方法**
+
+| 方法                                       | 作用                                                         |
+| ------------------------------------------ | ------------------------------------------------------------ |
+| void add(int index, Object ele)            | 在index位置插入ele元素                                       |
+| boolean addAll(int index, Collection eles) | 从index位置开始将eles中的所有元素添加进来                    |
+| Object get(int index)                      | 获取指定index位置的元素                                      |
+| int indexOf(Object obj)                    | 返回obj在集合中首次出现的位置                                |
+| int lastIndexOf(Object obj)                | 返回obj在当前集合中末次出现的位置                            |
+| Object remove(int index)                   | 移除指定index位置的元素，并返回此元素                        |
+| Object removeAll(Object obj)               | 移除所有的Obj                                                |
+| Object set(int index, Object ele)          | 设置指定index位置的元素为ele                                 |
+| List subList(int fromIndex, int toIndex)   | 返回从fromIndex到toIndex位置的子集合                         |
+| List asbList(int index1,int index2)        | 返回从index1到index2的视图**,**对返回的视图进行操作将影响原列表 |
+| int size()                                 | 查询长度                                                     |
+
+ 
+
+### 源码 
+
+**Set**
+
+- TreeSet：基于红黑树实现，支持有序性操作，例如根据一个范围查找元素的操作。但是查找效率不如 HashSet，HashSet 查找的时间复杂度为 O(1)，TreeSet 则为 O(logN)。
+- HashSet：基于哈希表实现，支持快速查找，但不支持有序性操作。并且失去了元素的插入顺序信息，也就是说使用 Iterator 遍历 HashSet 得到的结果是不确定的。
+- LinkedHashSet：具有 HashSet 的查找效率，并且内部使用双向链表维护元素的插入顺序。
+
+**List**
+
+- ArrayList：基于动态数组实现，支持随机访问。
+- Vector：和 ArrayList 类似，但它是线程安全的。
+- LinkedList：基于双向链表实现，只能顺序访问，但是可以快速地在链表中间插入和删除元素。不仅如此，LinkedList 还可以用作栈、队列和双向队列。
+
+**Queue**
+
+- LinkedList：可以用它来实现双向队列。
+- PriorityQueue：基于堆结构实现，可以用它来实现优先队列。 
+
+
+
+### **ArrayList**    
+
+**jdk7与8的区别**
+
+* jdk7
+  * 底层创建了长度是10的`Object[]`数组`elementData`
+  * 默认情况下，大约扩容为原来的容量的1.5倍，同时需要将原有数组中的数据复制到新的数组中。
+
+* jdk8
+  * 底层`Object[] elementData`初始化为{}.并没创建长度为10的数组
+  * 第一次调用`add()`时，底层才创建了长度10的数组                                                                                                                                             
+
+因为 `ArrayList` 是基于数组实现的，所以支持快速随机访问。`RandomAccess` 接口标识着该类支持快速随机访问。
+
+`private static final int DEFAULT_CAPACITY = 10;`
+
+**初始化空数组**
+
+````java
+private static final Object[] EMPTY_ELEMENTDATA = {};
+private static final Object[] DEFAULTCAPACITY_EMPTY_ELEMENTDATA = {}; //jdk8,初始化创建空数组
+elementData数组
+transient Object[] elementData;       //实际存储的数组
+````
+
+**构造器**
+
+````java
+//空参构造器
+public ArrayList() {
+    this.elementData = DEFAULTCAPACITY_EMPTY_ELEMENTDATA;   //初始化空数组
+}
+//有参构造器
+public ArrayList(int initialCapacity) {            //指定长度
+    if (initialCapacity > 0) {                            
+        this.elementData = new Object[initialCapacity];
+    } else if (initialCapacity == 0) {                
+        this.elementData = EMPTY_ELEMENTDATA;      //指定长度等于0，创建的还是空数组
+    } else {
+        throw new IllegalArgumentException("Illegal Capacity: "+initialCapacity);
+    }
+}
+````
+
+
+
+**扩容**
+
+添加元素时使用 `ensureCapacityInternal()` 方法来保证容量足够，如果不够时，需要使用 `grow()` 方法进行扩容，新容量的大小为 `oldCapacity + (oldCapacity >> 1)`，即 `oldCapacity+oldCapacity/2`。其中 `oldCapacity >> 1` 需要取整，所以新容量大约是旧容量的 1.5 倍左右。（`oldCapacity` 为偶数就是 1.5 倍，为奇数就是 1.5 倍-0.5）
+
+扩容操作需要调用 `Arrays.copyOf()` 把原数组整个复制到新数组中，这个操作代价很高，因此最好在创建 `ArrayList` 对象时就指定大概的容量大小，减少扩容操作的次数。
+
+````java
+public boolean add(E e) {
+    ensureCapacityInternal(size + 1); // 判断是否足够Increments modCount!!
+    elementData[size++] = e;
+    return true;
+}
+
+private void ensureCapacityInternal(int minCapacity) {
+    if (elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA) {//如果是空数组，则创建长度为10的数组，jdk8在第一次调用add
+     minCapacity = Math.max(DEFAULT_CAPACITY, minCapacity);//方法时才创建数组
+    }
+    ensureExplicitCapacity(minCapacity);
+}
+
+private void ensureExplicitCapacity(int minCapacity) {
+    modCount++;       //操作数++
+    // overflow-conscious code
+    if (minCapacity - elementData.length > 0)     //判断是否需要扩容
+     grow(minCapacity);
+}
+
+private void grow(int minCapacity) {
+    // overflow-conscious code
+    int oldCapacity = elementData.length;         //数组的实际长度
+    int newCapacity = oldCapacity + (oldCapacity >> 1);  //扩容1.5倍；第一次创建newCapacity为0
+    if (newCapacity - minCapacity < 0)           //如果扩容后的长度，小于最小容量
+     newCapacity = minCapacity;
+    if (newCapacity - MAX_ARRAY_SIZE > 0)         //大于最大的数0x7fffffff
+     newCapacity = hugeCapacity(minCapacity);
+    // minCapacity is usually close to size, so this is a win:
+    elementData = Arrays.copyOf(elementData, newCapacity); //复制旧数组到新数组里，扩容的位置都是Null
+}
+````
+
+
+
+**删除元素**
+
+需要调用 `System.arraycopy()` 将 `index+1` 后面的元素都复制到 index 位置上，该操作的时间复杂度为 O(N)
+
+````java
+public E remove(int index) {
+   rangeCheck(index);
+   modCount++;
+   E oldValue = elementData(index);
+   int numMoved = size - index - 1;
+   if (numMoved > 0)
+     System.arraycopy(elementData, index+1, elementData, index, numMoved);
+   elementData[--size] = null; // clear to let GC do its work
+   return oldValue;
+}
+````
+
+插入元素与此类似
+
+
+
+**序列化**
+
+`ArrayList` 基于数组实现，并且具有动态扩容特性，因此保存元素的数组不一定都会被使用，那么就没必要全部进行序列化。
+
+保存元素的数组 `elementData` 使用 `transient` 修饰，该关键字声明数组默认不会被序列化。
+
+`transient Object[] elementData; // non-private to simplify nested class access`
+
+`ArrayList` 实现了 `writeObject()` 和 `readObject()` 来控制只序列化数组中有元素填充那部分内容。
+
+````java
+private void readObject(java.io.ObjectInputStream s) throws java.io.IOException, ClassNotFoundException {
+    elementData = EMPTY_ELEMENTDATA;
+
+    // Read in size, and any hidden stuff
+    s.defaultReadObject();
+
+    // Read in capacity
+    s.readInt(); // ignored
+
+    if (size > 0) {
+        // be like clone(), allocate array based upon size not capacity
+        ensureCapacityInternal(size);
+
+        Object[] a = elementData;
+        // Read in all elements in the proper order.
+        for (int i=0; i<size; i++) {
+            a[i] = s.readObject();
+        }
+    }
+}
+private void writeObject(java.io.ObjectOutputStream s) throws java.io.IOException{
+    // Write out element count, and any hidden stuff
+    int expectedModCount = modCount;
+    s.defaultWriteObject();
+
+    // Write out size as capacity for behavioural compatibility with clone()
+    s.writeInt(size);
+
+    // Write out all elements in the proper order.
+    for (int i=0; i<size; i++) {
+        s.writeObject(elementData[i]);
+    }
+
+    if (modCount != expectedModCount) {
+        throw new ConcurrentModificationException();
+    }
+}
+````
+
+序列化时需要使用 `ObjectOutputStream` 的 `writeObject()` 将对象转换为字节流并输出。而 `writeObject()` 方法在传入的对象存在 `writeObject()` 的时候会去反射调用该对象的 `writeObject()` 来实现序列化。反序列化使用的是 `ObjectInputStream` 的 `readObject()` 方法，原理类似。
+
+
+
+**Fail-fast**
+
+`modCount` 用来记录 `ArrayList` 结构发生变化的次数。结构发生变化是指添加或者删除至少一个元素的所有操作，或者是调整内部数组的大小，仅仅只是设置元素的值不算结构发生变化。
+
+在进行序列化或者迭代等操作时，需要比较操作前后 `modCount` 是否改变，如果改变了需要抛出 `ConcurrentModificationException`。代码参考上节序列化中的 `writeObject()` 方法。
+
+ 
+
+**System.arraycopy() 和 Arrays.copyOf()**
+
+`ArrayList` 中大量调用了这两个方法。比如：扩容操作以及add(int index, E element)、toArray() 等方法中都用到了该方法！
+
+> **System.arraycopy() 方法,实现数组自己复制自己**
+
+````java
+System.arraycopy(elementData, index, elementData, index + 1, size - index);
+elementData:源数组;index:源数组中的起始位置;elementData：目标数组；index + 1：目标数组中的起始位置； size - index：要复制的数组元素的数 
+````
+
+
+
+> **Arrays.copyOf()方法**
+
+````java
+Arrays.copyOf(elementData, size);
+elementData：要复制的数组；size：要复制的长度
+````
+
+两者联系和区别
+
+联系：`copyOf()`内部实际调用了 `System.arraycopy()` 方法
+
+区别：
+
+`arraycopy()` 需要目标数组，将原数组拷贝到你自己定义的数组里或者原数组，而且可以选择拷贝的起点和长度以及放入新数组中的位置 
+
+`copyOf()` 是系统自动在内部新建一个数组，并返回该数组。
+
+ 
+
+### Vector                                                                                                                                                                         
+
+**同步**
+
+它的实现与 `ArrayList` 类似，但是使用了 `synchronized` 进行同步。
+
+````java
+public synchronized boolean add(E e) {
+   modCount++;
+   ensureCapacityHelper(elementCount + 1);
+   elementData[elementCount++] = e;
+   return true;
+}
+
+public synchronized E get(int index) {
+   if (index >= elementCount)
+     throw new ArrayIndexOutOfBoundsException(index);
+   return elementData(index);
+}
+````
+
+**扩容**
+
+`Vector` 的构造函数可以传入 `capacityIncrement` 参数，它的作用是在扩容时使容量 `capacity` 增长 `capacityIncrement`。如果这个参数的值小于等于 0，扩容时每次都令 `capacity` 为原来的两倍。
+
+````java
+public Vector(int initialCapacity, int capacityIncrement) {
+   super();
+   if (initialCapacity < 0)
+     throw new IllegalArgumentException("Illegal Capacity: "+
+                      initialCapacity);
+   this.elementData = new Object[initialCapacity];
+   this.capacityIncrement = capacityIncrement;
+}
+
+private void grow(int minCapacity) {
+   // overflow-conscious code
+   int oldCapacity = elementData.length;
+   int newCapacity = oldCapacity + ((capacityIncrement > 0) ?
+                   capacityIncrement : oldCapacity);
+   if (newCapacity - minCapacity < 0)
+     newCapacity = minCapacity;
+   if (newCapacity - MAX_ARRAY_SIZE > 0)
+     newCapacity = hugeCapacity(minCapacity);
+   elementData = Arrays.copyOf(elementData, newCapacity);
+}
+````
+
+调用没有 `capacityIncrement` 的构造函数时，`capacityIncrement` 值被设置为 0，也就是说默认情况下 `Vector` 每次扩容时容量都会翻倍。
+
+````java
+public Vector(int initialCapacity) {
+   this(initialCapacity, 0);
+}
+ 
+public Vector() {
+   this(10);
+}
+````
+
+
+
+### **线程安全的ArrayList**
+
+可以使用 `Collections.synchronizedList()`; 得到一个线程安全的 `ArrayList`。
+
+````java
+List<String> list = new ArrayList<>();
+List<String> synList = Collections.synchronizedList(list);
+````
+
+也可以使用 `concurrent` 并发包下的 `CopyOnWriteArrayList` 类。
+
+````java
+List<String> list = new CopyOnWriteArrayList<>(); 
+````
+
+
+
+**CopyOnWriteArrayList**                                                                                                    
+
+* 写操作在一个复制的数组上进行，读操作还是在原始数组中进行，读写分离，互不影响。
+
+* 写操作需要加锁，防止并发写入时导致写入数据丢失。
+
+* 写操作结束之后需要把原始数组指向新的复制数组。
+
+* 缺陷
+
+  - 内存占用：在写操作时需要复制一个新的数组，使得内存占用为原来的两倍左右；
+
+  - 数据不一致：读操作不能读取实时性的数据，因为部分写操作的数据还未同步到读数组中。
+
+````java
+public boolean add(E e) {
+   final ReentrantLock lock = this.lock;
+   lock.lock();
+   try {
+     Object[] elements = getArray();
+     int len = elements.length;
+     Object[] newElements = Arrays.copyOf(elements, len + 1);
+     newElements[len] = e;
+     setArray(newElements);     //指向新的数组
+     return true;
+   } finally {
+     lock.unlock();
+   }
+}
+
+final void setArray(Object[] a) {
+   array = a;
+}
+
+@SuppressWarnings("unchecked")
+private E get(Object[] a, int index) {
+   return (E) a[index];
+}
+````
+
+
+
+### **LlinkedList**                                                                                                                                                                         
+
+基于**双向链表**实现，使用 `Node` 存储链表节点信息。
+
+````java
+private static class Node<E> {
+   E item;      //当前元素
+   Node<E> next;   //下一个节点
+   Node<E> prev;   //上一个节点
+ }
+
+//每个链表存储了 first 和 last 指针：
+transient Node<E> first;  //头结点
+transient Node<E> last;  //尾结
+````
+
+![img](java1.assets/clip_image008.png)
+
+**添加**
+
+````java
+public boolean add(E e) {
+    linkLast(e);
+    return true;
+}
+void linkLast(E e) {
+    final Node<E> l = last;                          //last：尾结点，I = 尾结点；第一次为null
+    final Node<E> newNode = new Node<>(l, e, null);  //Node 的prev指向尾结点；完成prev指向前结点
+    last = newNode;                                  //尾结点替换为新节点
+    if (l == null)                                   //是否为空，第一次添加为空，所以first头结点也指向刚创建的结点
+        first = newNode;
+    else                                             //除了第一次添加之外都会执行
+        l.next = newNode;                            //旧尾结点指向新的结点；完成next执行后面的结点
+    size++;                                          //长度加1
+    modCount++;                                      //操作数加1
+}
+````
+
+
+
+**删除**
+
+````java
+public boolean remove(Object o) {
+    if (o == null) {
+        for (Node<E> x = first; x != null; x = x.next) {
+            if (x.item == null) {
+                unlink(x);
+                return true;
+            }
+        }
+    } else {
+        for (Node<E> x = first; x != null; x = x.next) {
+            if (o.equals(x.item)) {
+                unlink(x);
+                return true;
+            }
+        }
+    }
+    return false;
+}
+E unlink(Node<E> x) {
+    // assert x != null;
+    final E element = x.item;
+    final Node<E> next = x.next;     //next等于要删除节点的下一个节点
+    final Node<E> prev = x.prev;     //prev等于要删除节点的上一个节点
+
+    if (prev == null) {              //前结点为空，相当于first头结点
+        first = next;                //头结点等于要删除结点的下一个节点
+    } else {                         //要删除结点不是头结点
+        prev.next = next;            //要删除结点的前一个节点的 next 等于 要删除结点的后一个节点
+        x.prev = null;                      
+    }
+
+    if (next == null) {              //当前节点为尾结点
+        last = prev;                 //尾结点等于要删除结点的前结点
+    } else {                         //要删除的节点不是尾结点
+        next.prev = prev;            //要删除结点的后节点的prev 等于 要删除结点的前结点
+        x.next = null;
+    }
+
+    x.item = null;
+    size--;
+    modCount++;
+    return element;
+}
+````
+
+
+
+**其他**
+
+`LinkedList` 类的 `listIterator` 方法返回一个实现 `ListIterator` 接口的迭代器对象
+
+`ListIterator` 接口继承了 `Iterator` 接口并扩展了两个方法，来反向遍历链表：
+
+* `E previous()` 与 `next`相反 `remove`删除的是调用`next`之后左侧的元素，调用`previous`之后的右侧元素
+
+* `boolean hasPrevious()` 与 `hasNext`相反
+
+
+
+
+
+## Set
+
+注：set不能使用索引查找，同样不能使用普通`for`循环遍历，**可以**使用`iterator`
+
+* 无序性：不等于随机性。存储的数据在底层数组中并非照数组索引的顺序添加，而是根据数据的哈希值决定的。
+* 不可重复性：保证添加的元素照`equals()`判断时，不能返回`true`.即：相同的元素只能添加一个。
+
+ 
+
+ 
+
+**元素添加过程**：(以`HashSet`为例)
+
+我们向`HashSet`中添加元素a,首先调用元素a所在类的`hashCode()`方法，计算元素a的哈希值，
+
+此哈希值接着通过某种算法计算出在HashSet底层数组中的存放位置（即为：索引位置，判断
+
+数组此位置上是否已经元素：
+
+* 如果此位置上没其他元素，则元素a添加成功。 --->情况1
+* 如果此位置上其他元素b(或以链表形式存在的多个元素，则比较元素a与元素b的hash值：
+  * 如果`hash`值不相同，则元素a添加成功。--->情况2
+  * 如果`hash`值相同，进而需要调用元素a所在类的equals()方法：
+    * `equals()`返回`true`,元素a添加失败
+    * `equals()`返回`false`,则元素a添加成功。--->情况3
+
+对于添加成功的情况2和情况3而言：元素a 与已经存在指定索引位置上数据以链表的方式存储。
+
+* jdk 7 :元素a放到数组中，指向原来的元素。
+* jdk 8 :原来的元素在数组中，指向元素a
+* 总结：七上八下
+
+`HashSet`底层：数组+链表的结构。（前提：jdk7)
+
+`Set`接口中没额外定义新的方法，使用的都是`Collection`中声明过的方法。
+
+**常用实现类：**
+
+|----Collection接口：单列集合，用来存储一个一个的对象
+
+​     |----Set接口：存储无序的、不可重复的数据  -->高中讲的“集合”
+
+​       |----HashSet：作为Set接口的主要实现类；线程不安全的；可以存储null值 (底层是HashMap)
+
+​         |----LinkedHashSet：作为HashSet的子类；遍历其内部数据时，可以按照添加的顺序遍历 (底层是LinkedHashMap)
+
+​         在添加数据的同时，每个数据还维护了两个引用，记录此数据前一个数据和后一个数据。   对于频繁的遍历操作，`LinkedHashSet`效率高于`HashSet`
+
+​       |----TreeSet：可以照添加对象的指定属性，进行排序。(底层是TreeMap)
+
+
+
+**存储对象所在类的要求：**
+
+`HashSet/LinkedHashSet:`
+
+要求：向Set(主要指：HashSet、LinkedHashSet)中添加的数据，其所在的类一定要重写`hashCode()`和`equals()`
+
+要求：重写的hashCode()和equals()尽可能保持一致性：相等的对象必须具有相等的散列码
+
+
+
+**源码实现**
+
+`HashSet底`层是`HashMap`，`LinkedHashSet`底层是`LinkedHashMap`，`TreeSet`底层是`TreeMap`
+
+> 成员变量
+
+````java
+private transient HashMap<E,Object> map;             //用于存放最终数据的
+private static final Object PRESENT = new Object();  //是所有写入map的value值
+````
+
+> 构造函数
+
+````java
+public HashSet() {
+	map = new HashMap<>();
+}
+
+public HashSet(int initialCapacity, float loadFactor) {
+	map = new HashMap<>(initialCapacity, loadFactor);
+}  
+````
+
+利用了 HashMap 初始化了 map 。
+
+
+
+> add
+
+````java
+public boolean add(E e) {
+	return map.put(e, PRESENT)==null;
+}
+````
+
+比较关键的就是这个 `add()` 方法。 可以看出它是将存放的对象当做了 `HashMap` 的健，`value` 都是相同的 `PRESENT` 。
+
+由于 `HashMap` 的 `key` 是不能重复的，所以每当有重复的值写入到 `HashSet` 时，`value` 会被覆盖，但 `key` 不会受到影响，
+
+这样就保证了 `HashSet` 中只能存放不重复的元素。所以 HashMap 会出现的问题 HashSet 依然不能避免。
+
+ 
+
+ **TreeSet:**
+
+使用说明:
+
+* 向TreeSet中添加的数据，要求是**相同**类的对象。
+* 两种排序方式：自然排序（实现Comparable）接口 和 定制排序（Comparator）
+  * 自然排序中，比较两个对象是否相同的标准为：`compareTo()`返回0.不再是`equals()`
+  * 定制排序中，比较两个对象是否相同的标准为：`compare()`返回0.不再是`equals( )`
+
+
+
+> 自然排序
+
+````java
+@Test
+public void test1(){
+    TreeSet set = new TreeSet();
+
+        //失败：不能添加不同类的对象
+        //        set.add(123);
+        //        set.add("AA");
+        //        set.add(new User("Tom",12));
+
+        //举例一：
+        //        set.add(34);
+        //        set.add(-34);
+        //        set.add(43);
+        //        set.add(11);
+        //        set.add(8);
+
+    //举例二：
+    set.add(new User("Tom",12));
+    set.add(new User("Jerry",32));
+}
+
+public class User implements Comparable{
+    private String name;
+    private int age;
+	
+    ……
+        
+    @Override
+    public boolean equals(Object o) {
+        System.out.println("User equals()....");
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        if (age != user.age) return false;
+        return name != null ? name.equals(user.name) : user.name == null;
+    }
+
+    @Override
+    public int hashCode() { //return name.hashCode() + age;
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + age;
+        return result;
+    }
+
+    //按照姓名从大到小排列,年龄从小到大排列
+    @Override
+    public int compareTo(Object o) {
+        if(o instanceof User){
+            User user = (User)o;
+//            return -this.name.compareTo(user.name);
+            int compare = -this.name.compareTo(user.name);
+            if(compare != 0){
+                return compare;
+            }else{
+                return Integer.compare(this.age,user.age);
+            }
+        }else{
+            throw new RuntimeException("输入的类型不匹配");
+        }
+
+    }
+}
+````
+
+> 定制排序:将comparator直接传入TreeSet构造器
+
+
+````java
+@Test
+public void test2(){
+    Comparator com = new Comparator() {
+        //照年龄从小到大排列
+        @Override
+        public int compare(Object o1, Object o2) {
+            if(o1 instanceof User && o2 instanceof User){
+                User u1 = (User)o1;
+                User u2 = (User)o2;
+                return Integer.compare(u1.getAge(),u2.getAge());
+            }else{
+                throw new RuntimeException("输入的数据类型不匹配");
+            }
+        }
+    };
+    TreeSet set = new TreeSet(com);
+    set.add(new User("Tom",12));
+    set.add(new User("Jerry",32));
+}
+````
+
+
+
+
+
+## Map
+
+双列集合框架：Map
+
+* `Map`与`Collection`并列存在。用于保存具有映射关系的数据:`key-value``
+* ``Map` 中的`key` 和`value` 都可以是任何引用类型的数据
+* `Map` 中的`key` 用`Set`来存放，不允许重复，即同一个`Map` 对象所对应的类，须重写 `hashCode()` 和 `equals()` 方法
+* 常用`String`类作为`Map`的“键”
+* `key` 和`value` 之间存在单向一对一关系，即通过指定的`key` 总能找到唯一的、确定的`value`
+* `Map`接口的常用实现类：`HashMap`、`TreeMap`、`LinkedHashMap`和`Properties`。其中，
+
+ 
+
+**常用实现类结构**
+
+|----Map:双列数据，存储key-value对的数据
+
+​	|----HashMap:作为Map的主要实现类；线程不安全的，效率高；存储null的key和value
+
+​		|----LinkedHashMap:保证在遍历map元素时，可以照添加的顺序实现遍历。
+
+​			原因：在原的HashMap底层结构基础上，添加了一对指针，指向前一个和后一个元素。
+
+​			对于频繁的遍历操作，此类执行效率高于HashMap。
+
+​	|----TreeMap:保证照添加的key-value对进行排序，实现排序遍历。此时考虑key的自然排序或定制排序底层使用红黑树
+
+​	|----Hashtable:作为古老的实现类；线程安全的，效率低；不能存储null的key和value
+
+​	|----Properties:常用来处理配置文件。key和value都是String类型
+
+HashMap的底层：数组+链表 （jdk7及之前),数组+链表+红黑树 （jdk 8)
+
+
+
+**存储结构的理解：**
+
+* key:无序的、不可重复的，使用Set存储所的key，key所在的类要重写equals()和hashCode() 
+
+* value:无序的、可重复的，使用Collection存储所的value，alue所在的类要重写equals()
+
+* entry:key-value构成了一个Entry对象。无序的、不可重复的，使用Set存储所的entry
+
+
+
+**常用方法**
+
+| 方法                                              | 作用                                                         |
+| ------------------------------------------------- | ------------------------------------------------------------ |
+| Object put(Object key,Object value)               | 将指定key-value添加到(或修改)当前map对象中                   |
+| void putAll(Map m)                                | 将m中的所有key-value对存放到当前map中                        |
+| Object remove(Object key)                         | 移除指定key的key-value对，并返回value                        |
+| void clear()                                      | 清空当前map中的所有数据                                      |
+| Object get(Object key)                            | 获取指定key对应的value                                       |
+| default V getOrDefault(Object key,V defaultValue) | 获得与键关联的值，返回与键关联的对象，如果为找到则返回defaultValue |
+| boolean containsKey(Object key)                   | 是否包含指定的key                                            |
+| boolean containsValue(Object value)               | 是否包含指定的value                                          |
+| int size()                                        | 返回map中key-value对的个数                                   |
+| boolean isEmpty()                                 | 判断当前map是否为空                                          |
+| boolean equals(Object obj)                        | 判断当前map和参数对象obj是否相等                             |
+| Set keySet()                                      | 返回所有key构成的Set集合                                     |
+| Collection values()                               | 返回所有value构成的Collection集合                            |
+| Set entrySet()                                    | 返回所有key-value对构成的Set集合                             |
+
+遍历：keySet() / values() / entrySet()    键/值/键值对 或forEach
+
+映射对象变量**.**forEach**( (**k**,**v**) ->** System**.**out**.**println**(**"name = " **+** name **+** ",age = " **+** age**));**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\4.  内存结构说明：（难点）
+
+4.1 HashMap在jdk7中实现原理：
+
+HashMap map = new HashMap():
+
+在实例化以后，底层创建了长度是16的一维数组Entry[] table。
+
+...可能已经执行过多次put...
+
+map.put(key1,value1):
+
+首先，调用key1所在类的hashCode()计算key1哈希值，此哈希值经过某种算法计算以后，得到在Entry数组中的存放位置。
+
+如果此位置上的数据为空，此时的key1-value1添加成功。                                 ----情况1
+
+如果此位置上的数据不为空，(意味着此位置上存在一个或多个数据(以链表形式存在)),比较key1和已经存在的一个或多个数据的哈希值：
+
+ 如果key1的哈希值与已经存在的数据的哈希值都不相同，此时key1-value1添加成功。      ----情况2
+
+ 如果key1的哈希值和已经存在的某一个数据(key2-value2)的哈希值相同，继续比较：调用key1所在类的equals(key2)方法，比较：
+
+​    如果equals()返回false:此时key1-value1添加成功。                         ----情况3
+
+​    如果equals()返回true:使用value1替换value2。
+
+​    补充：关于情况2和情况3：此时key1-value1和原来的数据以链表的方式存储。
+
+​    在不断的添加过程中，会涉及到扩容问题，当超出临界值(且要存放的位置非空)时，扩容。默认的扩容方式：扩容为原来容量的2倍，并将原的数据复制过来。
+
+ 
+
+4.2 HashMap在jdk8中相较于jdk7在底层实现方面的不同：
+
+\1. new HashMap():底层没创建一个长度为16的数组
+
+\2. jdk 8底层的数组是：Node[],而非Entry[]
+
+\3. 首次调用put()方法时，底层创建长度为16的数组
+
+\4. jdk7底层结构只：数组+链表。jdk8中底层结构：数组+链表+红黑树。
+
+4.1 形成链表时，七上八下（jdk7:新的元素指向旧的元素(头插法)。jdk8：旧的元素指向新的元素(尾插法)）
+
+4.2 当数组的某一个索引位置上的元素以链表形式存在的数据个数 > 8 且当前数组的长度 > 64时，此时此索引位置上的所数据改为使用红黑树存储。
+
+ 
+
+HashMap为何从头插入改为尾插入？链表死链
+
+HashMap在jdk1.7中采用头插入法，在扩容时会改变链表中元素原本的顺序，以至于在并发场景下导致链表成环的问题(程序会卡死)。
+
+而在jdk1.8中采用尾插入法，在扩容时会保持链表元素原本的顺序，就不会出现链表成环的问题了。
+
+视频： https://www.bilibili.com/video/BV16J411h7Rd?p=277
+
+ 
+
+ 
+
+4.3 HashMap底层典型属性的属性的说明：
+
+| DEFAULT_INITIAL_CAPACITY | HashMap的默认容量，16                                        |
+| ------------------------ | ------------------------------------------------------------ |
+| DEFAULT_LOAD_FACTOR      | HashMap的默认加载因子：0.75f                                 |
+| threshold                | 扩容的临界值，=容量*填充因子：16 * 0.75  => 12；当加入的元素大于扩容临界值就会扩容(不是数组占用的个数大于临界值) |
+| TREEIFY_THRESHOLD        | Bucket中链表长度大于该默认值，转化为红黑树:8                 |
+| MIN_TREEIFY_CAPACITY     | 桶中的Node被树化时最小的hash表容量:64                        |
+
+ 
+
+4.4 LinkedHashMap的底层实现原理(了解)
+
+LinkedHashMap底层使用的结构与HashMap相同，因为LinkedHashMap继承于HashMap.
+
+区别就在于：LinkedHashMap内部提供了Entry，替换HashMap中的Node.
+
+**![img](java1.assets/clip_image004-16533898784522.jpg)**
+
+ 
+
+\5.  TreeMap的使用
+
+//向TreeMap中添加key-value，要求key必须是由同一个类创建的对象
+
+//因为要照key进行排序：自然排序 、定制排序
+
+public class TreeMapTest {
+
+//自然排序  
+
+@Test
+
+  public void test1(){
+
+​    TreeMap map = new TreeMap();
+
+​    User u1 = new User("Tom",23);
+
+​    User u2 = new User("Jerry",32);
+
+​    User u3 = new User("Jack",20);
+
+​    User u4 = new User("Rose",18);
+
+​    map.put(u1,98);
+
+​    map.put(u2,89);
+
+​    map.put(u3,76);
+
+​    map.put(u4,100);
+
+​    Set entrySet = map.entrySet();
+
+​    Iterator iterator1 = entrySet.iterator();
+
+​    while (iterator1.hasNext()){
+
+​      Object obj = iterator1.next();
+
+​      Map.Entry entry = (Map.Entry) obj;
+
+​      System.out.println(entry.getKey() + "---->" + entry.getValue());
+
+ 
+
+​    }
+
+  }
+
+ 
+
+  //定制排序
+
+  @Test
+
+  public void test2(){
+
+​    TreeMap map = new TreeMap(new Comparator() {
+
+​      @Override
+
+​      public int compare(Object o1, Object o2) {
+
+​        if(o1 instanceof User && o2 instanceof User){
+
+​          User u1 = (User)o1;
+
+​          User u2 = (User)o2;
+
+​          return Integer.compare(u1.getAge(),u2.getAge());
+
+​        }
+
+​        throw new RuntimeException("输入的类型不匹配！");
+
+​      }
+
+​    });
+
+​    User u1 = new User("Tom",23);
+
+​    User u2 = new User("Jerry",32);
+
+​    User u3 = new User("Jack",20);
+
+​    User u4 = new User("Rose",18);
+
+ 
+
+​    map.put(u1,98);
+
+​    map.put(u2,89);
+
+​    map.put(u3,76);
+
+​    map.put(u4,100);
+
+ 
+
+​    Set entrySet = map.entrySet();
+
+​    Iterator iterator1 = entrySet.iterator();
+
+​    while (iterator1.hasNext()){
+
+​      Object obj = iterator1.next();
+
+​      Map.Entry entry = (Map.Entry) obj;
+
+​      System.out.println(entry.getKey() + "---->" + entry.getValue());
+
+​    }
+
+  }
+
+}
+
+\6.  Hashtable
+
+\1.  底层有Hashtable$Entry[] 初始化长度为11
+
+\2.  临界值 threshold = 长度 * 加载因子 0.75
+
+\3.  扩容容量大于等于临界值时进行扩容 2倍+1
+
+|           | 版本 | 线程安全 | 效率 | 允许null键null值 |
+| --------- | ---- | -------- | ---- | ---------------- |
+| HashMap   | 1.2  | 不安全   | 高   | 允许             |
+| Hashtable | 1.0  | 安全     | 低   | 不允许           |
+
+\7.  使用Properties读取配置文件
+
+//Properties:常用来处理配置文件。key和value都是String类型
+
+public static void main(String[] args) {
+
+  FileInputStream fis = null;
+
+  try {
+
+​    Properties pros = new Properties();
+
+ 
+
+​    fis = new FileInputStream("jdbc.properties");
+
+​    pros.load(fis);//加载流对应的文件
+
+ 
+
+​    String name = pros.getProperty("name");
+
+​    String password = pros.getProperty("password");
+
+ 
+
+​    System.out.println("name = " + name + ", password = " + password);
+
+  } catch (IOException e) {
+
+​    e.printStackTrace();
+
+  } finally {
+
+​    if(fis != null){
+
+​      try {
+
+​        fis.close();
+
+​      } catch (IOException e) {
+
+​        e.printStackTrace();
+
+​      }
+
+ 
+
+​    }
+
+  }
+
+ 
+
+常用方法代码
+
+public class MapTest {
+
+//遍历
+
+​      @Test
+
+​      public void test5(){
+
+​        Map map = new HashMap();
+
+​        map.put("AA",123);
+
+​        map.put(45,1234);
+
+​        map.put("BB",56);
+
+​    
+
+​        //遍历所有的key集：keySet()
+
+​        Set set = map.keySet();
+
+​          Iterator iterator = set.iterator();
+
+​          while(iterator.hasNext()){
+
+​            System.out.println(iterator.next());
+
+​        }
+
+​        System.out.println();
+
+​        //遍历所有的value集：values()
+
+​        Collection values = map.values();
+
+​        for(Object obj : values){
+
+​          System.out.println(obj);
+
+​        }
+
+​        System.out.println();
+
+​        //遍历所有的key-value
+
+​        //方式一：entrySet()
+
+​        Set entrySet = map.entrySet();
+
+​        Iterator iterator1 = entrySet.iterator();
+
+​        while (iterator1.hasNext()){
+
+​          Object obj = iterator1.next();
+
+​          //entrySet集合中的元素都是entry
+
+​          Map.Entry entry = (Map.Entry) obj;
+
+​          System.out.println(entry.getKey() + "---->" + entry.getValue());
+
+​    
+
+​        }
+
+​        System.out.println();
+
+​        //方式二：
+
+​        Set keySet = map.keySet();
+
+​        Iterator iterator2 = keySet.iterator();
+
+​        while(iterator2.hasNext()){
+
+​          Object key = iterator2.next();
+
+​          Object value = map.get(key);
+
+​          System.out.println(key + "=====" + value);
+
+​    
+
+​        }
+
+​    
+
+​      }
+
+  @Test
+
+​      public void test4(){
+
+​        Map map = new HashMap();
+
+​        map.put("AA",123);
+
+​        map.put(45,123);
+
+​        map.put("BB",56);
+
+​        // Object get(Object key)
+
+​        System.out.println(map.get(45));
+
+​        //containsKey(Object key)
+
+​        boolean isExist = map.containsKey("BB");
+
+​        System.out.println(isExist);
+
+​    
+
+​        isExist = map.containsValue(123);
+
+​        System.out.println(isExist);
+
+​    
+
+​        map.clear();
+
+​    
+
+​        System.out.println(map.isEmpty());
+
+​    
+
+​      }
+
+//添加、修改
+
+​    @Test
+
+​      public void test3(){
+
+​        Map map = new HashMap();
+
+​        //添加
+
+​        map.put("AA",123);
+
+​        map.put(45,123);
+
+​        map.put("BB",56);
+
+​        //修改
+
+​        map.put("AA",87);
+
+​    
+
+​        System.out.println(map);
+
+​    
+
+​        Map map1 = new HashMap();
+
+​        map1.put("CC",123);
+
+​        map1.put("DD",123);
+
+​    
+
+​        map.putAll(map1);
+
+​    
+
+​        System.out.println(map);
+
+​    
+
+​        //remove(Object key)
+
+​        Object value = map.remove("CC");
+
+​        System.out.println(value);
+
+​        System.out.println(map);
+
+​    
+
+​        //clear()
+
+​        map.clear();//与map = null操作不同
+
+​        System.out.println(map.size());
+
+​        System.out.println(map);
+
+​      }
+
+​    
+
+​      @Test
+
+​      public void test2(){
+
+​        Map map = new HashMap();
+
+​        map = new LinkedHashMap();
+
+​        map.put(123,"AA");
+
+​        map.put(345,"BB");
+
+​        map.put(12,"CC");
+
+​    
+
+​        System.out.println(map);
+
+​      }
+
+​    
+
+​    
+
+​      @Test
+
+​      public void test1(){
+
+​        Map map = new HashMap();
+
+​    //    map = new Hashtable();
+
+​        map.put(null,123);
+
+​    
+
+​      }
+
+​    }
+
+ 
+
+**HashMap****源码**                                         
+
+JDK1.8 之前
+
+JDK1.8 之前 HashMap 底层是 数组和链表 结合在一起使用也就是 链表散列。
+
+HashMap 通过 key 的 hashCode 经过扰动函数处理过后得到 hash 值，然后通过 (n - 1) & hash 判断当前元素存放的位置（这里的 n 指的是数组的长度），如果当前位置存在元素的话，就判断该元素与要存入的元素的 hash 值以及 key 是否相同，如果相同的话，直接覆盖，不相同就通过拉链法解决冲突。
+
+所谓扰动函数指的就是 HashMap 的 hash 方法。使用 hash 方法也就是扰动函数是为了防止一些实现比较差的 hashCode() 方法 换句话说使用扰动函数之后可以减少碰撞。
+
+ 
+
+JDK 1.8 HashMap 的 hash 方法源码:
+
+JDK 1.8 的 hash 方法 相比于 JDK 1.7 hash 方法更加简化，但是原理不变。
+
+static final int hash(Object key) {
+
+int h;
+ // key.hashCode()：返回散列值也就是hashcode
+ // ^ ：按位异或
+ // >>>:无符号右移，忽略符号位，空位都以0补齐
+ return (key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16);
+
+}
+
+ 
+
+对比一下 JDK1.7 的 HashMap 的 hash 方法源码.
+
+static int hash(int h) {
+   // This function ensures that hashCodes that differ only by
+   // constant multiples at each bit position have a bounded
+   // number of collisions (approximately 8 at default load factor).
+
+h ^= (h >>> 20) ^ (h >>> 12);
+ return h ^ (h >>> 7) ^ (h >>> 4);
+
+}
+
+ 
+
+相比于 JDK1.8 的 hash 方法 ，JDK 1.7 的 hash 方法的性能会稍差一点点，因为毕竟扰动了 4 次。
+
+ 
+
+所谓 “拉链法” 就是：将链表和数组相结合。也就是说创建一个链表数组，数组中每一格就是一个链表。若遇到哈希冲突，则将冲突的值加到链表中即可。
+
+![img](java1.assets/clip_image006-16533898784523.jpg)
+
+ 
+
+ 
+
+jdk8之后
+
+当链表长度大于阈值（默认为 8）时，会首先调用 treeifyBin()方法。这个方法会根据 HashMap 数组来决定是否转换为红黑树。只有当数组长度大于或者等于 64 的情况下，才会执行转换红黑树操作，以减少搜索时间。否则，就是只是执行 resize() 方法对数组扩容。相关源码这里就不贴了，重点关注 treeifyBin()方法即可！
+
+![img](java1.assets/clip_image008-16533898784524.jpg)
+
+ 
+
+ 
+
+ 
+
+**属性**                                    
+
+public class HashMap<K,V> extends AbstractMap<K,V> implements Map<K,V>, Cloneable, Serializable {
+
+  // 序列号
+
+  private static final long serialVersionUID = 362498820763181265L;
+
+  // 默认的初始容量是16
+
+  static final int DEFAULT_INITIAL_CAPACITY = 1 << 4;
+
+  // 最大容量
+
+  static final int MAXIMUM_CAPACITY = 1 << 30;
+
+  // 默认的填充因子
+
+  static final float DEFAULT_LOAD_FACTOR = 0.75f;
+
+  // 当桶(bucket)上的结点数大于这个值时会转成红黑树
+
+  static final int TREEIFY_THRESHOLD = 8;
+
+  // 当桶(bucket)上的结点数小于这个值时树转链表
+
+  static final int UNTREEIFY_THRESHOLD = 6;
+
+  // 桶中结构转化为红黑树对应的table的最小大小
+
+  static final int MIN_TREEIFY_CAPACITY = 64;
+
+  // 存储元素的数组，总是2的幂次倍
+
+  transient Node<k,v>[] table;
+
+  // 存放具体元素的集
+
+  transient Set<map.entry<k,v>> entrySet;
+
+  // 存放元素的个数，注意这个不等于数组的长度。
+
+  transient int size;
+
+  // 每次扩容和更改map结构的计数器
+
+  transient int modCount;
+
+  // 临界值 当实际大小(容量*填充因子)超过临界值时，会进行扩容
+
+  int threshold;
+
+  // 加载因子
+
+  final float loadFactor;
+
+}
+
+- loadFactor     加载因子
+       loadFactor 加载因子是控制数组存放数据的疏密程度，loadFactor 越趋近于 1，那么 数组中存放的数据(entry)也就越多，也就越密，也就是会让链表的长度增加，loadFactor 越小，也就是趋近于 0，数组中存放的数据(entry)也就越少，也就越稀疏。
+       loadFactor 太大导致查找元素效率低，太小导致数组的利用率低，存放的数据会很分散。loadFactor     的默认值为     0.75f 是官方给出的一个比较好的临界值。
+       给定的默认容量为 16，负载因子为 0.75。Map 在使用过程中不断的往里面存放数据，当数量达到了 16 * 0.75 = 12 就需要将当前 16 的容量进行扩容，而扩容这个过程涉及到 rehash、复制数据等操作，所以非常消耗性能。
+- threshold
+       threshold = capacity * loadFactor，当     Size>=threshold的时候，那么就要考虑对数组的扩增了，也就是说，这个的意思就是 衡量数组是否需要扩增的一个标准。
+
+ 
+
+ 
+
+**Node****节点**                                             
+
+//Node是HashMap的内部类，实现了Map接口的Entry内部类
+
+static class Node<K,V> implements Map.Entry<K,V> {
+
+​    final int hash;       //hash值，存放元素时与其他元素的hash值比较
+
+​    final K key;         //键
+
+​    V value;           //值
+
+​    Node<K,V> next;       //下一个节点
+
+ 
+
+​    Node(int hash, K key, V value, Node<K,V> next) {
+
+​      this.hash = hash;
+
+​      this.key = key;
+
+​      this.value = value;
+
+​      this.next = next;
+
+​    }
+
+ 
+
+​    public final K getKey()    { return key; }
+
+​    public final V getValue()   { return value; }
+
+​    public final String toString() { return key + "=" + value; }
+
+ 
+
+​    public final int hashCode() {……}
+
+ 
+
+​    public final V setValue(V newValue) {……}
+
+ 
+
+​    public final boolean equals(Object o) {……}
+
+  }
+
+**树节点**                                        
+
+//当需要树化时，才使用TreeNode，实现了LinkedHashMap.Entry<K,V>;LinkedHashMap后面详讲
+
+static final class TreeNode<K,V> extends LinkedHashMap.Entry<K,V> {
+     TreeNode<K,V> parent; // 父
+     TreeNode<K,V> left;  // 左
+     TreeNode<K,V> right;  // 右
+     TreeNode<K,V> prev;  // needed to unlink next upon deletion
+     boolean red;      // 判断颜色
+     TreeNode(int hash, K key, V val, Node<K,V> next) {
+       super(hash, key, val, next);
+     }
+     // 返回根节点
+     final TreeNode<K,V> root() {
+       for (TreeNode<K,V> r = this, p;;) {
+         if ((p = r.parent) == null)
+           return r;
+         r = p;
+ }
+
+ 
+
+ 
+
+ 
+
+**快速查询**                                        
+
+Set keySet()：返回所有key构成的Set集合； 底层使用Set集合，存储所有的Key
+
+Collection values()：返回所有value构成的Collection集合；底层使用Collection集合，存储所有的Value
+
+Set entrySet()：返回所有key-value对构成的Set集合；底层调用的是EntrySet内部类，使用Entry指向Node节点
+
+ 
+
+为了查询/遍历方便HashMap提供了EntrySet内部类，指向Node节点
+
+ 
+
+ 
+
+**构造器**                                        
+
+  // 默认构造函数。
+
+  public HashMap() {
+
+​    this.loadFactor = DEFAULT_LOAD_FACTOR;     //默认加载因子
+
+   }
+
+ 
+
+   // 包含另一个“Map”的构造函数
+
+   public HashMap(Map<? extends K, ? extends V> m) {
+
+​     this.loadFactor = DEFAULT_LOAD_FACTOR;
+
+​     putMapEntries(m, false);//下面会分析到这个方法
+
+   }
+
+ 
+
+   // 指定“容量大小”的构造函数
+
+   public HashMap(int initialCapacity) {
+
+​     this(initialCapacity, DEFAULT_LOAD_FACTOR);
+
+   }
+
+ 
+
+   // 指定“容量大小”和“加载因子”的构造函数
+
+   public HashMap(int initialCapacity, float loadFactor) {
+
+​     if (initialCapacity < 0)
+
+​       throw new IllegalArgumentException("Illegal initial capacity: " + initialCapacity);
+
+​     if (initialCapacity > MAXIMUM_CAPACITY)
+
+​       initialCapacity = MAXIMUM_CAPACITY;
+
+​     if (loadFactor <= 0 || Float.isNaN(loadFactor))
+
+​       throw new IllegalArgumentException("Illegal load factor: " + loadFactor);
+
+​     this.loadFactor = loadFactor;
+
+​     this.threshold = tableSizeFor(initialCapacity);
+
+   }
+
+ 
+
+**putMapEntries** **方法：将整个map添加到当期map中**
+
+final void putMapEntries(Map<? extends K, ? extends V> m, boolean evict) {
+
+  int s = m.size();
+
+  if (s > 0) {
+
+​    // 判断table是否已经初始化
+
+​    if (table == null) { // pre-size
+
+​      // 未初始化，s为m的实际元素个数
+
+​       float ft = ((float)s / loadFactor) + 1.0F;
+
+​      int t = ((ft < (float)MAXIMUM_CAPACITY) ?
+
+​          (int)ft : MAXIMUM_CAPACITY);
+
+​      // 计算得到的t大于阈值，则初始化阈值
+
+​      if (t > threshold)
+
+​        threshold = tableSizeFor(t);
+
+​    }
+
+​    // 已初始化，并且m元素个数大于阈值，进行扩容处理
+
+​    else if (s > threshold)
+
+​      resize();
+
+​    // 将m中的所有元素添加至HashMap中
+
+​    for (Map.Entry<? extends K, ? extends V> e : m.entrySet()) {
+
+​      K key = e.getKey();
+
+​      V value = e.getValue();
+
+​      putVal(hash(key), key, value, false, evict);
+
+​    }
+
+  }
+
+}
+
+ 
+
+**添加**                                        
+
+![img](java1.assets/clip_image010-16533898784525.jpg)
+
+①.判断键值对数组 table[i] 是否为空或为 null，否则执行 resize() 进行扩容；
+
+②.根据键值 key 计算 hash 值得到插入的数组索引i，如果 table[i]==null，直接新建节点添加，转向 ⑥，如果table[i] 不为空，转向 ③；
+
+③.判断 table[i] 的首个元素是否和 key 一样，如果相同直接覆盖 value，否则转向 ④，这里的相同指的是 hashCode 以及 equals；
+
+④.判断table[i] 是否为 treeNode，即 table[i] 是否是红黑树，如果是红黑树，则直接在树中插入键值对，否则转向 ⑤；
+
+⑤.遍历 table[i]，判断链表长度是否大于 8，大于 8 的话把链表转换为红黑树，在红黑树中执行插入操作，否则进行链表的插入操作；遍历过程中若发现 key 已经存在直接覆盖 value 即可；
+
+⑥.插入成功后，判断实际存在的键值对数量 size 是否超多了最大容量 threshold，如果超过，进行扩容。
+
+ 
+
+ 
+
+ 
+
+public V put(K key, V value) {
+
+  return putVal(hash(key), key, value, false, true);
+
+}
+
+final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
+
+​          boolean evict) {
+
+Node<K,V>[] tab; 
+
+Node<K,V> p; 
+
+int n, i;         //辅助变量  
+
+  
+
+ 
+
+// table未初始化或者长度为0，调用resize()进行扩容,创建长度为16的Node[]
+
+if ((tab = table) == null || (n = tab.length) == 0)
+
+n = (tab = resize()).length;
+
+ 
+
+// n是数组的长度，当hash是2的幂时，&相当于取模;
+
+// (n - 1) & hash 确定元素存放在哪个桶中，并为 p 赋值，当p为空(桶为空)，新生成结点放入桶中(此时，这个结点是放在数组中); 
+
+if ((p = tab[i = (n - 1) & hash]) == null)   //根据hash找到索引，如果为空，直接添加
+
+​    tab[i] = newNode(hash, key, value, null);
+
+ 
+
+  // 索引位置(桶中)已经存在元素
+
+  else {
+
+Node<K,V> e; 
+
+K k;
+
+// p 指的是数组中的元素(链表的第一个节点)，比较p的hash值是否和添加元素的hash值相等，
+
+// 并且比较p.key 和key的地址是否相同，或者p.key和key的值是否相等(equals()方法，也证明了添加的元素中需要重新equals()方法)
+
+if (p.hash == hash &&
+
+((k = p.key) == key || (key != null && key.equals(k))))
+
+ 
+
+// 将第一个元素赋值给e，用e来记录
+
+e = p;                                 //①
+
+ 
+
+ 
+
+// 判断p是否是红黑树
+
+else if (p instanceof TreeNode)
+
+// 放入树中
+
+e = ((TreeNode<K,V>)p).putTreeVal(this, tab, hash, key, value);    //②    
+
+ 
+
+​    // 如果是链表
+
+​    else {
+
+​      // 在链表最末插入结点
+
+​      for (int binCount = 0; ; ++binCount) {
+
+​        // 到达链表的尾部,执行添加操作
+
+​        if ((e = p.next) == null) {                    //③
+
+​          // 在尾部插入新结点
+
+​          p.next = newNode(hash, key, value, null);
+
+​          
+
+ 
+
+​          // 结点数量达到阈值(默认为 8 )，执行 treeifyBin 方法(treeigyBin方法里面判断是否对当前链表进行树化)
+
+​          // 这个方法会根据 HashMap 数组来决定是否转换为红黑树。
+
+​          // 只有当数组长度大于或者等于 64 的情况下，才会执行转换红黑树操作，以减少搜索时间。否则，就是只是对数组扩容。
+
+​          if (binCount >= TREEIFY_THRESHOLD - 1) // -1 for 1st
+
+​             treeifyBin(tab, hash);   //此方法并不一定会对当前链表进行树化
+
+ 
+
+​          // 跳出循环
+
+​          break;
+
+​        }
+
+ 
+
+​        // 判断链表中结点的key值与插入的元素的key值是否相等
+
+​        if (e.hash == hash &&                        //④
+
+​          ((k = e.key) == key || (key != null && key.equals(k))))
+
+​          // 相等，跳出循环
+
+​          break;
+
+​        // 用于遍历桶中的链表，与前面的e = p.next组合，可以遍历链表
+
+​        p = e;
+
+​      }
+
+​    }
+
+ 
+
+ 
+
+ // ①②④表示在桶中找到key值、hash值与插入元素相等的结点;③表示到链表的最后了,e为null，不会进入下面的if语句
+
+​    if (e != null) {
+
+​      // 记录e的value
+
+​      V oldValue = e.value;
+
+​      // onlyIfAbsent为false或者旧值为null
+
+​      if (!onlyIfAbsent || oldValue == null)
+
+​        //用新值替换旧值
+
+​        e.value = value;
+
+​      // 访问后回调
+
+​      afterNodeAccess(e);
+
+​      // 返回旧值
+
+​      return oldValue;
+
+​    }
+
+  }
+
+ 
+
+  // 结构性修改
+
+  ++modCount;
+
+  // 实际大小大于阈值则扩容
+
+  if (++size > threshold) //每加入一个元素，size加1；(不是在数组中每加一个元素)
+
+​    resize();
+
+  
+
+  // 插入后回调
+
+  afterNodeInsertion(evict); //此方法为空方法，为了让HashMap的子方法实现 (如LinkedHashMap就重写了此方法)
+
+  return null;
+
+}
+
+ 
+
+ 
+
+ 
+
+**扩容**                                         
+
+进行扩容，会伴随着一次重新 hash 分配，并且会遍历 hash 表中所有的元素，是非常耗时的。在编写程序中，要尽量避免 resize。
+
+ 
+
+final Node<K,V>[] resize() {
+
+  Node<K,V>[] oldTab = table;      //旧数组
+
+  int oldCap = (oldTab == null) ? 0 : oldTab.length;   //旧数组的长度
+
+  int oldThr = threshold;           //旧扩容阈值
+
+  int newCap, newThr = 0;
+
+  if (oldCap > 0) {
+
+​    // 超过最大值就不再扩充了，就只好随你碰撞去吧
+
+​    if (oldCap >= MAXIMUM_CAPACITY) {
+
+​      threshold = Integer.MAX_VALUE;
+
+​      return oldTab;
+
+​    }
+
+​    // 没超过最大值，就扩充为原来的2倍
+
+​    else if ((newCap = oldCap << 1) < MAXIMUM_CAPACITY && oldCap >= DEFAULT_INITIAL_CAPACITY)
+
+​      newThr = oldThr << 1; // double threshold
+
+  }
+
+  else if (oldThr > 0) // initial capacity was placed in threshold
+
+​    newCap = oldThr;
+
+  else {
+
+​    // signifies using defaults
+
+​    newCap = DEFAULT_INITIAL_CAPACITY;
+
+​    newThr = (int)(DEFAULT_LOAD_FACTOR * DEFAULT_INITIAL_CAPACITY);
+
+  }
+
+  // 计算新的resize上限
+
+  if (newThr == 0) {
+
+​    float ft = (float)newCap * loadFactor;
+
+​    newThr = (newCap < MAXIMUM_CAPACITY && ft < (float)MAXIMUM_CAPACITY ? (int)ft : Integer.MAX_VALUE);
+
+  }
+
+  threshold = newThr;     //新扩容阈值
+
+  @SuppressWarnings({"rawtypes","unchecked"})
+
+​    Node<K,V>[] newTab = (Node<K,V>[])new Node[newCap];     //创建扩容后的数组
+
+  table = newTab;              //table等于新数组
+
+  if (oldTab != null) {
+
+​    // 把每个bucket都移动到新的buckets中
+
+​    for (int j = 0; j < oldCap; ++j) {
+
+​      Node<K,V> e;
+
+​      if ((e = oldTab[j]) != null) {
+
+​        oldTab[j] = null;
+
+​        if (e.next == null)
+
+​          newTab[e.hash & (newCap - 1)] = e;
+
+​        else if (e instanceof TreeNode)
+
+​          ((TreeNode<K,V>)e).split(this, newTab, j, oldCap);
+
+​        else {
+
+​          Node<K,V> loHead = null, loTail = null;
+
+​          Node<K,V> hiHead = null, hiTail = null;
+
+​          Node<K,V> next;
+
+​          do {
+
+​            next = e.next;
+
+​            // 原索引
+
+​            if ((e.hash & oldCap) == 0) {
+
+​              if (loTail == null)
+
+​                loHead = e;
+
+​              else
+
+​                loTail.next = e;
+
+​              loTail = e;
+
+​            }
+
+​            // 原索引+oldCap
+
+​            else {
+
+​               if (hiTail == null)
+
+​                hiHead = e;
+
+​              else
+
+​                hiTail.next = e;
+
+​              hiTail = e;
+
+​            }
+
+​          } while ((e = next) != null);
+
+​          // 原索引放到bucket里
+
+​          if (loTail != null) {
+
+​            loTail.next = null;
+
+​            newTab[j] = loHead;
+
+​          }
+
+​          // 原索引+oldCap放到bucket里
+
+​          if (hiTail != null) {
+
+​            hiTail.next = null;
+
+​            newTab[j + oldCap] = hiHead;
+
+​          }
+
+​        }
+
+​      }
+
+​    }
+
+  }
+
+  return newTab;
+
+}
+
+ 
+
+**树化**                                                       
+
+  final void treeifyBin(Node<K,V>[] tab, int hash) {
+
+​    int n, index; Node<K,V> e;
+
+  // 如果为初始化或者数组长度小于设置的阈值(默认64),则进行扩容操作，不进行树化
+
+​    if (tab == null || (n = tab.length) < MIN_TREEIFY_CAPACITY)  
+
+​      resize();
+
+ 
+
+​    else if ((e = tab[index = (n - 1) & hash]) != null) {
+
+​      TreeNode<K,V> hd = null, tl = null;
+
+​      do {
+
+​        TreeNode<K,V> p = replacementTreeNode(e, null);
+
+​        if (tl == null)
+
+​          hd = p;
+
+​        else {
+
+​          p.prev = tl;
+
+​          tl.next = p;
+
+​        }
+
+​        tl = p;
+
+​      } while ((e = e.next) != null);
+
+​      if ((tab[index] = hd) != null)
+
+​        hd.treeify(tab);
+
+​    }
+
+  }
+
+ 
+
+**查询**                                        
+
+public V get(Object key) {
+
+  Node<K,V> e;
+
+  return (e = getNode(hash(key), key)) == null ? null : e.value;
+
+}
+
+ 
+
+final Node<K,V> getNode(int hash, Object key) {
+
+  Node<K,V>[] tab; Node<K,V> first, e; int n; K k;
+
+  if ((tab = table) != null && (n = tab.length) > 0 &&
+
+​    (first = tab[(n - 1) & hash]) != null) {
+
+​    // 数组元素相等
+
+​    if (first.hash == hash && // always check first node
+
+​      ((k = first.key) == key || (key != null && key.equals(k))))
+
+​      return first;
+
+​    // 桶中不止一个节点
+
+​    if ((e = first.next) != null) {
+
+​      // 在树中get
+
+​      if (first instanceof TreeNode)
+
+​        return ((TreeNode<K,V>)first).getTreeNode(hash, key);
+
+​      // 在链表中get
+
+​      do {
+
+​        if (e.hash == hash &&
+
+​          ((k = e.key) == key || (key != null && key.equals(k))))
+
+​          return e;
+
+​      } while ((e = e.next) != null);
+
+​    }
+
+  }
+
+  return null;
+
+}
+
+ 

@@ -842,7 +842,7 @@ Object类是所有Java类的根父类
 
 **Object类方法如下：**
 
-![图形用户界面, 文本, 应用程序  描述已自动生成](java1.assets/clip_image001.png)
+![图形用户界面, 文本, 应用程序  描述已自动生成](java.assets/clip_image001.png)
 
 
 
@@ -1125,7 +1125,7 @@ public void test3() {
 
 Java异常类层次结构图：
 
-![img](java1.assets/clip_image002.jpg)
+![img](java.assets/clip_image002.jpg)
 
 
 
@@ -1326,13 +1326,13 @@ public void testException() throws Exception {
 
  
 
-![img](java1.assets/clip_image002-16530223928411.jpg)
+![img](java.assets/clip_image002-16530223928411.jpg)
 
 
 
 **内存结构**：
 
-![img](java1.assets/clip_image004.jpg)
+![img](java.assets/clip_image004.jpg)
 
 * 进程可以细化为多个线程。
 
@@ -1586,7 +1586,7 @@ public class ThreadPool {
 
  
 
-![img](java1.assets/clip_image002.png)
+![img](java.assets/clip_image002.png)
 
 **阻塞：**临时状态，不可以作为最终状态
 
@@ -1890,11 +1890,11 @@ class myThread extends Thread{
 
 **释放锁的操作：**
 
-![img](java1.assets/clip_image002-16530254575042.jpg)
+![img](java.assets/clip_image002-16530254575042.jpg)
 
 **不会释放锁的操作：**
 
-![img](java1.assets/clip_image004-16530254575053.jpg)
+![img](java.assets/clip_image004-16530254575053.jpg)
 
 
 
@@ -1933,7 +1933,7 @@ class myThread extends Thread{
 
 3.当调用`String`的`replace()`方法修改指定字符或字符串时，也需要重新指定内存区域赋值，不能使用原有的value进行赋值。
 
-![img](java1.assets/clip_image002-16530436976841.jpg)
+![img](java.assets/clip_image002-16530436976841.jpg)
 
  
 
@@ -1973,7 +1973,7 @@ System.out.println(s3 == s4);//false
 
 两个:一个是堆空间中new结构，另一个是char[]对应的常量池中的数据："abc"
 
-![img](java1.assets/clip_image004-16530436976842.jpg)
+![img](java.assets/clip_image004-16530436976842.jpg)
 
 **字符串拼接方式赋值的对比**
 
@@ -2355,13 +2355,13 @@ System.out.println(days);
 
 **涉及到的包**
 
-![img](java1.assets/clip_image002-16531845469601.jpg)
+![img](java.assets/clip_image002-16531845469601.jpg)
 
 **本地日期、本地时间、本地日期时间的使用：**`LocalDate / LocalTime / LocalDateTime`
 
 > **常用方法：**
 
-![img](java1.assets/clip_image004-16531845469602.jpg)
+![img](java.assets/clip_image004-16531845469602.jpg)
 
 > **实例化**
 
@@ -2381,7 +2381,7 @@ System.out.println(days);
 
 > **常用方法**：
 
-![img](java1.assets/clip_image006.jpg)
+![img](java.assets/clip_image006.jpg)
 
 > 实例化：
 
@@ -2407,7 +2407,7 @@ System.out.println(days);
 
  
 
-![img](java1.assets/clip_image008.jpg)
+![img](java.assets/clip_image008.jpg)
 
  
 
@@ -2430,7 +2430,7 @@ System.out.println(accessor);
 
 > **时间间隔：**Duration--用于计算两个“时间”间隔，以秒和纳秒为基准
 
-![img](java1.assets/clip_image010.jpg)
+![img](java.assets/clip_image010.jpg)
 
 ````JAVA
 @Test
@@ -2458,7 +2458,7 @@ public void test3(){
 
 > **日期间隔**：Period --用于计算两个“日期”间隔，以年、月、日衡量
 
-![img](java1.assets/clip_image012.jpg)
+![img](java.assets/clip_image012.jpg)
 
 ````JAVA
 @Test
@@ -2828,7 +2828,7 @@ public class test {
 * 要求数字精度比较高，用到`java.math.BigDecimal`类
 * 代码举例：
 
-![img](java1.assets/clip_image002-16531867975869.jpg)
+![img](java.assets/clip_image002-16531867975869.jpg)
 
  
 
@@ -2859,7 +2859,7 @@ public class test {
 * `枚举变量.ordinal()`：枚举类会给所有的枚举变量一个默认的次序，该次序从0开始，类似于数组的下标。而.ordinal()方法就是获取这个次序（获取下标）
 * `枚举变量.compareTo()`：该方法用来比较两个枚举变量的”大小”，实际上比较的是两个枚举变量的次序，返回两个次序相减后的结果，如果为负数，就证明变量1”小于”变量2 （变量1.compareTo(变量2)，返回【变量1.ordinal() - 变量2.ordinal()】）
 
-![image-20220522110344258](java1.assets/image-20220522110344258.png)
+![image-20220522110344258](java.assets/image-20220522110344258.png)
 
 
 
@@ -3888,7 +3888,7 @@ import java.lang.@NotNull String //非法，不能标注import
 
 ​       |----HashSet、LinkedHashSet、TreeSet
 
-![img](java1.assets/clip_image002-16532894998601.jpg)
+![img](java.assets/clip_image002-16532894998601.jpg)
 
  
 
@@ -4508,7 +4508,7 @@ transient Node<E> first;  //头结点
 transient Node<E> last;  //尾结
 ````
 
-![img](java1.assets/clip_image008.png)
+![img](java.assets/clip_image008.png)
 
 **添加**
 
@@ -4985,7 +4985,7 @@ LinkedHashMap底层使用的结构与HashMap相同，因为LinkedHashMap继承�
 
 区别就在于：LinkedHashMap内部提供了Entry，替换HashMap中的Node.
 
-**![img](java1.assets/clip_image004-16533898784522.jpg)**
+**![img](java.assets/clip_image004-16533898784522.jpg)**
 
  
 
@@ -5460,7 +5460,7 @@ h ^= (h >>> 20) ^ (h >>> 12);
 
 所谓 “拉链法” 就是：将链表和数组相结合。也就是说创建一个链表数组，数组中每一格就是一个链表。若遇到哈希冲突，则将冲突的值加到链表中即可。
 
-![img](java1.assets/clip_image006-16533898784523.jpg)
+![img](java.assets/clip_image006-16533898784523.jpg)
 
  
 
@@ -5470,7 +5470,7 @@ jdk8之后
 
 当链表长度大于阈值（默认为 8）时，会首先调用 treeifyBin()方法。这个方法会根据 HashMap 数组来决定是否转换为红黑树。只有当数组长度大于或者等于 64 的情况下，才会执行转换红黑树操作，以减少搜索时间。否则，就是只是执行 resize() 方法对数组扩容。相关源码这里就不贴了，重点关注 treeifyBin()方法即可！
 
-![img](java1.assets/clip_image008-16533898784524.jpg)
+![img](java.assets/clip_image008-16533898784524.jpg)
 
  
 
@@ -5752,7 +5752,7 @@ final void putMapEntries(Map<? extends K, ? extends V> m, boolean evict) {
 
 **添加**                                        
 
-![img](java1.assets/clip_image010-16533898784525.jpg)
+![img](java.assets/clip_image010-16533898784525.jpg)
 
 ①.判断键值对数组 table[i] 是否为空或为 null，否则执行 resize() 进行扩容；
 

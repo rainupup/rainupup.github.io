@@ -555,17 +555,19 @@ System.out.println(arr[0][0]);//0
 
 常用方法：
 
-````java
-boolean equals(int[] a,int[] b);     //判断两个数组是否相等
-String toString(int[] a)             //输出数组的信息
-void fill(int[] a,int val)           //将指定值填充到数组之中。
-void sort(int[] a)                   //对数组进行排序。
-int binarySearch(int[] a,int key)    //对排序后的数组进行二分法检索指定的值，返回下标。
-````
+| 方法                          | 作用                                             |
+| ----------------------------- | ------------------------------------------------ |
+| equals(int[] a,int[] b)       | 判断两个数组是否相等                             |
+| toString(int[] a)             | 输出数组的信息                                   |
+| fill(int[] a,int val)         | 将指定值填充到数组之中。                         |
+| sort(int[] a)                 | 对数组进行排序。                                 |
+| binarySearch(int[] a,int key) | 对排序后的数组进行二分法检索指定的值，返回下标。 |
+| asList(T... a)                | 转为链表                                         |
+| copyOf()                      | 拷贝                                             |
 
 ````java
 int[] arr3 = new int[10];
-Arrays.fill(arr3,3);
+Arrays.fill(arr3,3);             //不需要new
 ````
 
 
@@ -2479,6 +2481,139 @@ public void test4(){
 ````
 
 
+
+
+
+## Arrays
+
+| 方法              | 作用             |
+| ----------------- | ---------------- |
+| String toString() | 数组转字符串     |
+| void fill()       | 填充数组         |
+| copyOf()          | 拷贝数组，并返回 |
+| sort()            | 排序数组         |
+| equals()          | 比较数组         |
+| deepEquals()      | 多维数组比较     |
+| binarySearch()    | 二分查找返回下标 |
+| asList()          | 数组转链表       |
+
+**数组转字符串**
+
+````java
+int[] array = new int[]{1, 2, 3};
+out.println(Arrays.toString(array)); //[1, 2, 3]
+````
+
+如果是一维数组，`toString`方法可以很好的适用。但遇到多维数组时，需要使用`deepToString`把数组完全转成字符串。
+
+````java
+int[][] deepArray = new int[][]{{1, 3},{2, 4}};
+out.println(Arrays.toString(deepArray)); //[[I@1540e19d, [I@677327b6]
+out.println(Arrays.deepToString(deepArray)); //[[1, 3], [2, 4]]
+````
+
+**填充数组**
+
+````java
+array = new int[5];
+Arrays.fill(array, 2);
+out.println(Arrays.toString(array)); //[2, 2, 2, 2, 2]
+
+array = new int[5];
+Arrays.fill(array, 1, 4, 2); //部分填充
+out.println(Arrays.toString(array));//[0, 2, 2, 2, 0]
+````
+
+
+
+**数组元素排序**
+
+````java
+array = new int[]{3, 10, 4, 0, 2};
+Arrays.sort(array);
+out.println(Arrays.toString(array)); //[0, 2, 3, 4, 10]
+
+array = new int[]{3, 10, 4, 0, 2};
+Arrays.parallelSort(array); //和sort相比是这个是并行的
+out.println(Arrays.toString(array)); //[0, 2, 3, 4, 10]
+
+array = new int[]{3, 10, 4, 0, 2};
+Arrays.sort(array, 0, 4); //部分排序
+out.println(Arrays.toString(array)); //[0, 3, 4, 10, 2]
+````
+
+**数组的比较**
+
+````java
+array = new int[]{1, 2, 3};
+int[] array2 = new int[]{1, 2, 3};
+out.println(Arrays.equals(array, array2)); //true
+````
+
+和`toString`方法一样，`equals`方法遇到多维数组时也会出现问题。
+
+````java
+int[][] deepArray1 = new int[][]{{1, 3},{2, 4}};
+int[][] deepArray2 = new int[][]{{1, 3},{2, 4}};
+out.println(Arrays.equals(deepArray1, deepArray2)); //false
+out.println(Arrays.deepEquals(deepArray1, deepArray2)); //true
+````
+
+
+
+
+**数组复制**
+
+````java
+array = new int[]{3, 10, 4, 0, 2};
+int[] arrayCopy = Arrays.copyOf(array, 3);
+out.println(Arrays.toString(arrayCopy)); //[3, 10, 4]
+
+arrayCopy = Arrays.copyOf(array, 7);
+out.println(Arrays.toString(arrayCopy)); //[3, 10, 4, 0, 2, 0, 0], 多出的长度补0
+
+arrayCopy = Arrays.copyOfRange(array, 1, 4);
+out.println(Arrays.toString(arrayCopy)); //[10, 4, 0]
+````
+
+
+
+**二分查找返回下标**
+
+````java
+array = new int[]{0, 3, 4, 10, 20};
+out.println(Arrays.binarySearch(array, 10)); //3, array必须是排序的，否则得到的是错误的结果
+out.println(Arrays.binarySearch(array, 6)); //-4, 找不到的值，从-1开始，6如果存在下标是3， 所以返回-4
+out.println(Arrays.binarySearch(array, 2, 5, 10)); //3, 返回的还是全局的下标值。
+````
+
+
+
+**数组转List**
+
+````java
+int array = new int[]{3, 10, 4, 0, 2};
+out.println(Arrays.asList(array).contains(3)); //false
+
+Integer arr[] = new Integer[]{3, 10, 4, 0, 2};
+out.println(Arrays.asList(arr).contains(3)); //true
+````
+
+
+这里是比较有意思的地方，实际上拆开来看是这样的
+
+````java
+int array = new int[]{3, 10, 4, 0, 2};
+List<int[]> ints = Arrays.asList(array);
+````
+
+````java
+Integer arr[] = new Integer[]{3, 10, 4, 0, 2};
+List<Integer> integers = Arrays.asList(arr);
+````
+
+
+现在就知道区别了，**原始数据类型int的数组调用asList之后得到的List只有一个元素，这个元素就是元素类型的数组**。**而封装类Integer数组调用asList是把数组中每个元素加到了List中**。
 
 
 
@@ -4598,6 +4733,10 @@ E unlink(Node<E> x) {
 
 ## Set
 
+`Set`中没有重写`Collection中`的方法，直接使用`Collection`中的方法；
+
+
+
 注：set不能使用索引查找，同样不能使用普通`for`循环遍历，**可以**使用`iterator`
 
 * 无序性：不等于随机性。存储的数据在底层数组中并非照数组索引的顺序添加，而是根据数据的哈希值决定的。
@@ -4814,8 +4953,8 @@ public void test2(){
 
 双列集合框架：Map
 
-* `Map`与`Collection`并列存在。用于保存具有映射关系的数据:`key-value``
-* ``Map` 中的`key` 和`value` 都可以是任何引用类型的数据
+* `Map`与`Collection`并列存在。用于保存具有映射关系的数据:`key-value`
+* `Map` 中的`key` 和`value` 都可以是任何引用类型的数据
 * `Map` 中的`key` 用`Set`来存放，不允许重复，即同一个`Map` 对象所对应的类，须重写 `hashCode()` 和 `equals()` 方法
 * 常用`String`类作为`Map`的“键”
 * `key` 和`value` 之间存在单向一对一关系，即通过指定的`key` 总能找到唯一的、确定的`value`
@@ -4841,7 +4980,7 @@ public void test2(){
 
 ​	|----Properties:常用来处理配置文件。key和value都是String类型
 
-HashMap的底层：数组+链表 （jdk7及之前),数组+链表+红黑树 （jdk 8)
+`HashMap`的底层：数组+链表 （jdk7及之前),数组+链表+红黑树 （jdk 8)
 
 
 
@@ -4874,110 +5013,11 @@ HashMap的底层：数组+链表 （jdk7及之前),数组+链表+红黑树 （jd
 | Collection values()                               | 返回所有value构成的Collection集合                            |
 | Set entrySet()                                    | 返回所有key-value对构成的Set集合                             |
 
-遍历：keySet() / values() / entrySet()    键/值/键值对 或forEach
+遍历：`keySet() / values() / entrySet()`    键/值/键值对 或`forEach`
 
-映射对象变量**.**forEach**( (**k**,**v**) ->** System**.**out**.**println**(**"name = " **+** name **+** ",age = " **+** age**));**
+`映射对象变量.forEach( (k,v) -> System.out.println("name = " + name + ",age = " + age));`
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\4.  内存结构说明：（难点）
-
-4.1 HashMap在jdk7中实现原理：
-
-HashMap map = new HashMap():
-
-在实例化以后，底层创建了长度是16的一维数组Entry[] table。
-
-...可能已经执行过多次put...
-
-map.put(key1,value1):
-
-首先，调用key1所在类的hashCode()计算key1哈希值，此哈希值经过某种算法计算以后，得到在Entry数组中的存放位置。
-
-如果此位置上的数据为空，此时的key1-value1添加成功。                                 ----情况1
-
-如果此位置上的数据不为空，(意味着此位置上存在一个或多个数据(以链表形式存在)),比较key1和已经存在的一个或多个数据的哈希值：
-
- 如果key1的哈希值与已经存在的数据的哈希值都不相同，此时key1-value1添加成功。      ----情况2
-
- 如果key1的哈希值和已经存在的某一个数据(key2-value2)的哈希值相同，继续比较：调用key1所在类的equals(key2)方法，比较：
-
-​    如果equals()返回false:此时key1-value1添加成功。                         ----情况3
-
-​    如果equals()返回true:使用value1替换value2。
-
-​    补充：关于情况2和情况3：此时key1-value1和原来的数据以链表的方式存储。
-
-​    在不断的添加过程中，会涉及到扩容问题，当超出临界值(且要存放的位置非空)时，扩容。默认的扩容方式：扩容为原来容量的2倍，并将原的数据复制过来。
-
- 
-
-4.2 HashMap在jdk8中相较于jdk7在底层实现方面的不同：
-
-\1. new HashMap():底层没创建一个长度为16的数组
-
-\2. jdk 8底层的数组是：Node[],而非Entry[]
-
-\3. 首次调用put()方法时，底层创建长度为16的数组
-
-\4. jdk7底层结构只：数组+链表。jdk8中底层结构：数组+链表+红黑树。
-
-4.1 形成链表时，七上八下（jdk7:新的元素指向旧的元素(头插法)。jdk8：旧的元素指向新的元素(尾插法)）
-
-4.2 当数组的某一个索引位置上的元素以链表形式存在的数据个数 > 8 且当前数组的长度 > 64时，此时此索引位置上的所数据改为使用红黑树存储。
-
- 
-
-HashMap为何从头插入改为尾插入？链表死链
-
-HashMap在jdk1.7中采用头插入法，在扩容时会改变链表中元素原本的顺序，以至于在并发场景下导致链表成环的问题(程序会卡死)。
-
-而在jdk1.8中采用尾插入法，在扩容时会保持链表元素原本的顺序，就不会出现链表成环的问题了。
-
-视频： https://www.bilibili.com/video/BV16J411h7Rd?p=277
-
- 
-
- 
-
-4.3 HashMap底层典型属性的属性的说明：
-
-| DEFAULT_INITIAL_CAPACITY | HashMap的默认容量，16                                        |
-| ------------------------ | ------------------------------------------------------------ |
-| DEFAULT_LOAD_FACTOR      | HashMap的默认加载因子：0.75f                                 |
-| threshold                | 扩容的临界值，=容量*填充因子：16 * 0.75  => 12；当加入的元素大于扩容临界值就会扩容(不是数组占用的个数大于临界值) |
-| TREEIFY_THRESHOLD        | Bucket中链表长度大于该默认值，转化为红黑树:8                 |
-| MIN_TREEIFY_CAPACITY     | 桶中的Node被树化时最小的hash表容量:64                        |
-
- 
 
 4.4 LinkedHashMap的底层实现原理(了解)
 
@@ -4989,445 +5029,130 @@ LinkedHashMap底层使用的结构与HashMap相同，因为LinkedHashMap继承�
 
  
 
-\5.  TreeMap的使用
+**TreeMap**
 
-//向TreeMap中添加key-value，要求key必须是由同一个类创建的对象
-
-//因为要照key进行排序：自然排序 、定制排序
-
+````java
 public class TreeMapTest {
+    //自然排序    
+    @Test
+    public void test1(){
+        TreeMap map = new TreeMap();
+        User u1 = new User("Tom",23);
+        User u2 = new User("Jerry",32);
+        map.put(u1,98);
+        map.put(u2,89);
+        Set entrySet = map.entrySet();
+        Iterator iterator1 = entrySet.iterator();
+        while (iterator1.hasNext()){
+            Object obj = iterator1.next();
+            Map.Entry entry = (Map.Entry) obj;
+            System.out.println(entry.getKey() + "---->" + entry.getValue());
+        }
+    }
+    //定制排序
+    @Test
+    public void test2(){
+        TreeMap map = new TreeMap(new Comparator() {
+            @Override
+            public int compare(Object o1, Object o2) {
+                if(o1 instanceof User && o2 instanceof User){
+                    User u1 = (User)o1;
+                    User u2 = (User)o2;
+                    return Integer.compare(u1.getAge(),u2.getAge());
+                }
+                throw new RuntimeException("输入的类型不匹配！");
+            }
+        });
+        User u1 = new User("Tom",23);
+        User u2 = new User("Jerry",32);
 
-//自然排序  
-
-@Test
-
-  public void test1(){
-
-​    TreeMap map = new TreeMap();
-
-​    User u1 = new User("Tom",23);
-
-​    User u2 = new User("Jerry",32);
-
-​    User u3 = new User("Jack",20);
-
-​    User u4 = new User("Rose",18);
-
-​    map.put(u1,98);
-
-​    map.put(u2,89);
-
-​    map.put(u3,76);
-
-​    map.put(u4,100);
-
-​    Set entrySet = map.entrySet();
-
-​    Iterator iterator1 = entrySet.iterator();
-
-​    while (iterator1.hasNext()){
-
-​      Object obj = iterator1.next();
-
-​      Map.Entry entry = (Map.Entry) obj;
-
-​      System.out.println(entry.getKey() + "---->" + entry.getValue());
-
- 
-
-​    }
-
-  }
-
- 
-
-  //定制排序
-
-  @Test
-
-  public void test2(){
-
-​    TreeMap map = new TreeMap(new Comparator() {
-
-​      @Override
-
-​      public int compare(Object o1, Object o2) {
-
-​        if(o1 instanceof User && o2 instanceof User){
-
-​          User u1 = (User)o1;
-
-​          User u2 = (User)o2;
-
-​          return Integer.compare(u1.getAge(),u2.getAge());
-
-​        }
-
-​        throw new RuntimeException("输入的类型不匹配！");
-
-​      }
-
-​    });
-
-​    User u1 = new User("Tom",23);
-
-​    User u2 = new User("Jerry",32);
-
-​    User u3 = new User("Jack",20);
-
-​    User u4 = new User("Rose",18);
-
- 
-
-​    map.put(u1,98);
-
-​    map.put(u2,89);
-
-​    map.put(u3,76);
-
-​    map.put(u4,100);
-
- 
-
-​    Set entrySet = map.entrySet();
-
-​    Iterator iterator1 = entrySet.iterator();
-
-​    while (iterator1.hasNext()){
-
-​      Object obj = iterator1.next();
-
-​      Map.Entry entry = (Map.Entry) obj;
-
-​      System.out.println(entry.getKey() + "---->" + entry.getValue());
-
-​    }
-
-  }
-
+        map.put(u1,98);
+        map.put(u2,89);
+    }
 }
 
-\6.  Hashtable
+````
 
-\1.  底层有Hashtable$Entry[] 初始化长度为11
 
-\2.  临界值 threshold = 长度 * 加载因子 0.75
 
-\3.  扩容容量大于等于临界值时进行扩容 2倍+1
+**Hashtable**
+
+* 底层有Hashtable$Entry[] 初始化长度为11
+
+* 临界值 threshold = 长度 * 加载因子 0.75
+* 扩容容量大于等于临界值时进行扩容 2倍+1
 
 |           | 版本 | 线程安全 | 效率 | 允许null键null值 |
 | --------- | ---- | -------- | ---- | ---------------- |
 | HashMap   | 1.2  | 不安全   | 高   | 允许             |
 | Hashtable | 1.0  | 安全     | 低   | 不允许           |
 
-\7.  使用Properties读取配置文件
 
+
+**使用Properties读取配置文件**
+
+````java
 //Properties:常用来处理配置文件。key和value都是String类型
+public static void main(String[] args)  {
+    FileInputStream fis = null;
+    try {
+        Properties pros = new Properties();
 
-public static void main(String[] args) {
+        fis = new FileInputStream("jdbc.properties");
+        pros.load(fis);//加载流对应的文件
 
-  FileInputStream fis = null;
+        String name = pros.getProperty("name");
+        String password = pros.getProperty("password");
 
-  try {
+        System.out.println("name = " + name + ", password = " + password);
+    } catch (IOException e) {
+        e.printStackTrace();
+    } finally {
+        if(fis != null){
+            try {
+                fis.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+}
+````
 
-​    Properties pros = new Properties();
 
- 
 
-​    fis = new FileInputStream("jdbc.properties");
+### HashMap源码            
 
-​    pros.load(fis);//加载流对应的文件
+当数组长度大于 加载因子 * 容量时，扩容两倍
 
- 
+当链表中节点大于8 且数组长度大于64 时，树华              
 
-​    String name = pros.getProperty("name");
+> **JDK1.7**
 
-​    String password = pros.getProperty("password");
+`HashMap map = new HashMap()`在实例化以后，底层创建了长度是16的一维数组`Entry[] table`。
 
- 
+`map.put(key1,value1):`
 
-​    System.out.println("name = " + name + ", password = " + password);
+* 首先，调用`key1`所在类的`hashCode()`计算`key1`哈希值，此哈希值经过某种算法计算以后，得到在`Entry`数组中的存放位置。
+* 如果此位置上的数据为空，此时的`key1-value1`添加成功。                                 ----情况1
+* 如果此位置上的数据不为空，(意味着此位置上存在一个或多个数据(以链表形式存在)),比较`key1`和已经存在的一个或多个数据的哈希值：
+  * 如果`key1`的哈希值与已经存在的数据的哈希值都不相同，此时`key1-value1`添加成功。      ----情况2
+  * 如果`key1`的哈希值和已经存在的某一个数据`(key2-value2)`的哈希值相同，继续比较：调用`key1`所在类的`equals(key2)`方法，比较：
+    * 如果`equals()`返回`false`:此`时key1-value1`添加成功。                         ----情况3
+    * 如果`equals()`返回`true`:使用`value1`替换`value2`。    //**掩盖**
 
-  } catch (IOException e) {
+​    补充：关于情况2和情况3：此时`key1-value1`和原来的数据以链表的方式存储。
 
-​    e.printStackTrace();
+​    在不断的添加过程中，会涉及到扩容问题，当超出临界值(且要存放的位置非空)时，扩容。默认的扩容方式：扩容为原来容量的**2倍**，并将原的数据复制过来。
 
-  } finally {
 
-​    if(fis != null){
 
-​      try {
+`HashMap` 底层是 **数组和链表** 结合在一起使用也就是 **链表散列**。通过 `key` 的 `hashCode` 经过扰动函数处理过后得到 `hash `值，然后通过 `(n - 1) & hash` 判断当前元素存放的位置（这里的 n 指的是数组的长度），如果当前位置存在元素的话，就判断该元素与要存入的元素的 `hash` 值以及 `key` 是否相同，如果相同的话，直接覆盖，不相同就通过拉链法解决冲突。
 
-​        fis.close();
+所谓扰动函数指的就是 `HashMap` 的 `hash` 方法。使用 `hash` 方法也就是扰动函数是为了防止一些实现比较差的 `hashCode()` 方法 换句话说使用扰动函数之后可以减少碰撞。
 
-​      } catch (IOException e) {
+ JDK 1.8 HashMap 的 hash 方法源码:JDK 1.8 的 hash 方法 相比于 JDK 1.7 hash 方法更加简化，但是原理不变。
 
-​        e.printStackTrace();
-
-​      }
-
- 
-
-​    }
-
-  }
-
- 
-
-常用方法代码
-
-public class MapTest {
-
-//遍历
-
-​      @Test
-
-​      public void test5(){
-
-​        Map map = new HashMap();
-
-​        map.put("AA",123);
-
-​        map.put(45,1234);
-
-​        map.put("BB",56);
-
-​    
-
-​        //遍历所有的key集：keySet()
-
-​        Set set = map.keySet();
-
-​          Iterator iterator = set.iterator();
-
-​          while(iterator.hasNext()){
-
-​            System.out.println(iterator.next());
-
-​        }
-
-​        System.out.println();
-
-​        //遍历所有的value集：values()
-
-​        Collection values = map.values();
-
-​        for(Object obj : values){
-
-​          System.out.println(obj);
-
-​        }
-
-​        System.out.println();
-
-​        //遍历所有的key-value
-
-​        //方式一：entrySet()
-
-​        Set entrySet = map.entrySet();
-
-​        Iterator iterator1 = entrySet.iterator();
-
-​        while (iterator1.hasNext()){
-
-​          Object obj = iterator1.next();
-
-​          //entrySet集合中的元素都是entry
-
-​          Map.Entry entry = (Map.Entry) obj;
-
-​          System.out.println(entry.getKey() + "---->" + entry.getValue());
-
-​    
-
-​        }
-
-​        System.out.println();
-
-​        //方式二：
-
-​        Set keySet = map.keySet();
-
-​        Iterator iterator2 = keySet.iterator();
-
-​        while(iterator2.hasNext()){
-
-​          Object key = iterator2.next();
-
-​          Object value = map.get(key);
-
-​          System.out.println(key + "=====" + value);
-
-​    
-
-​        }
-
-​    
-
-​      }
-
-  @Test
-
-​      public void test4(){
-
-​        Map map = new HashMap();
-
-​        map.put("AA",123);
-
-​        map.put(45,123);
-
-​        map.put("BB",56);
-
-​        // Object get(Object key)
-
-​        System.out.println(map.get(45));
-
-​        //containsKey(Object key)
-
-​        boolean isExist = map.containsKey("BB");
-
-​        System.out.println(isExist);
-
-​    
-
-​        isExist = map.containsValue(123);
-
-​        System.out.println(isExist);
-
-​    
-
-​        map.clear();
-
-​    
-
-​        System.out.println(map.isEmpty());
-
-​    
-
-​      }
-
-//添加、修改
-
-​    @Test
-
-​      public void test3(){
-
-​        Map map = new HashMap();
-
-​        //添加
-
-​        map.put("AA",123);
-
-​        map.put(45,123);
-
-​        map.put("BB",56);
-
-​        //修改
-
-​        map.put("AA",87);
-
-​    
-
-​        System.out.println(map);
-
-​    
-
-​        Map map1 = new HashMap();
-
-​        map1.put("CC",123);
-
-​        map1.put("DD",123);
-
-​    
-
-​        map.putAll(map1);
-
-​    
-
-​        System.out.println(map);
-
-​    
-
-​        //remove(Object key)
-
-​        Object value = map.remove("CC");
-
-​        System.out.println(value);
-
-​        System.out.println(map);
-
-​    
-
-​        //clear()
-
-​        map.clear();//与map = null操作不同
-
-​        System.out.println(map.size());
-
-​        System.out.println(map);
-
-​      }
-
-​    
-
-​      @Test
-
-​      public void test2(){
-
-​        Map map = new HashMap();
-
-​        map = new LinkedHashMap();
-
-​        map.put(123,"AA");
-
-​        map.put(345,"BB");
-
-​        map.put(12,"CC");
-
-​    
-
-​        System.out.println(map);
-
-​      }
-
-​    
-
-​    
-
-​      @Test
-
-​      public void test1(){
-
-​        Map map = new HashMap();
-
-​    //    map = new Hashtable();
-
-​        map.put(null,123);
-
-​    
-
-​      }
-
-​    }
-
- 
-
-**HashMap****源码**                                         
-
-JDK1.8 之前
-
-JDK1.8 之前 HashMap 底层是 数组和链表 结合在一起使用也就是 链表散列。
-
-HashMap 通过 key 的 hashCode 经过扰动函数处理过后得到 hash 值，然后通过 (n - 1) & hash 判断当前元素存放的位置（这里的 n 指的是数组的长度），如果当前位置存在元素的话，就判断该元素与要存入的元素的 hash 值以及 key 是否相同，如果相同的话，直接覆盖，不相同就通过拉链法解决冲突。
-
-所谓扰动函数指的就是 HashMap 的 hash 方法。使用 hash 方法也就是扰动函数是为了防止一些实现比较差的 hashCode() 方法 换句话说使用扰动函数之后可以减少碰撞。
-
- 
-
-JDK 1.8 HashMap 的 hash 方法源码:
-
-JDK 1.8 的 hash 方法 相比于 JDK 1.7 hash 方法更加简化，但是原理不变。
-
+````java
 static final int hash(Object key) {
 
 int h;
@@ -5437,28 +5162,23 @@ int h;
  return (key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16);
 
 }
-
- 
+````
 
 对比一下 JDK1.7 的 HashMap 的 hash 方法源码.
 
+````java
 static int hash(int h) {
    // This function ensures that hashCodes that differ only by
    // constant multiples at each bit position have a bounded
    // number of collisions (approximately 8 at default load factor).
-
-h ^= (h >>> 20) ^ (h >>> 12);
- return h ^ (h >>> 7) ^ (h >>> 4);
-
+    h ^= (h >>> 20) ^ (h >>> 12);
+    return h ^ (h >>> 7) ^ (h >>> 4);
 }
-
- 
+````
 
 相比于 JDK1.8 的 hash 方法 ，JDK 1.7 的 hash 方法的性能会稍差一点点，因为毕竟扰动了 4 次。
 
- 
-
-所谓 “拉链法” 就是：将链表和数组相结合。也就是说创建一个链表数组，数组中每一格就是一个链表。若遇到哈希冲突，则将冲突的值加到链表中即可。
+所谓 “**拉链法**” 就是：将链表和数组相结合。也就是说创建一个链表数组，数组中每一格就是一个链表。若遇到哈希冲突，则将冲突的值加到链表中即可。
 
 ![img](java.assets/clip_image006-16533898784523.jpg)
 
@@ -5466,289 +5186,189 @@ h ^= (h >>> 20) ^ (h >>> 12);
 
  
 
-jdk8之后
+> **jdk8之后**
 
-当链表长度大于阈值（默认为 8）时，会首先调用 treeifyBin()方法。这个方法会根据 HashMap 数组来决定是否转换为红黑树。只有当数组长度大于或者等于 64 的情况下，才会执行转换红黑树操作，以减少搜索时间。否则，就是只是执行 resize() 方法对数组扩容。相关源码这里就不贴了，重点关注 treeifyBin()方法即可！
+* `new HashMap()`:底层没创建一个长度为16的数组
+* jdk 8底层的数组是：`Node[]`,而非`Entry[]`
+* 首次调用`put()`方法时，底层创建长度为16的数组
+* jdk7底层结构只：数组+链表。jdk8中底层结构：数组+链表+红黑树。
+* 形成链表时，七上八下（jdk7:新的元素指向旧的元素(头插法)。jdk8：旧的元素指向新的元素(尾插法)）
+* 当数组的某一个索引位置上的元素以链表形式存在的 **数据个数 > 8 且 当前数组的长度 > 64时**，此时此索引位置上的所数据改为使用红黑树存储。
 
 ![img](java.assets/clip_image008-16533898784524.jpg)
 
- 
+**HashMap为何从头插入改为尾插入**？链表死链
+
+`HashMap`在jdk1.7中采用头插入法，在扩容时会改变链表中元素原本的顺序，以至于在并发场景下导致链表成环的问题(程序会卡死)。
+
+而在jdk1.8中采用尾插入法，在扩容时会保持链表元素原本的顺序，就不会出现链表成环的问题了。[视频]( https://www.bilibili.com/video/BV16J411h7Rd?p=277)
 
  
 
- 
+**属性**               
 
-**属性**                                    
-
+````java
 public class HashMap<K,V> extends AbstractMap<K,V> implements Map<K,V>, Cloneable, Serializable {
+    // 序列号
+    private static final long serialVersionUID = 362498820763181265L;
+    // 默认的初始容量是16
+    static final int DEFAULT_INITIAL_CAPACITY = 1 << 4;
+    // 最大容量
+    static final int MAXIMUM_CAPACITY = 1 << 30;
+    // 默认的填充因子
+    static final float DEFAULT_LOAD_FACTOR = 0.75f;
+    // 当桶(bucket)上的结点数大于这个值时会转成红黑树
+    static final int TREEIFY_THRESHOLD = 8;
+    // 当桶(bucket)上的结点数小于这个值时树转链表
+    static final int UNTREEIFY_THRESHOLD = 6;
+    // 桶中结构转化为红黑树对应的table的最小大小
+    static final int MIN_TREEIFY_CAPACITY = 64;
+    // 存储元素的数组，总是2的幂次倍
+    transient Node<k,v>[] table;
+    // 存放具体元素的集
+    transient Set<map.entry<k,v>> entrySet;
+    // 存放元素的个数，注意这个不等于数组的长度。
+    transient int size;
+    // 每次扩容和更改map结构的计数器
+    transient int modCount;
+    // 临界值 当实际大小(容量*填充因子)超过临界值时，会进行扩容
+    int threshold;
+    // 加载因子
+    final float loadFactor;
+}
+````
 
-  // 序列号
 
-  private static final long serialVersionUID = 362498820763181265L;
 
-  // 默认的初始容量是16
+| 属性                     | 作用                                                         |
+| ------------------------ | ------------------------------------------------------------ |
+| DEFAULT_INITIAL_CAPACITY | HashMap的默认容量，16                                        |
+| DEFAULT_LOAD_FACTOR      | HashMap的默认加载因子：0.75f                                 |
+| threshold                | 扩容的临界值 = 容量*填充因子   16 * 0.75  => 12；当加入的元素大于扩容临界值就会扩容(不是数组占用的个数大于临界值) |
+| TREEIFY_THRESHOLD        | Bucket中链表长度大于该默认值，转化为红黑树:8                 |
+| MIN_TREEIFY_CAPACITY     | 桶中的Node被树化时最小的hash表容量:64                        |
 
-  static final int DEFAULT_INITIAL_CAPACITY = 1 << 4;
+ 
 
-  // 最大容量
+**Node节点**                                      
 
-  static final int MAXIMUM_CAPACITY = 1 << 30;
+````java
+//Node是HashMap的内部类，实现了Map接口的Entry内部类
+static class Node<K,V> implements Map.Entry<K,V> {
+    final int hash;              //hash值，存放元素时与其他元素的hash值比较
+    final K key;                 //键
+    V value;                     //值
+    Node<K,V> next;              //下一个节点
 
-  // 默认的填充因子
+    Node(int hash, K key, V value, Node<K,V> next) {
+        this.hash = hash;
+        this.key = key;
+        this.value = value;
+        this.next = next;
+    }
 
-  static final float DEFAULT_LOAD_FACTOR = 0.75f;
+    public final K getKey()        { return key; }
+    public final V getValue()      { return value; }
+    public final String toString() { return key + "=" + value; }
 
-  // 当桶(bucket)上的结点数大于这个值时会转成红黑树
+    public final int hashCode() {……}
 
-  static final int TREEIFY_THRESHOLD = 8;
+    public final V setValue(V newValue) {……}
 
-  // 当桶(bucket)上的结点数小于这个值时树转链表
+    public final boolean equals(Object o) {……}
+}
+````
 
-  static final int UNTREEIFY_THRESHOLD = 6;
 
-  // 桶中结构转化为红黑树对应的table的最小大小
 
-  static final int MIN_TREEIFY_CAPACITY = 64;
+**树节点**             
 
-  // 存储元素的数组，总是2的幂次倍
+````java
+//当需要树化时，才使用TreeNode，实现了LinkedHashMap.Entry<K,V>;LinkedHashMap后面详讲
+static final class TreeNode<K,V> extends LinkedHashMap.Entry<K,V> {
+    TreeNode<K,V> parent;  // 父
+    TreeNode<K,V> left;    // 左
+    TreeNode<K,V> right;   // 右
+    TreeNode<K,V> prev;    // needed to unlink next upon deletion
+    boolean red;           // 判断颜色
+    TreeNode(int hash, K key, V val, Node<K,V> next) {
+        super(hash, key, val, next);
+    }
+    // 返回根节点
+    final TreeNode<K,V> root() {
+        for (TreeNode<K,V> r = this, p;;) {
+            if ((p = r.parent) == null)
+                return r;
+            r = p;
+}
+````
 
-  transient Node<k,v>[] table;
 
-  // 存放具体元素的集
 
-  transient Set<map.entry<k,v>> entrySet;
+**构造器**      
 
-  // 存放元素的个数，注意这个不等于数组的长度。
-
-  transient int size;
-
-  // 每次扩容和更改map结构的计数器
-
-  transient int modCount;
-
-  // 临界值 当实际大小(容量*填充因子)超过临界值时，会进行扩容
-
-  int threshold;
-
-  // 加载因子
-
-  final float loadFactor;
-
+````java
+// 默认构造函数。
+public HashMap() {
+	this.loadFactor = DEFAULT_LOAD_FACTOR;          //默认加载因子
 }
 
-- loadFactor     加载因子
-       loadFactor 加载因子是控制数组存放数据的疏密程度，loadFactor 越趋近于 1，那么 数组中存放的数据(entry)也就越多，也就越密，也就是会让链表的长度增加，loadFactor 越小，也就是趋近于 0，数组中存放的数据(entry)也就越少，也就越稀疏。
-       loadFactor 太大导致查找元素效率低，太小导致数组的利用率低，存放的数据会很分散。loadFactor     的默认值为     0.75f 是官方给出的一个比较好的临界值。
-       给定的默认容量为 16，负载因子为 0.75。Map 在使用过程中不断的往里面存放数据，当数量达到了 16 * 0.75 = 12 就需要将当前 16 的容量进行扩容，而扩容这个过程涉及到 rehash、复制数据等操作，所以非常消耗性能。
-- threshold
-       threshold = capacity * loadFactor，当     Size>=threshold的时候，那么就要考虑对数组的扩增了，也就是说，这个的意思就是 衡量数组是否需要扩增的一个标准。
-
- 
-
- 
-
-**Node****节点**                                             
-
-//Node是HashMap的内部类，实现了Map接口的Entry内部类
-
-static class Node<K,V> implements Map.Entry<K,V> {
-
-​    final int hash;       //hash值，存放元素时与其他元素的hash值比较
-
-​    final K key;         //键
-
-​    V value;           //值
-
-​    Node<K,V> next;       //下一个节点
-
- 
-
-​    Node(int hash, K key, V value, Node<K,V> next) {
-
-​      this.hash = hash;
-
-​      this.key = key;
-
-​      this.value = value;
-
-​      this.next = next;
-
-​    }
-
- 
-
-​    public final K getKey()    { return key; }
-
-​    public final V getValue()   { return value; }
-
-​    public final String toString() { return key + "=" + value; }
-
- 
-
-​    public final int hashCode() {……}
-
- 
-
-​    public final V setValue(V newValue) {……}
-
- 
-
-​    public final boolean equals(Object o) {……}
-
-  }
-
-**树节点**                                        
-
-//当需要树化时，才使用TreeNode，实现了LinkedHashMap.Entry<K,V>;LinkedHashMap后面详讲
-
-static final class TreeNode<K,V> extends LinkedHashMap.Entry<K,V> {
-     TreeNode<K,V> parent; // 父
-     TreeNode<K,V> left;  // 左
-     TreeNode<K,V> right;  // 右
-     TreeNode<K,V> prev;  // needed to unlink next upon deletion
-     boolean red;      // 判断颜色
-     TreeNode(int hash, K key, V val, Node<K,V> next) {
-       super(hash, key, val, next);
-     }
-     // 返回根节点
-     final TreeNode<K,V> root() {
-       for (TreeNode<K,V> r = this, p;;) {
-         if ((p = r.parent) == null)
-           return r;
-         r = p;
- }
-
- 
-
- 
-
- 
-
-**快速查询**                                        
-
-Set keySet()：返回所有key构成的Set集合； 底层使用Set集合，存储所有的Key
-
-Collection values()：返回所有value构成的Collection集合；底层使用Collection集合，存储所有的Value
-
-Set entrySet()：返回所有key-value对构成的Set集合；底层调用的是EntrySet内部类，使用Entry指向Node节点
-
- 
-
-为了查询/遍历方便HashMap提供了EntrySet内部类，指向Node节点
-
- 
-
- 
-
-**构造器**                                        
-
-  // 默认构造函数。
-
-  public HashMap() {
-
-​    this.loadFactor = DEFAULT_LOAD_FACTOR;     //默认加载因子
-
-   }
-
- 
-
-   // 包含另一个“Map”的构造函数
-
-   public HashMap(Map<? extends K, ? extends V> m) {
-
-​     this.loadFactor = DEFAULT_LOAD_FACTOR;
-
-​     putMapEntries(m, false);//下面会分析到这个方法
-
-   }
-
- 
-
-   // 指定“容量大小”的构造函数
-
-   public HashMap(int initialCapacity) {
-
-​     this(initialCapacity, DEFAULT_LOAD_FACTOR);
-
-   }
-
- 
-
-   // 指定“容量大小”和“加载因子”的构造函数
-
-   public HashMap(int initialCapacity, float loadFactor) {
-
-​     if (initialCapacity < 0)
-
-​       throw new IllegalArgumentException("Illegal initial capacity: " + initialCapacity);
-
-​     if (initialCapacity > MAXIMUM_CAPACITY)
-
-​       initialCapacity = MAXIMUM_CAPACITY;
-
-​     if (loadFactor <= 0 || Float.isNaN(loadFactor))
-
-​       throw new IllegalArgumentException("Illegal load factor: " + loadFactor);
-
-​     this.loadFactor = loadFactor;
-
-​     this.threshold = tableSizeFor(initialCapacity);
-
-   }
-
- 
+// 包含另一个“Map”的构造函数
+public HashMap(Map<? extends K, ? extends V> m) {
+	this.loadFactor = DEFAULT_LOAD_FACTOR;
+ 	putMapEntries(m, false);//下面会分析到这个方法
+}
+
+// 指定“容量大小”的构造函数
+public HashMap(int initialCapacity) {
+ 	this(initialCapacity, DEFAULT_LOAD_FACTOR);
+}
+
+// 指定“容量大小”和“加载因子”的构造函数
+public HashMap(int initialCapacity, float loadFactor) {
+     if (initialCapacity < 0)
+         throw new IllegalArgumentException("Illegal initial capacity: " + initialCapacity);
+     if (initialCapacity > MAXIMUM_CAPACITY)
+         initialCapacity = MAXIMUM_CAPACITY;
+     if (loadFactor <= 0 || Float.isNaN(loadFactor))
+         throw new IllegalArgumentException("Illegal load factor: " + loadFactor);
+     this.loadFactor = loadFactor;
+     this.threshold = tableSizeFor(initialCapacity);
+}
+````
+
+​                                  
 
 **putMapEntries** **方法：将整个map添加到当期map中**
 
+````java
 final void putMapEntries(Map<? extends K, ? extends V> m, boolean evict) {
-
-  int s = m.size();
-
-  if (s > 0) {
-
-​    // 判断table是否已经初始化
-
-​    if (table == null) { // pre-size
-
-​      // 未初始化，s为m的实际元素个数
-
-​       float ft = ((float)s / loadFactor) + 1.0F;
-
-​      int t = ((ft < (float)MAXIMUM_CAPACITY) ?
-
-​          (int)ft : MAXIMUM_CAPACITY);
-
-​      // 计算得到的t大于阈值，则初始化阈值
-
-​      if (t > threshold)
-
-​        threshold = tableSizeFor(t);
-
-​    }
-
-​    // 已初始化，并且m元素个数大于阈值，进行扩容处理
-
-​    else if (s > threshold)
-
-​      resize();
-
-​    // 将m中的所有元素添加至HashMap中
-
-​    for (Map.Entry<? extends K, ? extends V> e : m.entrySet()) {
-
-​      K key = e.getKey();
-
-​      V value = e.getValue();
-
-​      putVal(hash(key), key, value, false, evict);
-
-​    }
-
-  }
-
+    int s = m.size();
+    if (s > 0) {
+        // 判断table是否已经初始化
+        if (table == null) { // pre-size
+            // 未初始化，s为m的实际元素个数
+            float ft = ((float)s / loadFactor) + 1.0F;
+            int t = ((ft < (float)MAXIMUM_CAPACITY) ?
+                    (int)ft : MAXIMUM_CAPACITY);
+            // 计算得到的t大于阈值，则初始化阈值
+            if (t > threshold)
+                threshold = tableSizeFor(t);
+        }
+        // 已初始化，并且m元素个数大于阈值，进行扩容处理
+        else if (s > threshold)
+            resize();
+        // 将m中的所有元素添加至HashMap中
+        for (Map.Entry<? extends K, ? extends V> e : m.entrySet()) {
+            K key = e.getKey();
+            V value = e.getValue();
+            putVal(hash(key), key, value, false, evict);
+        }
+    }
 }
+````
 
- 
+
 
 **添加**                                        
 
@@ -5766,201 +5386,100 @@ final void putMapEntries(Map<? extends K, ? extends V> m, boolean evict) {
 
 ⑥.插入成功后，判断实际存在的键值对数量 size 是否超多了最大容量 threshold，如果超过，进行扩容。
 
- 
-
- 
-
- 
-
+````java
 public V put(K key, V value) {
-
-  return putVal(hash(key), key, value, false, true);
-
+    return putVal(hash(key), key, value, false, true);
 }
-
 final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
-
-​          boolean evict) {
-
-Node<K,V>[] tab; 
-
-Node<K,V> p; 
-
-int n, i;         //辅助变量  
-
-  
-
- 
-
-// table未初始化或者长度为0，调用resize()进行扩容,创建长度为16的Node[]
-
-if ((tab = table) == null || (n = tab.length) == 0)
-
-n = (tab = resize()).length;
-
- 
-
-// n是数组的长度，当hash是2的幂时，&相当于取模;
-
-// (n - 1) & hash 确定元素存放在哪个桶中，并为 p 赋值，当p为空(桶为空)，新生成结点放入桶中(此时，这个结点是放在数组中); 
-
-if ((p = tab[i = (n - 1) & hash]) == null)   //根据hash找到索引，如果为空，直接添加
-
-​    tab[i] = newNode(hash, key, value, null);
-
- 
-
-  // 索引位置(桶中)已经存在元素
-
-  else {
-
-Node<K,V> e; 
-
-K k;
-
-// p 指的是数组中的元素(链表的第一个节点)，比较p的hash值是否和添加元素的hash值相等，
-
-// 并且比较p.key 和key的地址是否相同，或者p.key和key的值是否相等(equals()方法，也证明了添加的元素中需要重新equals()方法)
-
-if (p.hash == hash &&
-
-((k = p.key) == key || (key != null && key.equals(k))))
-
- 
-
-// 将第一个元素赋值给e，用e来记录
-
-e = p;                                 //①
-
- 
-
- 
-
-// 判断p是否是红黑树
-
-else if (p instanceof TreeNode)
-
-// 放入树中
-
-e = ((TreeNode<K,V>)p).putTreeVal(this, tab, hash, key, value);    //②    
-
- 
-
-​    // 如果是链表
-
-​    else {
-
-​      // 在链表最末插入结点
-
-​      for (int binCount = 0; ; ++binCount) {
-
-​        // 到达链表的尾部,执行添加操作
-
-​        if ((e = p.next) == null) {                    //③
-
-​          // 在尾部插入新结点
-
-​          p.next = newNode(hash, key, value, null);
-
-​          
-
- 
-
-​          // 结点数量达到阈值(默认为 8 )，执行 treeifyBin 方法(treeigyBin方法里面判断是否对当前链表进行树化)
-
-​          // 这个方法会根据 HashMap 数组来决定是否转换为红黑树。
-
-​          // 只有当数组长度大于或者等于 64 的情况下，才会执行转换红黑树操作，以减少搜索时间。否则，就是只是对数组扩容。
-
-​          if (binCount >= TREEIFY_THRESHOLD - 1) // -1 for 1st
-
-​             treeifyBin(tab, hash);   //此方法并不一定会对当前链表进行树化
-
- 
-
-​          // 跳出循环
-
-​          break;
-
-​        }
-
- 
-
-​        // 判断链表中结点的key值与插入的元素的key值是否相等
-
-​        if (e.hash == hash &&                        //④
-
-​          ((k = e.key) == key || (key != null && key.equals(k))))
-
-​          // 相等，跳出循环
-
-​          break;
-
-​        // 用于遍历桶中的链表，与前面的e = p.next组合，可以遍历链表
-
-​        p = e;
-
-​      }
-
-​    }
-
- 
-
- 
-
- // ①②④表示在桶中找到key值、hash值与插入元素相等的结点;③表示到链表的最后了,e为null，不会进入下面的if语句
-
-​    if (e != null) {
-
-​      // 记录e的value
-
-​      V oldValue = e.value;
-
-​      // onlyIfAbsent为false或者旧值为null
-
-​      if (!onlyIfAbsent || oldValue == null)
-
-​        //用新值替换旧值
-
-​        e.value = value;
-
-​      // 访问后回调
-
-​      afterNodeAccess(e);
-
-​      // 返回旧值
-
-​      return oldValue;
-
-​    }
-
-  }
-
- 
-
-  // 结构性修改
-
-  ++modCount;
-
-  // 实际大小大于阈值则扩容
-
-  if (++size > threshold) //每加入一个元素，size加1；(不是在数组中每加一个元素)
-
-​    resize();
-
-  
-
-  // 插入后回调
-
-  afterNodeInsertion(evict); //此方法为空方法，为了让HashMap的子方法实现 (如LinkedHashMap就重写了此方法)
-
-  return null;
-
+                   boolean evict) {
+    Node<K,V>[] tab; 
+    Node<K,V> p; 
+    int n, i;                  //辅助变量    
+
+    // table未初始化或者长度为0，调用resize()进行扩容,创建长度为16的Node[]
+    if ((tab = table) == null || (n = tab.length) == 0)
+        n = (tab = resize()).length;
+
+    // n是数组的长度，当hash是2的幂时，&相当于取模;
+    // (n - 1) & hash 确定元素存放在哪个桶中，并为 p 赋值，当p为空(桶为空)，新生成结点放入桶中(此时，这个结点是放在数组中); 
+    if ((p = tab[i = (n - 1) & hash]) == null)     //根据hash找到索引，如果为空，直接添加
+        tab[i] = newNode(hash, key, value, null);
+
+    // 索引位置(桶中)已经存在元素
+    else {
+        Node<K,V> e; 
+        K k;
+        // p 指的是数组中的元素(链表的第一个节点)，比较p的hash值是否和添加元素的hash值相等，
+        // 并且比较p.key 和key的地址是否相同，或者p.key和key的值是否相等(equals()方法，也证明了添加的元素中需要重新equals()方法)
+        if (p.hash == hash &&
+            ((k = p.key) == key || (key != null && key.equals(k))))
+
+            // 将第一个元素赋值给e，用e来记录
+            e = p;                                                                 //①
+
+
+        // 判断p是否是红黑树
+        else if (p instanceof TreeNode)
+            // 放入树中
+            e = ((TreeNode<K,V>)p).putTreeVal(this, tab, hash, key, value);        //②        
+
+        // 如果是链表
+        else {
+            // 在链表最末插入结点
+            for (int binCount = 0; ; ++binCount) {
+                // 到达链表的尾部,执行添加操作
+                if ((e = p.next) == null) {                                       //③
+                    // 在尾部插入新结点
+                    p.next = newNode(hash, key, value, null);
+
+
+                    // 结点数量达到阈值(默认为 8 )，执行 treeifyBin 方法(treeigyBin方法里面判断是否对当前链表进行树化)
+                    // 这个方法会根据 HashMap 数组来决定是否转换为红黑树。
+                    // 只有当数组长度大于或者等于 64 的情况下，才会执行转换红黑树操作，以减少搜索时间。否则，就是只是对数组扩容。
+                    if (binCount >= TREEIFY_THRESHOLD - 1) // -1 for 1st
+                        treeifyBin(tab, hash);     //此方法并不一定会对当前链表进行树化
+
+                    // 跳出循环
+                    break;
+                }
+
+                // 判断链表中结点的key值与插入的元素的key值是否相等
+                if (e.hash == hash &&                                              //④
+                    ((k = e.key) == key || (key != null && key.equals(k))))
+                    // 相等，跳出循环
+                    break;
+                // 用于遍历桶中的链表，与前面的e = p.next组合，可以遍历链表
+                p = e;
+            }
+        }
+
+
+         // ①②④表示在桶中找到key值、hash值与插入元素相等的结点;③表示到链表的最后了,e为null，不会进入下面的if语句
+        if (e != null) {
+            // 记录e的value
+            V oldValue = e.value;
+            // onlyIfAbsent为false或者旧值为null
+            if (!onlyIfAbsent || oldValue == null)
+                //用新值替换旧值
+                e.value = value;
+            // 访问后回调
+            afterNodeAccess(e);
+            // 返回旧值
+            return oldValue;
+        }
+    }
+
+    // 结构性修改
+    ++modCount;
+    // 实际大小大于阈值则扩容
+    if (++size > threshold) //每加入一个元素，size加1；(不是在数组中每加一个元素)
+        resize();
+
+    // 插入后回调
+    afterNodeInsertion(evict); //此方法为空方法，为了让HashMap的子方法实现 (如LinkedHashMap就重写了此方法)
+    return null;
 }
-
- 
-
- 
+````
 
  
 
@@ -5968,274 +5487,3984 @@ e = ((TreeNode<K,V>)p).putTreeVal(this, tab, hash, key, value);    //②
 
 进行扩容，会伴随着一次重新 hash 分配，并且会遍历 hash 表中所有的元素，是非常耗时的。在编写程序中，要尽量避免 resize。
 
- 
-
-final Node<K,V>[] resize() {
-
-  Node<K,V>[] oldTab = table;      //旧数组
-
-  int oldCap = (oldTab == null) ? 0 : oldTab.length;   //旧数组的长度
-
-  int oldThr = threshold;           //旧扩容阈值
-
-  int newCap, newThr = 0;
-
-  if (oldCap > 0) {
-
-​    // 超过最大值就不再扩充了，就只好随你碰撞去吧
-
-​    if (oldCap >= MAXIMUM_CAPACITY) {
-
-​      threshold = Integer.MAX_VALUE;
-
-​      return oldTab;
-
-​    }
-
-​    // 没超过最大值，就扩充为原来的2倍
-
-​    else if ((newCap = oldCap << 1) < MAXIMUM_CAPACITY && oldCap >= DEFAULT_INITIAL_CAPACITY)
-
-​      newThr = oldThr << 1; // double threshold
-
-  }
-
-  else if (oldThr > 0) // initial capacity was placed in threshold
-
-​    newCap = oldThr;
-
-  else {
-
-​    // signifies using defaults
-
-​    newCap = DEFAULT_INITIAL_CAPACITY;
-
-​    newThr = (int)(DEFAULT_LOAD_FACTOR * DEFAULT_INITIAL_CAPACITY);
-
-  }
-
-  // 计算新的resize上限
-
-  if (newThr == 0) {
-
-​    float ft = (float)newCap * loadFactor;
-
-​    newThr = (newCap < MAXIMUM_CAPACITY && ft < (float)MAXIMUM_CAPACITY ? (int)ft : Integer.MAX_VALUE);
-
-  }
-
-  threshold = newThr;     //新扩容阈值
-
-  @SuppressWarnings({"rawtypes","unchecked"})
-
-​    Node<K,V>[] newTab = (Node<K,V>[])new Node[newCap];     //创建扩容后的数组
-
-  table = newTab;              //table等于新数组
-
-  if (oldTab != null) {
-
-​    // 把每个bucket都移动到新的buckets中
-
-​    for (int j = 0; j < oldCap; ++j) {
-
-​      Node<K,V> e;
-
-​      if ((e = oldTab[j]) != null) {
-
-​        oldTab[j] = null;
-
-​        if (e.next == null)
-
-​          newTab[e.hash & (newCap - 1)] = e;
-
-​        else if (e instanceof TreeNode)
-
-​          ((TreeNode<K,V>)e).split(this, newTab, j, oldCap);
-
-​        else {
-
-​          Node<K,V> loHead = null, loTail = null;
-
-​          Node<K,V> hiHead = null, hiTail = null;
-
-​          Node<K,V> next;
-
-​          do {
-
-​            next = e.next;
-
-​            // 原索引
-
-​            if ((e.hash & oldCap) == 0) {
-
-​              if (loTail == null)
-
-​                loHead = e;
-
-​              else
-
-​                loTail.next = e;
-
-​              loTail = e;
-
-​            }
-
-​            // 原索引+oldCap
-
-​            else {
-
-​               if (hiTail == null)
-
-​                hiHead = e;
-
-​              else
-
-​                hiTail.next = e;
-
-​              hiTail = e;
-
-​            }
-
-​          } while ((e = next) != null);
-
-​          // 原索引放到bucket里
-
-​          if (loTail != null) {
-
-​            loTail.next = null;
-
-​            newTab[j] = loHead;
-
-​          }
-
-​          // 原索引+oldCap放到bucket里
-
-​          if (hiTail != null) {
-
-​            hiTail.next = null;
-
-​            newTab[j + oldCap] = hiHead;
-
-​          }
-
-​        }
-
-​      }
-
-​    }
-
-  }
-
-  return newTab;
-
+ ````java
+ final Node<K,V>[] resize() {
+     Node<K,V>[] oldTab = table;            //旧数组
+     int oldCap = (oldTab == null) ? 0 : oldTab.length;     //旧数组的长度
+     int oldThr = threshold;                      //旧扩容阈值
+     int newCap, newThr = 0;
+     if (oldCap > 0) {
+         // 超过最大值就不再扩充了，就只好随你碰撞去吧
+         if (oldCap >= MAXIMUM_CAPACITY) {
+             threshold = Integer.MAX_VALUE;
+             return oldTab;
+         }
+         // 没超过最大值，就扩充为原来的2倍
+         else if ((newCap = oldCap << 1) < MAXIMUM_CAPACITY && oldCap >= DEFAULT_INITIAL_CAPACITY)
+             newThr = oldThr << 1; // double threshold
+     }
+     else if (oldThr > 0) // initial capacity was placed in threshold
+         newCap = oldThr;
+     else {
+         // signifies using defaults
+         newCap = DEFAULT_INITIAL_CAPACITY;
+         newThr = (int)(DEFAULT_LOAD_FACTOR * DEFAULT_INITIAL_CAPACITY);
+     }
+     // 计算新的resize上限
+     if (newThr == 0) {
+         float ft = (float)newCap * loadFactor;
+         newThr = (newCap < MAXIMUM_CAPACITY && ft < (float)MAXIMUM_CAPACITY ? (int)ft : Integer.MAX_VALUE);
+     }
+     threshold = newThr;         //新扩容阈值
+     @SuppressWarnings({"rawtypes","unchecked"})
+         Node<K,V>[] newTab = (Node<K,V>[])new Node[newCap];         //创建扩容后的数组
+     table = newTab;                           //table等于新数组
+     if (oldTab != null) {
+         // 把每个bucket都移动到新的buckets中
+         for (int j = 0; j < oldCap; ++j) {
+             Node<K,V> e;
+             if ((e = oldTab[j]) != null) {
+                 oldTab[j] = null;
+                 if (e.next == null)
+                     newTab[e.hash & (newCap - 1)] = e;
+                 else if (e instanceof TreeNode)
+                     ((TreeNode<K,V>)e).split(this, newTab, j, oldCap);
+                 else {
+                     Node<K,V> loHead = null, loTail = null;
+                     Node<K,V> hiHead = null, hiTail = null;
+                     Node<K,V> next;
+                     do {
+                         next = e.next;
+                         // 原索引
+                         if ((e.hash & oldCap) == 0) {
+                             if (loTail == null)
+                                 loHead = e;
+                             else
+                                 loTail.next = e;
+                             loTail = e;
+                         }
+                         // 原索引+oldCap
+                         else {
+                             if (hiTail == null)
+                                 hiHead = e;
+                             else
+                                 hiTail.next = e;
+                             hiTail = e;
+                         }
+                     } while ((e = next) != null);
+                     // 原索引放到bucket里
+                     if (loTail != null) {
+                         loTail.next = null;
+                         newTab[j] = loHead;
+                     }
+                     // 原索引+oldCap放到bucket里
+                     if (hiTail != null) {
+                         hiTail.next = null;
+                         newTab[j + oldCap] = hiHead;
+                     }
+                 }
+             }
+         }
+     }
+     return newTab;
+ }
+ ````
+
+
+
+**树化**                 
+
+````java
+final void treeifyBin(Node<K,V>[] tab, int hash) {
+    int n, index; Node<K,V> e;
+    // 如果为初始化或者数组长度小于设置的阈值(默认64),则进行扩容操作，不进行树化
+    if (tab == null || (n = tab.length) < MIN_TREEIFY_CAPACITY)    
+        resize();
+
+    else if ((e = tab[index = (n - 1) & hash]) != null) {
+        TreeNode<K,V> hd = null, tl = null;
+        do {
+            TreeNode<K,V> p = replacementTreeNode(e, null);
+            if (tl == null)
+                hd = p;
+            else {
+                p.prev = tl;
+                tl.next = p;
+            }
+            tl = p;
+        } while ((e = e.next) != null);
+        if ((tab[index] = hd) != null)
+            hd.treeify(tab);
+    }
 }
+````
 
  
 
-**树化**                                                       
+**查询**        
 
-  final void treeifyBin(Node<K,V>[] tab, int hash) {
-
-​    int n, index; Node<K,V> e;
-
-  // 如果为初始化或者数组长度小于设置的阈值(默认64),则进行扩容操作，不进行树化
-
-​    if (tab == null || (n = tab.length) < MIN_TREEIFY_CAPACITY)  
-
-​      resize();
-
- 
-
-​    else if ((e = tab[index = (n - 1) & hash]) != null) {
-
-​      TreeNode<K,V> hd = null, tl = null;
-
-​      do {
-
-​        TreeNode<K,V> p = replacementTreeNode(e, null);
-
-​        if (tl == null)
-
-​          hd = p;
-
-​        else {
-
-​          p.prev = tl;
-
-​          tl.next = p;
-
-​        }
-
-​        tl = p;
-
-​      } while ((e = e.next) != null);
-
-​      if ((tab[index] = hd) != null)
-
-​        hd.treeify(tab);
-
-​    }
-
-  }
-
- 
-
-**查询**                                        
-
+````java
 public V get(Object key) {
-
-  Node<K,V> e;
-
-  return (e = getNode(hash(key), key)) == null ? null : e.value;
-
+    Node<K,V> e;
+    return (e = getNode(hash(key), key)) == null ? null : e.value;
 }
-
- 
 
 final Node<K,V> getNode(int hash, Object key) {
+    Node<K,V>[] tab; Node<K,V> first, e; int n; K k;
+    if ((tab = table) != null && (n = tab.length) > 0 &&
+        (first = tab[(n - 1) & hash]) != null) {
+        // 数组元素相等
+        if (first.hash == hash && // always check first node
+            ((k = first.key) == key || (key != null && key.equals(k))))
+            return first;
+        // 桶中不止一个节点
+        if ((e = first.next) != null) {
+            // 在树中get
+            if (first instanceof TreeNode)
+                return ((TreeNode<K,V>)first).getTreeNode(hash, key);
+            // 在链表中get
+            do {
+                if (e.hash == hash &&
+                    ((k = e.key) == key || (key != null && key.equals(k))))
+                    return e;
+            } while ((e = e.next) != null);
+        }
+    }
+    return null;
+}
+````
 
-  Node<K,V>[] tab; Node<K,V> first, e; int n; K k;
 
-  if ((tab = table) != null && (n = tab.length) > 0 &&
 
-​    (first = tab[(n - 1) & hash]) != null) {
+### LinkedHashMap源码                                                  
 
-​    // 数组元素相等
+![img](java.assets/clip_image002-16534697682452.jpg)
 
-​    if (first.hash == hash && // always check first node
+事实上 `LinkedHashMap` 是 `HashMap` 的直接子类，二者唯一的区别是 `LinkedHashMap` 在 `HashMap` 的基础上，采用双向链表（doubly-linked list）的形式将所有 `entry` 连接起来，这样是为保证元素的迭代顺序跟插入顺序相同。多了 `header` 指向双向链表的头部（是一个哑元），该双向链表的迭代顺序就是 `entry` 的插入顺序。
 
-​      ((k = first.key) == key || (key != null && key.equals(k))))
+除了可以保迭代历顺序，这种结构还有一个好处：迭代 `LinkedHashMap` 时不需要像 `HashMap` 那样遍历整个`table`，而只需要直接遍历 `header` 指向的双向链表即可，也就是说 `LinkedHashMap` 的迭代时间就只跟`entry`的个数相关，而跟`table`的大小无关。
 
-​      return first;
+有两个参数可以影响 `LinkedHashMap` 的性能：初始容量（i`nital capacity`）和负载系数（`load factor`）。初始容量指定了初始`table`的大小，负载系数用来指定自动扩容的临界值。当`entry`的数量超过`capacity*load_factor`时，容器将自动扩容并重新哈希。对于插入元素较多的场景，将初始容量设大可以减少重新哈希的次数。
 
-​    // 桶中不止一个节点
+将对象放入到 `LinkedHashMap` 或 `LinkedHashSet` 中时，有两个方法需要特别关心：`hashCode`() 和 `equals()`。`hashCode()` 方法决定了对象会被放到哪个 `bucket` 里，当多个对象的哈希值冲突时，`equals()` 方法决定了这些对象是否是“同一个对象”。所以，如果要将自定义的对象放入到 `LinkedHashMap` 或 `LinkedHashSet` 中，需要重写`hashCode()` 和 `equals()` 方法。
 
-​    if ((e = first.next) != null) {
+出于性能原因，`LinkedHashMap` 是非同步的（not synchronized），如果需要在多线程环境使用，需要程序员手动同步；或者通过如下方式将 `LinkedHashMap` 包装成（wrapped）同步的：
 
-​      // 在树中get
+`Map m = Collections.synchronizedMap(new LinkedHashMap(...));`
 
-​      if (first instanceof TreeNode)
+ 
 
-​        return ((TreeNode<K,V>)first).getTreeNode(hash, key);
+LinkedHashMap 的排序方式有两种：
 
-​      // 在链表中get
+- 根据写入顺序排序。
+- 根据访问顺序排序。
 
-​      do {
+ 
 
-​        if (e.hash == hash &&
+**属性**         
 
-​          ((k = e.key) == key || (key != null && key.equals(k))))
+````java
+private transient Entry<K,V> header;//头结点
+private final boolean accessOrder;  // 默认是 false，默认按照插入顺序排序，为 true 时按照访问顺序排序，调用构造器修改
+````
 
-​          return e;
+ 
 
-​      } while ((e = e.next) != null);
+**Entry节点**                    
 
-​    }
+`LinkedHashMap`底层是`Entry`节点，继承了`HashMap`类的`Node`内部类
 
+主要维护了`before`、`after`指针
+
+（一个有三个指向，除了before和after，还有Node节点中的next，他指向的是链表中的下一个节点）
+
+````java
+static class Entry<K,V> extends HashMap.Node<K,V> {
+        Entry<K,V> before, after;
+        Entry(int hash, K key, V value, Node<K,V> next) {
+            super(hash, key, value, next);
+        }
+}
+````
+
+​                                                             
+
+**Get/Put**                                                                           
+
+​	实际使用的是`HashMap`中的`Get`/`Put
+
+`put(K key, V value)` 方法是将指定的 `key, value` 对添加到 `map` 里。该方法首先会对 `map` 做一次查找，看是否包含该元组，如果已经包含则直接返回，查找过程类似于`get()`方法；如果没有找到，则会通过 `addEntry(int hash, K key, V value, int bucketIndex)` 方法插入新的 `entry`。
+
+注意，这里的插入有两重含义：
+
+a. 从 `table` 的角度看，新的 `entry` 需要插入到对应的 `bucket` 里，当有哈希冲突时，采用头插法将新的 `entry` 插入到冲突链表的头部。
+
+b. 从 `header` 的角度看，新的 `entry` 需要插入到双向链表的尾部。
+
+![img](java.assets/clip_image004-16534697682451.jpg)
+
+````java
+public V put(K key, V value) {
+    if (table == EMPTY_TABLE) {
+        inflateTable(threshold);
+    }
+    if (key == null)
+        return putForNullKey(value);
+    int hash = hash(key);
+    int i = indexFor(hash, table.length);
+    for (Entry<K,V> e = table[i]; e != null; e = e.next) {
+        Object k;
+        if (e.hash == hash && ((k = e.key) == key || key.equals(k))) {
+            V oldValue = e.value;
+            e.value = value;
+            //空实现，交给 LinkedHashMap 自己实现
+            e.recordAccess(this);
+            return oldValue;
+        }
+    }
+
+    modCount++;
+    // LinkedHashMap 对其重写
+    addEntry(hash, key, value, i);
+    return null;
+}
+
+// LinkedHashMap.addEntry()
+//addBefore()方法将新 entry e插入到双向链表头引用 header 的前面，这样 e 就成为双向链表中的最后一个元素。
+void addEntry(int hash, K key, V value, int bucketIndex) {
+    if ((size >= threshold) && (null != table[bucketIndex])) {
+        resize(2 * table.length);// 自动扩容，并重新哈希
+        hash = (null != key) ? hash(key) : 0;
+        bucketIndex = hash & (table.length-1);// hash%table.length
+    }
+    // 1.在冲突链表头部插入新的entry
+    HashMap.Entry<K,V> old = table[bucketIndex];
+    Entry<K,V> e = new Entry<>(hash, key, value, old);
+    table[bucketIndex] = e;
+    // 2.在双向链表的尾部插入新的entry
+    e.addBefore(header);
+    size++;
+}
+
+// LinkedHashMap.Entry.addBefor()，将this插入到existingEntry的前面
+//只是简单修改相关 entry 的引用而已。
+private void addBefore(Entry<K,V> existingEntry) {
+    after  = existingEntry;
+    before = existingEntry.before;
+    before.after = this;
+    after.before = this;
+}
+````
+
+
+
+**remove()**                                                                                        
+
+`remove(Object key)`的作用是删除`key`值对应的`entry`，该方法的具体逻辑是在`removeEntryForKey(Object key)`里实现的。`removeEntryForKey()`方法会首先找到`key`值对应的`entry`，然后删除该`entry`（修改链表的相应引用）。查找过程跟`get()`方法类似。
+
+注意，这里的删除也有两重含义：
+
+从`table`的角度看，需要将该`entry`从对应的`bucket`里删除，如果对应的冲突链表不空，需要修改冲突链表的相应引用。
+
+从`header`的角度来看，需要将该`entry`从双向链表中删除，同时修改链表中前面以及后面元素的相应引用。
+
+![img](java.assets/clip_image006-16534697682453.jpg)
+
+ 
+
+ ````java
+ // LinkedHashMap.removeEntryForKey()，删除key值对应的entry
+ final Entry<K,V> removeEntryForKey(Object key) {
+     ......
+     int hash = (key == null) ? 0 : hash(key);
+     int i = indexFor(hash, table.length);// hash&(table.length-1)
+     Entry<K,V> prev = table[i];// 得到冲突链表
+     Entry<K,V> e = prev;
+     while (e != null) {// 遍历冲突链表
+         Entry<K,V> next = e.next;
+         Object k;
+         if (e.hash == hash &&
+             ((k = e.key) == key || (key != null && key.equals(k)))) {// 找到要删除的entry
+             modCount++; size--;
+             // 1. 将e从对应bucket的冲突链表中删除
+             if (prev == e) table[i] = next;
+             else prev.next = next;
+             // 2. 将e从双向链表中删除
+             e.before.after = e.after;
+             e.after.before = e.before;
+             return e;
+         }
+         prev = e; e = next;
+     }
+     return e;
+ }
+ ````
+
+
+
+### TreeMap                                                                                                 
+
+* 一个有序的`key-value`集合，它是通过红黑树实现的。
+* 继承于`AbstractMap`，所以它是一个`Map`，即一个`key-value`集合。
+* 实现了`NavigableMap`接口，意味着它支持一系列的导航方法。比如返回有序的`key`集合。
+* 实现了`Cloneable`接口，意味着它能被克隆。
+* 实现了`java.io.Serializable`接口，意味着它支持序列化。
+* 基于红黑树（Red-Black tree）实现。该映射根据其键的自然顺序进行排序，或者根据创建映射时提供的 `Comparator` 进行排序，具体取决于使用的构造方法。
+* 基本操作 `containsKey、get、put` 和 `remove` 的时间复杂度是 log(n) 。
+* TreeMap是非同步的。 它的`iterator` 方法返回的迭代器是`fail-fastl`的。
+
+ 
+
+**TreeMap和HashMap的区别**                                  
+
+* `HashMap`通过`hashcode`对其内容进行快速查找，而 `TreeMap`基于红黑树的一种访问的`Map`,所有的元素都保持着某种固定的顺序，如果你需要得到一个有序的结果你就应该使用`TreeMap`（`HashMap`中元素的排列顺序是不固定的）。存取的时间复杂度都是O(log(n))
+* HashMap：适用于在Map中插入、删除和定位元素。
+* Treemap：适用于按自然顺序或自定义顺序遍历键(key)。
+
+ 
+
+**属性**               
+
+````java
+private final Comparator<? super K> comparator;        //定制排序，使用构造器传入
+private transient Entry<K,V> root;                     //根节点
+private transient int size = 0;                        //树的大小
+private transient int modCount = 0;                    //操作数
+````
+
+
+
+**构造器**           
+
+````java
+public TreeMap() {
+    comparator = null;
+}
+public TreeMap(Comparator<? super K> comparator) {       //传入定制排序
+    this.comparator = comparator;
+}
+public TreeMap(Map<? extends K, ? extends V> m) {
+    构造一个与给定映射具有相同映射关系的新的树映射，该映射根据其键的自然顺序 进行排序。
+}
+public TreeMap(SortedMap<K, ? extends V> m) {
+    构造一个与指定有序映射具有相同映射关系和相同排序顺序的新的树映射。
+}
+
+````
+
+ 
+
+**Put方法**                                                
+
+````java
+public V put(K key, V value) {
+    Entry<K,V> t = root;                                      //指定根结点
+    if (t == null) {                                          //根结点为空直接添加
+        compare(key, key);                                    //2个key比较，主要检查是否为null
+
+        root = new Entry<>(key, value, null);
+        size = 1;
+        modCount++;
+        return null;
+    }
+    int cmp;
+    Entry<K,V> parent;
+    // split comparator and comparable paths
+    Comparator<? super K> cpr = comparator;                   //赋值定制排序
+    if (cpr != null) {                                        //有定制排序，使用定制排序
+        do {
+            parent = t;
+            cmp = cpr.compare(key, t.key);
+            if (cmp < 0)
+                t = t.left;
+            else if (cmp > 0)
+                t = t.right;
+            else
+                return t.setValue(value);                     //相等则替换
+        } while (t != null);
+    }
+    else {                                                    //使用自然排序
+        if (key == null)                                      //不能为空
+            throw new NullPointerException();
+        @SuppressWarnings("unchecked")
+            Comparable<? super K> k = (Comparable<? super K>) key;
+        do {
+            parent = t;
+            cmp = k.compareTo(t.key);                         //调用key的自然排序
+            if (cmp < 0)
+                t = t.left;
+            else if (cmp > 0)
+                t = t.right;
+            else
+                return t.setValue(value);
+        } while (t != null);
+    }
+    Entry<K,V> e = new Entry<>(key, value, parent);
+    if (cmp < 0)
+        parent.left = e;
+    else
+        parent.right = e;
+    fixAfterInsertion(e);
+    size++;
+    modCount++;
+    return null;
+}
+````
+
+
+
+**总结**                                                    
+
+1、`TreeMap`是根据`key`进行排序的，它的排序和定位需要依赖比较器或覆写`Comparable`接口，也因此不需要`key`覆写`hashCode`方法和`equals`方法，就可以排除掉重复的`key`，而`HashMap`的`key`则需要通过覆写`hashCode`方法和`equals`方法来确保没有重复的`key`。
+
+2、`TreeMap`的查询、插入、删除效率均没有`HashMap`高，一般只有要对`key`排序时才使用`TreeMap`。
+
+3、`TreeMap`的`key`不能为`null`，而`HashMap`的`key`可以为`null`。
+
+4、`TreeMap`不是同步的。如果多个线程同时访问一个映射，并且其中至少一个线程从结构上修改了该映射，则其必须 外部同步。
+
+ 
+
+
+
+## ConcurrentHashMap源码
+
+ 稍后
+
+
+
+## Collections工具类
+
+**作用：**操作Collection和Map的工具类，不需要实例化，直接使用
+
+**常用方法：**
+
+| 方法                                                        | 作用                                                       |
+| ----------------------------------------------------------- | ---------------------------------------------------------- |
+| reverse(List)                                               | 反转 List 中元素的顺序                                     |
+| shuffle(List)                                               | 对 List 集合元素进行随机排序                               |
+| sort(List)                                                  | 根据元素的自然顺序对指定 List 集合元素升序排序             |
+| sort(List，Comparator)                                      | 根据指定的 Comparator 产生的顺序对 List 集合元素进行排序   |
+| swap(List，int， int)                                       | 将指定 list 集合中的 i 处元素和 j 处元素进行交换           |
+| Object max(Collection)                                      | 根据元素的自然顺序，返回给定集合中的最大元素               |
+| Object max(Collection，Comparator)                          | 根据 Comparator 指定的顺序，返回给定集合中的最大元素       |
+| Object min(Collection)                                      |                                                            |
+| int frequency(Collection，Object)                           | 返回指定集合中指定元素的出现次数                           |
+| void copy(List dest,List src)                               | 将src中的内容复制到dest中  注意：dest长度不可以小于src长度 |
+| boolean replaceAll(List list，Object oldVal，Object newVal) | 使用新值替换 List 对象的所旧值                             |
+| **synchronizedXxx()**                                       | 返回线程安全的集合                                         |
+
+
+
+ 
+
+
+
+# 泛型
+
+[博客1](https://blog.csdn.net/s10461/article/details/53941091)
+
+[博客2](https://blog.csdn.net/sunxianghuang/article/details/51982979)
+
+**概述**                                               
+
+泛型，即“**参数化类型**”。参数化类型怎么理解呢？顾名思义，就是将类型由原来的具体的类型参数化，类似于方法中的变量参数，此时类型也定义成参数形式（可以称之为类型形参），然后在使用/调用时传入具体的类型（类型实参）。
+
+泛型的本质是为了**参数化类型**（在不创建新的类型的情况下，通过泛型指定的不同类型来控制形参具体限制的类型）。也就是说在泛型使用过程中，操作的数据类型被指定为一个参数，这种参数类型可以用在类、接口和方法中，分别被称为泛型类、泛型接口、泛型方法。
+
+编译器会自动帮我们检查，避免向集合中插入错误类型的对象，从而使得程序具有更好的**安全性**。
+
+ 
+
+**泛型实现原理**                                           
+
+**类型擦除**
+
+````java
+public static void main(String[] args) {
+    ArrayList<String> strings = new ArrayList<>();
+    ArrayList<Integer> integers = new ArrayList<>();
+
+    System.out.println(strings.getClass());
+    System.out.println(integers.getClass());
+}
+输出：
+class java.util.ArrayList
+class java.util.ArrayList
+````
+
+- 定义了两个ArrayList数组，一个是`ArrayList<String>`泛型类型，只能存储字符串。一个是`ArrayList<Integer>`泛型类型，只能存储整型。结果输出的类型相同
+
+- 这是为什么呢，明明我们定义了两种不同的类型？因为，在编译期间，所有的泛型信息都会被擦除，`List<Integer>`和`List<String>`类型，在编译后都会变成`List`类型（原始类型）。Java中的泛型基本上都是在编译器这个层次来实现的，这也是Java的泛型被称为“伪泛型”的原因。
+
+- 编译后
+
+  ````java
+  public static void main(String[] var0) {
+      ArrayList var1 = new ArrayList();
+      ArrayList var2 = new ArrayList();
+      System.out.println(var1.getClass());
+      System.out.println(var2.getClass());
   }
+  ````
 
-  return null;
+可以看到类型已经被擦除了
+
+**对此总结成一句话：泛型类型在逻辑上看以看成是多个不同的类型，实际上都是相同的基本类型。**
+
+
+
+**原始类型**                                                         
+
+原始类型就是泛型类型擦除了泛型信息后，在字节码中真正的类型。无论何时定义一个泛型类型，相应的原始类型都会被自动提供。原始类型的名字就是删去类型参数后的泛型类型的类名。擦除 类型变量，并替换为 限定类型（T为无限定的 类型变量，用Object替换）。
+
+````java
+//泛型类型
+class Pair<T> {  
+    private T value;  
+    public T getValue() {  
+        return value;  
+    }  
+    public void setValue(T  value) {  
+        this.value = value;  
+    }  
+}
+//原始类型
+class Pair {  
+    private Object value;  
+    public Object getValue() {  
+        return value;  
+    }  
+    public void setValue(Object  value) {  
+        this.value = value;  
+    }  
+}  
+````
+
+因为在`Pair<T>`中，T是一个无限定的类型变量，所以用`Object`替换。如果是`Pair<T extends Number>`，擦除后，类型变量用`Number`类型替换。
+
+ 
+
+**突破泛型约束**                                                         
+
+利用反射  
+
+````java
+public static void main(String[] args) throws Exception {
+    ArrayList<Integer> integers = new ArrayList<>();
+    // 这样调用add方法只能存储整形，因为泛型类型的实例为Integer
+    integers.add(123);
+
+    //integers.add("123");   //报错，需要的是integer 而传入的是String类型
+
+    // 通过反射可以突破泛型类型约束
+    integers.getClass().getMethod("add", Object.class).invoke(integers,"哈哈");
+
+    System.out.println(integers);
+}
+输出：[123, 哈哈]
+````
+
+- 为什么呢？
+  - 我们在程序中定义了一个`ArrayList<Integer>`泛型类型，如果直接调用`add`方法，那么只能存储整形的数据。
+  - 不过当我们利用反射调用`add`方法的时候，却可以存储字符串。
+  - 这说明`ArrayList<Integer>`泛型信息在编译之后被擦除了，只保留了原始类型，类型变量`（T）`被替换为`Object`，在运行时，我们可以行其中插入任意类型的对象。
+
+- 再次应证：Java中的泛型基本上都是在编译器这个层次来实现的“伪泛型”。
+
+- 但是，并不推荐以这种方式操作泛型类型，因为这违背了泛型的初衷（减少强制类型转换以及确保类型安全）。当我们从集合中获取元素时，默认会将对象强制转换成泛型参数指定的类型（这里是Integer），如果放入了非法的对象这个强制转换过程就会出现异常。
+
+ 
+
+**泛型方法的类型推断**                                                    
+
+* 在调用泛型方法的时候，可以指定泛型类型，也可以不指定。
+* 在不指定泛型类型的情况下，泛型类型为该方法中的几种参数类型的共同父类的最小级，直到`Object`。
+* 在指定泛型类型的时候，该方法中的所有参数类型必须是该泛型类型或者其子类。
+
+````java
+public class Test { 
+    public static void main(String[] args) {  
+        /**不指定泛型的时候*/  
+        int i=Test.add(1, 2);           //这两个参数都是Integer，所以T替换为Integer类型  
+        Number f=Test.add(1, 1.2);      //这两个参数一个是Integer，另一个是Float，所以取同一父类的最小级，为Number  
+        Object o=Test.add(1, "asd");    //这两个参数一个是Integer，另一个是String，所以取同一父类的最小级，为Object
+
+        /**指定泛型的时候*/  
+        int a=Test.<Integer>add(1, 2);      //指定了Integer，所以只能为Integer类型或者其子类  
+        int b=Test.<Integer>add(1, 2.2);    //编译错误，指定了Integer，不能为Float  
+        Number c=Test.<Number>add(1, 2.2);  //指定为Number，所以可以为Integer和Float  
+    }  
+
+    //这是一个简单的泛型方法  
+    public static <T> T add(T x,T y){  
+        return y;  
+    } 
+}
+````
+
+ 
+
+**正确的运转**                                                      
+
+既然说类型变量会在编译的时候擦除掉，那为什么定义了`ArrayList<Integer>`泛型类型，而不允许向其中插入String对象呢？不是说泛型变量`Integer`会在编译时候擦除变为原始类型`Object`吗，为什么不能存放别的类型呢？既然类型擦除了，如何保证我们只能使用泛型变量限定的类型呢？
+
+java是如何解决这个问题的呢？java编译器是通过先检查代码中泛型的类型，然后再进行类型擦除，再进行编译的。以如下代码为例：
+
+````java
+Pair<Integer> pair=new Pair<Integer> ();
+pair.setValue(3);
+Integer integer=pair.getValue();
+System.out.println(integer);
+````
+
+擦除`getValue()`的返回类型后将返回`Object`类型，编译器自动插入`Integer`的强制类型转换。也就是说，编译器把这个方法调用翻译为两条字节码指令：
+
+* 对原始方法`Pair.getValue`的调用
+
+* 将返回的`Object`类型强制转换为`Integer` 
+
+  
+
+## 泛型类                                                                                                             
+
+格式：
+
+````java
+public class test<T,E>{
 
 }
+````
+
+````java
+//此处T可以随便写为任意标识，常见的如T、E、K、V等形式的参数常用于表示泛型
+//在实例化泛型类时，必须指定T的具体类型
+public class Generic<T>{ 
+    //key这个成员变量的类型为T,T的类型由外部指定  
+    private T key;
+
+    public Generic(T key) {   //泛型构造方法形参key的类型也为T，T的类型由外部指定
+        this.key = key;
+    }
+
+    public T getKey(){        //泛型方法getKey的返回值类型为T，T的类型由外部指定
+        return key;
+    }
+}
+
+````
+
+在使用泛型的时候如果传入泛型实参，则会根据传入的泛型实参做相应的限制，此时泛型才会起到本应起到的限制作用。如果不传入泛型类型实参的话，在泛型类中使用泛型的方法或成员变量定义的类型可以为任何的类型。
+
+*注意：*
+
+- 泛型必须使用的是类，基本数据类型使用包装类
+
+- 不能对确切的泛型类型使用`instanceof`操作。如下面的操作是非法的，编译时会出错。
+
+  ````java
+  if(ex_num instanceof Generic<Number>){  
+  } 
+  ````
+
+  
+
+## 泛型接口                                                         
+
+泛型接口与泛型类的定义及使用基本相同。泛型接口常被用在各种类的生产器中，可以看一个例子：
+
+````java
+//定义一个泛型接口
+public interface Generator<T> {
+    public T next();
+}
+````
+
+> **当实现泛型接口的类，未传入泛型实参时：**
+
+````java
+/**
+ * 未传入泛型实参时，与泛型类的定义相同，在声明类的时候，需将泛型的声明也一起加到类中
+ * 即：class FruitGenerator<T> implements Generator<T>{
+ * 如果不声明泛型，如：class FruitGenerator implements Generator<T>，编译器会报错："Unknown class"
+ */
+class FruitGenerator<T> implements Generator<T>{
+    @Override
+    public T next() {
+        return null;
+    }
+}
+````
+
+原因很简单，继承接口需要重写接口中的方法，类中重写泛型接口中的方法就需要指定泛型，
+
+ 
+
+> **当实现泛型接口的类，传入泛型实参时：**
+
+````java
+/**
+ * 传入泛型实参时：
+ * 定义一个生产器实现这个接口,虽然我们只创建了一个泛型接口Generator<T>
+ * 但是我们可以为T传入无数个实参，形成无数种类型的Generator接口。
+ * 在实现类实现泛型接口时，如已将泛型类型传入实参类型，则所有使用泛型的地方都要替换成传入的实参类型
+ * 即：Generator<T>，public T next();中的的T都要替换成传入的String类型。
+ */
+public class FruitGenerator implements Generator<String> {
+    private String[] fruits = new String[]{"Apple", "Banana", "Pear"};
+    @Override
+    public String next() {
+        Random rand = new Random();
+        return fruits[rand.nextInt(3)];
+    }
+}
+````
+
+接口中的泛型已经被定义，类中就不需要定义泛型；
+
+ 
+
+## 泛型通配符                                                   
+
+我们知道`Ingeter`是`Number`的一个子类，`Generic<Ingeter>`与`Generic<Number>`实际上是相同的一种基本类型(`getClass`)。那么问题来了，在使用`Generic<Number>`作为形参的方法中，能否使用`Generic<Ingeter>`的实例传入呢？在逻辑上类似于`Generic<Number>`和`Generic<Ingeter>`是否可以看成具有父子关系的泛型类型呢？ (答案是**否定**的)
+
+为了弄清楚这个问题，我们使用`Generic<T>`这个泛型类继续看下面的例子：
+
+````java
+public void showKeyValue1(Generic<Number> obj){         
+    Log.d("泛型测试","key value is " + obj.getKey());
+}
+
+Generic<Integer> gInteger = new Generic<Integer>(123);
+Generic<Number> gNumber = new Generic<Number>(456);
+
+showKeyValue(gNumber);                  //ok
+
+// showKeyValue这个方法编译器会为我们报错：Generic<java.lang.Integer> 
+// cannot be applied to Generic<java.lang.Number>
+// showKeyValue(gInteger);
+
+````
+
+通过提示信息我们可以看到`Generic<Integer>`不能被看作为`Generic<Number>`的子类。由此可以看出:同一种泛型可以对应多个版本（因为参数类型是不确定的），但不同版本的泛型类实例是不兼容的。
+
+我们可以将上面的方法改一下：
+
+````java
+public void showKeyValue1(Generic<?> obj){
+    Log.d("泛型测试","key value is " + obj.getKey());
+}
+````
+
+类型通配符一般是使用 **？**代替具体的类型实参，注意了，此处`？`是类型**实参**，而不是类型形参 。此处的？和`Number、String、Integer`一样都是一种实际的类型，可以把？看成所有类型的父类。是一种真实的类型。
+
+`List<Object>`与`List<?>`并不等同，`List<Object>`是`List<?>`的子类。还有不能往`List<?> list`里添加任意对象，除了`null`。
+
+ 
+
+## 泛型方法                                                       
+
+- 使用类泛型的方法不是泛型方法
+- 泛型方法中的方法不一定是泛型方法
+- 泛型方法不一定在泛型类中
+
+- **泛型类，是在实例化类的时候指明泛型的具体类型；泛型方法，是在调用方法的时候指明泛型的具体类型** 。
+
+ **格式**:只有定义了<>的方法才是泛型方法
+
+````java
+public <T,E,V> 返回类型 方法名(参数){
+} 
+````
+
+````java
+/**
+ * 说明：
+ *     1）public 与 返回值中间<T>非常重要，可以理解为声明此方法为泛型方法。
+ *     2）只有声明了<T>的方法才是泛型方法，泛型类中的使用了泛型的成员方法并不是泛型方法。
+ *     3）<T>表明该方法将使用泛型类型T，此时才可以在方法中使用泛型类型T。
+ *     4）与泛型类的定义一样，此处T可以随便写为任意标识，常见的如T、E、K、V等形式的参数常用于表示泛型。
+ */
+public <T> T genericMethod(Class<T> tClass)throws InstantiationException ,
+  IllegalAccessException{
+        T instance = tClass.newInstance();
+        return instance;
+}
+````
+
+ 
+
+**泛型方法的使用**                                                     
+
+````java
+public class GenericTest {
+   //这个类是个泛型类
+   public class Generic<T>{     
+        private T key;
+
+        public Generic(T key) {
+            this.key = key;
+        }
+
+        //虽然在方法中使用了泛型，但是这并不是一个泛型方法。
+        //这只是类中一个普通的成员方法，只不过他的返回值是在声明泛型类已经声明过的泛型。
+        //所以在这个方法中才可以继续使用 T 这个泛型。
+        public T getKey(){
+            return key;
+        }
+
+        /**
+         * 这个方法显然是有问题的，在编译器会给我们提示这样的错误信息"cannot reslove symbol E"
+         * 因为在类的声明中并未声明泛型E，所以在使用E做形参和返回值类型时，编译器会无法识别。
+        public E setKey(E key){
+             this.key = keu
+        }
+        */
+    }
+
+    /** 
+     * 这才是一个真正的泛型方法。
+     * 首先在public与返回值之间的<T>必不可少，这表明这是一个泛型方法，并且声明了一个泛型T
+     * 这个T可以出现在这个泛型方法的任意位置.
+     * 泛型的数量也可以为任意多个 
+     *    如：public <T,K> K showKeyName(Generic<T> container){
+     *        ...
+     *        }
+     */
+    public <T> T showKeyName(Generic<T> container){
+        System.out.println("container key :" + container.getKey());
+        //当然这个例子举的不太合适，只是为了说明泛型方法的特性。
+        T test = container.getKey();
+        return test;
+    }
+
+
+    //这也不是泛型方法，这就是一个普通的方法，只是使用了Generic<Number>这个泛型类做形参而已。
+    public void showKeyValue1(Generic<Number> obj){
+        Log.d("泛型测试","key value is " + obj.getKey());
+    }
+
+    //这也不是泛型方法，这也是一个普通的方法，只不过使用了泛型通配符?
+    //同时这也印证了泛型通配符章节所描述的，?是一种类型实参，可以看做为Number等所有类的父类
+    public void showKeyValue2(Generic<?> obj){
+        Log.d("泛型测试","key value is " + obj.getKey());
+    }
+
+     /**
+     * 这个方法是有问题的，编译器会为我们提示错误信息："UnKnown class 'E' "
+     * 虽然我们声明了<T>,也表明了这是一个可以处理泛型的类型的泛型方法。
+     * 但是只声明了泛型类型T，并未声明泛型类型E，因此编译器并不知道该如何处理E这个类型。
+    public <T> T showKeyName(Generic<E> container){
+        ...
+    }  
+    */
+
+    /**
+     * 这个方法也是有问题的，编译器会为我们提示错误信息："UnKnown class 'T' "
+     * 对于编译器来说T这个类型并未项目中声明过，因此编译也不知道该如何编译这个类。
+     * 所以这也不是一个正确的泛型方法声明。
+    public void showkey(T genericObj){
+
+    }
+    */
+
+    public static void main(String[] args) {
+    }
+}
+````
+
+
+
+**类中的泛型方法**         
+
+````java
+public class GenericFruit {
+    class Fruit{
+        @Override
+        public String toString() {
+            return "fruit";
+        }
+    }
+
+    class Apple extends Fruit{
+        @Override
+        public String toString() {
+            return "apple";
+        }
+    }
+
+    class Person{
+        @Override
+        public String toString() {
+            return "Person";
+        }
+    }
+
+    class GenerateTest<T>{
+        public void show_1(T t){
+            System.out.println(t.toString());
+        }
+
+        //在泛型类中声明了一个泛型方法，使用泛型E，这种泛型E可以为任意类型。可以类型与T相同，也可以不同。
+        //由于泛型方法在声明的时候会声明泛型<E>，因此即使在泛型类中并未声明泛型，编译器也能够正确识别泛型方法中识别的泛型。
+        public <E> void show_3(E t){
+            System.out.println(t.toString());
+        }
+
+        //在泛型类中声明了一个泛型方法，使用泛型T，注意这个T是一种全新的类型，可以与泛型类中声明的T不是同一种类型。
+        public <T> void show_2(T t){
+            System.out.println(t.toString());
+        }
+    }
+
+    public static void main(String[] args) {
+        Apple apple = new Apple();
+        Person person = new Person();
+
+        GenerateTest<Fruit> generateTest = new GenerateTest<Fruit>();
+        //apple是Fruit的子类，所以这里可以
+        generateTest.show_1(apple);
+        //编译器会报错，因为泛型类型实参指定的是Fruit，而传入的实参类是Person
+        //generateTest.show_1(person);
+
+        //使用这两个方法都可以成功
+        generateTest.show_2(apple);
+        generateTest.show_2(person);
+
+        //使用这两个方法也都可以成功
+        generateTest.show_3(apple);
+        generateTest.show_3(person);
+    }
+}
+````
+
+**泛型方法与可变长参数**                                                                          
+
+````java
+public <T> void printMsg( T... args){
+    for(T t : args){
+        Log.d("泛型测试","t is " + t);
+    }
+}
+````
+
+ 
+
+**静态方法与泛型**                                                             
+
+类中的静态方法使用泛型：**静态方法无法访问类上定义的泛型**；如果静态方法操作的引用数据类型不确定的时候，必须要将泛型定义在方法上。即：**如果静态方法要使用泛型的话，必须将静态方法也定义成泛型方法** 。
+
+泛型类中的静态方法和静态变量不可以使用泛型类所声明的泛型类型参数
+
+````java
+//错误：因为泛型类中的泛型参数的实例化是在定义泛型类型对象（例如ArrayList<Integer>）的时候指定的，而静态变量和静态方法不需要使用对象来调用。对象都没有创建，如何确定这个泛型参数是何种类型，所以当然是错误的。(静态方法随着类的加载而加载)
+public class Test2<T> {    
+    public static T one;             //编译错误    
+    public static  T show(T one){    //编译错误    
+        return null;    
+    }    
+}  
+
+//正确：因为这是一个泛型方法，在泛型方法中使用的T是自己在方法中定义的T，而不是泛型类中的T。
+public class Test2<T> {    
+    public static <T> T show(T one){//这是正确的    
+        return null;    
+    }    
+}  
+````
+
+ 
+
+## 泛型上下边界                                                                                                                 
+
+在使用泛型的时候，我们还可以为传入的泛型类型实参进行上下边界的限制，如：类型实参只准传入某种类型的父类或某种类型的子类。
+
+| 格式                    | 作用                                             |
+| ----------------------- | ------------------------------------------------ |
+| <? extends  Number>     | 只允许泛型为Number及Number子类的引用调用         |
+| <? super  Number>       | 只允许泛型为Number及Number父类的引用调用         |
+| <? extends  Comparable> | 只允许泛型为实现Comparable接口的实现类的引用调用 |
+
+> 泛型类上下边界
+
+````java
+public class Test<T extends Number>{
+}
+````
+
+> 泛型方法上下边界
+
+````java
+//在泛型方法中添加上下边界限制的时候，必须在权限声明与返回值之间的<T>上添加上下边界，即在泛型声明的时候添加
+//public <T> T Test(Generic<T extends Number> container)，编译器会报错："Unexpected bound"
+public <T extends Number> T Test(Generic<T> container){
+}
+````
+
+泛型的上下边界添加，必须与泛型的声明在一起 。
+
+   
+
+## 泛型数组                                                      
+
+在java中是“不能创建一个**确切**的泛型类型的数组”的。
+
+也就是说下面的这个例子是不可以的：`List<String>[] ls = new ArrayList<String>[10];` 
+
+而使用通配符创建泛型数组是可以的，如下面这个例子：`List<?>[] ls = new ArrayList<?>[10];` 
+
+这样也是可以的：`List<String>[] ls = new ArrayList[10];`
+
+ 
+
+
+
+
+
+# IO流
+
+
+
+## IO流概述
+
+**初识Java IO**
+
+流（Stream），是一个抽象的概念，是指一连串的数据（字符或字节），是以先进先出的方式发送信息的通道。
+
+特性：
+
+* 先进先出：最先写入输出流的数据最先被输入流读取到。
+* 顺序存取：可以一个接一个地往流中写入一串字节，读出时也将按写入顺序读取一串字节，不能随机访问中间的数据。（`RandomAccessFile`除外）
+* 只读或只写：每个流只能是输入流或输出流的一种，不能同时具备两个功能，输入流只能进行读操作，对输出流只能进行写操作。在一个数据传输通道中，如果既要写入数据，又要读取数据，则要分别提供两个流。
+
+ 
+
+**IO流分类**
+
+![img](java.assets/clip_image002-16538949381001.jpg)
+
+说明：红框对应的是IO流中的4个抽象基类。
+
+| 抽象基类     | 节点流（或文件流）                           | 缓冲流（处理流的一种）                                       |
+| ------------ | -------------------------------------------- | ------------------------------------------------------------ |
+| InputStream  | FileInputStream  (read(byte[] buffer))       | BufferedInputStream (read(byte[]  buffer))                   |
+| OutputStream | FileOutputStream (write(byte[] buffer,0,len) | BufferedOutputStream (write(byte[]  buffer,0,len) / flush()刷新 |
+| Reader       | FileReader (read(char[] cbuf))               | BufferedReader (read(char[] cbuf) /  readLine()按行读取)     |
+| Writer       | FileWriter (write(char[] cbuf,0,len)         | BufferedWriter (write(char[] cbuf,0,len)  / flush()刷新      |
+
+ 
+
+IO流分类：
+
+* 按数据流的方向：输入流、输出流
+* 按处理数据单位：字节流、字符流
+* 按功能：节点流、处理流
+
+![img](java.assets/clip_image004-16538949381002.png)
+
+**输入流与输出流**
+
+输入与输出是相对于应用程序而言的，比如文件读写，读取文件是输入流，写文件是输出流，这点很容易搞反。
+
+![img](java.assets/clip_image005.png)
+
+
+**字节流与字符流**
+
+字节流和字符流的用法几乎完成全一样，区别在于字节流和字符流所操作的数据单元不同，字节流操作的单元是数据单元是8位的字节(Byte)，字符流操作的是数据单元为16位的字符（char）。
+
+
+
+**为什么要有字符流？**
+
+Java中字符是采用`Unicode`标准，`Unicode` 编码中，一个英文为一个字节，一个中文为两个字节。
+
+![img](java.assets/clip_image006-16538949381003.png)
+
+ 
+
+那么问题来了，如果使用字节流处理中文，如果一次读写一个字符对应的字节数就不会有问题，一旦将一个字符对应的字节分裂开来，就会出现乱码了。为了更方便地处理中文这些字符，Java就推出了字符流。
+
+
+
+**字节流和字符流的其他区别：**
+
+* 字节流一般用来处理图像、视频、音频、PPT、Word等类型的文件。字符流一般用于处理纯文本类型的文件，如TXT文件等，但不能处理图像视频等非文本文件。用一句话说就是：字节流可以处理一切文件，而字符流只能处理纯文本文件。
+* 字节流本身没有缓冲区，缓冲字节流相对于字节流，效率提升非常高。而**字符流本身就带有缓冲区**，缓冲字符流相对于字符流效率提升就不是那么大了。详见文末效率对比。
+
+ 
+
+**节点流和处理流**
+
+**节点流**：直接操作数据读写的流类，比如`FileInputStream`
+
+**处理流**：对一个已存在的流的链接和封装，通过对数据进行处理为程序提供功能强大、灵活的读写功能，例如`BufferedInputStream`
+
+处理流和节点流应用了Java的装饰者设计模式。
+
+节点流和处理流，处理流是对节点流的封装，最终的数据处理还是由节点流完成的。
+
+![img](java.assets/clip_image007.png)
+
+
+ 在诸多处理流中，有一个非常重要，那就是**缓冲流**。
+
+需要注意的是，缓冲流效率一定高吗？不一定，某些情形下，缓冲流效率反而更低。
+
+(Java I/O 使用了装饰者模式来实现。以 `InputStream` 为例，`InputStream` 是抽象组件，`FileInputStream` 是 `InputStream` 的子类，属于具体组件，提供了字节流的输入操作。`FilterInputStream` 属于抽象装饰者，装饰者用于装饰组件，为组件提供额外的功能，例如 `BufferedInputStream` 为 `FileInputStream` 提供缓存的功能。)
+
+ 
+
+**输入、输出的标准化过程**
+
+> 输入过程
+
+① 创建`File`类的对象，指明读取的数据的来源。（要求此文件一定要存在）
+
+② 创建相应的输入流，将`File`类的对象作为参数，传入流的构造器中
+
+③ 具体的读入过程：
+
+  创建相应的`byte[]` 或 `char[]`。
+
+④ 关闭流资源
+
+说明：程序中出现的异常需要使用`try-catch-finally`处理。
+
+> 输出过程
+
+① 创建`File`类的对象，指明写出的数据的位置。（不要求此文件一定要存在）
+
+② 创建相应的输出流，将`File`类的对象作为参数，传入流的构造器中
+
+③ 具体的写出过程：
+
+  `write(char[]/byte[] buffer,0,len)`
+
+④ 关闭流资源
+
+说明：程序中出现的异常需要使用`try-catch-finally`处理。
+
+
+
+## File类
+
+**File类的理解**
+
+* File类的一个对象，代表一个文件或一个文件目录(俗称：文件夹)
+* File类声明在`java.io`包下
+* File类中涉及到关于文件或文件目录的创建、删除、重命名、修改时间、文件大小等方法，并未涉及到写入或读取文件内容的操作。如果需要读取或写入文件内容，必须使用IO流来完成。
+* 后续File类的对象常会作为参数传递到流的构造器中，指明读取或写入的"终点".
+
+ 
+
+**File的实例化**
+
+| 常用构造器                               | 作用                                        |
+| ---------------------------------------- | ------------------------------------------- |
+| File(String filePath)                    | 指明路径                                    |
+| File(String parentPath,String childPath) | 在parentPath路径下寻找childPath文件夹       |
+| File(File parentFile,String childPath)   | 在另一个File类型的实例下寻找childPath文件夹 |
+
+> 路径的分类
+
+* 相对路径：相较于某个路径下，指明的路径。
+* 绝对路径：包含盘符在内的文件或文件目录的路径
+
+> 说明：
+
+* IDEA中：
+  * 如果大家开发使用`JUnit`中的单元测试方法测试，相对路径即为当前`Module`下。
+  * 如果大家使用`main()`测试，相对路径即为当前的`Project`下。
+* Eclipse中：
+  * 不管使用单元测试方法还是使用`main()`测试，相对路径都是当前的`Project`下。
+
+ 
+
+> 路径分隔符
+
+* windows和DOS系统默认使用“\”来表示
+* UNIX和URL使用“/”来表示
+
+ 
+
+**常用方法**
+
+> 获取功能
+
+| 方法                            | 作用                                             |
+| :------------------------------ | :----------------------------------------------- |
+| public String getAbsolutePath() | 获取绝对路径                                     |
+| public String getPath()         | 获取路径                                         |
+| public String getName()         | 获取名称                                         |
+| public String getParent()       | 获取上层文件目录路径。若无，返回null             |
+| public long length()            | 获取文件长度（即：字节数）。不能获取目录的长度。 |
+| public long lastModified()      | 获取最后一次的修改时间，毫秒值                   |
+| public String[] list()          | 获取指定目录下的所有文件或者文件目录的名称数组   |
+| public File[] listFiles()       | 获取指定目录下的所有文件或者文件目录的File数组   |
+
+ 
+
+> 重命名功能
+
+| 方法                              | 作用                         |
+| --------------------------------- | ---------------------------- |
+| public boolean renameTo(Filedest) | 把文件重命名为指定的文件路径 |
+
+ 
+
+> 判断功能
+
+| 方法                         | 作用               |
+| ---------------------------- | ------------------ |
+| public boolean isDirectory() | 判断是否是文件目录 |
+| public boolean isFile()      | 判断是否是文件     |
+| public boolean exists()      | 判断是否存在       |
+| public boolean canRead()     | 判断是否可读       |
+| public boolean canWrite()    | 判断是否可写       |
+| public boolean isHidden()    | 判断是否隐藏       |
+
+ 
+
+> 创建功能
+
+| 方法            | 作用                                                         |
+| --------------- | ------------------------------------------------------------ |
+| createNewFile() | 创建文件。若文件存在，则不创建，返回false                    |
+| mkdir()         | 创建文件目录。如果此文件目录存在，就不创建了。如果此文件目录的上层目录不存在，也不创建。 |
+| mkdirs()        | 创建文件目录。如果上层文件目录不存在，一并创建注意事项：如果你创建文件或者文件目录没有写盘符路径，那么，默认在项目路径下。 |
+
+> 删除功能
+
+| 方法       | 作用                                                         |
+| ---------- | ------------------------------------------------------------ |
+| delete()： | 删除文件或者文件夹删除注意事项：Java中的删除不走回收站。要删除一个文件目录，请注意该文件目录内不能包含文件或者文件目录 |
+
+ 
+
+
+
+## 节点流
+
+### 字节流                                                        
+
+`InputStream`与`OutputStream`是两个抽象类，是字节流的基类，所有具体的字节流实现类都是分别继承了这两个类。
+
+以`InputStream`为例，它继承了`Object`，实现了`Closeable`
+
+`public abstract class InputStream extends Object implements Closeable`
+
+
+
+**字节流类**
+
+> InputStream类
+
+![img](java.assets/clip_image002-16538954315745.png)
+
+ 
+
+> OutputStream类
+
+![img](java.assets/clip_image004-16538954315746.png)
+
+**字节流方法**
+
+> InputStream主要方法：
+
+| 方法                                 | 作用                                                         |
+| ------------------------------------ | ------------------------------------------------------------ |
+| int read()                           | 从此输入流中读取一个数据字节                                 |
+| int read(byte[] b)                   | 从此输入流中读入到byte 数组中，并返回长度                    |
+| int read(byte[] b, int off, int len) | 从此输入流中将最多len 个字节的数据读入一个 byte 数组中，并返回长度 |
+| close()                              | 关闭此输入流并释放与该流关联的所有系统资源。                 |
+
+ 
+
+> OutputStream主要方法：
+
+| 方法                              | 作用                                                         |
+| --------------------------------- | ------------------------------------------------------------ |
+| write(byte[] b)                   | 将 b.length 个字节从指定 byte 数组写入此文件输出流中         |
+| write(byte[] b, int off, int len) | 将指定     byte 数组中从偏移量     off 开始的 len 个字节写入此文件输出流 |
+| write(int b)                      | 将指定字节写入此文件输出流                                   |
+| close()                           | 关闭此输入流并释放与该流关联的所有系统资源                   |
+
+
+
+ 
+
+### 字符流                                                                       
+
+与字节流类似，字符流也有两个抽象基类，分别是`Reader`和`Writer`。其他的字符流实现类都是继承了这两个类。
+
+**字符流类**
+
+`Reader`为例，它的主要实现子类如下图：
+
+![img](java.assets/clip_image006-16538954315747.png)
+
+
+
+**字符流方法**
+
+> Reader主要方法：
+
+| 方法                                | 作用                           |
+| ----------------------------------- | ------------------------------ |
+| read()                              | 读取单个字符                   |
+| read(char[] cbuf)                   | 将字符读入数组                 |
+| read(char[] cbuf, int off, int len) | 将字符读入数组的某一部分       |
+| read(CharBuffer target)             | 试图将字符读入指定的字符缓冲区 |
+| flush()                             | 刷新该流的缓冲                 |
+| close()                             | 关闭此流，但要先刷新它         |
+
+
+
+> Writer主要方法：
+
+| 方法                                 | 作用                   |
+| ------------------------------------ | ---------------------- |
+| write(char[] cbuf)                   | 写入字符数组           |
+| write(char[] cbuf, int off, int len) | 写入字符数组的某一部分 |
+| write(int c)                         | 写入单个字符           |
+| write(String str)                    | 写入字符串             |
+| write(String str, int off, int len)  | 写入字符串的某一部分   |
+| flush()                              | 刷新该流的缓冲         |
+| close()                              | 关闭此流，但要先刷新它 |
+
+另外，字符缓冲流还有两个独特的方法：
+
+- `BufferedWriter.newLine()` ：写入一个行分隔符。这个方法会自动适配所在系统的行分隔符。
+- `BufferedReader.readLine()` ：读取一个文本行。
+
+
+
+说明：
+
+* 输出操作，对应的File可以不存在的。并不会报异常
+* File对应的硬盘中的文件如果不存在，在输出的过程中，会自动创建此文件。
+* File对应的硬盘中的文件如果存在：
+  * 如果流使用的构造器是：`FileWriter(file,false) / FileWriter(file)`:对原文件的覆盖
+  * 如果流使用的构造器是：`FileWriter(file,true)`:不会对原文件覆盖，而是在原文件基础上追加内容
+
+
+
+**使用：**
+
+> FileInputStream / FileOutputStream的使用：
+
+````java
+* 1. 对于文本文件(.txt,.java,.c,.cpp)，使用字符流处理
+* 2. 对于非文本文件(.jpg,.mp3,.mp4,.avi,.doc,.ppt,...)，使用字节流处理
+/*
+实现对图片的复制操作
+ */
+@Test
+public void testFileInputOutputStream()  {
+    FileInputStream fis = null;
+    FileOutputStream fos = null;
+    try {
+        //1.造文件
+        File srcFile = new File("爱情与友情.jpg");
+        File destFile = new File("爱情与友情2.jpg");
+        //2.造流
+        fis = new FileInputStream(srcFile);
+        fos = new FileOutputStream(destFile);
+        //3.复制的过程
+        byte[] buffer = new byte[5];
+        int len;
+        while((len = fis.read(buffer)) != -1){
+            fos.write(buffer,0,len);
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    } finally {
+        if(fos != null){
+            //4.关闭流
+            try {
+                fos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        if(fis != null){
+            try {
+                fis.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+````
+
+
+
+> FileReader/FileWriter的使用：
+
+````java
+@Test
+public void testFileReaderFileWriter() {
+    FileReader fr = null;
+    FileWriter fw = null;
+    try {
+        //1.创建File类的对象，指明读入和写出的文件
+        File srcFile = new File("hello.txt");
+        File destFile = new File("hello2.txt");
+
+        //不能使用字符流来处理图片等字节数据
+        //File srcFile = new File("爱情与友情.jpg");
+        //File destFile = new File("爱情与友情1.jpg");
+
+        //2.创建输入流和输出流的对象
+         fr = new FileReader(srcFile);
+        fw = new FileWriter(destFile);
+        //3.数据的读入和写出操作
+        char[] cbuf = new char[5];
+        int len;//记录每次读入到cbuf数组中的字符的个数
+        while((len = fr.read(cbuf)) != -1){
+            //每次写出len个字符
+            fw.write(cbuf,0,len);
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    } finally {
+        //4.关闭流资源
+        //方式一：
+//            try {
+//                if(fw != null)
+//                    fw.close();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }finally{
+//                try {
+//                    if(fr != null)
+//                        fr.close();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+        //方式二：
+        try {
+            if(fw != null)
+                fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            if(fr != null)
+                fr.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+````
+
+
+
+## 缓存流
+
+**缓冲流涉及到的类**
+
+`BufferedInputStream`
+
+`BufferedOutputStream`
+
+`BufferedReader`
+
+`BufferedWriter`
+
+在`BufferedWriter`中自带缓冲
+
+`private char[] writeBuffer;`
+
+`private static final int WRITE_BUFFER_SIZE = 1024;`
+
+ 
+
+**作用：**提高读写速度，内部提供了一个缓冲区。默认情况下是**8kb**
+
+`private static int DEFAULT_BUFFER_SIZE = 8192;`
+
+**要求：**先关闭外层的流，再关闭内层的流
+
+
+
+**使用**
+
+> 使用BufferedInputStream和BufferedOutputStream:处理非文本文件
+
+````java
+//实现文件复制的方法
+public void copyFileWithBuffered(String srcPath,String destPath){
+    BufferedInputStream bis = null;
+    BufferedOutputStream bos = null;
+    try {
+        //1.造文件
+        File srcFile = new File(srcPath);
+        File destFile = new File(destPath);
+        //2.造流
+        //2.1 造节点流
+        FileInputStream fis = new FileInputStream((srcFile));
+        FileOutputStream fos = new FileOutputStream(destFile);
+        //2.2 造缓冲流
+        bis = new BufferedInputStream(fis);
+        bos = new BufferedOutputStream(fos);
+        //3.复制的细节：读取、写入
+        byte[] buffer = new byte[1024];
+        int len;
+        while((len = bis.read(buffer)) != -1){
+            bos.write(buffer,0,len);
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    } finally {
+        //4.资源关闭
+        //要求：先关闭外层的流，再关闭内层的流
+        if(bos != null){
+            try {
+                bos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        if(bis != null){
+            try {
+                bis.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        //说明：关闭外层流的同时，内层流也会自动的进行关闭。关于内层流的关闭，我们可以省略.
+//        fos.close();
+//        fis.close();
+    }
+}
+````
+
+> 使用BufferedReader和BufferedWriter：处理文本文件
+
+````java
+@Test
+public void testBufferedReaderBufferedWriter(){
+    BufferedReader br = null;
+    BufferedWriter bw = null;
+    try {
+        //创建文件和相应的流
+        br = new BufferedReader(new FileReader(new File("dbcp.txt")));
+        bw = new BufferedWriter(new FileWriter(new File("dbcp1.txt")));
+        //读写操作
+        //方式一：使用char[]数组
+//            char[] cbuf = new char[1024];
+//            int len;
+//            while((len = br.read(cbuf)) != -1){
+//                bw.write(cbuf,0,len);
+//    //            bw.flush();
+//            }
+        //方式二：使用String
+        String data;
+        while((data = br.readLine()) != null){//获取一行字符到data
+            //方法一：
+//                bw.write(data + "\n");//data中不包含换行符
+            //方法二：
+            bw.write(data);//data中不包含换行符
+            bw.newLine();//提供换行的操作
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    } finally {
+        //关闭资源
+        if(bw != null){
+
+            try {
+                bw.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        if(br != null){
+            try {
+                br.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+````
+
+
+
+## 转换流
+
+不管是磁盘还是网络传输，最小的存储单元都是**字节**，而不是字符。但是在程序中操作的通常是字符形式的数据，因此需要提供对字符进行操作的方法。
+
+| 类                                                    | 作用                             |
+| ----------------------------------------------------- | -------------------------------- |
+| InputStreamReader                                     | 实现从字节流解码成字符流         |
+| InputStreamReader(InputStream in, String charsetName) | 从字节流解码成字符流 ,并指定类型 |
+| OutputStreamWriter                                    | 实现字符流编码成为字节流         |
+
+转换流涉及到的类：属于字符流
+
+![计算机生成了可选文字: 字符流 InputStreamReader u忏8．t OutputStreamWriter (gbk) gbk.txt](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAApoAAAF1CAIAAADHlN1iAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAGMDSURBVHhe7Z0JfFTV2f8zk0ky2UMWCBAg7ERAUMGlYgsIVevSDVup2mKFVt+/7QutvmoVl6JFqxZafVsVqrRqtepbrWhFRXEBQcENkB0JhCVA9nWSzPL/3fucuVxmkhCSmUlm7u/7ebic7Z67nHue3z3n3rmx+Xy+OEIIIYREM3b1PyGEEEKiFso5IYQQEvVQzgkhhJCoh3JOCCGERD2Uc0IIISTqoZwTQgghUQ/lnBBCCIl6KOeEEEJI1EM5J4QQQqIeyjkhhBAS9VDOCSGEkKiHck4IIYREPZRzQgghJOqhnBNCCCFRD/9AKiHdDPtgSLDZbCpEiCWhnBPSbUjvw9JA0knHgYobSFTSCbEalHNCug30Pq/X6/F43G43lgizP54UouJ2uz0+Pt7hcGCJsMojxGJQzgnpHkTLIeQul2vxurkqlXQKW5xt7jmLnU4nRJ2KTqwJr3tCug3IeXNzc11dHcSd1kXDacTJxClVJ5cQi0E5J6QbwNAceDyepqammpoaLwbqtK4ZTiNOJk4pTqw6y4RYCco5Id2DKHpLS0t9fb0xxKR12nAacTLlrKpTTIiVoJwT0m3Ie3DNzc2+OC+ti4bTKK8TqpNLiMWgnBPSnYiiy5iSdAVqObE4lHNCuhlIkXnSmNY5008jIdaFck5I9xMwb0zrhKlTSYhVoZwT0v34MLikdc3UqSTEqlDOCel+fD4vrYumTiUhVoVyTkj3EzDQpHXC1KkkxKpQzgnpfgIeA9M6YepUEmJVKOeE9ATU69m0LhghloZyTkj3E/C90khaUe+J933rZRgCAVknNFnxgpFXBaR3i6lTSYhV4V9UI6QbQL/zer0ul6u8vLy4uPjV2gdURqSYNeH2U/qcJeEthz9atuGei0b9ZMrQGZISwP+8dqkKmTDKy+qS2F3Y4myXZNxUWFiYk5PjdDr5R9WIBaGcE9INBMj58tr7VUZkmTXhjtF9zvpS0+Pfju5z9qwJ85F402sXSy544OLXsJSU+dOeykjK1pNPwLINC748vE5FIgLk/NKMmynnxMrwoiek+4G6dwv+R84SUXf2ekRhTpHwO7uev/HVb7Vvm0vXyiqRRHaPEMtCOSekJwA16hYzCAgHFDCH4+6Y/vSDl/ynLfvWqFmm1SNphFgaTrYT0g2g35kn2/9dc6/KiBQ/nXjX6D7nqIjOl4fXBqQY/PrVC7C8c/qzGUnZ7+z652vbnkD0oUveMMJGLgJSOMLY4mzfzryNk+3EylDOCekGAuT85ZrueZXsrunPQYMh5H9df6dKahsp/Pau5yDhvz7vz/0zhyHxV69+E8trJ94ttwJPbLhrc+mHWunIAjn/TubtlHNiZSjnhHQDAXL+UvVvVUYEuaRo9vnDrpCwaPCY/K9JNADk/nX9HXdPfz7Dqcn5q1uXIlGiB6p3rdjx92snavuPMt2i5QBy/t2sOyjnxMrwoiek+zF/rDRiNrFgutq8LuRZyb3nLj8fBlWWRInClq6fj/LyfLq4cousfsdbl9e4yjFGFy1fuevZTaVrJKtbLK65ueK++1oOH9b3nRDLwdE5IWHB53ZXrFhRu2GDih8Pep3X52tyu6saGg653e9P/1JlRIpLi+ZMGz4TepzhzMGQemDWyI9L3ly+dQmyxuafO/vMBQj89ytT9bKKP172DpYo3NYg3mDpx/Mh7SoSETA6/94bo3x//nN8ZuaAm28eMG+e3elUeYRYA8o5IWGh/NVXN1/aytdXBBnqNsfFVcfFOf77v9+bulFlRIo5Z94DVRZtxnLJx7cbKh6MyLPIeYDG3/SNxwoyh0sNxi3C/DcvV9mRIsHlvfTaT+Lq6iSaPGzY4IUL82a0/lUcQmISTrYT0p0kDx2a8+1v4646wqzd+5/91TvlXl67t/D5Nh5a/ct/T4Et+eh2PTlOojBkXVI0GymQalndQEpKDWcO0F6L+6jkDcmKJC1JdtsDDzhPP132p3HXri2XX/7FlCl1n38uKYTEPJRzQsJC9oUXjlm+fNCddxqWNXmyyjMx6I47bPHxarQeQdt0aM3Ww+vVTgBzroEpsaj3RCTUNFWYEzUz8MXdvmLGL1+esvzLJccViJTZRo/u9/LLQ/7616SCAtmjqnff/XTixB1z5jSXlkoKITEM5ZyQsGBzOHIuuaTwrrtg+bNmNW7fDnVReX6ypkwRjVdjzMjyypePa++QBW1eJZqSx+Z/rSBzOFJwB6CS/MhvzUtrilW8+9B3OS7niismbN+Omyd5du5zuw8tXbq+qGjfffd5XS4pQ0hMwmfnhIQRSMi+e+8tefDBAC3Rep3DccqHH7r69CkuLn6+XL1MHmF+fva9Y/uei5H62r3/+dnZ7X3K5oaXJj/y3XexlOgtU5YUZGkCD/ZX7bxv1RwJdxe2ONsPcn9r/qFa0/79e2699fDTT6sSfKBOYh3KOSHhAloCRYGuSBTj9T5XXVWxYkVzaSl6Xf7Pfz7goYfkd+fPl2l/+yTy/Pyc34mcP7b2NyopOtHkPG9B8O/Oa9at2z1vHpYSBVmTJw9dtCht/HgVJyRWoJwTEnpqN2yAilSvXq3icXGZkyZBRZC+8/rrEY3PypqwbZsnLU3k/J9H1dtnpHNAzn/Y+562PiMTfF+VP2tW4YIFifn5kkJIDMBn54SEEoy8d8yZ8+nEiYaWJxUUjHrqqfEffJA8bFjxfDUKH/ib3yTk5kqYhJs+V1115s6dwQ/USx58EGEpQ0i0QzknJDRAGPbddx9EAlIhKRCPQbffDiGBnCBacv/9LWVlCEDXC+bO1YsotFe5SNdQp7IN0BaFd92Ftuh9hfqurbuq6qubbkJ7lb/6qqQQEtVQzgkJAZAECMOeW2+FSEgKZGPi1q2FCxbIiNBTV7d/8WLJGrpokc3hkLAAMaJ10TpCUkFB0bPPjv/gg/QJEySlcdeuzZdeunH69PrNmyWFkCiFck5Il2jYtm3TRRdBEiAMkpI2fvy4VasgG87CQkkBkHOR8OwLL8y55BJJNFADTNIF1KnsAJmTJp2+fv3IJ580np1Xrlz5yWmn7bz+epk+ISQaoZwT0kkwEN89b96GsWMrVqyQlITc3OF/+QukIviLMVCOMcuXY7B+ygsvqKTjgBrRumgnR/6sWdoD9dtvNx6oH3z00Y+HD+cDdRKl8M12Qk4aeZeqeP58YzCHkXe/666DWjuysiSlfdDvzH8g9ZlDt6oM0ilscbYr+y3s3B9IdRUX77n11iPPPafi+ssNQxctCp5EIaQnw9E5ISeHfDrUPDHba9q0CZs2DXv44Q5qeSsYT4BpnbbO4iwsDMcD9UmTJq1atUpFWmP37t02my2gDKJIRJaK6yxdunTevHkq4kdWDyhJrAzlnJCOgmHc1pkzzX/YA8O4McuXn/rWWymjRklK59Af/pIuoU5lZwn5A/VZs2ZNnTq1HUV/5JFHzj333ClTpqi4zvz58+fOnTt06FAV10GZxYsX4/5AxXVQBiWHDRum4sTyUM4JOTFel6t4/vz1RUXGlCwG4oMXLsSgPCRTsvLsl9YVCwmdfqAOrcVY2cycOdqHb6HoKu5HBB6jaij0mjVrVKoORuFIQbqK62BcDuXG/QqyUECl6qAkqlIRHRTQ9oZYEso5ISfg8NNPw6Hvvece47vrcPoTt24deMst4vRDQIA00TphISI+La1wwQLcqBlfd+/gL9TfeecdmSdoBwzHpbAMzZGCEfaSJUskd9myZYgigCyjtkWLFskqCM+ePVsSd+k/ozBWNEABKUwsCF+FI6RNgr/VmnH22UMXLcJSxTsL+p35Vbi/l/yPyiCdwhZn+/HA33fuVbh2qHr3XVwA5j+a3mvaNFwAqWPGqLgfjM4XLFgQMHMejBRDAKN2w/diVA153rdvX3AixuUYxw8bNszsqCUFWm6It1FYosSacHROSCsEf6s1MT9/1FNPnbZ2bde1PAD4YtMYk9ZJ009jiMmaPPn09etHLFlywgfqq1evhpbPmzcPu9Eq8i6bFJs/f74MrwVINZT4lVdewYhcJfkTJYwhO2qQWXosoeUoaR6II8qH6ISjc9IZ4FPgkuCbVLw1MBCZOHGiMVUowCuZRxUgePAhYPVZs2ZFfvLQ53aXPPhgyf33G993szudA268ccDNN8enpUlK18Hxyui8oqJi7969Txb/WmWQToHR+TWDHxo0aFB2dnYIR+cGuBhwSexfvNh44OLIyhp4220FENrjP/AXDK55LFsdPaMfQcUD+ggI7hRLly5dtmwZepzU1hb051aGo3PSGQYOHIglFFeiwcBPrVmz5oYbblBxHXlPJ1ihZfABF6biOgsWLJgzZ46MSCJG8Lda82bMmLBpU+GCBSHUcgMcNYTH4XDAC5MugtOIk9m+2nUa483Hk3qgLm+uIYDdC9ZyXPBTp05FAGUCkKG2hGVYj14jd89ysK2CfsRX4awMR+fkxEBTxe+ckHPPPVecDpQeci6JAnzN+vXrAxKBXIHis1otYGBUHg4atm3bPW+e8X03kDpmzNBFi3pNm6biIQVHjdF5c3NzTU1NaWlpSUkJlggjBemqEGkXSB30OzExMSMjIz8/f8CAAVgijJSQj87NBD9QX1VUdPfWrSpyIuQylvF3W5d08OjcPB+GA3/nnXemTJkiT+IRMFKkMLEmlHNyYsyupB2MYiL/8naPsSLGDRht43pD4MsvvwyeYDQj4/4TbjEkYJi19+67DzzyiPFLJAzFMBzvd911J5xH7TQ4D8DtdtfX11dUVBw9erSysrKhoaGlpYVy3kFEzhMSElJSUnr16pWXl5ednZ2amophOrJUofCAlitdtqx4/vzm0lJJwaXSd/ZsXDbG370NlmQD6SDQcoTlIsft7GWXXWbocfC6cr8rvQZHJ1P3lHNihnJOTszJyrnZucANjR49evbs2a0mImy4JK0KnQAtNxcOLXDKwd9qhVMevHBh57/v1mHQ9TweD4bjUPS6ujosEUYKu2QHwRUF4uPjMRyHiqelpWGJMFJUiTAjD9TNP0k3P1BvR87lmkfA6FZS2Oggwesa3Uey2pJzI6BWI1aCck46ivgRFQnCeNOn1QfkUPpWX/kBMmqfO3euMfIwwgbhcFId/w1SmEDXA9BvjMgh5FgaWi5L0g64JGQJoN8Yo0PIsURYsiJG465duJDMT9Dlk+9VRUVtybkQcJds7iMBco4s4zds6C/yThzCrcp5q+/cEStAOSddIkCMA4BzafUCCxiRGwOORx55RD501SqhUvRW/+QGRuTGW04RAycHeP20eq5I++AaA3Y/CKuMyFK5ciVE3fyN911nnjn744/badMAOTcTIOfz5s1bv349SoquG4Jt9CMJDBw4sP0bCBLjoO0J6RxyCQV/mko499xzIfNSph1U6RMBLUeFKtJZPI2Ne26//X2n8924OLEP0tKKFyxAuioRcZSSe70YmrvJyYPzps6gfj/UjXhbWg785S8PZ2aqKzsu7ia7fecNN7RUVqoSx9POJQ3Bxuoqonc09DJgTgRYHZUgYHQ0BCSLWBDKOTkx4ik6iPgXec0HXklqCMBwQwZGYfgjcUlwXhIwUrpI6VNPrS0oMIQctvWqq1wlJSq7u1GKRE4edQZ7BhDv3Tfe+J7DYVxmq7Oy9j/8MMRelfATLOdI0fuQRkiueWIp+LtzcmLUxXI8cDdQXBUxIQ/w1Jo6q1atkvdy2wIFsDQe+I0ePVoCoaJ2w4bPzztv29VXN+3fLynpEyactnbtqKeeSiookJRuR58zJp1BncGegSMra8gDD0zcutX42zzuqqpdv/jFhrFjzT+DBOgpATPtSFG9yPSpdkI6COWchJilS5dC6c1+Ck5q/fr17Sj6K6+8glUkjJISCAY1tH9bEEyr32od+eSTp69fH/JvtRJiYPzlXOPNyoZt2zZddBEMAUkhJLRQzkmImT17dvDAAurezjtuyLrssssQ2L1795o1ayD/kh5MxwfuPrd73333rS8qOuT/Tpbd6Rx4yy0YNuXPmiUphISVXtOmnfHZZ8P/8hfjx+gYoGOYjsG68dlBQkIF5Zx0knaG0a3ia+MZvMy0y1djh+l/JyrgZzaGhGOLHfwFTvC3WnMuuWTCpk2R+UE5IQY2h6PfddeduXNn/xtukK8S4UbzwCOPfDR4sPnLRYR0Hco5OTkmTZokDywxjA7Jp11eeeUVeW8Odb5z/N+JEiDhGL7LFtsZuAsypbn50ksb/X+xKmXUqLGvvz5m+fJk/skp0k3gJnLYww/jhjL7wgslpa0H6oR0Gv7unIQLCLDxA1kBKSrU9mC908A/Bn+rddCddxqjIkJ6AtDv3fPmmZ+gQ+OHLlqE+04VJ6RTUM5J1AP9bvVbreYPaBPSc8AVe/DRR3HFGg+DZE4eVywfBpFOQzkn0U3wt1qzJk/GWCdt/HgVJ6RHAi2HokPXzfNJ4f7bPySGoZyTaCX4W63OwsLBCxf2vuIKFSekxxP8l3lTRo3C/ajxlJ2QDkI5J9GH1+Xad++9JQ8+iICk2J3OATffPPCWWxCQFEKiCD5QJ12Hck6ijMNPP41BufF9N4Dh+JAHHug533cjpBP49B+w7b37bj5QJ52Dck6ihtoNGzCCMb7vBtInTMAIJlP/++iExAAtZWXF8+cfWrqUD9TJyUI5J1FAc2mp+DgV17/VCh+XP2sWfRyJPeo3b8ada+XKlSrOB+qkA1DOSY8GY5SSBx8suf9+8wxkwdy5A2+7jTOQJLYpf/VViLrxQSTAB+qkHSjnpOdCd0YsDm5n9y9evO/ee/lAnZwQyjnpiQT/eid52LBhDz/MyUZiQYIfqCfk5kLR+86ezYdNxIByTnoWGIUEf6t14G23FcydS89FrEzwA/XUMWOGLlrUa9o0FSfWhnJOegrQ7+BvtebPmoVRSGJ+vqQQYnGCn0DlXHIJRJ1/YYhQzkmPIPhbrZmTJsFJpU+YoOKEEB2+H0pahXJOupngb7UmFRQMXriwz1VXqTghJAj59WbpsmV8oE4EyjnpNlr/VuuNN2KQwW+1EtIR6j7/fPe8eVXvvqvifKBuYSjnpHto9VutGJQ7CwtVnBDSMY6++CJ6Ex+oWxzKOYk0wd9qTRs/Hq4na/JkFSeEnCRel2v/4sV8oG5lKOckcgR/q5VP+wgJIXygbmUo5yQStPouLj9uRUg44AN1a0I5J2En+JeycCvDHn6Y32olJHwcffHFr266yVVcrOJ8oB7rUM5JGGn1W61wKHArKk4ICRtel0tmxTx1dZLCB+oxDOWchIVWv9U64Oab4Ur4IzRCIklzaemeW28tXbZMxflAPUahnJMQA/0O+FYryJ81a/DChfxWKyHdRfAvSvhAPcagnJNQEvyt1oyzz4bLwFLFCSHdx5HnnsNInQ/UYxLKOQkNwd9qxVh8yAMP8FuthPQo+EA9VqGck67S1rdaB9x8c3xamqQQQnoUfKAee1DOSZcI/lZr3owZgxcu5NwdIT2fTjxQbykrw206X2jtgdjV/4ScJHAEn5933rarrza0HI7g1LfeOuWFF6jlhEQF6RMmjP/gg1FPPZVUUCAp9Zs3b5w+fcvll5s/FGFwaOnSD/PyPp040fyiK+khUM7JSdNcWrpjzhx0aeOm3pGVNezhh8/47DO+JUtI1NHnqqvO3Llz0J13GmPuoy++uGHs2D233mp8xlGofOMNLCH5yJIU0nPgZDs5CVr9Vmvf2bMHL1zIl2gIiXaa9u+HTh9++mkV119oLVywIH/WLHmgXvbyy19+97sIIHr6+vVp48frpUiPgHJOOkqr32odumhR6pgxKk4IiX5q1q1DT8dSxY//m4cbp0+vXLkSAUTHrVql55MeAeWcnJhWv9WKEXnejBkqTgiJLdp6y9Xrcn1y2mnytcdTXniBTqDnQDkn7RH8rdb4tLQBN9884MYb+WorIbGN9hvU++4ruf9+829QC+bOdRUXyxcmcFs/YdMmuoIeAuWctE6r32rtc9VVuD03XoIlhMQ8wQ/UcU9vfIIGDmHgLbdImHQvlHPSCsHfak2fMGHYww/zW62EWJPgB+qCIytr4tat/HMMPQFLyDlvWTqOq7i4+De/CfhWa+Hvfpc/a5aKWx6bzaZCxBpY3IG4q6qMX7Ic/tvfzHPvQt/Zs4c//riKkHYJq/eIcTmXo8PSQNJJMOiiB+6778Af/mB+Ttbvl7/sd+ON/BEaQD80kKikkxhGPIa4DkHSrUPJggUHHnggQL8DsDkcp65dmzpunIqTIMRvCBKV9NAS+3Lu9Xo9Ho/b7cYSYQt2yI7gLi/f8fWvtxw8qOJxcRkXXNDvd79LGjJExa0Nup/dbo+Pj3c4HFgiHKYOSXoUwd7Dag7ky5Ej3UeOqEjbpE2aNHT5chUhxxMx7xHLco5DQw9EV3S5XLYl16pU0gbFz3xc+XkJAs7e6f0vG5cxso+kEzO+OX91Op3ollT0mMfwHnGPw3tYdBhQtvaro6t3eVs8Kt42g344IW1onoqQ1vDNXuJMTgmf94hxOZfeWFNTk/7sL1UqaYOW6sbtD7/b+xvD884darNTqFqnduafMjIyRNEp57GN4T3S/gHvwVk90lVqr1ickZkVPu8Rs3KO4wLNzc11dXVHjx7t/+pvVAZpG5/XRyFvnwOX/C4vLy8tLS0xMREdkooeq5i9R7/l8B6Uc9JVDlx8T17vPuHzHrEs516vFx2yqqrqwIEDI99ZoDII6QLbp87v379/VlYWOiTn22MYs/cY8Ta8B+WcdJXtU27rXzAgfN4jxv+iGvqkx+NBt0SQRuu64VqSt6LUFUZiF3oPWmgt3N4j9v9AqvTJOJ+XRuu6UcstBb0HLYQWbu9hib93rj1QoNFCYbH6cIq0Bb0HLVQWbu9hCTnXCLpRotE6Y8SCBFwDNFrnLMxYRc5tcV4areumridiJQKuARqtc6aup7AR42+2u1yu8vLy4uLi01f/VmWEgsQpsxPPucJXV1H/px+opDDgGPG1pAvnBmwi7TcrVSguzvXiHe4dH6pIXJzzcu0YXS/cIdFIknLto/Y+w1TERPPa55pXLVWRLiNb8R7e1fDX61RSxPl00h2FhYU5OTlOp5NvtscwZu9x2gfoWaH0k+ZeDOp+N02FOkCoujmcmGPIBHNXgsNxzjjmJwP2Cr3P/dWGEHbnDhLc6w1vY3aAckoDXCIQX42AcTjd6Cc/Pff2wsFDwuc9ONneOZO+7QtKD5klTr5W71rHbSLAC6CAY/g5kpXy0784hn9N8zmm8hG01p0dOhIOJKhwp03fCpaB6RE0YkECroEuGLpDQC8GSNE6e1DhYAtVN8fmNJEzdSV4ErOWA20//bmpv/ynpqDd0fW81donZm2pvYwULazjOPVCSdGcjI57+2qjmN/8rkmPdrOfDDOWkXPTrwVCYYZ6BaSH0AI34bxc/XS+7t7JMF9dOcKJ5/3YX0DAWqp8ZE3DW7pT9k0MUSRiBHB8ya6YQUB6JI1YkIBroJPmGHFO4tdmatWZeorqJiO+hlxz4TZM6Ho3D3QvuieJg1eRvZI83edIAaEb3Iu3rBgbtqXlSBRnSQ9r2DPyJNGeOxBR3SUeW1GsedVj/iOSFKE7/WT4sMxk+/vzVUYoSJz6s8SvXYmrp37x9xwjJjl/cC8SXc/fJgHg3rHG9bz2HbqU2Uvt+cOlxyKApayFgHlF947V5sLemiOOEeciRZDanD/4HRKN1c37kDr3X8YlDlBh0rd+hRRUJRuVGmQVKWPsoWCuAWs1LJ2NgGzRvD+SJenmksaeS1QI2GGQdvt7EjAnAqNCoe6eb6iQacdQOZbmrRgnEJg3LVtBihx784fPNL8Tsr/e+OnXF3Cy3QocN9n+HrxHCPykdJOAix+Yu09bvQaXccKpF7bazdGX4/uNMrqJdASjsxu9SboSCtszekvXEKSDBHRho+8janRbARW22sXMvTig05lrMDyPbNG8P5Il6eaSxhkwtoLzI8crR2dUhbDkIoACCLRsXGGch2A/Ccfbqlc0fItxjIaX7gqfnnc3J9tDgM3nCampvo0wWlzChrQAXFJJU+bouVpJXBByTQBcT9pVZVoRAanW7zJ8tuN9B6LI9R3do4XTcnBxo/KWt/9Sv2BSw6Jv6ysGoGo2Nop1k39wr3HVAuxhyuwlst2AqxxrobCW5d95o5cijMLmqJQ8tufq/GgGF6MloeP5PBh8mLu0HIUUQw1GhYKcH5h5x7AtmB7UtoIzYD7hsmOylpEiAe/+zZIeEpM6iaUIuAY6b2nZqM17cGtAumf3R0jHFatF/X3fyPVHj/MJOqqbo/uYu4m/X7dRj1b/cVWhJHJ9NYcRxuromOitTf+8Ge6lcck1xooGRoq5i2Gj5l4MV6N8iM9j7vgAxcy+EVGjHoTRi81RKSnyHJ87CGF9RB7n/uJ1ScSuaon6KvBycvZwNuSE6M7n2HmQgAlvW17ROLfGzni2K3/VFZOqwod1JtvlIg6hCcfC3tId9QvOhUk0fuiZpmK4ubsFWS1rnkIYl1r8yElBlZgK//NmKYnLEWshimDzO3/BJqRAwrlXpc5fnTznCVmxYdFlkuXZsRrlPdvfl2JAdgnrxo/AFtVuwBC254/AbsCwP7IhmNRjy+h93P7oa0n/QeHjoqaSqBB7ZZj0qOb3tZ1M/Po1CMvuGVtx/vA+ZNn7FSEccH6QLjuGKBKRhQII+/E5xl2E/yQLpvXbtJzEqT83dsY4Iv1saGcpREYsSMA10EmT69mr3Zcfl+45sFk2o0cNjALCibs50hFGNwxY8fhoHERaSqI2rAXngFw4GenRwPmDhei/0j1hKCNZ0t2MqowuhqC+UbUb0lV1h+PTu+Qx3yj12PMKjUqAZEkYp8gclZKylrga2RDOGO6KEEgYf7HuSzX0A1HIruJITRtq5QS25RWNtYw911O6buGFr8J1ylTDyIshqpGa3/ur5MoVo6GV1ECKZ9t7iDa//WdfXRlSEsZdbHpHw/+CiYEWNm9CWePjP9GlXYErL2Xev1WucKwqbXXP9g8kKp0KOH9wX+r8NTCJxvc/BTtW/9tzGv5wCcogXXqLhraiVgl2WHbee2BLcFTD2PrxaD3ht+dIYakWnUe2LlGtf/q82LQUQ3rCuVfrq2p1aqdI3xxOGqIoYJxY1COeEeWlQonacwuNnXF/8ZoWDrkRCxJwDXTaFMEvlBmuwAibyij0FBVsvZu7nrtJ8s33taqkv7B/3aBcvSe2rPm7Std7WfKcJ1Wuqs3YrobRxaSrAumMcDISRQ3ovOjdcFzieaSfqn3Q0Tq1Xon07oColPTsXoegLS1b/Ji4IO/RrxC29xsFJyaJ+orafhpOQ7OA86DCWrXteEXj/BhePTQWZijnnbNWLxF/rvnS18O+6sNGrnELrOf6A2LmFQM24TfPtnfr7z4L5i3djkxbWm7i1Ou0LLWuv7yBWtGfezz23MHITb1jLSzhXO1dGD/H+pu2w6Y6A6L+klr92CXsmOFTtKlFKXms8HFIgeSfLZMdUKmCeRV/Jdpp1OPH5ZqwZWr3Byqi99jQG7EiQZdBp0yTHH+nM5sIkgaiBkYBFT3W0fTosSxN2CTq34ReOMiBGBwLB/aR5pX/K+5F7SqGqhi/GuWNPtVqNAgcl3YHr/fu+JHnqVRBW0vbw2O+sbWoBpxeySb8D18XP/QsBLwHtiIRuyqJ2vlEKfFLBlKJZgFnzBz1h49HNZAga4XKwoxlnp0f/3P+LppxTehRI+zz5yqMMGRGsjST+1OtcPsrmjehWcqvX0u98yPnFQ9I1PXYVarr6qvrARBQlRFVtTXcPdFsTc/9ChVKVtNzNyJF7hKAea2ASoKjEgAIe7e/27J6mRZOy03++d/9hTWQbt5640MXOUaeZ88fiSzP9veRIisCrZ6ju42wMqi1SlGbln02DOfE2JZx7KE1VTexEgHXQKdNbuXt/YsC0uOHnY10dD2EA3qZniK02c3teYMlqllarp6GStqvJzAXvgWWeP71EkXf9Bdoc7umqFYb3JG5M8Ja3n4kcbJ6QVVSTsZlCVoULsV/e6H5CngGKSPOSm4UPLvW6msFH/VxKRKWao0sY4fF4BWDnXNITOoMH9YZneu3q6EyVaderb/htYAqoGJGGFdh/MivI5pw/v+T/ub+7N/GivaCMchCAblY1Yo6WmFVp89Xq/kCqQdmVKXh35Ato4/k+uuWLF/LykcklnTFQ4iikpQ718MQ0FZBDzm0HeN+ZAXvgwqfIGoOa5tDhUgwDlyijnGXSIHkX72OrWNntGPXaXr2V0iPH3qORLVV9qtbchyplmU6P9hVX63WvRO+MUcqlMORkloZQc8KsRELEnANdNZa3tVe9sYljevfSHT+7Gm5sCFIWoqO0fG1DmugpWj/B3RzwycYhY3+DiQ30F3o2FJzZEWYdCijh5q2KwW0kD1viOTq6Tp6VPdmx7oqltIfEdY2od+sI6x5myCXpSF1thsV7ydoRyeJarpOQ3MXSBTwv6rEqOW4auUEtuMV9SoEfz0hsTDDyfbOmb9hjgujwfRcdSnoUf9lgSsm5a4NCZNmIew9tM2zdRVMadKkWcg6vv8cqxZZzp8/jZSWdx8zUoyqUEPLW38yNmTvO1LLQqdS+HfJ5/Vs194v1S5Z/7ZkN3w1pQjLijBtJQ3zzrd2XAHRgCyf1/Wo9vtakHjxrYjKztvSc2UrCCDa9I+53pKNeil1UNgNiWIV7Bv2EMFWz4/78+UImXfbdCp0jOYIrRELEnANdNZwSbd88CTqMzoCTK55dE+5et2fvqxvUvUIXVp05HrWO1pQNz+usNbT0eNQm47Z8+gcq0d2I2kmxEx1KGPHpCpxEXp5DfEegbsU1FVlW7IbMqqWFQNdnL4PKnyiqLgpoG1ICpjOFfDvp6yF/1UZw5GqqF7AOIFteUXTWv79CYmFGcp5pyzgojGHjSjwh3GJyOUuYddfrpCSjQ8c+4yiuQyyWt7647Eo0PrMOw13jFdRHRTQatCr0uo8RivXYtMz/62Nv/0Yu4F0Y0MIQGIRsPcdpa91/GG2EzVQWZq1fPAEEuAgkmb+ATsvNRtox6IflBQTkKhucabdgFzsoXnfjLBW+Vt/NK+ItYxToZL8jiDERixIwDXQBcN1G9CLAVLQDaVAQI8whbXrudVubkxWSdioytzjjpXRfQLKGKtICnYsoIdiFcNTNS+/R6UCpCiOdTFzVwXGbiDdvG9yOPZ+o49Vom/9hFH3Jy+phOpSVUA/V1K5tmmVGOCjUM9xKQEnEDuJvVIxk1fUV9SRcKgszNh8xvHHFjgu84cgJqy8QWVEFuf1z0Ma9askjF93JxFjw7RH+BkZK2D2HmfAe/RIP5l809u29DxNO//xS5VEejAbzv8TPyMTCrS7vO4wdW8YlE6LUiMWJOAa6DmmCEqn9UwLM5Z5sz3oAz2RMbX57tsBWmhNNSexEgHXQM8xtX90L1FiqrXChmVG59oouRus6X+/13h7EZYB6bSoNWJBAq6BnmKu+78O99L89H8FpNN6qoUXq8i5j5BQoK4nYiVU2xPSNdT1FDYo54ScBOp6IlZCtT0hXUNdT2HDOpPthBBCSMzC0XlMEV90furvtiff8JKKt0vS1X+GqYjPh7WwrphKMiE1BxdAOOXW1SpiAdT1RKyEansrgU5t7uZtIU6jVYdjeAwEVJIfWSs4PeZR11PYoJzHFInnaz+vb1r5sIq3TcovXnYUnR+n/XpCI/GCX9v7qb8D4as9KokG6HjOq/8suULawh2S5T24xZaeh9UlGvOo4ydWQrW9ZUB3Rqd2b3lbxdtGnaA2TlFbWe4dHyAdzkrFLYOckPBhGTnHRRXrFn/K+ZBkX+2Rli1vBWS1ZgojRQvXHqm5ZVjtvecYiWIJE2ZIYeTCJJx44a+R1bJD+6PLCWd811w+hk2OnViKgGsg5g3dGUfdvOGFgPTWTM5P66dIz2wly7VC+7NPcFZwWQFZsW1yQsKHZZ6d61dcbFvihMtxoN7aMomm/PixjPt2pd/2oVEAUVjShTciMV4fiztOOV/KJE2+DlFbem9EsaKxijIdz8EtEoXqIxrfezjCTa8/iDBWdBRNU4Vj24gFCbgGYtrQkdGdcdDuL1caiXAR4j3gHFJ/+QoCWGpZfiQRZnY4Cj0s7ggmUc2ZYEgAl2UUtoKFGY7OY8fiB4zFkXqrDhopAccu0RNilDfMc2Qn0nEHgDDuAKS3N69/XhUQdR80XkVj2rQTRCxGwDUQ25YwUZuKQ6c2UlL/+xXp8gDdX0YCAFkSQIqRiJLpt3+oZxmdxZf8k0exIkINf/u51Ak3hagtq69ELWL62QgjfHYeO0iX8xzeJVH/gR87diOlesHZngNfItyyZWXV/wxB1LXqUUS9NUcQrV/2M7WCn8b//B4lUSDz/t0pP9H+NhrKN3/5luR6a44ixTH8PInGNjhSYjVU21sDe2ZfHDI6tUQdp0wTqUaX15zD336unxJ1UjRvooN05IobgSNKuvAmo6skTLw84RTtb02ZnQbcFFK0EYKV0M9HGOFkewyZjmfvZwEpgVHQflZrFl9wqiqgkzDiPCPLW3VIpZrKx6wRCxJwDcS26WidWo/GDzxNi9Yccf3n94i2bH5LRgIa/sJIQTqiKIOSSInvPczIFS1HGalBTHNTgj/FEhZmONkeI+YYrf7WqpEiURCU0kqu9r8pmjF/XdYDX4mlznocZs/ojY5aedNgGALx/Ucj0b+uQqKxbepQiZUIuAZi22zpeeaj1oTZFIUZt+8ISwApRq6vVpurA0auAI8BH3WsmD/XnBLzJoccPjjZHiM0b34z8FCNDuNHonoHMvUlHeNKU1ETyIsfoA3N3SVfSC4CiNqz+ko0eEMxjBwpsRSq7S2CrseGZwju3ej4RooEjrkC7ZGfdjegreXPxbi8+cu3EEie/t+qkFarhZyGgRxy+OBkewyZjmPQ6eYoRtUSTbtmiUoC/tz4rH7mwhp6tOruMyt+XShW98Qc6eGOAeMkVwsIelSrBJ226qBEY9yIBQm4BmLbdAzP0Pzx84jCjaR862ZEE0dPxzhbyhwr3H800hFFGc3hxKm1hMY3F8OHIIBiUglMc1P6HL5ErWJhhpPtsWNu/ZmWvc8wiTb5e1T2Q8Uwrb/p+MtroIMhK/ni/0GKntD6iWre/h6y0FGlKumxDW8ully5H/cc3mmUj2HTzhGxGAHXQGybdHZ0aok2bX5THItz6vXo+xgVyNNxXZ5QQIF05KIMwiiAtYwsKSkD9MQJ35dq4aYQ9dYelahFTD8fYYST7bGD/PbDntVPok2b3mh8+9in3I6FtSvLV/XQRSoK9A6ngq1R/+p9NU/MViV0yn41EPVLrqh7S/GnEo1t5PCJpVBtbw3QkXHI6NQqrvsKkXAANwINljCyJAC9F8kHKFlx1wRZUVIkXPPXa5GFajFARxRuSitcdVByLYKckPBhi8A2ugUcl9frdblc5eXlxcXFp7x0lcqIXRLHfDPj2qVad7pzgkoKP92y0W5ky3efLiwszMnJcTqddrvdZrOpDBJbmL1HEbyHle7ksu/eAN2t+evs5s1vSgdHYvPmtyDJRq4R7RzmTagkC7DlO38vHDwkfN6Dk+2xY02b33Af2IxOkjhmekBW+Mx51g9xel3rO/I9yFgwuZyIpQi4BmLe0J1x1OjaCMOryNAcXiV30T4YPAyiro+eM69yUoaqUAmcFSoPyIpt0y6mcMLJ9piifsUiHGwS+mGkcAwch95et3yhisc6cjkRS6Ha3jKgO6NTo2tLtOyO00XRDar/eq3L/6ytE8BBoRI4KxW3DHL2wodVJttH/t9MlUFIF9j+/Wc52W4FzN5jBLwH7+RIl9n+vWc42U4IIYSQ9uBkOyEngbqeiJVQbU9I11DXU9iwhJzbbNozBUK6DmfXrQa9BwkV4fYesS/nOIPhPonEOvByshRsbhJCwn05xbic49zZ7XaHw6HujgjpGriW+AacRaD3OFla6j0qRFoj3N4jxt9sb25urqmpKS0tLSkpwRJhpCBdFSJ+EmprM/fsqTjlFK/DoZKIH/TAxMTEjIyM/Pz8AQMGYIkwUqjrMUw73iNWfWYX6ffBB4NWrtw2c2blqFEqiUTWe8SynAO3211fX19RUXH06NHKysqGhoaWlhbKuWCvqkraulXMcfCgu1+/ww88oPKICXS8hISElJSUXr165eXlZWdnp6am4kYbvZFyHqu04z2QpQoRP2krVmQ+9RQCnuzsI/ff701JkXQSSe8Rs3IOcGgejwc31OiTdXV1WCKMFCv3Rt+hQ55PPvF99pm2PKT+brHguPLKhF/+UkWICfS6+Ph43FCjH6alpWGJMFJC3htJj6It72FlB9ImjY2umTPFpTguuSRh/nxJJpH0HjEu5wA9EPfU6IpYGlouS+tQt2JF/RtvNK5d21JSopKC6P/ccynnnacixI/0OumTuMtGV8RSeqNkkVilVe8hrkOWxAzcy/4ZMyTc729/S502TcJWRlwElpHxHrEs50DvfdpDdCG2D7YtDj/66N5f/UpF2iA+Le20ffvsTqeKkyDQ/ex+wtQbSU8jwHtY04F0HPgZeBsEEvv3H7thQ3xmpqSTyHiPGJdzYByg3hmt2Bv33XnnvnvvlTAEO/2ss2wOR9Xbb0uK0OuCC0a/9pqKkNYwd8Iw9UbSA6ED6TieurrPxo93FRcjnPv974/65z8lnUTGe8S+nBtYtit6Xa4Djzzic7szzj4bVrthw+ZvfQsdT2XrDP3Tn/rfcIOKkDYIXz8kPR9qeUeoevfdjVOnSrjo+efz/NPvJALew0JyTsDRF1/cdvXVEHiEHVlZ7qoqST9z587kYcMkTAghnWbXL36B8QMCCbm5E7duxVLSSbjhn2CxENDyrTNnipYn5ucXLlgg6RByajkhJCQMXrjQWViIQEtZ2c7rr5dEEgEo51ZBtNzndiOcMmrUaWvXNh84IFnZF14oAUII6SLxaWkjn3xSwnA7MAmTcEM5twRHnnvOrOXjVq3C7XP5q69KbvbFF0uAEEK6Ttbkyca7OBigY5guYRJWKOexz/7FiwO0PDE/v2n//vrNm5FidzrR9/SChBASGjjlHnko5zEOtHz3vHkSTh0zRrQc4cZduyQRWs6fmxNCQgun3CMP5TyWMWt55qRJp61dK1oO0idMgLrbHI6Bt90mKYQQEkI45R5h+EO1mGXfffftufVWCUPLx77+Ou6XJUoIIRHAU1f3yWmnyVxg3owZp7zwgqSTcMDReWyCQTm1nBDSvcDtjHrqKZv+Z5c55R5uKOcxCLR8/+LFEs6+8EJqOSGku8g4++yCuXMlvGPOnKb9+yVMQg4n22MNs5bnzZhR9OyzcmtMCCHdgtfl+uS00xq2bUM455JLxixfLukktHB0Hjv43G7c/FLLCSE9CrvTOfLJJ8UXlb/6aumyZZJOQgvlPEaAlm+dOfPQ0qUSpZYTQnoO5in33fPmcco9HFDOYwHRcuM1k/433EAtJ4T0KAoXLEgZNQoBd1UVPywTDijnUU+AluMWeNjDD1PLCSE9Ck65hxvKeXTjqavbdNFFZi0fumiRhAkhpEfBKfewwjfboxjR8urVqyVKLSeE9HD4lnv44Og8WgnQcgg5tZwQ0sPhlHv4oJxHJcFabkxhEUJIT4ZT7mGCk+3RR3Np6RdTpshsFaCWE0KiC065hwOOzqMMs5bbHI5hDz9MLSeERBcBU+4HHnlE0klXoJxHEwFaXvTss8bfHySEkCgi4+yzB95yi4T33Hqrq7hYwqTTcLI9asDlvumii8xanjdjhmQRQkjU4XO7P504se7zzxHOmjx53KpVkk46B0fn0QFU/LNzzqGWE0JiBrgyY8q96t13OeXeRSjnUQBU/IspU5pLSxGOT0sbs3w5tZwQEgOkjR8/8LbbJMwp9y7CyfaeToCWj3399cxJkySLEEKiHU65hwqOzns0NevWUcsJITEMp9xDBeW851K9evXG6dOp5YSQ2IZT7iGBk+09FGj5posu8tTVIZyYn3/qW2+ljhkjWYQQEmNwyr3rcHTeEwnQclzZ1HJCSAzDKfeuQznvcZS9/HKAlsvf/CeEkB7F0qVL582bpyJts2rVqknHPyi02WxIVBEdRC+84QbzlHvjrl0IBJckbUE5Dwu4djtyCaInoD+oiH5B49rdcvnlouXOwkJo+W2PPWYuI0hJFSGEkO5gypQpixcv7oiin5CBAwdiOfjuu9PGj0cAPnDb1Vf73O4lS5ZMnTp19+7deinSLj4SBnAJ4ty+8847Kt4Gc+fORUkV8fn+deedWOtd3T4eNarp0CEkohIkoqSUMThXR0UIISTMiFvrCPBX8E4q0gEMN4i1HrnjDpXaBsHOkAiU8xDQ8Qu34/1B2LVrF+rHEuETrnvCuwdCCOk0cEEdkdLgYnBNAWOP9v3VnjvvlFENuOHHP1ap5ERwsj00dERKcUEPHTpURXRw0cttacmiRe85HIv0qoxxOUB5pMhas2fPlkQZrwdvccqUKXoFhBASZdhsNmNGfdDtt6dPmDA5Lm5GXNxPd+zwud1I7OATTCtDOe9+9i9evHvePLlkwbhVqxLz8yWMyzfgFRKkTJ06FVou4o0OwIfohJAIgBHFokWL5MWdtjCKySoCnNXq1atVRCdg+AE/hoHNsGHD5D2hr/buPWPDhv9JSLhB/5QWPCQS//a3v/Eh+gmQgR3pOhhqq3MaRDszVBiXy7QS7LNJk9y1tSpDZ9euXTKTL7PuMt8uYQMkBkxkEUJIJBHvJ3ONBprvOxFm3yXzjgiI02uLAAdIDCjn4SX4+pNL9oSYOwa6CkAlKq81qOiEkMhj+KXgx39m4KCCCyClHcflbWn59OyzZaiDAKJIhGOEM5QCJABOtoeLpUuXytQTzrI8AhemTJkip37X3Ln/0FOCx+W4XvUcxSKdgOfuAaAYHywRQsKEPNcLZtiwYVJg6tSpKkmnE7Pi5keHkyZN+uuyZSOffPJ/HY7X9Cn3M4cPh1MNnsknBpTzriKyHcycOXOkgIrrGA/Cd8+bJw+EQN6MGae+9VZ8WppEg8Em5JedcrlLP5GAkbJ69Wq+CkcICRNtDSdaHXYD8ximLeC4Jk6cqCL6gMQ8zY4aUkaNyjjnHIk27dsnf8CCtAXlvKsYL5ybkQkoFTEh74OYtRwUPfus3elUEZ3169ebO8OyZctGjx6tIvpVrkKEEBIrwNHNmjVLwmvWrJFA+mmnOYcMQcDn9ZY++aTP7cagSN6YIwFQziMKrsWd119vaHn2hRdiKZ8pbgvcwOLKlpH3vn37JDEYY5iu4oQQ0rMxD1TMjk6eG6rpRrs9/5prZMDj+uqrkgcfRIBDmlahnEcOaPnWmTMPPvqoRHtfccXQP/5RwmbkspZPHgKZgJLL95VXXgl4rB4Ar3JCSCQxhtEdZN68eRh4CIjOnj1b0kXC4cHgAOW3uJIOEvPzCxcskD9cUTx/vtk9EjOU87AQPIwWLT/64osSLZg7t+jZZ23x8RIF6gLXXy1ZsmSJIcy4gZXHS0uXLl28eHHAayBGMWzR/NiJEELCh/JWNhvczkm9tQMPph49+h8+CnB0GKtA1OEAd+3aFVCn5jCHDHkgLu4bbve41NQhgwapDGJGnVcSCsx3lOZfmnlbWr6cMUN+cQHb5f+hRVuP2A2kAKrFhY5uo1J1kI5cBAwVD/jRJyGE9BDgplp9Y67j1G/d+r7TKS50z513qlRiwoZ/IgYkTHjq6rZcfnnFihUSxW3mUP8Ie/fu3bgVZRMQQsgJKXnwwa9uugkBm8Nx+vr18rfXiAHlPLxAyzdddFG1f05p0J13Ft51l4QJIYR0HJ/b/fl559WsW4cwtByK3v57xFaDz87DSICWY1BOLSeEkM4B8R755JPylnvd55/vveceSScC5TxcBGt5QbsvpRNCCGmflFGjhjzwgIT33XsvRF3CBHCyPSw0l5ZunD69fvNmiVLLCSEkVHwxZUrVu+8iwCl3Mxydhx5oOa420XJcZ6OeeopaTgghoWLkk0/KV7E55W6Gch5iRMsbtm1DGFpe9Oyzfa66SrIIIYR0HWdh4eCFCyXMKXcDTraHkmAtz5sxQ7IIIYSEEPOU+2lr1wb85QsLwtF5yICKf3LaaaLluLCo5YQQEj7MU+7F8+dLopWhnIcGqDhuFeXv9+EKO/Wtt6jlhBASPsxT7vsXL5bfo1sZTraHgAAtH/v665n+v2tOCCEkfBhT7imjRp3x2WdWnnLn6Lyr1H3+ObWcEEK6BWPKHcMqi0+5U867RPXq1Z+fd55oeWJ+PrWcEEIiCafcDTjZ3nmg5ZsuushTV4cwtHzcqlUpo+Rv8hJCCIkcnHIHHJ13Emo5IYT0EDjlDijnnaH81Vep5YQQ0kPglDvgZPtJc/TFF7fOnOlzuxGGio99/XVcSZJFCCGku8Aoq2LFCgSsOeXO0fnJEaDlGJdTywkhpCcwYskSR1YWAtaccqecnwTBWp6Yny9ZhBBCupekgoKhixZJeP/ixfJynHXgZHtHOfDII7vnzaOWE0JIT2bzpZeWv/oqAs7CwgmbNskrclaAo/MOgRu9Xb/4hWh55qRJp69fTy0nhJAeyPC//EWm3F3FxXtuvVUSrQDl/MRAyzEulzC0fOzrr1vndo8QQqIL85T7gUcesc6UOyfbTwC1nBBCog4LTrlzdN4eEHJDy3tNm0YtJ4SQqKCdKXd3VVX95s0qEkNQztsEQo6huYTzZsyglhNCSLTQ1pS7p67u4+HDN4wdW7psmaTEDJTz1gnQ8qJnn7U5HBIlhBDS88mfNSvnkkskvP2aa+Q7nrUbNrSUlSFw5Jln9JzYgXIeiM/t3vWLX1DLCSEk2mlnyl1+qRRLUM6PAw28debMA488ItF+111HLSeEkCgleModKRJt2r9fAjED5fwYouVHX3xRogVz5+LOjlpOCCHRS8CUu9flkjBH5zFLsJYb93SEEEKii+bS0tJlyxp37UIYA7OE3FwEXMXFB/74Rz0/Bkfn/N25hqeubtvVV5e9/LJEqeWEEBLVfHbOOTXr1tkcjj5XXTXg5pvrN2/ecvnlKs/PN2JL/jg617R800UXGVo+5IEHqOWEEBLVyFw6lhijry8qOvLMMymjRkmWQYwN0K0u56Ll1atXSxRCPuDGGyVMCCEkSil69tnc73xHReLiMGBr2LZNRfzE2ONzS8t5sJYXzJ0rYUIIIdFL8rBho1966YzPPjOLegAcnccIzaWlX0yZIlpucziGPfwwtZwQQmKJtPHjRdR7X3FF8M+UODqPBUTLazdsQBhtXPTss/1vuEGyCCGERDU+Ha+flFNPHfnMM2d8+WXeT37iczi8cXFiDfv2eY5HrWBCqlL19mys+Ga7aLk8RxEtz5sxQ7IIIYREEWa5lXAw5tzGr74q+f3vj/zf/3ldruF//nOfK6+06aCAETDCARhZRgFJ6SFYTs6p5YQQEr2IKkvAGD0bI2mMsEtLffv3x+3da4PtPxBfWW2rrrZX10B6bTXVcbW1dqzdUGerRyDOlpLmTUvHQD0uI8OXkalVm5nhzcz0ZqT5Bg30DBzo69/fV1gYl58fFx8fb9cRITcCAGsZgW7EWnIOFd84fbq8/hCflgYtN74WRAghpMcCtZalaLYu314ENm3ybtgQ//nG+O07HIcOxR8+GG93+HLyPRm5Lc5e7pRezckZXrvdl5atHpMnpfqSUrSqAKoSDW5x2Rpr1aPnugqH12trqrc3ViXUlyXUVzoqDjsaam35/bz9C9zDhrhPHes580zvmDFxSUmQeE3jUYku9FoNEpWqIkwsyHkHD0HT8qlTMTpHGFo+5j//yZw0SbKEbr+3IoQQYkb02xBvt9u9b5/nk09sH65zfPJpwtYtiWmZnvxhrl4DXVn5LRm57ow8d4JTqbXQaY0zK0KLy15bEV9z1FF5MLGqxFm+L6n8cPyIke4zJzafOcENdR80KN7hcJhH8JHX9eiT84AdlmiriWYat2/fPG2aoeWnvPpqq1oecPYj3BiEEEIAfLgh4aLiH3zgfXOl46WXkusb4/oObe41qLH3kKY+Q5rMQ20JgJB7brOkiC5A4Et3JZXtS6zcm1K6OykpwTd9euN3Lms55xyb0wllP07aIyMlUSDn5j1EWKKyRGPL0hwFeilVDLh27Nh96aUthw8jxZ6aOuxf/0r/2tcQllMs59oAZz8gCwHBHCaEEBJyxJ9Dv6HidXUtq1Z5X3o58a2VzuRMT+EZdYPGNeQVNklJFJNAtzhm/8aVLlQdduxal35wc2rFIcc3p7u+dVHLhRfGpaVpug5QRnRdVgkTPVTOjb1CQMJYSjNjadDS4isp8e3daysujtu3L37vgfgWt+3ggXgUQ+BIqSbMjQ12R9WRxXFTBsZtq7Ln35O7oj6/KMWJQ4/r199jt/kKB3o0K4yTVx4SE/UbKj/mZsBSAhKWACGEkK4jXh0q3tLSUlLS/PgSxxNPpOcWNA84rXbwGQ0ZvVukGNx7D/S+kCkRhboKx+71qYc2px3cmXD55Q2//lXLgAGOhIQEiLqhKbJKyOlZcm7sDAKC0cBYNjV5Pv887uOP7Z985tj9lQOyffRwfE6+OyPXk5bTkpzdnJHrtsfHJad7EpK0YXp8oi810yMVJtcc/frffrHuB/eWpgxvcWky726xNVQ7vJ64mjJHU3ViXVlC1ZH48lJHbm9Pn3zP0CGesya2yPsOqananEnAzAmQmo0AIYSQTiB+HiNyEfIHH0p4/oXUUV9rGP3Nyqz8Hq3iwYiIQRcaquK/eL3X1vfSLr7UNfcXrqIiR2JiYlhFvafIueyGJuC6hIt+o3V37vStWxf3yWf2deuSdu9MyO3nzh/uyhrg6tVPE++MPNXSIaTmaEJdRXzFwcTy4uSyPUlH9icMGdZy5oSWMye6zz47btiwOLSH9jqj/4VGaZVwtA0hhMQ24vDh6pubm3fubL5nofPNN5JHTaodf3FlSpY2GEOBKHWu0DToQkN1/NZVmZvfzpw8ufGWmxpHj4amK1HX1SOUx9bNcm5sXbs3M731sGOH94UX4v+9PPnQofgBRS5566HvMFfAK4sRAEP5wxD1r5LKvkop2ZrUr6/3sksbL5/hHjlSvccoug6kfGibhxBCYhVx+xDyurrG//1z/OI/phdNrTn1gqqkVM3PR6+QmxFRb2qwb3oja8vbmT+bU/2reZ6MjOSEhARjTKiKdpluk3PZLpZAVLylpWX3bs8/no1/ZXny0XL7oHENgyfWFhQ12uO784bDjNdjO7jDWfJ5+q6PUnNyvN++1PWDy90jRthxtyW6joaRtpElIYSQVpHxW1NT0549DT+5JqOqxTfpx0cz9al1iEKMeVAR9ZqjCeuezXU0OJ5YWlVU5AShVfTukXPZqDSnTLN88oln8Z+ca9Y6h51VP+j0mn4jXVKyx1K6y1nyRdrOtemnjm7+zS0NZ5wRL1Mo0jwoQEUnhJBWgfOH53e5XO+80/Sz67KGfr12wmWVcbYYFHIzIuqbV2ZufLXXkscqzj8/MSkpCcP0UCl6pOXcEHJpTtyarV7t/sMfUz/5NHH8xZVjzq+OT+gpY/GOgPH6jjXpX7yaPXig+6Zf159/vibq0jwUdUIICUacf2Nj49tvu35yTe6kn5QNPatOz4km598FbAe3Od99LP/xP5dNm5aUnJxsPEpX+Z0lonIu2zJG5Dt2NN/wy7Q9+xynXlwx8tzanjOpfrJA1LevSd/4WvaA/u5H/lhXVJSAey4ZqSOXik4IIQJUQLR827bab16Yf/aVmpYj0VJuEkq497PU9//a5/XXSseOTRVFh1J0USwiJ+fYEMB9GYTc5XL94x/e2+Znj7u4cuw3q6JXyM1A1L98J/PTl3v95taqObPj0ELyskPXG4kQQmIDeV5eU1Nz1U9SqhK9Z/2wHLpgQQcJ4f3039kt+5z//ldVVlaGPEfvolKo97HDjWi5NOThw/Wzfpp4zwNZ37rpwLiLKmNDywEOZOz0qktuPfDw4+kzr3Tu31+Hg8V9KO5gcOyqECGEWBVjmn3NGtdnG1PO+G6F5hlt2iS71QxHPf7SqkNHEv/zHw/GtyFRikiMzjUl1ydYIG/79jVcfGl21hDXWTOPRv5XZ5HB02L7+IXco1tSXnmpfOjQVJl45xidEGJxMKKDdFVWVv78v1IqUnzjL6mCNFjWL0J7t76dZS9xLHuiNjs7Kzk5uYsD9LCPztFaWMoce3l5/ZVXZ+Se0jDpmsOxquUgPsF3zo+O9p9Y+53v5ZSWamN0XMRIl1NBCCHWBELQ0tLS0NCwcWNq/6JGjFI17YJftKTh2AvG1m/cmFZfX4/TgpMjZ6nTRGKy3WjCu36b2Oz0nnXFUehazNvpl1WkFjTdfmcSDhyHL4pOCCHWBOMZ0YLGxsbDBxNSsjwc4aRmu6sqHDghIuc4IV05J+GVc9k5t/77wk2bGl/+d+bZVx8x3Z3EuJ191ZEVb2R+9FETDh9yLmdDnRpCCLES4gAhB83NzR6PrdllN3tLa5qrXnveLW9ZyflRJ6tThH10jjsO7ChGqE897Rz6tVpnuoUGqUkp3pGTa5b9PQ2Hj5PQ9bkUQgiJXuADAUaicXG2o3u1b4xY3Cr2J2GJwZ6cGXWaOksk5Fxm2t9fk1kwth43H5aywRNq165Lr6+vxw1p11uLEEKiGl22NE+488N0SbEy297PgKrjhHRxXC6EUc5l6gA7Kg9LDpYkpue5VZ5lSM91lx5IcLlcIXk0QgghsUHl/sSDW5Oh7Mbgx2p2eFfSoa3JOBWhEoUIPTtvAi67x3PcPIMVzN2ivbkpPyuUsyFnhhBCrIm4wXN/cvT9v+Y1VMdb0ym2uGzvL+19zo/K9Jf7Q0MkJts9+l9LQ7jqUKKInHWs8lACDlwenAP9lBBCiNUpGNtQOKH+P/f1g6J7MVoNcp4xbM0u2xt/6NdvTGPhxLrQqXn45RyIoiOwe12apFiHXfrzIWo5IYQEcOYPywtObYCi1xxOsM4Yvb4i/rXf9c8e1HT2zFAOzUEk5NzgwJcpZXuT0GwWscqDicWfaHcwnGMnhBAzmk+0xZ05s3zMRVWvLuy/9/NUK4zRD3yZvPyegsFn1Z01s8wHLY9GORc9O+uKsveW9G5xRfQeorvAYb77WJ/xl1WoOCGEEANd3yBnI86rnf7LQxuez171v33qyhw+r1/6Yssaq+zvPd77gyfyzrv2yNiLqnACNClHVuiIqLIO/Vpt36LGFQ/1i/kPCHg8tlWP90nLbTllWrU6eEIIIX4MbwlZyxncdNld+7P6N790x4APnuxdVZoQSyP12jLHumdzXvzNoORMz3d+uz+/qBGJOGrJDSGRHiif/aOy3MGuV+/tX7k/USXFHDWHE15ZUJCQ5J1y/WGVRAghxISImZI0W5w9wTfu25XfW7gvNbvltd/1f/tP+WV7k6Jd1Mv3Jb63pPcrvy2Is9m+e8++My4vdyTjmI5puRYOHRGVc9n7s35UdurFlf/5ff8vV2YahxQztu29jOX3FoyaUv2Nnx+2WfQnGIQQcnLYbJo50z3jv115+YN7MYSFor++sP/2dzMaa6LMk7pq7bs/TFv5x/w3H+qX2bfle7/bN/GHZclZ2vvgcphhIrJy7n9HbPBZdZfO37/7w/Q3F/WtLtXeaYwBw4G8/Uj+lpWZ37rlwIiv1xjphBBCOoKoXXyC75Tp1d+/f1/R+VX7N6b865aBK+7vt/mNrLpyR0/2qPUV8dtWZbzxYN8Xbxq0Z3164YT6Gb/fi7FrYqr2s6awCrkQxr93jpq9Xq/L5SovLy8uLv7GN77+02W7VJ6O12Pb+FqvLW9l9hnuOu07FdkDm1RGtFG5P3HziqySL1KLzq9G4+FaVBk6T8wa9t577xcWFubk5DidTrvdzj98TgixGmY5mDz5vKuX7LK1O5w0pMnTYju4OXnvhrSSjalpOS0FpzbkFDblDXUlZ3q63ZW66uxHdzvL9yQd2pJSsS9xwGkNBePqC8Y1mP8CePs7+befDn3nnQ+GDAmBQERUzq85Xs4FNNW2VZmbXuuVO9g15sKq/FGNKiMaKNuT9MXybDQnhLxoWlViSis/Ln+Sck4IsTwBcn7VieTcwNAon9d2eLvzwCZNOMuLnY4kb+7gpuxBzZD2nEIX3G8EPGtzgw2bxg7A7cOaG+y9BjRjN/qe0ti3qCFe+1KaooM78/dYknMBor77w3SMcdFgg8+qLZxQ35MH6xX7koo3pO75KB27PfrCqlFTqgNG5GYo54QQ0mk5NwgQq6oDiZUl0PWksj2avsIJp+W603JbUrPdqTm6ZSPqTkrrzCAesl1XllBX5miodJgD0O+s/s25Q7TpAYgUwmoFPye7rWiV81lPtinnBlDKvbpSIgxdH9STdN28b4Mm1hWMq+8z3CVZ7bDsGso5IcTqBMj5lScv5wEEaBfktr7C0VAO0RXp1dQXAQgwxvHyt7kxgpc51AQtoKU0N8S3NGj7gWIwSZFV9JsDd3Ivd1qOO0W7M2hBNKVX4B8S66I7fyqG5dyg8kDivk/TSj5NrTmSgPug3EJX7lDthsiZFrm/mI5GPbwzuXxPEm4AEUjOdBdOqDvZOwzKOSGEhFzOA2hHynSpjvcHtK1CwvWADaIOaUeKofRIkUBbhNZ/R6uc/+Rk5NwAJ11716DYeXR30pGdyUlpntzBTRn5zTKvgmVqttumfZamq8iMitzQVR9KwEab6uK1O4khLmyx9/DG9tu4Lf5GOSeEWJ4AOf/R4yGW83bohMpFzEk/fW10yvmPOyXnAVQfSizb7aw9oumuLr3xWKb00mZFoO62eJ8zzetI0nQ3PsGXnBk4lHfV2d36V2Y9bltjdbzPoz0gCagkJdud3rsFQh78XKQT/J1yTgixPN0o5z0ZS8t5q+jSrj0vgTxDpD36Xxl3N9kh3lLAIFjsU/UhPlRczw89lHNCCAmQ85mUc51nolXOnwiXnPdk/v5TyjkhxOpQzlslhHIe0dOJGwcLGiGEkAAwkKTBQgjlPOxGCCEkgAA/aVkLIZzsIIQQQqKeyI7Og+YZrGCEEEJIuOFke9iNEEJIAAHDHstaCOFkOyGEkEhjHvNY2UIIR+dhN0IIISTcRHZ0HiB0FjFCCCHHE+AmLWshhKPzsBshhBASbvjsnBBCSKQJeCPMshZCODoPuxFCCCHhhqNzQgghkSZg2GNlCxWRHZ0HzTNYwQghhJBww8n2sBshhJAAfERHnY5QwMl2QgghscDN3+z3wpzhj185WMWPB+nIRRkVbxuU6Ugx8PvvDbxyYq6KdDeUc0IIIUQBhZ4wKFVF2gX3B4NzklSkBxDhZ+ehZMLAlMd+VKgiPt+PJuQ8P3uYGMJIMaIwFJZiwaCSdnLNoB4VOhnUwRNCCPGj/GNo8T/eVNHjUVkn2rLUccJiQK+vQyXbQSoJCdE6Or9yYu7/HD8Z8p3xvVQoLm7HkcYX5gxXER0UntjaDReK9UpxqEjbYN2ACgkhhHQLD3xv0Is/GwFD4OYL+iGw5KohKk9HEsVU0vFMLEyT3CvPPG6qHPUMztUG3BMHaQWMYqhQSzSthaVox3fHZyOsrdzdRPhVOO3OJ1QWUKdE73/z4IwlO4b3dpqjlQ1uhKeMzDAKGybF8F9AepApgtJPbGpNQgghXQbKKooLEIDuStgAKmtODNZaqLI8Gl+/t+6Zj8sksS1QBkup8GeTemO5p6zphGt1C5Edneuy2UHTbo7mjIBp51FPeeC7gxDFEi2BGyLUh2ZDypIrh2ApW0AWohKGiq8vrsOKVQ0eRHNTE6QeMalfSspaGPEjBSZbRKJEkS5tDxDFDpjrObERQgg5HjXXfPKIssK3f/+x7TCpDSDL8LcvfV6BrPvfOCBROHAtV9B9O/6HKt+34oBe5TFmP7Ub6ciV+j/eU4syMiA0huM3/l8xSiJX0mVbsnonQA2hIjZfhdtxxIWldo9WqDW83Mp9vr9ey2sb3HBJ8/zg9BysKBcNmkrPJIQQ0s2cqbt0cJ9fqrUx2/HAjT/90VEEPi6uE23OTUvQczREFABUWQIn5PEPDqtQz1aEnvsqnDZRffxqKoqGXHFAzimaDbdFuJ/CUrJwO4YobqmkgDbC1mda0ORoYFWRDsoErIVEaTbIv3H7hrVgxl0eVpFbs44jKxJCCDEwHkeelA3vox6kGiklVZpgS4oEqhrcRm5ZXYuepoX1wDFuuaC/UcxsWk06RspHxbUy0gNPfXTESJcUI9o5k0pCQmyOzsH4guNefBvmf5rePribM9/rdfz2jRBCyEkgutkJE/zRAVn+n4r5s7JSHEZubpr/TWd/LrhvxX4stWG6v9hxZuBPufWCAplmBw99v9BIVxjRzlno6NGvwgWs5T/0tnKPRa88K1cm2L/32DbYnjIXGuPB7w8yChtmXkvs7e1Vkoi1zOmSaE7poMmKhBBCuojMooNbLyyQgDF5bgBvf9VZeQicWZg2OFcbyH1WcuxJKwZs+iS89kD2oRmFkhjMsfsA/yZkpIcKpXKDAb389xPdTc99FU4zISAK2snVw6fpQ3OtwfSotKX5lu2YCaaUn5+XL2las52ZdyxLMKIdN0IIIccTMOzpuH1cXIvVIbH/um4UzJgGl1wJf++0HGTd4pd8mSGXsBR7boP2ajqcPOoxqpIsKYcspEC5H9QlH1v53YqSr/SbAFQuJfWCak+w9K9+ciaVhIQomGwf0ScZS+M+y4wxARJAWZ3WwEb50wac4BM/sgmAxpM65UYMzaYnH8N4EYMQQkjngZB1yha+vl9kFUDadx5plLCWqwPpFckXvvuXrWpdA1/cx3tqpcwPJ5h+d64X+/ULe1Q0Lm78gNQhuo48+n6pOeuhGYMR1RLNyFZO1kKHLXzvaqFmr9frcrnKy8uLi4u/8Y2vfwen9WR44setfOMFDfnrF/dcfVZvQ2sl5aXrihBeuGI/GunMwnRjKsbgX5+V4x4N6ciVVZAoawnffXSrRFED6pGwlDRXiGvlp3/fKeGO8PL1Re+9935hYWFOTo7T6bTb7TabTeURQog1MMvB5MnnXfqnrbZODSdfut7vmXVxfejywVBcIxp1vPz/Rq1654MhQ0IgED16sv2nfzummmgtmIr44p5ad+RYFKC8gX7npd2RmYA8Y5WAYjBovIrKDZeu1rj7M7JwoeDWwbiVU/j3sENGCCEkRIjnh2eGrsNk9Py56em4ZYns6PzPJzc6jw1e/i+OzgkhVidgdH7JH7d0bnQO/vCDIaLiwv99WqaN1qKTf99QFJWj84BXACxi6uAJIYSEgl89/9V3/rzFsOjV8tDSoyfbY8QIIYQcT8Cwx7KmTkcoiKycE0IIIcA85rGyhY7ITrZbEnXwhBBCSNjg6JwQQkikCZhztqyp0xEKKOeEEEIijjHbbHELHZGdbA+6MbGCqYMnhBBCwkZkR+fmWxLrGCGEkOMJGPZY1tTpCAUcnYfd1METQggxMAY8FrfQwWfnhBBCSNTDyfbwGyGEkOMJmMW0rKnTEQo42R52UwdPCCGEhA1OthNCCIk06jNblkedjlAQ2dG5JVEHTwghhIQNjs4JIYSQqIdyTgghJOL4aLqFjsjKecBhWMQIIYQcT8Arw5Y1dTpCQWSfnQcdiRVMHTwhhJC4OJvNZrfHtTQk+LymYY8lzedRJ0Q/MV0lQnKO3U1K9jbVJAQcTMybt0U7w6FqLUIIiWrgDEFe38bGKod52GNNw0nIyGpWp6bLRELO0Xh2u713fkP90cSAg4l5a6hIyMpplitYnQ5CCLEkogXx8fGDC4+W70hTqRambFvG4MGVCQkJOC1d14iwy7nRfmNOOVCxLVOlWoajmzPHjD2Mw9f0nIpOCLEw8IFwhlCviy/cdeTj3Div3crz7T5P3NH1edOn7kxIwFnRNEKdps4SdjmHljscjsTExG9O23Nofa+WhviAQ4ph87jsh9blXjhtBy5fnATKOSHEssABihw4nc5x4xr79q78amWfOBs8ZeCkpkVs7wd5qQ7XpElVOCEiEF3UiDDKueyc0X4jR/omnL57978HBBxSDNvu1/sVjdg/frxLWkumU4A6QYQQYhlEDjC2SUlJSU9Pv/YnHx5YnXtkUxZ8pQWp3JNavLLP7Gvez8xMxwnBiLfrk7jhHZ2b2y8jI+OqH33RWJKw961+Kjum2fdB77pdKbOuXo8DT01NDdXTEUIIiVLgA6FbkIOsrKwRIxKv+9nyXS/3r9ydYTVFh5ZvfGLIj374zujRtszMTJwQEQiV3Vni77rrLhUMJz6fz+Px+HxNw4d99taLp7qqk7OG1saqtPm8tuKV/Q5+kDPvly+PGpXRp08fXLtosJBMpxBCSLTj1cnIqOqVuXPlU2fZEuIyBtTrDyljn0Mbsne8MPCHM9644IK6vn3z8/Ly0tPTk5KSuj46D6+cGzsnS4i6w+EqGvXJxjUDd38wKGNIbUKqWy8YOzRWJG75+7DEatcN178yenRqfn5+bm6uubVUOUIIsRi6ICgkJSuratjQT9atGFfxVXbawPr4JE8M+8iW+vhdLxdWb0q9dta/Jk1y9+3bt3fv3hjsJScnh2T6NkKjc2k/2d2kJM/oUz5z1dZ9+MIZ8UnejAENqlD0c+iT7C+fGnr2+LWzfrxm8OAcaDlaKyMjI1RvOhBCSFQjbhBoL3PHx0MUUlNbTh2z7ui++E9eOtUXZ08vaIyz+WLMU3rdtv1ren/5zJBRBduvnbVi1Kg0aHmfPn169eqVmppqPDhXpTuLLQJ/8gub8Hq9zc3NjY2NVVVVZWVlR3S+/NL2zxcva4pL6T/1QO8xVap0dHJkc9aBd/oneF2Xf+/lU0/15uXloakwLpdpdrRW1++8CCEkBpBnr1CE+vr6yspKKMJRnW3b4l5/8/zi4oL+55YXnFsa73THgMt0N9oPbcgteS9/YMGBC6a9W1TkzsvLxTBP1CEtLS0pKUnUIWrkHEu0n9vtbmhoqK2traiokCYsLy//+OPea9Z9vaq+V7+vl/Y9o9xmj7LHJxDyg+/0d/iaJk968+yzS3NycqDlaKrs7GyMy2UWBXdeKEk5J4QQIIre0tICRaipqRFRBwh89ZV91fvn7dgxou+Eyv7nHU5Ia45Sxwkh3/9h/oE1eUMK93zjvNWjRjX26pUFgYA6YFCemZkJdQjJC+0GkZBzIFvBGB3t19TUVFdXV11djZaDnEPaMWTfuDH7w48nHy7r0/uM8pxTKtPyG2XFHktDWdLRjTkVG3ulJ1dDyMeOLcetFhoJrQXQVKmpqTLHTi0nhJAAIAqiCC6XC8N0EXUB6rBnT/yH6874/PPxvUc0pA6tzBtdlZAaHYN1qPjRrVm127JLt6YXFW2dMnn14MHurKxMCATGeFga6mA8Lw+VOkRIzoGh6DLN0tjYKKIOLRfQnLt3J3/6edGWreO9dkf++Mr04VWZg+pk9R5C7cGUyi+zK7Zk+Zq9RaM+Gzd22/Dh9RiFo5EENFV6ejqaSt59Q2thLWo5IYQEIIpuKAJEvba2FkIguoBlRUXzp58O2LF79O5dQ3IGNqWNqMwbW5mY0dQDHWpTdULF9szqLdnlxamDBu0tGrlxzJj9+fnxog7QBZGGtLQ0qAMG5fIlEqwYQnWInJwL2Jw0IW7K0IQNDQ3mJsQSYaTs2ZP5xcbh27ZPaPYk5BfV2/NqswbXYcge+al4n9dWV5pcvTfNfSStfGeq3ecuGvnp2DHbhgypwR0W2gathXbCUpoqOTkZQh7y2y5CCIlJIAfA7XZDETBSl5EehMCsCDU1zTt25G3eMu6rr0YmpnvSB7gcuXUZA+vT+zVAFLrFy/q8cZCGmpLUltL0mpLk+oqEESO2jRi2FSqekZEAdYAiAEgDgDSkpKSIkEMdoAsiEKquEBFpOQeyRbSfPE2X+zJD19GQAlLA3r3pO3f2339w4JGjAyrKMvoMbkztX+8sqEnObUru1eRI1v+8XEjxNNkbK5MajjhdBzPqS1KP7nWmZzT27VvcL79k+PADgwdXQ7DRVKLlIuHSVPIgRGbXOSgnhJAOoo/ytKfpUAR5ICsz8BACWUoAigCx2Lcvo7i4T+mRgQdLh5QfSc/q25RSUJfct86Zo4lCUma4nrVj/O2qTmwsS3KVpkMayktScvvU5PeGNOwdNOhoYWGV05kEXYAWQBFEIHSh0FIgDaIOkIbwqUM3yLkg7QfQhACiLk0oKg6k8bBEolBTYy8uzt2/P//g4SGVlblVlen2+Lh0rQndiVlNtjSXM7spIUX9kD05u0kCCanu+ERN9b1ue3NtgiQ2ViRJoKXB4apI8tYnuquTGsoTa8uTvJ64jMz6nJwj+XnFBQWlQ4YcycjwYsANtca9FRpGmkcCkohcQ8jRSILUTwghpCNADmSkDkWQ6VtDFGQqXlcGLSyKoM/vevfuzdu/v8+B0pFV1b2qq1IaahNTezWn57ZADhyZzfY0V1Jmkz1ek7n4JE9Cisdm08IJaW67wws/7XXbDF1ornd4mrRXnTDybqpOdNcke2qSXBWJjVWJ1UcTk5JbeuXUZ2aU9+vzFaQBEp6W5oPzb1UdJAVAGuRt6LAKudBtcg5k05qk+5+goAnNrYhmk5Yz2g/pAAUAStbUJFZWplZUZFRWZtbV96pt6FvfkII6G+qSmls0wa5Dk7RozSOgUTN6uRBITGhKSdP0PjWlITX5SEZaWa9e1VlZdTk5tRkZzTj70gZoJ7SH0VpYGo2kN6I2qS4qbgg56gxfaxFCSGxjVoQAUTCEQECKLEUOZOlyxZWVpUEXIAo1NRm1dbnVNdk+W3yczV5dkapJns1WXZ6CTajt6WTlumw+LzabldOgibnXk5lRkZZanpVVnZlZm5OjSYPTGQd/r42ydeD/RQiMpaiDJgx+aTDGeOEWcqE75dxA9gHtZ7SiW0eaR1oLSzNIkVwUk/J603tkdaMqLAXUr4mtH7lRAqLEQM47lmgGIE0ibWZGcoGURw1Sm9SvHQwhhJCuoRy37sYBvLquCdpUvDh/wdCCAFEQdE04JgpAKpSaATakC4KG4cyB+HZNGPzSoPy+Lg2GnBthpMtSFATlpR6pWbaiH1Z46RFyLsie6CdZQ84+mkFaBUu0kwGaTVKMXGMJZF2pRGqTTRinWAJ6Yx0TclkCrdH8zQMkxSgj6+rNpIFqZUkIISSEiOsWHw7gz8W9Gw5fEFEQVJKOlNEkwS8KQOoBsglguHQJAPh5w+HLUiQgQBSwlFwsZS0sdVnQkMqNQAToQXJuYOySnHHj7ANpGDMBiVJMwIqyrtQGjHMtATn7WBoERAUkClhFKpHaJEoIISSswJPL0ggYTt7w/BIA5rCgl9XQK9BAWK9YQ3y7oHt6DeX9df9vVmtJBFohP1gR9UgNUqcRiCQ9Uc4NzPumN8ExAhpGokbAjKyLpZxf/YQfw2gMIyCYw4K2EzrmMCGEkEgi/lwCAsJmzy9hXQ00JDEAWR1L8ee6jw9ERAFIWBIBwuZVEBbM4W6hR8u5GfN+mhvDCKDZJByQHoxx0vW20MJG8+jJKmBEgTlMCCGkJ2B28hIOWAYEJCyBAMz+X8LmgJ5zLMUgINq9RI2cB9DWbpvTT9hsoK3G6FGNRAghpCMEu/2AlI7oAmhVAnq4LkSrnLdPRw6Kgk0IIZbihNIQ1boQm3JOCCGEWAr1kjYhhBBCohfKOSGEEBL1UM4JIYSQqIdyTgghhEQ9lHNCCCEk6qGcE0IIIVEP5ZwQQgiJeijnhBBCSNRDOSeEEEKiHso5IYQQEuXExf1/7wQ/oC4y2S0AAAAASUVORK5CYII=)
+
+ 
+
+````java
+@Test
+public void test1 () throws IOException {
+    FileInputStream fis = new FileInputStream("dbcp.txt");
+    //InputStreamReader isr = new InputStreamReader(fis);//使用系统默认的字符集
+    //参数2指明了字符集，具体使用哪个字符集，取决于文件dbcp.txt保存时使用的字符集
+    InputStreamReader isr = new InputStreamReader(fis, "UTF-8");//使用系统默认的字符集
+    char[] cbuf = new char[20];
+    int len;
+    while ((len = isr.read(cbuf)) != -1) {
+        String str = new String(cbuf, 0, len);
+        System.out.print(str);
+    }
+    isr.close();
+}
+/*
+此时处理异常的话，仍然应该使用try-catch-finally
+综合使用InputStreamReader和OutputStreamWriter
+ */
+@Test
+public void test2 () throws Exception {
+    //1.造文件、造流
+    File file1 = new File("dbcp.txt");
+    File file2 = new File("dbcp_gbk.txt");
+    FileInputStream fis = new FileInputStream(file1);
+    FileOutputStream fos = new FileOutputStream(file2);
+    InputStreamReader isr = new InputStreamReader(fis, "utf-8");
+    OutputStreamWriter osw = new OutputStreamWriter(fos, "gbk");
+    //2.读写过程
+    char[] cbuf = new char[20];
+    int len;
+    while ((len = isr.read(cbuf)) != -1) {
+        osw.write(cbuf, 0, len);
+    }
+    //3.关闭资源
+    isr.close();
+    osw.close();
+}
+````
+
+
+
+
+
+## 对象流
+
+| 流                 | 作用                                    | 代表         |
+| ------------------ | --------------------------------------- | ------------ |
+| ObjectOutputStream | 内存中的对象  ------->    文件/网络传输 | 序列化过程   |
+| ObjectInputStream  | 文件/网络传输 ------->    内存中对象    | 反序列化过程 |
+
+| 方法                             | 作用             |
+| -------------------------------- | ---------------- |
+| ObjectOutputStream.writeObject() | 序列化一个对象   |
+| ObjectInputStream.readObject()   | 反序列化一个对象 |
+
+
+
+**对象的序列化机制：**
+
+对象序列化机制允许把内存中的Java对象转换成平台无关的二进制流，从而允许把这种二进制流持久地保存在磁盘上，或通过网络将这种二进制流传输到另一个网络节点
+
+
+
+**实现序列化的对象所属的类需要满足：**
+
+* 需要实现接口：`Serializable`
+* 当前类提供一个全局常量：`serialVersionUID`
+* 除了当前`Person`类需要实现`Serializable`接口之外，还必须保证其内部所属性也必须是可序列化的。（默认情况下，基本数据类型可序列化）
+* `ObjectOutputStream`和`ObjectInputStream`不能序列化`static`和`transient`修饰的成员变量
+
+
+
+**实现步骤**
+
+> 序列化的步骤
+
+* 创建一个对象输出流，它可以包装一个其它类型的目标输出流，如文件输出流：
+
+  `ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("D:\\object.out"));`
+
+* 通过对象输出流的writeObject()方法写对象：
+
+  `oos.writeObject(new User("xuliugen", "123456", "male"));`
+
+ 
+
+> 反序列化的步骤
+
+* 创建一个对象输入流，它可以包装一个其它类型输入流，如文件输入流：
+
+  `ObjectInputStream ois= new ObjectInputStream(new FileInputStream("object.out"));`
+
+* 通过对象输出流的readObject()方法读取对象：
+
+  `User user = (User) ois.readObject();`
+
+说明： 为了正确读取数据，完成反序列化，必须保证向对象输出流写对象的顺序与从对象输入流中读对象的顺序一致。序列化数据后，再次原数据，不会影响文件中的内容
+
+例：
+
+````java
+//序列化
+@Test
+public void testObjectOutputStream(){
+    ObjectOutputStream oos = null;
+
+    try {
+        //1.
+        oos = new ObjectOutputStream(new FileOutputStream("object.dat"));
+        //2.
+        oos.writeObject(new String("我爱北京天安门"));
+        oos.flush();//刷新操作
+
+         oos.writeObject(new Person("王铭",23));//Person为自定义类
+        oos.flush();
+
+        oos.writeObject(new Person("张学良",23,1001,new Account(5000)));
+        oos.flush();
+
+    } catch (IOException e) {
+        e.printStackTrace();
+    } finally {
+        if(oos != null){
+            //3.
+            try {
+                oos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+
+//反序列化
+@Test
+public void testObjectInputStream(){
+    ObjectInputStream ois = null;
+    try {
+        ois = new ObjectInputStream(new FileInputStream("object.dat"));
+        Object obj = ois.readObject();
+        String str = (String) obj;
+        Person p = (Person) ois.readObject();
+        Person p1 = (Person) ois.readObject();
+        System.out.println(str);
+        System.out.println(p);
+        System.out.println(p1);
+    } catch (IOException e) {
+        e.printStackTrace();
+    } catch (ClassNotFoundException e) {
+        e.printStackTrace();
+    } finally {
+        if(ois != null){
+            try {
+                ois.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+````
+
+
+
+### 序列化
+
+**序列化定义**
+
+* Java序列化是指把Java对象转换为字节序列的过程，而Java反序列化是指把字节序列恢复为Java对象的过程；
+* 序列化：对象序列化的最主要的用处就是在传递和保存对象的时候，保证对象的完整性和可传递性。序列化是把对象转换成有序字节流，以便在网络上传输或者保存在本地文件中。序列化后的字节流保存了Java对象的状态以及相关的描述信息。序列化机制的核心作用就是对象状态的保存与重建。
+* 反序列化：客户端从文件中或网络上获得序列化后的对象字节流后，根据字节流中所保存的对象状态及描述信息，通过反序列化重建对象。
+* 本质上讲，序列化就是把实体对象状态按照一定的格式写入到有序字节流，反序列化就是从有序字节流重建对象，恢复对象状态。
+
+ 
+
+**如何实现序列化和反序列化，底层怎么实现**
+
+> JDK类库中序列化和反序列化API
+
+* `java.io.ObjectOutputStream`：表示对象输出流；它的`writeObject(Object obj)`方法可以对参数指定的obj对象进行序列化，把得到的字节序列写到一个目标输出流中；
+
+* `java.io.ObjectInputStream`：表示对象输入流；它的`readObject()`方法源输入流中读取字节序列，再把它们反序列化成为一个对象，并将其返回；
+
+  
+
+> 实现序列化的要求
+
+只有实现了 `Serializable` 或 `Externalizable` 接口的类的对象才能被序列化，否则抛出异常！
+
+
+
+> 实现Java对象序列化与反序列化的方法
+
+假定一个User类，它的对象需要序列化，可以有如下三种方法：
+
+- 若 User 类仅仅实现了 `Serializable` 接口，则可以按照以下方式进行序列化和反序列化
+
+- - `ObjectOutputStream` 采用默认的序列化方式，对 `User` 对象的非 `transient` 的实例变量进行序列化。
+  - `ObjcetInputStream` 采用默认的反序列化方式，对对 `User` 对象的非 `transient` 的实例变量进行反序列化。
+
+- 若User类仅仅实现了`Serializable`接口，并且还定义了 `readObject(ObjectInputStream in)` 和`writeObject(ObjectOutputSteam out)`，则采用以下方式进行序列化与反序列化。
+
+- - `ObjectOutputStream` 调用 User 对象的 `writeObject(ObjectOutputStream out)` 的方法进行序列化。
+  - `ObjectInputStream` 会调用 User 对象的`readObject(ObjectInputStream in)` 的方法进行反序列化。
+
+- 若User类实现了 `Externalnalizabl`e 接口，且 User 类必须实现 `readExternal(ObjectInput in)` 和 `writeExternal(ObjectOutput out)` 方法，则按照以下方式进行序列化与反序列化。
+
+- - `ObjectOutputStream` 调用 User 对象的`writeExternal(ObjectOutput out)` 的方法进行序列化。
+  - `ObjectInputStream` 会调用User对象的`readExternal(ObjectInput in)` 的方法进行反序列化。
+
+ 
+
+**相关注意事项**
+
+* 序列化时，只对对象的状态进行保存，而不管对象的方法；
+* 当一个父类实现序列化，子类自动实现序列化，不需要显式实现 Serializable 接口；
+* 当一个对象的实例变量引用其他对象，序列化该对象时也把引用对象进行序列化；
+* 并非所有的对象都可以序列化比如：
+  * 安全方面的原因，比如一个对象拥有`private，public`等`field`，对于一个要传输的对象，比如写到文件，或者进行RMI传输等等，在序列化进行传输的过程中，这个对象的`private`等域是不受保护的；
+  * 资源分配方面的原因，比如`socket，thread`类，如果可以序列化，进行传输或者保存，也无法对他们进行重新的资源分配，而且，也是没有必要这样实现；
+
+* 声明为`static`和`transient`类型的成员数据不能被序列化。因为`static`代表类的状态，`transient`代表对象的临时数据。
+* 序列化运行时使用一个称为 `serialVersionUID` 的版本号与每个可序列化类相关联，该序列号在反序列化过程中用于验证序列化对象的发送者和接收者是否为该对象加载了与序列化兼容的类。为它赋予明确的值。显式地定义`serialVersionUID`有两种用途：
+  * 在某些场合，希望类的不同版本对序列化兼容，因此需要确保类的不同版本具有相同的`serialVersionUID`；
+  * 在某些场合，不希望类的不同版本对序列化兼容，因此需要确保类的不同版本具有不同的`serialVersionUID`。
+
+* 如果一个对象的成员变量是一个对象，那么这个对象的数据成员也会被保存！这是能用序列化解决深拷贝的重要原因；
+
+`ArrayList` 序列化和反序列化的实现 ：`ArrayList` 中存储数据的数组是用 `transient` 修饰的，因为这个数组是动态扩展的，并不是所有的空间都被使用，因此就不需要所有的内容都被序列化。**通过重写序列化和反序列化方法**，使得可以只序列化数组中有内容的那部分数据。`private transient Object[] elementData;`
+
+
+
+
+
+## RandomAccessFile
+
+* RandomAccessFile直接继承于java.lang.Object类，实现了DataInput和DataOutput接口
+* RandomAccessFile既可以作为一个输入流，又可以作为一个输出流
+* 如果RandomAccessFile作为输出流时，写出到的文件如果不存在，则在执行过程中自动创建。如果写出到的文件存在，则会对原文件内容进行覆盖。（默认情况下，从头覆盖）
+* 可以通过相关的操作，实现RandomAccessFile“插入”数据的效果。seek(int pos)
+
+ 
+
+**构造器**
+
+`public RandomAccessFile(File file, String mode)` 
+
+`public RandomAccessFile(String name, String mode)` 创建`RandomAccessFile`类实例需要指定一个`mode` 参数，
+
+该参数指定`RandomAccessFile`的访问模式：
+
+* r: 以只读方式打开
+* rw：打开以便读取和写入
+* rwd:打开以便读取和写入；同步文件内容的更新
+* rws:打开以便读取和写入；同步文件内容和元数据的更新
+
+ 
+
+例：
+
+````java
+@Test
+public void test1() {
+    RandomAccessFile raf1 = null;
+    RandomAccessFile raf2 = null;
+    try {
+        //1.
+        raf1 = new RandomAccessFile(new File("爱情与友情.jpg"),"r");
+        raf2 = new RandomAccessFile(new File("爱情与友情1.jpg"),"rw");
+        //2.
+        byte[] buffer = new byte[1024];
+        int len;
+        while((len = raf1.read(buffer)) != -1){
+            raf2.write(buffer,0,len);
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    } finally {
+        //3.
+        if(raf1 != null){
+            try {
+                raf1.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        if(raf2 != null){
+            try {
+                raf2.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+````
+
+````java
+//使用RandomAccessFile实现数据的插入效果
+@Test
+public void test3() throws IOException {
+
+    RandomAccessFile raf1 = new RandomAccessFile("hello.txt","rw");
+
+    raf1.seek(3);//将指针调到角标为3的位置
+    //保存指针3后面的所数据到StringBuilder中
+    StringBuilder builder = new StringBuilder((int) new File("hello.txt").length());
+    byte[] buffer = new byte[20];
+    int len;
+    while((len = raf1.read(buffer)) != -1){
+        builder.append(new String(buffer,0,len)) ;
+    }
+    //调回指针，写入“xyz”
+    raf1.seek(3);
+    raf1.write("xyz".getBytes());
+
+    //将StringBuilder中的数据写入到文件中
+    raf1.write(builder.toString().getBytes());
+
+    raf1.close();
+
+    //思考：将StringBuilder替换为ByteArrayOutputStream
+}
+````
+
+
+
+
+
+
+
+
+
+## 其它流的使用
+
+**标准的输入输出流：**
+
+* `System.in`:标准的输入流，默认从键盘输入
+* `System.out`:标准的输出流，默认从控制台输出
+
+ 
+
+​	修改默认的输入和输出行为：
+
+​	`System`类的`setIn(InputStream is) / setOut(PrintStream ps)`方式重新指定输入和输出的流。
+
+ 
+
+**打印流：**
+
+`PrintStream` 和`PrintWriter`
+
+说明：
+
+提供了一系列重载的`print()`和`println()`方法，用于多种数据类型的输出
+
+`System.out`返回的是`PrintStream`的实例
+
+
+
+**数据流：**
+
+`DataInputStream` 和 `DataOutputStream`
+
+作用：用于读取或写出基本数据类型的变量或字符串
+
+示例代码：
+
+ ````java
+ /*
+ 练习：将内存中的字符串、基本数据类型的变量写出到文件中。
+ 注意：处理异常的话，仍然应该使用try-catch-finally.
+  */
+ @Test
+ public void test3() throws IOException {
+     //1.
+     DataOutputStream dos = new DataOutputStream(new FileOutputStream("data.txt"));
+     //2.
+     dos.writeUTF("刘建辰");
+     dos.flush();//刷新操作，将内存中的数据写入文件
+     dos.writeInt(23);
+     dos.flush();
+     dos.writeBoolean(true);
+     dos.flush();
+     //3.
+     dos.close();
+ }
+ /*
+ 将文件中存储的基本数据类型变量和字符串读取到内存中，保存在变量中。
+ 注意点：读取不同类型的数据的顺序要与当初写入文件时，保存的数据的顺序一致！
+  */
+ @Test
+ public void test4() throws IOException {
+     //1.
+     DataInputStream dis = new DataInputStream(new FileInputStream("data.txt"));
+     //2.
+     String name = dis.readUTF();
+     int age = dis.readInt();
+     boolean isMale = dis.readBoolean();
+ 
+     System.out.println("name = " + name);
+     System.out.println("age = " + age);
+     System.out.println("isMale = " + isMale);
+ 
+     //3.
+     dis.close();
+ }
+ ````
+
+
+
+
+
+## Path、Paths、Files
+
+**NIO中详细学习**
+
+**NIO的使用说明：**
+
+* `Java NIO (New IO，Non-Blocking IO)`是从Java 1.4版本开始引入的一套新的`IO API`，可以替代标准的`Java IO AP`。
+* NIO与原来的IO同样的作用和目的，但是使用的方式完全不同，NIO支持面向缓冲区的(IO是面向流的)、基于通道的IO操作。
+* NIO将以更加高效的方式进行文件的读写操作。
+
+ 
+
+**Path的使用**
+
+说明：`Path`替换原有的`File`类。
+
+> 实例化：
+
+![img](java.assets/clip_image002-16539015797619.jpg)
+
+> 常用方法：
+
+![img](java.assets/clip_image004-16539015797618.jpg)
+
+ 
+
+
+
+**Files工具类**
+
+作用：操作文件或文件目录的工具类
+
+> 常用方法：
+
+![img](java.assets/clip_image006-165390157976111.jpg)
+
+![img](java.assets/clip_image008-165390157976110.jpg)
+
+ 
+
+
+
+## properties配置文件
+
+[Properties类简介](https://blog.csdn.net/ThinkWon/article/details/100667783?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522161052784916780257417049%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fall.%2522%257D&request_id=161052784916780257417049&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~first_rank_v2~rank_v29-13-100667783.first_rank_v2_pc_rank_v29&utm_term=properties)
+
+[Java中的Properties类详解](https://blog.csdn.net/amosjob/article/details/82747733?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-5.control&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-5.control)
+
+
+
+**概述**
+
+* `Properties` 继承于 `Hashtable`。表示一个持久的属性集，属性列表以`key-value`的形式存在，`key`和`value`都是字符串。
+* Java中有个比较重要的类`Java.util.Properties`，主要用于读取Java的配置文件，各种语言都有自己所支持的配置文件，配置文件中很多变量是经常改变的，这样做也是为了方便用户，让用户能够脱离程序本身去修改相关的变量设置。
+* 文件的内容的格式是“键=值”的格式，文本注释信息可以用"#"来注释。
+
+
+
+**常用方法**
+
+除了从`Hashtable`中所定义的方法，`Properties`定义了以下方法：
+
+> 加载
+
+| 方法                            | 作用                                   |
+| ------------------------------- | -------------------------------------- |
+| void load(InputStream inStream) | 从输入字节流读取属性列表               |
+| void load(Reader reader)        | 从输入字符流读取属性列表（键和元素对） |
+
+
+
+> 储存
+
+| 方法                                         | 作用                                                         |
+| -------------------------------------------- | ------------------------------------------------------------ |
+| void store(OutputStream out,String comments) | 储存，将 Properties 的内容写入到OutputStream out。参数2为备注 |
+| void store(Writer writer, String comments)   | 储存，将 Properties 的内容写入到Writer writer                |
+| storeToXML(OutputStream os, String comment)  | 发出代表所有包含此表中的属性的  XML 文档                     |
+
+> 查询/添加/清除
+
+| 方法                                         | 作用                                                       |
+| -------------------------------------------- | ---------------------------------------------------------- |
+| Object setPropeerty(String key,String value) | 设置集合的键和值，都是String类型，底层调用Hashtable方法put |
+| String getProperty(String key)               | 使用此属性列表中指定的键搜索属性                           |
+| void clear()                                 | 清除所有装载的 键 - 值对                                   |
+
+
+
+**常用方法实践**
+
+> 写入
+
+`Properties`类调用`setProperty`方法将键值对保存到内存中，此时可以通过`getProperty`方法读取，`propertyNames`方法进行遍历，但是并没有将键值对持久化到属性文件中，
+
+故需要调用`store`方法持久化键值对到属性文件中。
+
+````java
+public static void main(String[] args) throws IOException {
+    Properties properties = new Properties();
+    OutputStream output = null;
+    try {
+        output = new FileOutputStream("src/main/resources/config.properties");
+        properties.setProperty("username", "root");
+        properties.setProperty("password", "0604");
+        // 保存键值对到文件中
+        properties.store(output, "JourWon modify");
+    } catch (IOException io) {
+        io.printStackTrace();
+    } finally {
+        if (output != null) {
+            try {
+                output.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+输出结果，在resources目录下多一个文件config.properties，内容如下
+#JourWon modify
+#Mon Sep 09 14:23:44 CST 2019
+password=0604
+username=root
+````
+
+> 读取
+
+常见的六种读取`properties`文件的方式：
+
+````java
+//一、 使用java.util.Properties类的load(InputStream in)方法加载properties文件
+//主要是需要加上src这个文件夹名。路径配置需要精确到绝对地址级别
+public static void getPath1() throws IOException {
+    InputStream in = new FileInputStream( new File("src/main/resources/prop.properties"));
+    Properties properties = new Properties();
+    properties.load(in);
+}
+
+//二、 使用java.util.ResourceBundle类的getBundle()方法
+//注意：这个getBundle()方法的参数只能写成包路径+properties文件名，注意不需要带上后缀名。
+public static void getPath2() {
+    ResourceBundle rb = ResourceBundle.getBundle("prop");
+    printKeyValueRb(rb);
+}
+
+//三、 使用java.util.PropertyResourceBundle类的构造函数
+public static void getPath3() throws IOException {
+    InputStream in = new BufferedInputStream(new FileInputStream("src/main/resources/prop.properties"));
+    ResourceBundle rb = new PropertyResourceBundle(in);
+
+    printKeyValueRb(rb);
+}
+
+//四、 使用class变量的getResourceAsStream()方法注意：getResourceAsStream()方法的参数按格式写到包路径+properties文件名+.后缀
+public static void getPath4() throws IOException {
+    InputStream in = PropertiesTest.class.getResourceAsStream("/prop.properties");
+
+    printKeyValue(in);
+}
+
+//使用class.getClassLoader()所得到的java.lang.ClassLoader的getResourceAsStream()方法和getResourceAsStream(name)方法的参数必须是包路径+文件名+.后缀。否则会报空指针异常
+public static void getPath5() throws IOException {
+    InputStream in = PropertiesTest.class.getClassLoader().getResourceAsStream("./././prop.properties");
+
+    printKeyValue(in);
+}
+
+//六、 使用java.lang.ClassLoader类的getSystemResourceAsStream()静态方法
+//getSystemResourceAsStream()方法的参数格式也是有固定要求的
+public static void getPath6() throws IOException {
+    InputStream in = ClassLoader.getSystemResourceAsStream("./././prop.properties");
+
+    printKeyValue(in);
+}
+
+//单独抽取的方法，用户检测能否正确操纵Properties
+public static void printKeyValue(InputStream inputStream) throws IOException {
+    Properties properties = new Properties();
+    properties.load(inputStream);
+    Set<Object> keys = properties.keySet();
+    for (Object key : keys) {
+        System.out.println(key + " = " + properties.get(key));
+    }
+
+    if (inputStream != null) {
+        inputStream.close();
+    }
+}
+public static void printKeyValueRb(ResourceBundle rb) {
+    Set<String> keys = rb.keySet();
+    for (String key : keys) {
+        System.out.println(key + " = " + rb.getString(key));
+    }
+}
+输出结果都是
+password = 0604
+username = root
+````
+
+ 
+
+**解决IDEA乱码**
+
+![image-20220530175126734](java.assets/image-20220530175126734.png)
+
+ 
+
+ 
+
+ 
+
+
+
+# 网络编程
+
+## InetAddress类
+
+此类的一个对象就代表着一个具体的IP地址
+
+`InetAddress`类没有提供公共的构造器，而是提供了如下几个**静态方法**来获取`InetAddress`实例
+
+| 方法                               | 作用                                                        |
+| ---------------------------------- | ----------------------------------------------------------- |
+| InetAddress getByName(String host) | 指定IP地址或域名，如 iterAddress.getByName("www.baidu.cmo") |
+| InetAddress getLocalHost()         | 获取本机地址                                                |
+
+**常用的方法**
+
+| 方法                             | 作用                                     |
+| -------------------------------- | ---------------------------------------- |
+| String getHostAddress()          | 返回IP 地址字符串（以文本表现形式）。    |
+| String getHostName()             | 获取此IP 地址的主机名（域名）            |
+| boolean isReachable(int timeout) | 测试是否可以达到该地址                   |
+| byte[] getAddress()              | 返回此  InetAddress 对象的原始 IP 地址。 |
+
+**案例演示**
+
+````java
+public class InetAddressTest {
+    public static void main(String[] args) {
+        try {
+            //File file = new File("hello.txt");
+            InetAddress inet1 = InetAddress.getByName("192.168.10.14");
+
+            InetAddress inet2 = InetAddress.getByName("www.atguigu.com");
+
+            //获取本地ip
+            InetAddress inet4 = InetAddress.getLocalHost();
+            System.out.println(inet4);
+
+            //getHostName()
+            System.out.println(inet2.getHostName());
+            //getHostAddress()
+            System.out.println(inet2.getHostAddress());
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
+    }
+}
+````
+
+
+
+ 
+
+## InetSocketAddress类
+
+此类实现 IP 套接字地址（IP 地址 + 端口号）。
+
+**构造方法**
+
+| 方法                                            | 作用                                                       |
+| ----------------------------------------------- | ---------------------------------------------------------- |
+| InetSocketAddress(InetAddress  addr, int  port) | 根据 IP 地址和端口号创建套接字地址。                       |
+| lnetSocketAddress(int port)                     | 创建套接字地址，其中 IP 地址为通配符地址，端口号为指定值。 |
+| InetSocketAddress(String  hostname, int port)   | 根据主机名和端口号创建套接字地址。                         |
+
+**常用方法**
+
+| 方法                     | 作用               |
+| ------------------------ | ------------------ |
+| InetAddress getAddress() | 获取 InetAddress。 |
+| String getHostName()     | 获取 hostname。    |
+| int getPort()            | 获取端口号。       |
+
+**案例演示**
+
+````java
+public class TestPort {
+    public static void main(String[] args) {
+        InetSocketAddress inetSocketAddress = new InetSocketAddress("127.0.0.1",8082);
+        System.out.println(inetSocketAddress);
+        //返回主机名
+        System.out.println(inetSocketAddress.getHostName());
+        //获得InetSocketAddress的端口
+        System.out.println(inetSocketAddress.getPort());
+        //返回一个InetAddress对象（IP对象）
+        InetAddress address = inetSocketAddress.getAddress();
+        System.out.println(address);
+    }
+}
+````
+
+
+
+## TCP 网络编程
+
+**概述**                                                                                
+
+TCP通信能实现两台计算机之间的数据交互，通信的两端，要严格区分为客户端（Client）与服务端（Server）。
+
+**两端通信时步骤：**
+
+* 服务端程序，需要事先启动，等待客户端的连接。
+* 客户端主动连接服务器端，连接成功才能通信。服务端不可以主动连接客户端。
+
+**在Java中，提供了两个类用于实现TCP通信程序：**
+
+* 客户端：`java.net.Socket` 类表示。创建`Socket`对象，向服务端发出连接请求，服务端响应请求，两者建立连接开始通信。
+
+* 服务端：`java.net.ServerSocket` 类表示。创建`ServerSocket`对象，相当于开启一个服务，并等待客户端的连接。
+
+ 
+
+### **Socket类**                                          
+
+- 利用套接字(`Socket`)开发网络应用程序早已被广泛的采用，以至于成为事实上的标准。
+
+- 网络上具有唯一标识的IP地址和端口号组合在一起才能构成唯一能识别的标识符套接字。
+
+- 通信的两端都要有`Socket`，是两台机器间通信的端点。
+
+- 网络通信其实就是`Socket`间的通信。
+
+- `Socket`允许程序把网络连接当成一个流，数据在两个`Socket`间通过IO传输。
+
+- 一般主动发起通信的应用程序属客户端，等待通信请求的为服务端。
+
+- `Socket`分类：
+
+- - 流套接字（`stream socket`）：使用TCP提供可依赖的字节流服务
+  - 数据报套接字（`datagram socket`）：使用UDP提供“尽力而为”的数据报服务
+
+ 
+
+**Socket类的常用构造器：**
+
+| 方法                                  | 作用                                                 |
+| ------------------------------------- | ---------------------------------------------------- |
+| Socket(InetAddress  address,int port) | 创建一个流套接字并将其连接到指定IP地址的指定端口号。 |
+| Socket(String  host,int port)         | 创建一个流套接字并将其连接到指定主机上的指定端口号。 |
+
+ 
+
+**Socket类的常用方法：**
+
+| 方法                           | 作用                                                         |
+| ------------------------------ | ------------------------------------------------------------ |
+| InputStream getInputStream()   | 返回此套接字的输入流。可以用于接收网络消息                   |
+| OutputStream getOutputStream() | 返回此套接字的输出流。可以用于发送网络消息                   |
+| InetAddress getInetAddress()   | 此套接字连接到的远程IP地址；如果套接字是未连接的，则返回null。 |
+| InetAddress getLocalAddress()  | 获取套接字绑定的本地地址。即本端的IP地址                     |
+| int getPort()                  | 此套接字连接到的远程端口号；如果尚未连接套接字，则返回0。    |
+| int getLocalPort()             | 返回此套接字绑定到的本地端口。如果尚未绑定套接字，则返回-1。即本端的端口号。 |
+| void close()                   | 关闭此套接字。套接字被关闭后，便不可在以后的网络连接中使用（即无法重新连接或重新绑定）。需要创建新的套接字对象。关闭此套接字也将会关闭该套接字的InputStream和OutputStream。 |
+| void shutdownInput()           | 如果在套接字上调用shutdownInput()后从套接字输入流读取内容，则流将返回EOF（文件结束符）。即不能在从此套接字的输入流中接收任何数据。 |
+| void shutdownOutput()          | 禁用此套接字的输出流。对于TCP套接字，任何以前写入的数据都将被发送，并且后跟TCP的正常连接终止序列。如果在套接字上调用shutdownOutput()后写入套接字输出流，则该流将抛出IOException。即不能通过此套接字的输出流发送任何数据。 |
+
+ 
+
+### ServerSocket类                                                                              
+
+ServerSocket类：这个类实现了**服务器**套接字，该对象等待通过网络的请求。
+
+ 
+
+**构造方法摘要**
+
+| 方法                    | 作用                                                         |
+| ----------------------- | ------------------------------------------------------------ |
+| ServerSocket(int  port) | 使用该构造方法在创建ServerSocket对象时，就可以将其绑定到一个指定的端口号上，参数port就是端口号。 |
+
+​	案例演示
+
+​		`ServerSocket server = new ServerSocket(6666);            //绑定到6666端口`
+
+ 
+
+**常用方法摘要**
+
+| 方法               | 作用                                                         |
+| ------------------ | ------------------------------------------------------------ |
+| Socket accept() ： | 侦听并接受连接，返回一个新的Socket对象，用于和客户端实现通信。该方法会一直阻塞直到建立连接。 |
+
+
+
+### 基于Socket的TCP编程                                                                     
+
+> **客户端Socket的工作过程包含以下四个基本的步骤：**
+
+* 创建`Socket`：根据指定服务端的IP 地址或端口号构造`Socket` 类对象。若服务器端响应，则建立客户端到服务器的通信线路。若连接失败，会出现异常。
+* 打开连接到`Socket` 的输入/出流：使用`getInputStream()`方法获得输入流，使用`getOutputStream()`方法获得输出流，进行数据传输
+* 按照一定的协议对`Socket` 进行读/写操作：通过输入流读取服务器放入线路的信息（但不能读取自己放入线路的信息），通过输出流将信息写入线程。
+* 关闭`Socket`：断开客户端到服务器的连接，释放线路
+
+ 
+
+> **服务器程序的工作过程包含以下四个基本的步骤：**
+
+* 创建`ServerSocket(intport)` ：创建一个服务器端套接字，并绑定到指定端口上。用于监听客户端的请求。
+* 调用`accept()`：监听连接请求，如果客户端请求连接，则接受连接，返回通信套接字对象。
+* 调用该`Socket`类对象的`getOutputStream()` 和`getInputStream()`：获取输出流和输入流，开始网络数据的发送和接收。
+* 关闭`ServerSocket`和`Socket`对象：客户端访问结束，关闭通信套接字。
+
+
+
+**代码示例**
+
+> 代码示例1：客户端发送信息给服务端，服务端将数据显示在控制台上
+
+````java
+//客户端
+@Test
+public void client()  {
+    Socket socket = null;
+    OutputStream os = null;
+    try {
+        //1.创建Socket对象，指明服务器端的ip和端口号
+        InetAddress inet = InetAddress.getByName("192.168.14.100");
+        socket = new Socket(inet,8899);   //向192.168.14.100 的8899端口发送
+        //2.获取一个输出流，用于输出数据
+        os = socket.getOutputStream();
+        //3.写出数据的操作
+        os.write("你好，我是客户端mm".getBytes());
+    } catch (IOException e) {
+        e.printStackTrace();
+    } finally {
+        //4.资源的关闭
+        if(os != null){
+            try {
+                os.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        if(socket != null){
+            try {
+                socket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+//服务端
+@Test
+public void server()  {
+    ServerSocket ss = null;
+    Socket socket = null;
+    InputStream is = null;
+    ByteArrayOutputStream baos = null;
+    try {
+        //1.创建服务器端的ServerSocket，指明自己的端口号
+        ss = new ServerSocket(8899);
+        //2.调用accept()表示接收来自于客户端的socket
+        socket = ss.accept();
+        //3.获取输入流
+        is = socket.getInputStream();
+        //不建议这样写，可能会乱码
+    //        byte[] buffer = new byte[1024];
+    //        int len;
+    //        while((len = is.read(buffer)) != -1){
+    //            String str = new String(buffer,0,len);
+    //            System.out.print(str);
+    //        }
+        //4.读取输入流中的数据
+        baos = new ByteArrayOutputStream();
+        byte[] buffer = new byte[5];
+        int len;
+        while((len = is.read(buffer)) != -1){
+            baos.write(buffer,0,len);
+        }
+        System.out.println(baos.toString());
+        System.out.println("收到了来自于：" + socket.getInetAddress().getHostAddress() + "的数据");
+    } catch (IOException e) {
+        e.printStackTrace();
+    } finally {
+        if(baos != null){
+            //5.关闭资源
+            try {
+                baos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        if(is != null){
+            try {
+                is.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        if(socket != null){
+            try {
+                socket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        if(ss != null){
+            try {
+                ss.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+````
+
+> 代码示例2：客户端发送文件给服务端，服务端将文件保存在本地。
+
+````java
+@Test
+public void client() throws IOException {
+    //1.
+    Socket socket = new Socket(InetAddress.getByName("127.0.0.1"),9090);
+    //2.
+    OutputStream os = socket.getOutputStream();
+    //3.
+    FileInputStream fis = new FileInputStream(new File("beauty.jpg"));
+    //4.
+    byte[] buffer = new byte[1024];
+    int len;
+    while((len = fis.read(buffer)) != -1){
+        os.write(buffer,0,len);
+    }
+    //5.
+    fis.close();
+    os.close();
+    socket.close();
+}
+
+@Test
+public void server() throws IOException {
+    //1.
+    ServerSocket ss = new ServerSocket(9090);
+    //2.
+    Socket socket = ss.accept();
+    //3.
+    InputStream is = socket.getInputStream();
+    //4.
+    FileOutputStream fos = new FileOutputStream(new File("beauty1.jpg"));
+    //5.
+    byte[] buffer = new byte[1024];
+    int len;
+    while((len = is.read(buffer)) != -1){
+        fos.write(buffer,0,len);
+    }
+    //6.
+    fos.close();
+    is.close();
+    socket.close();
+    ss.close();
+}
+````
+
+
+
+ 
+
+> 代码示例3：从客户端发送文件给服务端，服务端保存到本地。并返回“发送成功”给客户端。并关闭相应的连接。
+
+````java
+@Test
+public void client() throws IOException {
+    //1.
+    Socket socket = new Socket(InetAddress.getByName("127.0.0.1"),9090);
+    //2.
+    OutputStream os = socket.getOutputStream();
+    //3.
+    FileInputStream fis = new FileInputStream(new File("beauty.jpg"));
+    //4.
+    byte[] buffer = new byte[1024];
+    int len;
+    while((len = fis.read(buffer)) != -1){
+        os.write(buffer,0,len);
+    }
+    //关闭数据的输出
+    socket.shutdownOutput();
+    //5.接收来自于服务器端的数据，并显示到控制台上
+    InputStream is = socket.getInputStream();
+    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    byte[] bufferr = new byte[20];
+    int len1;
+    while((len1 = is.read(buffer)) != -1){
+        baos.write(buffer,0,len1);
+    }
+    System.out.println(baos.toString());
+
+    //6.
+    fis.close();
+    os.close();
+    socket.close();
+    baos.close();
+}
+
+@Test
+public void server() throws IOException {
+    //1.
+    ServerSocket ss = new ServerSocket(9090);
+    //2.
+    Socket socket = ss.accept();
+    //3.
+    InputStream is = socket.getInputStream();
+    //4.
+    FileOutputStream fos = new FileOutputStream(new File("beauty2.jpg"));
+    //5.
+    byte[] buffer = new byte[1024];
+    int len;
+    while((len = is.read(buffer)) != -1){
+        fos.write(buffer,0,len);
+    }
+    System.out.println("图片传输完成");
+    //6.服务器端给予客户端反馈
+    OutputStream os = socket.getOutputStream();
+    os.write("你好，美女，照片我已收到，非常漂亮！".getBytes());
+    //7.
+    fos.close();
+    is.close();
+    socket.close();
+    ss.close();
+    os.close();
+}
+````
+
+
+
+## UDP网络编程
+
+从技术意义上来讲，只有`TCP`才会分`Server`和`Client`。对于`UDP`来说，从严格意义上来讲，并没有所谓的`Server`和`Client`。
+
+`java.net`包给我们提供了两个类`DatagramSocket`（表示用于发送和接收数据报的套接字）和`DatagramPacket`（表示数据包 ）
+
+- `DatagramSocket`是快递员，`DatagramPacket`是快递
+
+- 类`DatagramSocket`和`DatagramPacket`实现了基于UDP 协议网络程序。
+- UDP数据报通过数据报套接字`DatagramSocket`发送和接收，系统不保证UDP数据报一定能够安全送到目的地，也不能确定什么时候可以抵达。
+- `DatagramPacket` 对象封装了UDP数据报，在数据报中包含了发送端的IP地址和端口号以及接收端的IP地址和端口号。
+- UDP协议中每个数据报都给出了完整的地址信息，因此无须建立发送方和接收方的连接。如同发快递包裹一样。
+
+ 
+
+**DatagramSocket 类**
+
+| 构造器                                     | 作用                                                         |
+| ------------------------------------------ | ------------------------------------------------------------ |
+| DatagramSocket(int port)                   | 创建数据报套接字并将其绑定到本地主机上的指定端口。套接字将被绑定到通配符地址，IP地址由内核来选择。 |
+| DatagramSocket(int port,InetAddress laddr) | 创建数据报套接字，将其绑定到指定的本地地址。本地端口必须在0到65535之间（包括两者）。  如果IP地址为0.0.0.0，套接字将被绑定到通配符地址，IP地址由内核选择。 |
+
+ 
+
+| 方法                          | 作用                                                         |
+| ----------------------------- | ------------------------------------------------------------ |
+| send(DatagramPacket p)        | 从此套接字发送数据报包。DatagramPacket包含的信息指示：将要发送的数据、其长度、远程主机的IP地址和远程主机的端口号。 |
+| receive(DatagramPacket p)     | 从此套接字接收数据报包。当此方法返回时，DatagramPacket的缓冲区填充了接收的数据。数据报包也包含发送方的IP地址和发送方机器上的端口号。此方法在接收到数据报前一直阻塞。数据报包对象的length字段包含所接收信息的长度。如果信息比包的长度长，该信息将被截短。 |
+| void close()                  | 关闭此数据报套接字。                                         |
+| InetAddress getLocalAddress() | 获取套接字绑定的本地地址。                                   |
+| int getLocalPort()            | 返回此套接字绑定的本地主机上的端口号。                       |
+| InetAddress getInetAddress()  | 返回此套接字连接的地址。如果套接字未连接，则返回null。       |
+| int getPort()                 | 返回此套接字的端口。如果套接字未连接，则返回-1。             |
+
+ 
+
+**DatagramPacket类**
+
+| 构造器                                                       | 作用                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| DatagramPacket(byte[] buf,int length)                        | 构造器，用来接收长度为length的数据包。length参数必须小于等于buf.length。 |
+| DatagramPacket(byte[] buf,int length,InetAddress address,int port) | 构造器，用来将长度为length的包发送到指定主机上的指定端口号。length参数必须小于等于buf.length。 |
+
+ 
+
+| 方法                     | 作用                                                         |
+| ------------------------ | ------------------------------------------------------------ |
+| InetAddress getAddress() | 返回某台机器的IP地址，此数据报将要发往该机器或者是从该机器接收到的。 |
+| int getPort()            | 返回某台远程主机的端口号，此数据报将要发往该主机或者是从该主机接收到的。 |
+| byte[] getData()         | 返回数据缓冲区。接收到的或将要发送的数据从缓冲区中的偏移量offset处开始，持续length长度。 |
+| int getLength()          | 返回将要发送或接收到的数据的长度。                           |
+
+ 
+
+**演示**
+
+````java
+//发送端
+@Test
+public void sender() throws IOException {
+
+    DatagramSocket socket = new DatagramSocket();
+
+    String str = "我是UDP方式发送的导弹";
+    byte[] data = str.getBytes();
+    InetAddress inet = InetAddress.getLocalHost();
+    DatagramPacket packet = new DatagramPacket(data,0,data.length,inet,9090);
+
+    socket.send(packet);
+
+    socket.close();
+
+}
+//接收端
+@Test
+public void receiver() throws IOException {
+
+    DatagramSocket socket = new DatagramSocket(9090);
+
+    byte[] buffer = new byte[100];
+    DatagramPacket packet = new DatagramPacket(buffer,0,buffer.length);
+
+    socket.receive(packet);
+
+    System.out.println(new String(packet.getData(),0,packet.getLength()));
+
+    socket.close();
+}
+````
+
+
+
+````java
+//发送端
+public class Send extends Thread{
+
+    private String ipAddress;               //IP地址
+    private int port;                       //端口号
+
+    DatagramSocket dgs = null;              //快递员
+    DatagramPacket dgp = null;              //快递
+    Scanner scanner = null;
+    public Send(String ipAddress,int port){
+        this.ipAddress = ipAddress;
+        this.port = port;
+        try {
+            dgs = new DatagramSocket();
+        } catch (SocketException e) {
+            e.printStackTrace();
+        }
+        scanner = new Scanner(System.in);
+    }
+
+    @Override
+    public void run() {
+        while (true){                       //循环发送
+            String massage = null;
+            try {
+                massage = scanner.next();   //键盘获取
+                dgp = new DatagramPacket(massage.getBytes(),massage.getBytes().length,
+                        InetAddress.getByName(ipAddress),port);      //将信息发送到 IPAddress：port
+                dgs.send(dgp);              //发送
+            } catch (IOException e) {
+                if(dgs != null)             //异常结束资源
+                    dgs.close();
+                e.printStackTrace();
+            }
+            if(massage.equals("拜拜")){     //发送拜拜结束循环
+                break;
+            }
+        }
+        if(dgs != null)
+            dgs.close();                    //关闭资源
+    }
+}
+
+//接收端
+public class Receive extends Thread{
+    DatagramSocket dgs = null;                 //快递员
+    DatagramPacket dgp = null;                 //快递
+    
+    private int port;                          //监听的端口
+    private String form;                       //角色
+
+    public Receive(int port,String form) {
+        this.port = port;
+        this.form = form;
+
+        try {
+            dgs = new DatagramSocket(port);
+        } catch (SocketException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void run() {
+        while (true){                                             //循环输出
+            byte[] bytes = new byte[1024 * 2];
+            try {
+                dgp = new DatagramPacket(bytes,0,bytes.length);   //接收数据
+                dgs.receive(dgp);                                 //接收
+
+                String message = new String(dgp.getData(), 0, dgp.getLength());  //dgp.getData获取接收的数据
+
+                System.out.println(form + ": " + message);        //输出
+
+                if(message.equals("拜拜")){                       //拜拜结束循环
+                    break;
+                }
+            } catch (IOException e) {
+                if (dgs != null)
+                    dgs.close();
+                e.printStackTrace();
+            }
+        }
+        if (dgs != null)
+            dgs.close();
+    }
+}
+
+//学生端
+public class XueSheng {
+    public static void main(String[] args) throws UnknownHostException {
+        //学生向指定的地址 ： 8888发送数据
+        new Send(InetAddress.getLocalHost().getHostAddress(),8888).start();
+        //监听7777端口的数据
+        new Receive(7777,"老师").start();
+    }
+}
+
+//老师端
+public class LaoShi {
+    public static void main(String[] args) throws UnknownHostException {
+        //老师向指定的地址：7777发送数据
+        new Send(InetAddress.getLocalHost().getHostAddress(),7777).start();
+        //监听8888端口收到的数据
+        new Receive(8888,"学生").start();
+    }
+}
+````
+
+测试
+
+![img](java.assets/clip_image001-16558726148731.png)
+
+ 
+
+![img](java.assets/clip_image002-16558726148742.png)
+
+ 
+
+## URL编程
+
+**概念**
+
+* URL（Uniform Resource Locator）：统一资源定位符，它表示Internet上某一资源的地址。
+* 通过URL我们可以访问Internet上的各种网络资源，比如最常见的www,ftp站点。浏览器通过解析给定的URL可以在网络上查找相应的文件或其他资源。
+* URI=URL+URN
+* URI：Uniform Resource Identifier ，统一资源标志符
+* URL：Uniform Resource Locator，统一资源定位符。
+* URN：Uniform Resource Name，统一资源命名。
+* 网络三大基石：HTML，HTTP，URL
+
+ 
+
+**格式**
+
+URL的基本结构由5部分组成：
+
+<传输协议>://<主机名>:<端口号>/<文件名>#片段名?参数列表
+
+参数列表格式：参数名=参数值&参数名=参数值......
+
+http://localhost:8080/examples/beauty.jpg?username=Tom
+
+协议  主机名  端口号 资源地址      参数列表
+
+ 
+
+**构造方法**
+
+| 方法                                                      | 作用                                                  |
+| --------------------------------------------------------- | ----------------------------------------------------- |
+| URL(String spec)                                          | 根据 String 表示形式创建 URL 对象。                   |
+| URL(String protocol, String host, int port, String  file) | 根据指定协议名、主机名、端口号和文件名创建 URL 对象。 |
+| URL(String protocol, String host, String file)            | 根据指定的协议名、主机名和文件名创建 URL。            |
+
+**常用方法**
+
+| 方法                           | 作用                                                       |
+| ------------------------------ | ---------------------------------------------------------- |
+| String getProtocol()           | 获取此 URL的协议名称。                                     |
+| String getHost()               | 获取此 URL 的主机名。                                      |
+| int getPort()                  | 获取此 URL 的端口号。                                      |
+| String getPath()               | 获取此 URL 的文件路径。                                    |
+| String getFile()               | 获取此 URL 的文件名。                                      |
+| String getQuery()              | 获取此 URL的查询部分。                                     |
+| URLConnection openConnection() | 返回一个URLConnection实例，表示与URL引用的远程对象的URL 。 |
+
+URLConnection类中又有一个方法：
+
+| 方法                         | 作用                             |
+| ---------------------------- | -------------------------------- |
+| connect()                    | 开启连接                         |
+| InputStream getInputStream() | 返回从此打开的连接读取的输入流。 |
+
+ 
+
+**测试：**
+
+````java
+public static void main(String[] args) throws MalformedURLException {
+        URL url = new URL("https://www.bilibili.com/video/BV1LJ411z7vY?from=search");
+
+        System.out.println("协议：" + url.getProtocol());
+        System.out.println("主机：" + url.getHost());
+        System.out.println("端口：" + url.getPort());
+        System.out.println("路径：" + url.getPath());
+        System.out.println("文件：" + url.getFile());
+        System.out.println("查询名：" + url.getQuery());
+
+}
+````
+
+**可以读取、下载对应的url资源：**
+
+````java
+public static void main(String[] args) {
+
+    HttpURLConnection urlConnection = null;
+    InputStream is = null;
+    FileOutputStream fos = null;
+    try {
+        URL url = new URL("http://localhost:8080/examples/beauty.jpg");
+
+        urlConnection = (HttpURLConnection) url.openConnection();
+
+        urlConnection.connect();
+
+        is = urlConnection.getInputStream();
+        fos = new FileOutputStream("day10\\beauty3.jpg");
+
+        byte[] buffer = new byte[1024];
+        int len;
+        while((len = is.read(buffer)) != -1){
+            fos.write(buffer,0,len);
+        }
+
+        System.out.println("下载完成");
+    } catch (IOException e) {
+        e.printStackTrace();
+    } finally {
+        //关闭资源
+        if(is != null){
+            try {
+                is.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        if(fos != null){
+            try {
+                fos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        if(urlConnection != null){
+            urlConnection.disconnect();
+        }
+    }
+}
+````
+
+
+
+
+
+# 反射
+
+## 获取Class
+
+**Class类的理解**
+
+- 类的加载过程：
+
+- - 程序经过`javac.exe`命令以后，会生成一个或多个字节码文件(.class结尾)。
+  - 接着我们使用`java.exe`命令对某个字节码文件进行解释运行。相当于将某个字节码文件
+  - 加载到内存中。此过程就称为类的加载。加载到内存中的类，我们就称为运行时类，此
+  - 运行时类，就作为Class的一个实例。
+
+- 换句话说，Class的实例就对应着一个运行时类。
+
+- 加载到内存中的运行时类，会缓存一定的时间。在此时间之内，我们可以通过不同的方式来获取此运行时类。
+
+ 
+
+**获取Class实例的四种方式**
+
+| 获取方法                  |                                                              |
+| ------------------------- | ------------------------------------------------------------ |
+| 运行时类本身.class属性    | Class clazz =  String.class;                                 |
+| 运行时类.getClass()       | Class clazz =  new Person().getClass();                      |
+| Class.forName()           | Class clazz =  Class.forName("com.sofen.Person");            |
+| 通过类的加载器的loadClass | ClassLoader  classLoader = this.getClass().getClassLoader();   //获得类加载器      Class clazz = classLoader.loadClass("com.sofen.Person");       //获得Class |
+
+
+
+````java
+//方式一：调用运行时类的属性：.class；获取Class实例
+Class clazz1 = Person.class;
+System.out.println(clazz1);
+//方式二：通过运行时类的对象,调用getClass()
+Person p1 = new Person();
+Class clazz2 = p1.getClass();
+
+//方式三：调用Class的静态方法：forName(String classPath) 使用次数最多
+Class clazz3 = Class.forName("com.atguigu.java.Person");
+//clazz3 = Class.forName("java.lang.String");
+
+//方式四：使用类的加载器：ClassLoader
+ClassLoader classLoader = ReflectionTest.class.getClassLoader();
+Class clazz4 = classLoader.loadClass("com.atguigu.java.Person");
+````
+
+
+
+## 创建对象
+
+**创建类的对象的方式?**
+
+* new + 构造器
+* 要创建Xxx类的对象，可以考虑：Xxx、Xxxs、XxxFactory、XxxBuilder类中查看是否有静态方法的存在。可以调用其静态方法，创建Xxx对象。
+* 通过反射
+
+ 
+
+**代码举例**
+
+````java
+Class<Person> clazz = Person.class;
+
+Person obj = clazz.newInstance();//创建运行时类的对象
+System.out.println(obj);
+````
+
+
+
+**说明**
+
+`newInstance()`:调用此方法，创建对应的运行时类的对象。内部调用了运行时类的空参的构造器。
+
+要想此方法正常的创建运行时类的对象，要求：
+
+* 运行时类必须提供空参的构造器
+* 空参的构造器的访问权限得够。通常，设置为public。
+
+ 
+
+**拓展**：在javabean中要求提供一个public的空参构造器。原因：
+
+* 便于通过反射，创建运行时类的对象
+* 便于子类继承此运行时类时，默认调用super()时，保证父类此构造器
+
+
+
+## 获取结构
+
+### 字段Field
+
+| 方法                                      | 作用                                             |
+| ----------------------------------------- | ------------------------------------------------ |
+| Field[]  getFields():                     | 批量获取所有的**公有**字段，包含父类             |
+| Field[]  getDeclaredFields()              | 批量获取所有字段；包括：私有，不包含：继承       |
+| Field  getField(String fieldName)         | 根据指定方法名获取**公有**字段；包含父类         |
+| Field  getDeclaredField(String fieldName) | 根据指定方法名获取字段；包括：私有，不包含：继承 |
+
+如果类中没有域，或者`Class`对象描述的是基本类型或数组类型，这些方法将返回一个长度为0的数组。
+
+**在调用Field之前**：`Field.setAccessible(true)`设置当期Filed为可访问的
+
+> **调用Field：**
+
+| 方法                               | 作用                                           |
+| ---------------------------------- | ---------------------------------------------- |
+| Field.set(Object obj,Object value) | 设置字段的值；参数1：哪个对象，参数2：设置的值 |
+| Field.get(Object obj)              | 返回obj对象中用Field对象表示的域值             |
+
+> **调用数组**
+
+| 方法                                                         | 作用                                             |
+| ------------------------------------------------------------ | ------------------------------------------------ |
+| Object get(Object array,int index) <br />xxx getXxx(Object array,int index) <br />xxx是boolean、byte、char、double、float、int、long、short之中的一种基本类 | 这些方法将返回存储在给定位置上的给定数组的内容。 |
+| void set(Object array,int index,Object  newValue)  <br />setXxx(Object  array,int index,xxx newValue) | 这些方法将一个新值存储到给定位置上的给定数组中。 |
+| int getLength(Object array)                                  | 返回数组的长度。                                 |
+| Object newInstance(Class componentType,int length)  <br />Object newInstance(Class componentType,int[] lengths) | 返回一个具有给定类型、给定维数的新数组。         |
+
+
+
+### 方法 Method
+
+| 方法                                                         | 作用                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Method[]  getMethods()                                       | 批量获取所有的**公有**方法，包含父类                         |
+| Method[]  getDeclaredMethods()                               | 批量获取所有的方法；包括：私有，不包含：继承                 |
+| Method  getMethod(String name,Class<?>...  parameterTypes)   | 获取指定的**公有**方法；参数1：方法名，参数2：形参的类型.Class |
+| Method  getDeclaredMethod(String name,Class<?>... parameterTypes) | 获取指定的方法；包括：私有，不包含：继承                     |
+
+**在调用Method之前**：`Method.setAccessible(true)`设置当期Method为可访问的
+
+> **调用方法：**
+
+| 方法                                     | 作用                                       |
+| ---------------------------------------- | ------------------------------------------ |
+| Method.invoke(Object obj,Object... args) | 方法调用；参数1：哪个类，参数2：传递的实参 |
+
+ 
+
+### 构造器Construct
+
+| 方法                                                         | 作用                                             |
+| ------------------------------------------------------------ | ------------------------------------------------ |
+| Constructor[]  getConstructors()                             | 获取所有"公有的"构造方法                         |
+| Constructor[]  getDeclaredConstructors()                     | 获取所有的构造方法(包括私有、受保护、默认、公有) |
+| Constructor  getConstructor(Class... parameterTypes)         | 获取单个的"公有的"构造方法                       |
+| Constructor  getDeclaredConstructor(Class... parameterTypes) | 获取指定的构造器；包括：私有，不包含：继承       |
+
+**在调用Construct之前**：`Construct.setAccessible(true)`设置当期Construct为可访问的
+
+> **调用构造：**
+
+| 方法                                         | 作用         |
+| -------------------------------------------- | ------------ |
+| Constructor.newInstance(Object... initargs） | 调用构造方法 |
+
+
+
+### 其它
+
+| 方法                              | 作用             |
+| --------------------------------- | ---------------- |
+| Class<?  super T> getSuperclass() | 获取父类         |
+| Type getGenericSuperclass()       | 获取带泛型的父类 |
+| Class<?>[] getInterfaces()        | 获取接口         |
+| Package getPackage()              | 获取所在的包     |
+| Annotation[]  getAnnotations()    | 获取类的注解     |
+
+ 
+
+### Filed/Method/Constructor类
+
+| 方法                         | 作用                                                         |
+| ---------------------------- | ------------------------------------------------------------ |
+| Class getDeclaringClass()    | 返冋一个用于描述类中定义的构造器、方法或域的Class对象。      |
+| Class[] getExceptionTypes()  | (在Constructor和Method类中）返回异常类型的Class对象数组。    |
+| int getModifiers()           | 返回权限修饰符的整型数值。使用Modifier类中的这个方法可以分析这个返回值。 |
+| String getName()             | 返冋名称字符串。                                             |
+| Class [] getParameterTypes() | (在Constructor和Method类中）返回参数类型的Class对象数组。    |
+
+> **Modifier类**
+
+`Filed、Method、Constructor`等类，都有这样一个方法：`getModifiers()`返回此类或接口以**整数编码**的 Java 语言修饰符。
+
+如需要知道返回的值所代表的意思，则需要用到 `java.lang.reflect.Modifier` 这个类，这个类提供了 static 方法和常量，可以对类和成员访问修饰符进行解码。
+
+ 
+
+**调用案例**
+
+````java
+@Test
+public void testField1() throws Exception {
+    Class clazz = Person.class;
+
+    //创建运行时类的对象
+    Person p = (Person) clazz.newInstance();
+
+    //1. getDeclaredField(String fieldName):获取运行时类中指定变量名（fieldName）的属性
+    Field name = clazz.getDeclaredField("name");
+
+    //2.保证当前属性是可访问的
+    name.setAccessible(true);
+    //3.获取、设置指定对象的此属性值
+    name.set(p, "Tom"); //参数一：方法的调用者 参数二：设置的属性值
+
+    System.out.println(name.get(p));
+}
+
+//调用指定的方法：
+@Test
+public void testMethod() throws Exception {
+
+    Class clazz = Person.class;
+
+    //创建运行时类的对象
+    Person p = (Person) clazz.newInstance();
+
+    /*
+    1.获取指定的某个方法
+    getDeclaredMethod():参数1 ：指明获取的方法的名称  参数2：指明获取的方法的形参列表
+     */
+    Method show = clazz.getDeclaredMethod("show", String.class);
+    //2.保证当前方法是可访问的
+    show.setAccessible(true);
+    /*
+    3. 调用方法的invoke():参数1：方法的调用者  参数2：给方法形参赋值的实参
+    invoke()的返回值即为对应类中调用的方法的返回值。
+     */
+    Object returnValue = show.invoke(p, "CHN"); //String nation = p.show("CHN");
+    System.out.println(returnValue);
+    System.out.println("*************如何调用静态方法*****************");
+    // private static void showDesc()
+    Method showDesc = clazz.getDeclaredMethod("showDesc");
+    showDesc.setAccessible(true);
+    //如果调用的运行时类中的方法没返回值，则此invoke()返回null
+    //Object returnVal = showDesc.invoke(null);
+    Object returnVal = showDesc.invoke(Person.class);
+    System.out.println(returnVal);//null
+}
+
+//调用指定的构造器：
+@Test
+public void testConstructor() throws Exception {
+    Class clazz = Person.class;
+
+    //private Person(String name)
+    /*
+    1.获取指定的构造器
+    getDeclaredConstructor():参数：指明构造器的参数列表
+     */
+
+    Constructor constructor = clazz.getDeclaredConstructor(String.class);
+
+    //2.保证此构造器是可访问的
+    constructor.setAccessible(true);
+
+    //3.调用此构造器创建运行时类的对象
+    Person per = (Person) constructor.newInstance("Tom");
+    System.out.println(per);
+
+}
+
+//获取运行时类的父类
+@Test
+public void test2() {
+    Class clazz = Person.class;
+
+    Class superclass = clazz.getSuperclass();
+    System.out.println(superclass);
+}
+
+//获取运行时类的带泛型的父类
+@Test
+public void test3() {
+    Class clazz = Person.class;
+
+    Type genericSuperclass = clazz.getGenericSuperclass();
+    System.out.println(genericSuperclass);
+}
+
+//获取运行时类的带泛型的父类的泛型
+//代码：逻辑性代码  vs 功能性代码
+@Test
+public void test4() {
+    Class clazz = Person.class;
+
+    Type genericSuperclass = clazz.getGenericSuperclass();
+    ParameterizedType paramType = (ParameterizedType) genericSuperclass;
+    //获取泛型类型
+    Type[] actualTypeArguments = paramType.getActualTypeArguments();
+    // System.out.println(actualTypeArguments[0].getTypeName());
+    System.out.println(((Class) actualTypeArguments[0]).getName());
+}
+
+//获取运行时类实现的接口
+@Test
+public void test5() {
+    Class clazz = Person.class;
+
+    Class[] interfaces = clazz.getInterfaces();
+    for (Class c : interfaces) {
+        System.out.println(c);
+    }
+
+    System.out.println();
+    //获取运行时类的父类实现的接口
+    Class[] interfaces1 = clazz.getSuperclass().getInterfaces();
+    for (Class c : interfaces1) {
+        System.out.println(c);
+    }
+
+}
+
+//获取运行时类所在的包
+@Test
+public void test6() {
+    Class clazz = Person.class;
+
+    Package pack = clazz.getPackage();
+    System.out.println(pack);
+}
+
+//获取运行时类声明的注解
+@Test
+public void test7() {
+    Class clazz = Person.class;
+
+    Annotation[] annotations = clazz.getAnnotations();
+    for (Annotation annos : annotations) {
+        System.out.println(annos);
+    }
+}
+//获取运行时类的权限修饰符
+public void test7() throws ClassNotFoundException {
+    Class<?> clazz = Test.class.getClassLoader().loadClass("com.sofen.UDP.Send");
+    //clazz = Class.forName("com.sofen.UDP.Send");
+    //Send send= (Send)clazz.newInstance();
+
+    Field[] fields = clazz.getDeclaredFields();
+
+    for (Field f: fields) {
+        System.out.println(f.getName());
+        System.out.println(Modifier.toString(f.getModifiers()));        //获取权限修饰符
+    }
+}
+````
+
+
+
+## 动态代理
+
+**代理模式的原理：**
+
+* 使用一个代理将对象包装起来, 然后用该代理对象取代原始对象。任何对原始对象的调用都要通过代理。
+* 代理对象决定是否以及何时将方法调用转到原始对象上。 
+
+ 
+
+### 静态代理
+
+````java
+实现Runnable接口的方法创建多线程。
+Class MyThread implements Runnable{}  //相当于被代理类
+Class Thread implements Runnable{}    //相当于代理类
+main(){
+    MyThread t = new MyThread();
+    Thread thread = new Thread(t);
+    thread.start();//启动线程；调用线程的run()
+}
+````
+
+**静态代理的缺点**：
+
+* 代理类和目标对象的类都是在编译期间确定下来，不利于程序的扩展。
+* 每一个代理类只能为一个接口服务，这样一来程序开发中必然产生过多的代理。
+
+ 
+
+### 动态代理
+
+**特点**:动态代理是指客户通过代理类来调用其它对象的方法，并且是在程序运行时根据需要动态创建目标类的代理对象。
+
+**实现**
+
+* 需要解决的两个主要问题：
+  * 问题一：如何根据加载到内存中的被代理类，动态的创建一个代理类及其对象。 （通过`Proxy.newProxyInstance()`实现）
+  * 问题二：当通过代理类的对象调用方法a时，如何动态的去调用被代理类中的同名方法a。(通过`InvocationHandler`接口的实现类及其方法`invoke()`)
+
+* java动态代理的实现分为两种
+  * 基于JDK的动态代理（接口）:jdk动态代理必须有接口
+  * 基于CGILB的动态代理（继承）
+
+**三大类:**`invocationHandler、Method、Proxy`
+
+ 
+
+> **invocationHandler接口**
+
+* 代表代理要干什么：就一个`invoke()`方法 （只是和`method`的`invoke`重名而已）
+* 当调用生成的代理类的方法时，最终会执行`invoke()`方法
+* 因为JDK生成的最终真正的代理类，它继承自`Proxy`并实现了被代理类的接口，
+* 在实现被代理类的接口方法的内部，通过反射调用了`InvocationHandlerImpl`的`invoke`方法。
+
+**`public Object invoke(Object proxy, Method method, Object[] args) throws Throwable;`**
+
+| 参数   | 含义                                     |
+| ------ | ---------------------------------------- |
+| proxy  | jdk创建的代理对象，无需赋值              |
+| method | 要执行被代理类的方法，此参数是由系统提供 |
+| args   | 执行方法的参数                           |
+
+invocationHandler接口的使用：
+
+* 创建一个实现`invocationHandler`接口的类
+* 重写`invoke`方法，代理类要增强的方法写在其中
+
+ 
+
+> **Method类:执行目标类的方法**
+
+作用：通过`Method`，可以执行某个目标类的方法,`Method.invoke();`
+
+说明: `method.invoke()`就是执行目标方法的，等同于静态代理类中的方法
+
+ 
+
+> **proxy类**
+
+`Proxy`是 `Java` 动态代理机制的主类，它提供了一组静态方法来为一组接口动态地生成代理类及其对象。（创建代理对象）
+
+| 方法                                                         | 作用                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| getProxyClass(ClassLoader  loader, Class[] interfaces)       | 该方法用于获取关联于指定类装载器和一组接口的动态代理类的类对象 |
+| newProxyInstance(ClassLoader loader,Class<?>[]  interfaces,  InvocationHandler h) | 创建代理对象                                                 |
+
+**`public static Object newProxyInstance( ClassLoader loader,Class<?>[] interfaces,InvocationHandler h)  throws IllegalArgumentException`**
+
+| 参数                  | 含义                                                         |
+| --------------------- | ------------------------------------------------------------ |
+| ClassLoader loader    | 类加载器,负责向内存中加载对象的,使用反射机制获取对象的classLoader<br />如何获取? 类 a, a.getCalss().getClassLoader(),目标对象的类加载器 |
+| Class<?>[] interfaces | 接口,目标对象实现的接口,也是反射获取的<br />如何获取? 类 a, a.getCalss().getInterfaces(),目标对象的类加载器 |
+| InvocationHandler h   | 我们自己写的实现invocationHandble接口的代理类,被代理的类传入此类 |
+
+
+
+**主要步骤**
+
+- 通过实现 `InvocationHandler` 接口创建自己的调用处理器；
+- 通过为`Proxy`类的`newProxyInstance`方法指定代理类的`ClassLoader`  对象和代理要实现的`interface`以及调用处理器`InvocationHandler`对象 来创建动态代理类的对象；
+
+ 
+
+ 
+
+**动态代理类优缺点**
+
+> 优点
+
+- 动态代理类的字节码在程序运行时由Java反射机制动态生成，无需程序员手工编写它的源代码。
+- 动态代理类不仅简化了编程工作，而且提高了软件系统的可扩展性，因为Java 反射机制可以生成任意类型的动态代理类。
+
+> 缺点
+
+- JDK的动态代理机制只能代理实现了接口的类，而不能实现接口的类就不能实现JDK的动态代理，cglib是针对类来实现代理的，他的原理是对指定的目标类生成一个子类，并覆盖其中方法实现增强，但因为采用的是继承，所以不能对final修饰的类进行代理。
+
+> 静态代理与动态代理比较
+
+灵活性 ：动态代理更加灵活，不需要必须实现接口，可以直接代理实现类，并且可以不需要针对每个目标类都创建一个代理类。另外，静态代理中，接口一旦新增加方法，目标对象和代理对象都要进行修改，这是非常麻烦的！（CGLIB动态代理没学）
+
+JVM 层面 ：静态代理在编译时就将接口、实现类、代理类这些都变成了一个个实际的 class 文件。而动态代理是在运行时动态生成类字节码，并加载到 JVM 中的。
+
+ 
+
+ 
+
+**案例**
+
+> 案例1
+
+![img](java.assets/clip_image001-16558804709103.png)
+
+````java
+//接口
+public interface usbSell {
+    public int sell(String name);
+}
+//优盘的厂家
+public class usbKingFactory implements usbSell {
+    @Override
+    public int sell(String name) {
+        int i = Integer.parseInt(name);
+        System.out.println("您购买了"+i+"块U盘,每块20元");
+        return i * 20;
+    }
+}
+
+public class MyHandble implements InvocationHandler {
+    //传入需要动态生成代理类对象的对象
+    private usbSell usbSell;
+
+    public MyHandble(com.sofen.service.usbSell usbSell) {
+        this.usbSell = usbSell;
+    }
+
+    @Override
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        //使用反射的method.invoke方法调用usbSell中的方法
+        int price = (int) method.invoke(usbSell,args);  //args是usbSell中sell的参数
+
+        //代理类的附加功能
+        price += 10;
+        System.out.println("中介收取10元中介费");
+        System.out.println("您卖了块U盘,为您返回一个红包");
+
+        return price;
+    }
+}
+
+public class mainShop {
+    public static void main(String[] args) {
+        //要为优盘厂家生成代理类对象
+        usbSell kingFactory = new usbKingFactory();
+        //生成代理类对象
+        usbSell proxy = (usbSell) Proxy.newProxyInstance(kingFactory.getClass().getClassLoader(),
+                kingFactory.getClass().getInterfaces(),
+                new MyHandble(kingFactory));
+        //调用代理类对象的方法
+        int price = proxy.sell("10");
+        System.out.println(price);
+    }
+}
+````
+
+> 案例2
+
+````java
+//接口
+public interface phone {
+
+    public String getName();
+    public String getFactoryName();
+    public int getPrice();
+}
+//被代理类
+public class xiaoMi implements phone{
+    public String getName(){
+        return "小米11";
+    }
+    public String getFactoryName(){
+        return "小米技术有限公司";
+    }
+    public int getPrice(){
+        return 3999;
+    }
+    public int get(){
+        return 3999;
+    }
+}
+//代理类
+public class MyHandler implements InvocationHandler {
+    private phone p;         //被代理的类
+    public MyHandler(){}
+
+    public MyHandler(phone p){
+        this.p = p;
+    }
+	
+    //增强的内容放在此方法中
+    @Override
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        Object o = method.invoke(p, args);           //反射中常见的Method方法；调用被代理的类的方法
+        
+        return o;         //返回的就是方法返回的结果
+    }
+}
+//主方法
+public class Test {
+
+    public static void main(String[] args) {
+        xiaoMi mi = new xiaoMi();
+
+        //参数1：类加载器，参数2：类继承的接口，参数3：自己写的实现了InvocationHandler的方法,传入被代理的类
+        phone p1 = (phone) Proxy.newProxyInstance(mi.getClass().getClassLoader(), mi.getClass().getInterfaces(),
+                new MyHandler(mi));
+        System.out.println(p1.getName());
+        System.out.println(p1.getFactoryName());
+        System.out.println(p1.getPrice());
+    }
+}
+````
+
+
+
+> 案例3
+
+````java
+interface Human{
+    String getBelief();
+    void eat(String food);
+}
+//被代理类
+class SuperMan implements Human{
+    @Override
+    public String getBelief() {
+        return "I believe I can fly!";
+    }
+    @Override
+    public void eat(String food) {
+        System.out.println("我喜欢吃" + food);
+    }
+}
+class HumanUtil{
+    public void method1(){
+        System.out.println("====================通用方法一====================");
+    }
+    public void method2(){
+        System.out.println("====================通用方法二====================");
+    }
+}
+class ProxyFactory{
+    //调用此方法，返回一个代理类的对象。解决问题一
+    public static Object getProxyInstance(Object obj){//obj:被代理类的对象
+        MyInvocationHandler handler = new MyInvocationHandler();
+        handler.bind(obj);
+        return Proxy.newProxyInstance(obj.getClass().getClassLoader(),obj.getClass().getInterfaces(),handler);
+    }
+}
+
+class MyInvocationHandler implements InvocationHandler{
+    private Object obj;//需要使用被代理类的对象进行赋值
+    public void bind(Object obj){
+        this.obj = obj;
+    }
+    //当我们通过代理类的对象，调用方法a时，就会自动的调用如下的方法：invoke()
+    //将被代理类要执行的方法a的功能就声明在invoke()中
+    @Override
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        HumanUtil util = new HumanUtil();
+        util.method1();
+        //method:即为代理类对象调用的方法，此方法也就作为了被代理类对象要调用的方法
+        //obj:被代理类的对象
+        Object returnValue = method.invoke(obj,args);
+        util.method2();
+        //上述方法的返回值就作为当前类中的invoke()的返回值。
+        return returnValue;
+    }
+}
+
+public class ProxyTest {
+    public static void main(String[] args) {
+        SuperMan superMan = new SuperMan();
+        //proxyInstance:代理类的对象
+        Human proxyInstance = (Human) ProxyFactory.getProxyInstance(superMan);
+        //当通过代理类对象调用方法时，会自动的调用被代理类中同名的方法
+        String belief = proxyInstance.getBelief();
+        System.out.println(belief);
+        proxyInstance.eat("四川麻辣烫");
+        System.out.println("*****************************");
+        NikeClothFactory nikeClothFactory = new NikeClothFactory();
+        ClothFactory proxyClothFactory = (ClothFactory) ProxyFactory.getProxyInstance(nikeClothFactory);
+        proxyClothFactory.produceCloth();
+    }
+}
+````
+
+
+
+
+
+# JAVA8新特性
+
+## Lambda表达式
+
+**格式：**
+
+|  符号  | 含义                                                |
+| :----: | :-------------------------------------------------- |
+|   ->   | lambda操作符 或 箭头操作符                          |
+| ->左边 | lambda形参列表 （其实就是接口中的抽象方法的形参列表 |
+| ->右边 | lambda体 （其实就是重写的抽象方法的方法体           |
+
+格式一：无参，无返回值
+
+````java
+Runnable r1 = ()->{System.out.println("Hello Lambda")}；
+````
+
+格式二：一个参，无返回值
+
+````java
+Consumer<String> con = (String str)->{System.out.println(str)};
+````
+
+格式三：数据类型可以省略，类型推断
+
+````java
+Consumer<String> con = (str)->{System.out.println(str)};
+````
+
+格式四：一个参数，参数的小括号可以省略
+
+````java
+Consumer<String> con = str->{System.out.println(str)};
+````
+
+格式五：多条语句，并且可以有返回值
+
+````java
+Comparator<Integer> con = (x,y)->{
+	System.out.println("Hello Lambda");
+    return Integer.compare(x,y);
+};
+````
+
+格式六：只有一条语句
+
+	Comparator<Integer> con = (x,y)-> Integer.compare(x,y);
+## 函数式接口
+
+**使用说明**
+
+* 如果一个接口中，只声明了一个抽象方法（可以包含多个`default`方法），则此接口就称为函数式接口。
+* 我们可以在一个接口上使用 `@FunctionalInterface` 注解，这样做可以检查它是否是一个函数式接口。
+* `Lambda`表达式的本质：作为函数式接口的实例
+
+
+
+**Lambda表达式提供的4个基本的函数式接口：**
+
+![img](java.assets/clip_image002-16558841004214.jpg)
+
+
+
+**总结**
+
+* 何时使用lambda表达式？
+  * 当需要对一个函数式接口实例化的时候，可以使用lambda表达式。
+
+* 何时使用给定的函数式接口？
+  * 如果我们开发中需要定义一个函数式接口，首先看看在已有的jdk提供的函数式接口是否提供了
+  * 能满足需求的函数式接口。如果有，则直接调用即可，不需要自己再自定义了。
+
+ 
+
+## 方法引用
+
+**理解：**方法引用可以看做是Lambda表达式深层次的表达。换句话说，方法引用就是Lambda表达式，也就是函数式接口的一个实例，
+
+通过方法的名字来指向一个方法。
+
+ 
+
+**使用情境：**当要传递给Lambda体的操作，已经实现过，可以使用方法引用！
+
+
+
+**格式：**类(或对象) :: 方法名
+
+分为如下的三种情况：
+
+* 情况1   对象 :: 非静态方法
+* 情况2   类 :: 静态方法
+* 情况3   类 :: 非静态方法
+
+ 
+
+**要求**：
+
+* 要求接口中的抽象方法的形参列表和返回值类型与方法引用的方法的形参列表和返回值类型相同！（针对于情况1和情况2）
+* 当函数式接口方法的第一个参数是需要引用方法的调用者，并且第二个参数是需要引用方法的参数(或无参数)时：ClassName::methodName（针对于情况3）
+
+ ````java
+ / 情况一：对象 :: 实例方法
+ //Consumer中的void accept(T t)
+ //PrintStream中的void println(T t)
+ @Test
+ public void test1() {
+     Consumer<String> con1 = str -> System.out.println(str);
+     con1.accept("北京");
+     System.out.println("*******************");
+     PrintStream ps = System.out;
+     Consumer<String> con2 = ps::println;
+     con2.accept("beijing");
+ }
+ //Supplier中的T get()
+ //Employee中的String getName()；Employee是自己写的类
+ @Test
+ public void test2() {
+     Employee emp = new Employee(1001,"Tom",23,5600);
+     Supplier<String> sup1 = () -> emp.getName();
+     System.out.println(sup1.get());
+     System.out.println("*******************");
+     Supplier<String> sup2 = emp::getName;
+     System.out.println(sup2.get());
+ }
+ // 情况二：类 :: 静态方法
+ //Comparator中的int compare(T t1,T t2)
+ //Integer中的int compare(T t1,T t2)
+ @Test
+ public void test3() {
+     Comparator<Integer> com1 = (t1,t2) -> Integer.compare(t1,t2);
+     System.out.println(com1.compare(12,21));
+     System.out.println("*******************");
+     Comparator<Integer> com2 = Integer::compare;
+     System.out.println(com2.compare(12,3));
+ }
+ //Function中的R apply(T t)
+ //Math中的Long round(Double d)
+ @Test
+ public void test4() {
+     Function<Double,Long> func = new Function<Double, Long>() {
+         @Override
+         public Long apply(Double d) {
+             return Math.round(d);
+         }
+     };
+     System.out.println("*******************");
+     Function<Double,Long> func1 = d -> Math.round(d);
+     System.out.println(func1.apply(12.3));
+     System.out.println("*******************");
+     Function<Double,Long> func2 = Math::round;
+     System.out.println(func2.apply(12.6));
+ }
+ // 情况：类 :: 实例方法  (难度)
+ // Comparator中的int comapre(T t1,T t2)
+ // String中的int t1.compareTo(t2)
+ @Test
+ public void test5() {
+     Comparator<String> com1 = (s1,s2) -> s1.compareTo(s2);
+     System.out.println(com1.compare("abc","abd"));
+     System.out.println("*******************");
+     Comparator<String> com2 = String :: compareTo;
+     System.out.println(com2.compare("abd","abm"));
+ }
+ //BiPredicate中的boolean test(T t1, T t2);
+ //String中的boolean t1.equals(t2)
+ @Test
+ public void test6() {
+     BiPredicate<String,String> pre1 = (s1,s2) -> s1.equals(s2);
+     System.out.println(pre1.test("abc","abc"));
+     System.out.println("*******************");
+     BiPredicate<String,String> pre2 = String :: equals;
+     System.out.println(pre2.test("abc","abd"));
+ }
+ // Function中的R apply(T t)
+ // Employee中的String getName();
+ @Test
+ public void test7() {
+     Employee employee = new Employee(1001, "Jerry", 23, 6000);
+     Function<Employee,String> func1 = e -> e.getName();
+     System.out.println(func1.apply(employee));
+     System.out.println("*******************");
+     Function<Employee,String> func2 = Employee::getName;
+     System.out.println(func2.apply(employee));
+ }
+ ````
+
+
+
+
+
+## 构造器引用和数组引用
+
+**构造器引用格式：**类名::new
+
+**要求：**和方法引用类似，函数式接口的抽象方法的形参列表和构造器的形参列表一致。抽象方法的返回值类型即为构造器所属的类的类型
+
+**举例：**
+
+````java
+//Supplier中的T get()
+//Employee的空参构造器：Employee()
+@Test
+public void test1(){
+
+   Supplier<Employee> sup = new Supplier<Employee>() {
+       @Override
+       public Employee get() {
+           return new Employee();
+       }
+   };
+   System.out.println("*******************");
+
+   Supplier<Employee>  sup1 = () -> new Employee();  
+   System.out.println(sup1.get());                    //返回一个Employee对象
+
+   System.out.println("*******************");
+
+   Supplier<Employee>  sup2 = Employee :: new;
+   System.out.println(sup2.get());
+}
+
+//Function中的R apply(T t)
+@Test
+public void test2(){
+   Function<Integer,Employee> func1 = id -> new Employee(id);
+   Employee employee = func1.apply(1001);
+   System.out.println(employee);
+
+   System.out.println("*******************");
+
+   Function<Integer,Employee> func2 = Employee :: new;
+   Employee employee1 = func2.apply(1002);
+   System.out.println(employee1);
+
+}
+
+//BiFunction中的R apply(T t,U u)
+@Test
+public void test3(){
+   BiFunction<Integer,String,Employee> func1 = (id,name) -> new Employee(id,name);
+   System.out.println(func1.apply(1001,"Tom"));
+
+   System.out.println("*******************");
+
+   BiFunction<Integer,String,Employee> func2 = Employee :: new;
+   System.out.println(func2.apply(1002,"Tom"));
+
+}
+
+````
+
+
+
+**数组引用格式：**数组类型[] :: new
+
+**举例：**
+
+````java
+//Function中的R apply(T t)
+@Test
+public void test4(){
+    Function<Integer,String[]> func1 = length -> new String[length];
+    String[] arr1 = func1.apply(5);
+    System.out.println(Arrays.toString(arr1));
+
+    System.out.println("*******************");
+
+    Function<Integer,String[]> func2 = String[] :: new;
+    String[] arr2 = func2.apply(10);
+    System.out.println(Arrays.toString(arr2));
+}
+````
+
+
+
+## Stream API
+
+ 
+
+## Optional类
+
+
+
+
+
+# 其他
+
+ 
 
  

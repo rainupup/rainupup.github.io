@@ -1,4 +1,4 @@
-JAVA基础
+# IDEA
 
 ## IDEA快捷键
 
@@ -283,7 +283,7 @@ Ctrl
 
 
 
-## 基本语法
+# 基本语法
 
 **获取随机值函数：**
 
@@ -293,7 +293,7 @@ Ctrl
 
 
 
-### 变量
+## 变量
 
 **变量按照数据类型分为：**
 
@@ -336,7 +336,7 @@ Ctrl
 
    `byte 、char 、short --> int --> long --> float --> double`
 
-   特别的：当byte、char、short三种类型的变量做运算时，结果为int型
+   特别的：当`byte、char、short`三种类型的变量做运算时，结果为`int`型
 
 2. **强制类型转换：自动类型提升运算的逆运算。**
    需要使用强转符：()
@@ -376,13 +376,13 @@ System.out.println((c + num) + str);  //107hello
 System.out.println(str + num + c);    //hello10a
 ````
 
-### 运算符
+## 运算符
 
-| 比较运算符 |                    |
+| 比较运算符 | 作用               |
 | ---------- | ------------------ |
 | instanceof | 检查是否是类的对象 |
 
-| 逻辑运算符 |                                                              |
+| 逻辑运算符 | 描述                                                         |
 | ---------- | ------------------------------------------------------------ |
 | &          | 逻辑与，左右都参与运算                                       |
 | &&         | 短路与，如果左边为真，右边参与运算，如果左边为假，那么右边不参与运算 |
@@ -391,7 +391,7 @@ System.out.println(str + num + c);    //hello10a
 | ！         | 非                                                           |
 | ^          | 异或                                                         |
 
-| 位运算符       |            |                                                              |
+| 位运算符       | 作用       | 描述                                                         |
 | -------------- | ---------- | ------------------------------------------------------------ |
 | <<             | 左移       | 空位补0，被移除的高位丢弃，空缺位补0。                       |
 | >>             | 右移       | 被移位的二进制最高位是0，右移后，空缺位补0；最高位是1，空缺位补1。 |
@@ -406,7 +406,7 @@ System.out.println(str + num + c);    //hello10a
 
 
 
-### 获取输入
+## 获取输入
 
 具体实现步骤：
 1.导包：``import java.util.Scanner;``
@@ -427,28 +427,20 @@ System.out.println(str + num + c);    //hello10a
 
 
 
-### 流程控制
+## 流程控制
 
-**if - else**
+> **if - else**
 
-**switch - case (break,continue,default)**
-① 根据`switch`表达式中的值，依次匹配各个`case`中的常量。一旦匹配成功，则进入相应`case`结构中，
+> **switch - case (break,continue,default)**
 
-MLML调用其执行语句。当调用完执行语句以后，则仍然继续向下执行其他`case`结构中的执行语句，直到遇到`break`关键字或此`switch-case`结构末尾结束为止。
+* 根据`switch`表达式中的值，依次匹配各个`case`中的常量。一旦匹配成功，则进入相应`case`结构中，MLML调用其执行语句。当调用完执行语句以后，则仍然继续向下执行其他`case`结构中的执行语句，直到遇到`break`关键字或此`switch-case`结构末尾结束为止。
+* `break`,可以使用在`switch-case`结构中，表示一旦执行到此关键字，就跳出`switch-case`结构
+* ` switch`结构中的表达式，只能是如下的6种数据类型之一(没有浮点型)：`byte 、short、char、int、枚举类型(JDK5.0新增)、String类型(JDK7.0新增)``
+* `case `之后只能声明常量。不能声明范围。(例：case 1 \~ 10 错误)
+* ` break`关键字是可选的。
+* `default`:相当于if-else结构中的else.default结构是可选的，而且位置是灵活的。
 
-② `break`,可以使用在`switch-case`结构中，表示一旦执行到此关键字，就跳出`switch-case`结构
-
-③` switch`结构中的表达式，只能是如下的6种数据类型之一(没有浮点型)：
-
-​	``byte 、short、char、int、枚举类型(JDK5.0新增)、String类型(JDK7.0新增)``
-
-④ `case `之后只能声明常量。不能声明范围。(例：case 1 \~ 10 错误)
-
-⑤` break`关键字是可选的。
-
-⑥ `default`:相当于if-else结构中的else.default结构是可选的，而且位置是灵活的。
-
-**for 和 while**
+> **for 和 while**
 
 **break标签**
 
@@ -467,21 +459,21 @@ label:while(true){
 }
 ````
 
-``label``:就是标签 要终止的位置
+`label`:就是标签 要终止的位置
 
-``break label`` ：终止结束到标签 结束语句
+`break label`：终止结束到标签 结束语句
 
-``continue label``: 终止本次循环 跳到标签位置进行接下来的循环
+`continue label`: 终止本次循环 跳到标签位置进行接下来的循环
 
 
 
-### 数组
+## 数组
 
-遍历数组函数``Arrays.tostring(数组)``
+遍历数组函数`Arrays.tostring(数组)`
 
-#### 数组的概述
+### 数组的概述
 
-特点：
+**特点：**
 
 - 数组属于引用数据类型的变量。数组的元素，既可以是基本数据类型，也可以是引用数据类型
 
@@ -492,7 +484,7 @@ label:while(true){
 
 
 
-#### 一维数组
+### 一维数组
 
 1. 初始化
 
@@ -519,7 +511,7 @@ label:while(true){
 
 
 
-#### 二维数组
+### 二维数组
 
 1. 概述：
 
@@ -547,7 +539,7 @@ System.out.println(arr[0][0]);//0
 
 
 
-#### Arrays 工具类的使用
+### Arrays 工具类的使用
 
 具体实现步骤：
 
@@ -635,7 +627,7 @@ public void show(String ... strs){
 
 ## 代码块
 
-**作用**：用来初始化类、对象的信息。如果使用修饰符，只能使用**static**
+**作用**：用来初始化类、对象的信息。如果使用修饰符，只能使用`static`
 
 **格式：**
 
@@ -691,8 +683,6 @@ static{
 | protected(受保护) | yes    | yes      | yes          |          |
 | public (公开)     | yes    | yes      | yes          | yes      |
 
-
-
 4种权限都可以用来修饰类的内部结构：属性、方法、构造器、内部类
 
 修饰类的话，只能使用：缺省、public
@@ -713,15 +703,15 @@ class 子类 extends 父类 {
 
 > 方法的重写
 
-子类重写方法的方法名和形参列表与父类相同，权限修饰符大于父类，不能重写父类中声明为private权限的方法
+子类重写方法的方法名和形参列表与父类相同，权限修饰符大于父类，不能重写父类中声明为`private`权限的方法
 
 返回值类型：
 
-- 父类返回值类型是void，则子类返回值类型只能是void
+- 父类返回值类型是`void`，则子类返回值类型只能是`void`
 - 父类返回值类型是A类型，则子类返回值类型可以是A类或A类的子类
-- 父类返回值类型是基本数据类型(比如：double)，则子类返回值类型必须是相同的基本数据类型(必须也是double)
+- 父类返回值类型是基本数据类型(比如：`double`)，则子类返回值类型必须是相同的基本数据类型(必须也是`double`)
 - 子类重写的方法抛出的异常类型不大于父类被重写的方法抛出的异常类型
-- 子类和父类中的同名同参数的方法要么都声明为非static的（考虑重写），要么都声明为static的（不是重写)。    
+- 子类和父类中的同名同参数的方法要么都声明为`非static`的（考虑重写），要么都声明为`static`的（不是重写)。    
 
 
 
@@ -737,7 +727,7 @@ class 子类 extends 父类 {
 
 对象的多态性，只适用于方法，不适用于属性（编译和运行都看左边）
 
-原因：
+**原因：**
 
   * 属性是静态绑定
 
@@ -799,8 +789,8 @@ class 类名 implements 接口{
 > **如何定义接口**：定义接口中的成员
 
 * JDK7及以前：只能定义全局常量和抽象方法
-  * 全局常量：public static final的.  但是书写时，可以省略不写(默认添加)
-  * 抽象方法：public abstract的.    但是书写时，可以省略不写(默认添加)
+  * 全局常量：`public static final`的.  但是书写时，可以省略不写(默认添加)
+  * 抽象方法：`public abstract`的.    但是书写时，可以省略不写(默认添加)
 * JDK8：除了定义全局常量和抽象方法之外，还可以定义静态方法（只能通过接口自己调用）、默认方法（`default`）
 
 ````java
@@ -834,9 +824,9 @@ public default void 方法名（）{}
 
 **java.lang.Object类**
 
-Object类是所有Java类的根父类
+`Object类`是所有Java类的根父类
 
-如果在类的声明中未使用extends关键字指明其父类，则默认父类为java.lang.Object类 
+如果在类的声明中未使用`extends`关键字指明其父类，则默认父类为java.lang.Object类 
 
 方法：`equals() / toString() / getClass() /hashCode() / clone() / finalize() / wait() / notify() / notifyAll()`
 
@@ -846,47 +836,17 @@ Object类是所有Java类的根父类
 
 ![图形用户界面, 文本, 应用程序  描述已自动生成](java.assets/clip_image001.png)
 
-
-
- **1.getClass方法**
-
-获取运行时类型,返回值为`Class`对象
-
-**2.hashCode方法**
-
-返回该对象的哈希码值，是为了提高哈希表的性能（`HashTable`）
-
-**3.equals方法**
-
-判断两个对象是否相等，在`Object`源码中`equals`就是使用==去判断，所以在`Object`中`equals`是等价于==的，但是在`String`及某些类对`equals`进行了重写，实现不同的比较。
-
-**4.clone方法**
-
-主要是JAVA里除了8种基本类型传参数是值传递，其他的类对象传参数都是引用传递，我们有时候不希望在方法里将参数改变，这时就需要在类中复写`clone`方法。
-
-如果在`clone`方法中调用`super.clone()`方法需要实现`Cloneable`接口,否则会抛出`CloneNotSupportedException`。
-
-此方法只实现了一个浅层拷贝,对于基本类型字段成功拷贝,但是如果是嵌套对象,只做了赋值,也就是只把地址拷贝了,所以没有成功拷贝,需要自己重写`clone`方法进行深度拷贝。
-
-**5.toString方法**
-
-返回一个`String`字符串,用于描述当前对象的信息,可以重写返回对自己有用的信息，默认返回的是`当前对象的类名+hashCode`的16进制数字。
-
-**6.wait方法**
-
-多线程时用到的方法，作用是让当前线程进入等待状态，同时也会让当前线程释放它所持有的锁。直到其他线程调用此对象的 `notify() `方法或 `notifyAll() `方法，当前线程被唤醒
-
-**7.notify方法**
-
-多线程时用到的方法，唤醒该对象等待的某个线程
-
-**8.notifyAll方法**
-
-多线程时用到的方法，唤醒该对象等待的所有线程
-
-**9.finalize**
-
-对象在被GC释放之前一定会调用`finalize`方法，对象被释放前最后的挣扎,因为无法确定该方法什么时候被调用，很少使用。
+| 方法      | 作用                                                         |
+| --------- | ------------------------------------------------------------ |
+| getClass  | 获取运行时类型,返回值为`Class`对象                           |
+| hashCode  | 返回该对象的哈希码值，是为了提高哈希表的性能（`HashTable`）  |
+| equals    | 判断两个对象是否相等，在`Object`源码中`equals`就是使用==去判断，所以在`Object`中`equals`是等价于==的，但是在`String`及某些类对`equals`进行了重写，实现不同的比较。 |
+| clone     | 主要是JAVA里除了8种基本类型传参数是值传递，其他的类对象传参数都是引用传递，我们有时候不希望在方法里将参数改变，这时就需要在类中复写`clone`方法。<br />如果在`clone`方法中调用`super.clone()`方法需要实现`Cloneable`接口,否则会抛出`CloneNotSupportedException`。<br />此方法只实现了一个浅层拷贝,对于基本类型字段成功拷贝,但是如果是嵌套对象,只做了赋值,也就是只把地址拷贝了,所以没有成功拷贝,需要自己重写`clone`方法进行深度拷贝。 |
+| toString  | 返回一个`String`字符串,用于描述当前对象的信息,可以重写返回对自己有用的信息，默认返回的是`当前对象的类名+hashCode`的16进制数字。 |
+| wait      | 多线程时用到的方法，作用是让当前线程进入等待状态，同时也会让当前线程释放它所持有的锁。直到其他线程调用此对象的 `notify() `方法或 `notifyAll() `方法，当前线程被唤醒 |
+| notify    | 多线程时用到的方法，唤醒该对象等待的某个线程                 |
+| notifyAll | 多线程时用到的方法，唤醒该对象等待的所有线程                 |
+| finalize  | 对象在被GC释放之前一定会调用`finalize`方法，对象被释放前最后的挣扎,因为无法确定该方法什么时候被调用，很少使用。 |
 
  
 
@@ -904,8 +864,6 @@ Object类是所有Java类的根父类
 | double       | Double    |
 | boolean      | Boolean   |
 | char         | Character |
-
-
 
 ### 类型转换
 
@@ -954,13 +912,9 @@ public void test3() {
 
 
 
-
-
 ## 关键字
 
 ### **this**
-
-
 
 ### **super**
 
@@ -976,9 +930,7 @@ public void test3() {
 
 ### **package** 
 
-包”，指：类所在的包
-
-
+包，指：类所在的包
 
 ### **import**
 
@@ -1088,38 +1040,38 @@ public void test3() {
 
 **RuntimeException子类**
 
-| 序号 | 异常                                     | 异常描述                                                     |
-| ---- | ---------------------------------------- | ------------------------------------------------------------ |
-| 1    | java.lang.ArrayIndexOutOfBoundsException | 数组索引越界异常。当对数组的索引值为负数或大于等于数组大小时抛出。 |
-| 2    | java.lang.ArithmeticException            | 算术条件异常。譬如：整数除零等。                             |
-| 3    | java.lang.NullPointerException           | 空指针异常。当应用试图在要求使用对象的地方使用了null时，抛出该异常。  譬如：调用null对象的实例方法、访问null对象的属性、计算null对象的长度、使用throw语句抛出null等等 |
-| 4    | java.lang.ClassNotFoundException         | 找不到类异常。当应用试图根据字符串形式的类名构造类，而在遍历CLASSPAH  之后找不到对应名称的class文件时，抛出该异常。 |
-| 5    | java.lang.NegativeArraySizeException     | 数组长度为负异常                                             |
-| 6    | java.lang.ArrayStoreException            | 数组中包含不兼容的值抛出的异常                               |
-| 7    | java.lang.SecurityException              | 安全性异常                                                   |
-| 8    | java.lang.IllegalArgumentException       | 非法参数异常                                                 |
+| 异常                                     | 异常描述                                                     |
+| ---------------------------------------- | ------------------------------------------------------------ |
+| java.lang.ArrayIndexOutOfBoundsException | 数组索引越界异常。当对数组的索引值为负数或大于等于数组大小时抛出。 |
+| java.lang.ArithmeticException            | 算术条件异常。譬如：整数除零等。                             |
+| java.lang.NullPointerException           | 空指针异常。当应用试图在要求使用对象的地方使用了null时，抛出该异常。  譬如：调用null对象的实例方法、访问null对象的属性、计算null对象的长度、使用throw语句抛出null等等 |
+| java.lang.ClassNotFoundException         | 找不到类异常。当应用试图根据字符串形式的类名构造类，而在遍历CLASSPAH  之后找不到对应名称的class文件时，抛出该异常。 |
+| java.lang.NegativeArraySizeException     | 数组长度为负异常                                             |
+| java.lang.ArrayStoreException            | 数组中包含不兼容的值抛出的异常                               |
+| java.lang.SecurityException              | 安全性异常                                                   |
+| java.lang.IllegalArgumentException       | 非法参数异常                                                 |
 
 **IOException**
 
-| 序号 | 异常                  | 异常描述                             |
-| ---- | --------------------- | ------------------------------------ |
-| 1    | IOException           | 操作输入流和输出流时可能出现的异常。 |
-| 2    | EOFException          | 文件已结束异常                       |
-| 3    | FileNotFoundException | 文件未找到异常                       |
+| 异常                  | 异常描述                             |
+| --------------------- | ------------------------------------ |
+| IOException           | 操作输入流和输出流时可能出现的异常。 |
+| EOFException          | 文件已结束异常                       |
+| FileNotFoundException | 文件未找到异常                       |
 
 **其他**
 
-| 序号 | 异常                            | 异常描述                                                     |
-| ---- | ------------------------------- | ------------------------------------------------------------ |
-| 1    | ClassCastException              | 类型转换异常类                                               |
-| 2    | ArrayStoreException             | 数组中包含不兼容的值抛出的异常                               |
-| 3    | SQLException                    | 操作数据库异常类                                             |
-| 4    | NoSuchFieldException            | 字段未找到异常                                               |
-| 5    | NoSuchMethodException           | 方法未找到抛出的异常                                         |
-| 6    | NumberFormatException           | 字符串转换为数字抛出的异常                                   |
-| 7    | StringIndexOutOfBoundsException | 字符串索引超出范围抛出的异常                                 |
-| 8    | IllegalAccessException          | 不允许访问某类异常                                           |
-| 9    | InstantiationException          | 当应用程序试图使用Class类中的newInstance()方法创建一个类的实例，而指定的类对象无法被实例化时，抛出该异常 |
+| 异常                            | 异常描述                                                     |
+| ------------------------------- | ------------------------------------------------------------ |
+| ClassCastException              | 类型转换异常类                                               |
+| ArrayStoreException             | 数组中包含不兼容的值抛出的异常                               |
+| SQLException                    | 操作数据库异常类                                             |
+| NoSuchFieldException            | 字段未找到异常                                               |
+| NoSuchMethodException           | 方法未找到抛出的异常                                         |
+| NumberFormatException           | 字符串转换为数字抛出的异常                                   |
+| StringIndexOutOfBoundsException | 字符串索引超出范围抛出的异常                                 |
+| IllegalAccessException          | 不允许访问某类异常                                           |
+| InstantiationException          | 当应用程序试图使用Class类中的newInstance()方法创建一个类的实例，而指定的类对象无法被实例化时，抛出该异常 |
 
 
 
@@ -1186,7 +1138,6 @@ try{
 public void regist(int id) throws Exception {
 	throw new MyException("自定义异常");
 }
-
 ````
 
 
@@ -1324,7 +1275,7 @@ public void testException() throws Exception {
 
 ​			说明：线程作为调度和执行的单位，每个线程拥有独立的运行栈和程序计数器(pc)，线程切换的开销小。
 
-​			 分类：守护线程，用户线程。
+​			分类：守护线程，用户线程。
 
  
 
@@ -1541,7 +1492,7 @@ public class ThreadPool {
 
 * `maximumPoolSize`：最大线程数
 
-* keepAliveTime：线程没任务时最多保持多长时间后会终止
+* `keepAliveTime`：线程没任务时最多保持多长时间后会终止
 
 
 
@@ -1864,8 +1815,6 @@ class myThread extends Thread{
 
 **理解：**不同的线程分别占用对方需要的同步资源不放弃，都在等待对方放弃自己需要的同步资源，就形成了线程的死锁
 
- 
-
 **说明：**
 
 * 出现死锁后，不会出现异常，不会出现提示，只是所的线程都处于阻塞状态，无法继续
@@ -1896,13 +1845,9 @@ class myThread extends Thread{
 
 **不会释放锁的操作：**
 
-![img](java.assets/clip_image004-16530254575053.jpg)
-
-
-
-
-
-
+* 线程执性同步代码块或同步方法时，程序调用Thread.sleep()、Thread.yield()方法暂停当前线程的执性
+* 线程执性同步代码块时，其他线程调用的该线程的suspend()方法将该线程挂起，该线程不会释放锁(同步监视器)。
+  * 应尽量避免使用suspend()和resume()来控制线程
 
 
 
@@ -2104,7 +2049,7 @@ for (int i = 0; i < str1.length; i++) {
 
 编码：String --> byte[]:调用String的getBytes()
 
-解码：`byte[] --> String:调用String的构造器`
+解码：byte[] --> String:调用String的构造器
 
 说明：解码时，要求解码使用的字符集必须与编码时使用的字符集一致，否则会出现乱码。
 
@@ -2124,9 +2069,9 @@ for (int i = 0; i < str1.length; i++) {
 
 > **与StringBuffer、StringBuilder之间的转换**
 
-`String -->StringBuffer、StringBuilder:调用StringBuffer、StringBuilder构造器`
+String -->StringBuffer、StringBuilder:调用StringBuffer、StringBuilder构造器
 
-`StringBuffer、StringBuilder -->String:①调用String构造器；②StringBuffer、StringBuilder的toString()`
+StringBuffer、StringBuilder -->String:①调用String构造器；②StringBuffer、StringBuilder的toString()
 
 
 
@@ -2146,17 +2091,17 @@ jdk 1.8:字符串常量池存储在方法区（元空间）
 
 **String、StringBuffer、StringBuilder三者的对比**
 
-**String:**不可变的字符序列；底层使用char[]存储
+**String:**不可变的字符序列；底层使用`char[]`存储
 
-**StringBuffer:**可变的字符序列；线程安全的，效率低；底层使用char[]存储
+**StringBuffer:**可变的字符序列；线程安全的，效率低；底层使用`char[]`存储
 
-**StringBuilder:**可变的字符序列；jdk5.0新增的，线程不安全的，效率高；底层使用char[] 存储
+**StringBuilder:**可变的字符序列；jdk5.0新增的，线程不安全的，效率高；底层使用`char[]` 存储
 
  
 
 **StringBuffer与StringBuilder的内存解析**
 
-以StringBuffer为例：
+以`StringBuffer`为例：
 
 ````java
 String str = new String();//char[] value = new char[0];
@@ -2264,7 +2209,6 @@ public void test2(){
     Date date6 = new Date();
     java.sql.Date date7 = new java.sql.Date(date6.getTime());
 }
-
 ````
 
 
@@ -2363,7 +2307,20 @@ System.out.println(days);
 
 > **常用方法：**
 
-![img](java.assets/clip_image004-16531845469602.jpg)
+| 方法                                                         | 描述                                                       |
+| ------------------------------------------------------------ | ---------------------------------------------------------- |
+| now() /now(Zoneld zone)                                      | 静态方法，根据当前时间创建对象/指定时期的对象              |
+| of()                                                         | 静态方法，根据指定日期、时间创建对象                       |
+| getDayOfMonth()/getDayOfYear()                               | 获得月份天数(1~31)/获得年份天数(1~365)                     |
+| getDayOfWeek()                                               | 获得星期几(返回枚举值)                                     |
+| getMonth()                                                   | 获取月份,返回枚举值                                        |
+| getMonthValue()/getYear()                                    | 获得月份(1~12)/获得年份                                    |
+| getHour()/getMinute()/getSecond()                            | 获得当前对象的小时、分钟、秒                               |
+| withDayOfMonth()/withDayOfYear()/withMonth()/withYear()      | 将月份天数、年份天数、月份、年份修改为指定的值并返回新对象 |
+| plusDays()/plusWeeks()/plusMonths()/plusYears()/plusHours()  | 向当前对象添加几天，几周、几月、几年、几小时               |
+| minusMonths()/minusWeeks()/minusDays()/minusYears()/minusHours() | 向当前对象减去指定时间                                     |
+
+
 
 > **实例化**
 
@@ -2381,9 +2338,14 @@ System.out.println(days);
 
 ② 类似于 java.util.Date类
 
-> **常用方法**：
+> **常用方法**
 
-![img](java.assets/clip_image006.jpg)
+| 方法                          | 描述                                                         |
+| ----------------------------- | ------------------------------------------------------------ |
+| now()                         | 静态方法，返回默认UTC时区的instant类的对象                   |
+| ofEpochMilli(long epochMilli) | 静态方法，返回在1970-01-01基础上加上指定毫秒数之后的instant类对象 |
+| atOffset(ZoneOffset offset)   | 结合即使的偏移开创建一个OffsetDateTime                       |
+| toEpochMilli()                | 返回1970-01-01到当前时间的毫秒数                             |
 
 > 实例化：
 
@@ -2392,8 +2354,6 @@ System.out.println(days);
  
 
 **日期时间格式化类：DateTimeFormatter**
-
-
 
 > **常用方法**：
 
@@ -2407,9 +2367,11 @@ System.out.println(days);
 
 ② 常用方法：
 
- 
-
-![img](java.assets/clip_image008.jpg)
+| 方法                       | 描述                                                |
+| -------------------------- | --------------------------------------------------- |
+| ofPattern(String pattern)  | 静态方法，返回一个指定字符串格式的DateTimeFormatter |
+| format(TemoiralAccessor t) | 格式化一个日期、时间，返回字符串                    |
+| parse(CharSequence text)   | 将指定格式的字符串序列解析为一个日期、时间          |
 
  
 
@@ -2432,7 +2394,13 @@ System.out.println(accessor);
 
 > **时间间隔：**Duration--用于计算两个“时间”间隔，以秒和纳秒为基准
 
-![img](java.assets/clip_image010.jpg)
+| 方法                                                | 描述                                                   |
+| --------------------------------------------------- | ------------------------------------------------------ |
+| between(Temporal start,Temporal end)                | 静态方法，返回Duration对象，表示两个时间的间隔         |
+| getNano()/getSeconds()                              | 返回时间间隔的纳秒数/返回时间间隔的秒数                |
+| toDays()/toHours()/toMinutes()/toMillis()/toNanos() | 返回时间间隔期间的天数、小时数、分钟数、毫秒数、纳秒数 |
+
+
 
 ````JAVA
 @Test
@@ -2460,7 +2428,13 @@ public void test3(){
 
 > **日期间隔**：Period --用于计算两个“日期”间隔，以年、月、日衡量
 
-![img](java.assets/clip_image012.jpg)
+| 方法                                                         | 描述                                             |
+| ------------------------------------------------------------ | ------------------------------------------------ |
+| between(LocalDate start,LocalDate end)                       | 静态方法，返回period对象，表示两个本地日期的间隔 |
+| getYears()/getMonths()/getDays()                             | 返回此期间的年数、月数、天数                     |
+| withYears(int years)/withMonths(int months)/withDays(int days) | 返回设置间隔指定年、月、日数以后的period对象     |
+
+
 
 ````JAVA
 @Test
@@ -2625,9 +2599,9 @@ List<Integer> integers = Arrays.asList(arr);
 
 > 两种排序方式对比
 
-* Comparable接口的方式一旦一定，保证Comparable接口实现类的对象在任何位置都可以比较大小。
+* `Comparable`接口的方式一旦一定，保证`Comparable`接口实现类的对象在任何位置都可以比较大小。
 
-* Comparator接口属于临时性的比较。
+* `Comparator`接口属于临时性的比较。
 
   
 
@@ -2998,7 +2972,7 @@ public class test {
 
 
 
-* `枚举类.name()`：它和toString()方法的返回值一样，事实上，这两个方法本来就是一样的：
+* `枚举类.name()`：它和`toString()`方法的返回值一样，事实上，这两个方法本来就是一样的：
 
 * `getDeclaringClass`：返回与此枚举常量的枚举类型相对应的 Class 对象
 
@@ -3330,7 +3304,7 @@ public class EnumDemo4 {
 
  ## EnumMap/EnumSet
 
-
+稍后
 
 
 
@@ -3938,63 +3912,44 @@ import java.lang.@NotNull String //非法，不能标注import
 
 **Collection**
 
-- ArrayList：线程不同步。默认初始容量为 10，当数组大小不足时容量扩大为 1.5 倍。为追求效率，ArrayList 没有实现同步（synchronized），如果需要多个线程并发访问，用户可以手动同步，也可使用 Vector 替代。
+- `ArrayList`：线程不同步。默认初始容量为 10，当数组大小不足时容量扩大为 1.5 倍。为追求效率，`ArrayList` 没有实现同步（`synchronized`），如果需要多个线程并发访问，用户可以手动同步，也可使用 `Vector` 替代。
+- `LinkedList`：线程不同步。双向链接实现。`LinkedList` 同时实现了 `List` 接口和 `Deque` 接口，也就是说它既可以看作一个顺序容器，又可以看作一个队列（`Queue`），同时又可以看作一个栈（`Stack`）。这样看来，`LinkedList` 简直就是个全能冠军。当你需要使用栈或者队列时，可以考虑使用 `LinkedList`，一方面是因为 Java 官方已经声明不建议使用 `Stack` 类，更遗憾的是，Java 里根本没有一个叫做 `Queue` 的类（它是个接口名字）。关于栈或队列，现在的首选是 `ArrayDeque`，它有着比 `LinkedList`（当作栈或队列使用时）有着更好的性能。
+- `Stack and Queue`：Java 里有一个叫做 `Stack` 的类，却没有叫做 `Queue` 的类（它是个接口名字）。当需要使用栈时，Java 已不推荐使用 `Stack`，而是推荐使用更高效的 `ArrayDeque`；既然 Queue 只是一个接口，当需要使用队列时也就首选 `ArrayDeque` 了（次选是 `LinkedList` ）。
+- `Vector`：线程同步。默认初始容量为 10，当数组大小不足时容量扩大为 2 倍。它的同步是通过 `Iterator` 方法加 `synchronized` 实现的。
+- `Stack`：线程同步。继承自 `Vector`，添加了几个方法来完成栈的功能。现在已经不推荐使用 `Stack`，在栈和队列中有限使用 `ArrayDeque`，其次是 `LinkedList`。
+- `TreeSet`：线程不同步，内部使用 `NavigableMap` 操作。默认元素 “自然顺序”排列，可以通过 `Comparator` 改变排序。`TreeSet` 里面有一个 `TreeMap`（适配器模式）
+- `HashSet`：线程不同步，内部使用 `HashMap` 进行数据存储，提供的方法基本都是调用 `HashMap` 的方法，所以两者本质是一样的。集合元素可以为 NULL。
+- `Set`：`Set` 是一种不包含重复元素的 `Collection`，`Set` 最多只有一个 null 元素。`Set` 集合通常可以通过 `Map` 集合通过适配器模式得到。
+- `PriorityQueue`：Java 中 `PriorityQueue` 实现了 `Queue` 接口，不允许放入 null 元素；其通过堆实现，具体说是通过完全二叉树实现的小顶堆（任意一个非叶子节点的权值，都不大于其左右子节点的权值），也就意味着可以通过数组来作为 `PriorityQueue` 的底层实现。
+  - 优先队列的作用是能保证每次取出的元素都是队列中权值最小的（Java 的优先队列每次取最小元素，C++ 的优先队列每次取最大元素）。这里牵涉到了大小关系，元素大小的评判可以通过元素本身的自然顺序，也可以通过构造时传入的比较器。
 
-- LinkedList：线程不同步。双向链接实现。LinkedList 同时实现了 List 接口和 Deque 接口，也就是说它既可以看作一个顺序容器，又可以看作一个队列（Queue），同时又可以看作一个栈（Stack）。这样看来，LinkedList 简直就是个全能冠军。当你需要使用栈或者队列时，可以考虑使用 LinkedList，一方面是因为 Java 官方已经声明不建议使用 Stack 类，更遗憾的是，Java 里根本没有一个叫做 Queue 的类（它是个接口名字）。关于栈或队列，现在的首选是 ArrayDeque，它有着比 LinkedList（当作栈或队列使用时）有着更好的性能。
-
-- Stack and Queue：Java 里有一个叫做 Stack 的类，却没有叫做 Queue 的类（它是个接口名字）。当需要使用栈时，Java 已不推荐使用 Stack，而是推荐使用更高效的 ArrayDeque；既然 Queue 只是一个接口，当需要使用队列时也就首选 ArrayDeque 了（次选是 LinkedList ）。
-
-- Vector：线程同步。默认初始容量为 10，当数组大小不足时容量扩大为 2 倍。它的同步是通过 Iterator 方法加 synchronized 实现的。
-
-- Stack：线程同步。继承自 Vector，添加了几个方法来完成栈的功能。现在已经不推荐使用 Stack，在栈和队列中有限使用 ArrayDeque，其次是 LinkedList。
-
-- TreeSet：线程不同步，内部使用 NavigableMap 操作。默认元素 “自然顺序”     排列，可以通过 Comparator 改变排序。TreeSet 里面有一个 TreeMap（适配器模式）
-
-- HashSet：线程不同步，内部使用 HashMap 进行数据存储，提供的方法基本都是调用 HashMap 的方法，所以两者本质是一样的。集合元素可以为 NULL。
-
-- Set：Set 是一种不包含重复元素的 Collection，Set 最多只有一个 null 元素。Set 集合通常可以通过 Map 集合通过适配器模式得到。
-
-- PriorityQueue：Java 中 PriorityQueue     实现了 Queue 接口，不允许放入 null 元素；其通过堆实现，具体说是通过完全二叉树（complete binary tree）实现的小顶堆（任意一个非叶子节点的权值，都不大于其左右子节点的权值），也就意味着可以通过数组来作为 PriorityQueue 的底层实现。
-
-- - 优先队列的作用是能保证每次取出的元素都是队列中权值最小的（Java 的优先队列每次取最小元素，C++ 的优先队列每次取最大元素）。这里牵涉到了大小关系，元素大小的评判可以通过元素本身的自然顺序（natural ordering），也可以通过构造时传入的比较器（*Comparator*，类似于 C++ 的仿函数）。
-
-- NavigableSet：添加了搜索功能，可以对给定元素进行搜索：小于、小于等于、大于、大于等于，放回一个符合条件的最接近给定元素的 key。
-
-- EnumSet：线程不同步。内部使用 Enum 数组实现，速度比 HashSet 快。只能存储在构造函数传入的枚举类的枚举值。
+- `NavigableSet`：添加了搜索功能，可以对给定元素进行搜索：小于、小于等于、大于、大于等于，放回一个符合条件的最接近给定元素的 `key`。
+- `EnumSet`：线程不同步。内部使用 `Enum` 数组实现，速度比 `HashSet` 快。只能存储在构造函数传入的枚举类的枚举值。
 
  
 
 **Map**
 
-- TreeMap：线程不同步，基于 红黑树 （Red-Black tree）的 NavigableMap 实现，能够把它保存的记录根据键排序，默认是按键值的升序排序，也可以指定排序的比较器，当用 Iterator 遍历 TreeMap 时，得到的记录是排过序的。
+- `TreeMap`：线程不同步，基于 红黑树的 `NavigableMap` 实现，能够把它保存的记录根据键排序，默认是按键值的升序排序，也可以指定排序的比较器，当用 `Iterator` 遍历 `TreeMap` 时，得到的记录是排过序的。
+  * `TreeMap` 底层通过红黑树实现，也就意味着 `containsKey(), get(), put(), remove()` 都有着 log(n) 的时间复杂度。
+- `Hashtable`：线程安全，`HashMap` 的迭代器是 fail-fast 迭代器。`Hashtable` 不能存储 `NULL` 的 `key` 和 `value`。
+- `HashMap`：线程不同步。根据 `key` 的 hashcode 进行存储，内部使用静态内部类 `Node` 的数组进行存储，默认初始大小为 16，每次扩大一倍。当发生 `Hash` 冲突时，采用拉链法（链表）。JDK 1.8中：当单个桶中元素个数大于等于8时，链表实现改为红黑树实现；当元素个数小于6时，变回链表实现。由此来防止`hashCode`攻击。
+- - `Java HashMap` 采用的是冲突链表方式。
+  - `HashMap` 是 `Hashtable` 的轻量级实现，可以接受为 `null` 的键值和值，而 `Hashtable` 不允许。
+- `LinkedHashMap`：保存了记录的插入顺序，在用 `Iterator` 遍历 `LinkedHashMap` 时，先得到的记录肯定是先插入的。也可以在构造时用带参数，按照应用次数排序。在遍历的时候会比 `HashMap` 慢，不过有种情况例外，当 `HashMap` 容量很大，实际数据较少时，遍历起来可能会比 `LinkedHashMap` 慢，因为 `LinkedHashMap` 的遍历速度只和实际数据有关，和容量无关，而 `HashMap` 的遍历速度和他的容量有关。
+- `WeakHashMap`：从名字可以看出它是某种 `Map`。它的特殊之处在于 `WeakHashMap` 里的 `entry` 可能会被 GC 自动删除，即使程序员没有调用 `remove()` 或者 `clear()` 方法。 `WeakHashMap` 的存储结构类似于`HashMap`
+  - 既然有 `WeekHashMap`，是否有 `WeekHashSet` 呢？答案是没有！不过 Java `Collections` 工具类给出了解决方案，`Collections.newSetFromMap(Map<E,Boolean>      map)` 方法可以将任何 Map包装成一个`Set`。
 
-- - TreeMap 底层通过红黑树（Red-Black tree）实现，也就意味着 containsKey(), get(), put(), remove() 都有着 log(n) 的时间复杂度。其具体算法实现参照了《算法导论》。
-
-- Hashtable：线程安全，HashMap 的迭代器 (Iterator) 是 fail-fast 迭代器。Hashtable 不能存储 NULL 的 key 和 value。
-
-- HashMap：线程不同步。根据 key 的 hashcode 进行存储，内部使用静态内部类 Node 的数组进行存储，默认初始大小为 16，每次扩大一倍。当发生 Hash 冲突时，采用拉链法（链表）。JDK 1.8中：当单个桶中元素个数大于等于8时，链表实现改为红黑树实现；当元素个数小于6时，变回链表实现。由此来防止hashCode攻击。
-
-- - Java HashMap 采用的是冲突链表方式。
-  - HashMap 是 Hashtable 的轻量级实现，可以接受为 null 的键值 (key) 和值 (value)，而 Hashtable 不允许。
-
-- LinkedHashMap：保存了记录的插入顺序，在用 Iterator 遍历 LinkedHashMap 时，先得到的记录肯定是先插入的。也可以在构造时用带参数，按照应用次数排序。在遍历的时候会比 HashMap 慢，不过有种情况例外，当 HashMap 容量很大，实际数据较少时，遍历起来可能会比 LinkedHashMap 慢，因为 LinkedHashMap 的遍历速度只和实际数据有关，和容量无关，而 HashMap 的遍历速度和他的容量有关。
-
-- WeakHashMap：从名字可以看出它是某种 Map。它的特殊之处在于 WeakHashMap 里的 entry 可能会被 GC 自动删除，即使程序员没有调用 remove() 或者 clear() 方法。 WeakHashMap 的存储结构类似于HashMap
-
-- - 既然有 WeekHashMap，是否有 WeekHashSet 呢？答案是没有！不过 Java Collections 工具类给出了解决方案，Collections.newSetFromMap(Map<E,Boolean>      map) 方法可以将任何 Map包装成一个Set。
 
 工具类
 
-- Collections、Arrays：集合类的一个工具类帮助类，其中提供了一系列静态方法，用于对集合中元素进行排序、搜索以及线程安全等各种操作。
+- `Collections`、`Arrays`：集合类的一个工具类帮助类，其中提供了一系列静态方法，用于对集合中元素进行排序、搜索以及线程安全等各种操作。
+- `Comparable`、`Comparator`：一般是用于对象的比较来实现排序，两者略有区别。
+  - 类设计者没有考虑到比较问题而没有实现 `Comparable` 接口。这是我们就可以通过使用 `Comparator`，这种情况下，我们是不需要改变对象的。
+  - 一个集合中，我们可能需要有多重的排序标准，这时候如果使用 `Comparable` 就有些捉襟见肘了，可以自己继承 `Comparator` 提供多种标准的比较器进行排序。
 
-- Comparable、Comparator：一般是用于对象的比较来实现排序，两者略有区别。
 
-- - 类设计者没有考虑到比较问题而没有实现 Comparable 接口。这是我们就可以通过使用 Comparator，这种情况下，我们是不需要改变对象的。
-  - 一个集合中，我们可能需要有多重的排序标准，这时候如果使用 Comparable 就有些捉襟见肘了，可以自己继承 Comparator 提供多种标准的比较器进行排序。
-
-说明：线程不同步的时候可以通过，Collections.synchronizedList() 方法来包装一个线程同步方法
-
- 
+说明：线程不同步的时候可以通过，`Collections.synchronizedList()` 方法来包装一个线程同步方法
 
 
 
@@ -4029,52 +3984,22 @@ import java.lang.@NotNull String //非法，不能标注import
 
 **常用方法**
 
-- 添加
-
-- - add(Objectobj)
-  - addAll(Collection  coll) 添加集合coll
-
-- 获取效元素的个数
-
-  - int size()
-
-- 清空集合
-
-- - void clear()
-
-- 是否是空集合
-
-- - boolean isEmpty()
-
-- 是否包含某个元素
-
-- - boolean  contains(Object obj)：判断集合中是否包含 obj；是通过元素的equals方法来判断是否是同一个对象
-  - boolean  containsAll(Collection coll)：判断集合是否包含coll集合；也是调用元素的equals方法来比较的。拿两个集合的元素挨个比较。
-
-- 删除
-
-- - boolean remove(Object      obj) ：通过元素的equals方法判断是否是要删除的那个元素。只会删除找到的第一个元素
-  - boolean removeAll(Collection coll)：取当前集合的差集，差集：从当前集合中移除coll1中所有的元素。
-
-- 取两个集合的交集
-
-- - boolean  retainAll(Collection c)：把交集的结果存在当前集合中，不影响c
-
-- 集合是否相等
-
-- - boolean equals(Object  obj)：判断当前集合是否和obj集和相等(分先后顺序)
-
-- 转成对象数组
-
-- - Object[] toArray()：返回Object类型
-
-- 获取集合对象的哈希值
-
-- - hashCode()
-
-- 遍历
-
-- - iterator()：返回迭代器对象，用于集合遍历
+| 方法                                  | 作用                                                         |
+| ------------------------------------- | ------------------------------------------------------------ |
+| add(Object obj)                       | 添加                                                         |
+| addAll(Collection  coll)              | 添加集合coll                                                 |
+| int size()                            | 获取效元素的个数                                             |
+| void clear()                          | 清空集合                                                     |
+| boolean isEmpty()                     | 是否是空集合                                                 |
+| boolean  contains(Object obj)         | 判断集合中是否包含 obj；通过元素的equals方法来判断是否是同一个对象 |
+| boolean  containsAll(Collection coll) | 判断集合是否包含coll集合；也是调用元素的equals方法来比较的。拿两个集合的元素挨个比较。 |
+| boolean remove(Object      obj)       | 通过元素的equals方法判断是否是要删除的那个元素。只会删除找到的第一个元素 |
+| boolean removeAll(Collection coll)    | 取当前集合的差集，差集：从当前集合中移除coll1中所有的元素。  |
+| boolean  retainAll(Collection c)      | 把交集的结果存在当前集合中，不影响c                          |
+| boolean equals(Object  obj)           | 判断当前集合是否和obj集和相等(分先后顺序)                    |
+| Object[] toArray()                    | 转成对象数组                                                 |
+| hashCode()                            | 获取集合对象的哈希值                                         |
+| iterator()                            | 返回迭代器对象，用于集合遍历                                 |
 
  
 
@@ -4112,11 +4037,8 @@ for(int i = 0;i < arr.length;i++){
 List<String> list = Arrays.asList(new String[]{"AA", "BB", "CC"});
 
 List arr1 = Arrays.asList(new int[]{123, 456});
-
 List arr2 = Arrays.asList(new Integer[]{123, 456});
 ````
-
-
 
 
 
@@ -4124,15 +4046,11 @@ List arr2 = Arrays.asList(new Integer[]{123, 456});
 
 向`Collection`接口的实现类的对象中添加数据obj时，要求obj所在类要重写`equals()`
 
- 
-
 **对比**
 
 * Linked 改快读慢
 * Array 读快改慢
 * Hash 两都之间
-
-
 
 Collection是集合接口
 
@@ -4167,8 +4085,6 @@ Collection是集合接口
   `Vector`是一种老的动态数组，是线程同步的，效率很低，一般不赞成使用。
 
  
-
-
 
 ## iterator与foreach
 
@@ -4245,7 +4161,7 @@ for(集合元素的类型 局部变量 : 集合对象名){
 }
 ````
 
-举例：
+**举例：**
 
 ````java
 public void test1(){
@@ -4286,20 +4202,20 @@ public void test1(){
 
 **Set**
 
-- TreeSet：基于红黑树实现，支持有序性操作，例如根据一个范围查找元素的操作。但是查找效率不如 HashSet，HashSet 查找的时间复杂度为 O(1)，TreeSet 则为 O(logN)。
-- HashSet：基于哈希表实现，支持快速查找，但不支持有序性操作。并且失去了元素的插入顺序信息，也就是说使用 Iterator 遍历 HashSet 得到的结果是不确定的。
-- LinkedHashSet：具有 HashSet 的查找效率，并且内部使用双向链表维护元素的插入顺序。
+- `TreeSet`：基于红黑树实现，支持有序性操作，例如根据一个范围查找元素的操作。但是查找效率不如 `HashSet，HashSet` 查找的时间复杂度为 O(1)，`TreeSet` 则为 O(logN)。
+- `HashSet`：基于哈希表实现，支持快速查找，但不支持有序性操作。并且失去了元素的插入顺序信息，也就是说使用 `Iterator` 遍历 `HashSet` 得到的结果是不确定的。
+- `LinkedHashSet`：具有 `HashSet` 的查找效率，并且内部使用双向链表维护元素的插入顺序。
 
 **List**
 
-- ArrayList：基于动态数组实现，支持随机访问。
-- Vector：和 ArrayList 类似，但它是线程安全的。
-- LinkedList：基于双向链表实现，只能顺序访问，但是可以快速地在链表中间插入和删除元素。不仅如此，LinkedList 还可以用作栈、队列和双向队列。
+- `ArrayList`：基于动态数组实现，支持随机访问。
+- `Vector`：和 `ArrayList` 类似，但它是线程安全的。
+- `LinkedList`：基于双向链表实现，只能顺序访问，但是可以快速地在链表中间插入和删除元素。不仅如此，`LinkedList` 还可以用作栈、队列和双向队列。
 
 **Queue**
 
-- LinkedList：可以用它来实现双向队列。
-- PriorityQueue：基于堆结构实现，可以用它来实现优先队列。 
+- `LinkedList`：可以用它来实现双向队列。
+- `PriorityQueue`：基于堆结构实现，可以用它来实现优先队列。 
 
 
 
@@ -4476,7 +4392,7 @@ private void writeObject(java.io.ObjectOutputStream s) throws java.io.IOExceptio
 
 **System.arraycopy() 和 Arrays.copyOf()**
 
-`ArrayList` 中大量调用了这两个方法。比如：扩容操作以及add(int index, E element)、toArray() 等方法中都用到了该方法！
+`ArrayList` 中大量调用了这两个方法。比如：扩容操作以及`add(int index, E element)、toArray()` 等方法中都用到了该方法！
 
 > **System.arraycopy() 方法,实现数组自己复制自己**
 
@@ -4750,14 +4666,14 @@ E unlink(Node<E> x) {
 
 我们向`HashSet`中添加元素a,首先调用元素a所在类的`hashCode()`方法，计算元素a的哈希值，
 
-此哈希值接着通过某种算法计算出在HashSet底层数组中的存放位置（即为：索引位置，判断
+此哈希值接着通过某种算法计算出在`HashSet`底层数组中的存放位置（即为：索引位置，判断
 
 数组此位置上是否已经元素：
 
 * 如果此位置上没其他元素，则元素a添加成功。 --->情况1
-* 如果此位置上其他元素b(或以链表形式存在的多个元素，则比较元素a与元素b的hash值：
+* 如果此位置上其他元素b(或以链表形式存在的多个元素，则比较元素a与元素b的`hash`值：
   * 如果`hash`值不相同，则元素a添加成功。--->情况2
-  * 如果`hash`值相同，进而需要调用元素a所在类的equals()方法：
+  * 如果`hash`值相同，进而需要调用元素a所在类的`equals()`方法：
     * `equals()`返回`true`,元素a添加失败
     * `equals()`返回`false`,则元素a添加成功。--->情况3
 
@@ -4781,7 +4697,7 @@ E unlink(Node<E> x) {
 
 ​         |----LinkedHashSet：作为HashSet的子类；遍历其内部数据时，可以按照添加的顺序遍历 (底层是LinkedHashMap)
 
-​         在添加数据的同时，每个数据还维护了两个引用，记录此数据前一个数据和后一个数据。   对于频繁的遍历操作，`LinkedHashSet`效率高于`HashSet`
+​         在添加数据的同时，每个数据还维护了两个引用，记录此数据前一个数据和后一个数据。对于频繁的遍历操作，`LinkedHashSet`效率高于`HashSet`
 
 ​       |----TreeSet：可以照添加对象的指定属性，进行排序。(底层是TreeMap)
 
@@ -4791,9 +4707,9 @@ E unlink(Node<E> x) {
 
 `HashSet/LinkedHashSet:`
 
-要求：向Set(主要指：HashSet、LinkedHashSet)中添加的数据，其所在的类一定要重写`hashCode()`和`equals()`
+要求：向Set(主要指：`HashSet、LinkedHashSet`)中添加的数据，其所在的类一定要重写`hashCode()`和`equals()`
 
-要求：重写的hashCode()和equals()尽可能保持一致性：相等的对象必须具有相等的散列码
+要求：重写的`hashCode()`和`equals()`尽可能保持一致性：相等的对象必须具有相等的散列码
 
 
 
@@ -4836,7 +4752,7 @@ public boolean add(E e) {
 
 由于 `HashMap` 的 `key` 是不能重复的，所以每当有重复的值写入到 `HashSet` 时，`value` 会被覆盖，但 `key` 不会受到影响，
 
-这样就保证了 `HashSet` 中只能存放不重复的元素。所以 HashMap 会出现的问题 HashSet 依然不能避免。
+这样就保证了 `HashSet` 中只能存放不重复的元素。所以 `HashMap` 会出现的问题 `HashSet` 依然不能避免。
 
  
 
@@ -4845,7 +4761,7 @@ public boolean add(E e) {
 使用说明:
 
 * 向TreeSet中添加的数据，要求是**相同**类的对象。
-* 两种排序方式：自然排序（实现Comparable）接口 和 定制排序（Comparator）
+* 两种排序方式：自然排序（实现`Comparable`）接口 和 定制排序（`Comparator`）
   * 自然排序中，比较两个对象是否相同的标准为：`compareTo()`返回0.不再是`equals()`
   * 定制排序中，比较两个对象是否相同的标准为：`compare()`返回0.不再是`equals( )`
 
@@ -4986,11 +4902,11 @@ public void test2(){
 
 **存储结构的理解：**
 
-* key:无序的、不可重复的，使用Set存储所的key，key所在的类要重写equals()和hashCode() 
+* key:无序的、不可重复的，使用`Set`存储所的`key，key`所在的类要重写`equals()`和`hashCode()` 
 
-* value:无序的、可重复的，使用Collection存储所的value，alue所在的类要重写equals()
+* value:无序的、可重复的，使用`Collection`存储所的`value`，`alue`所在的类要重写`equals()`
 
-* entry:key-value构成了一个Entry对象。无序的、不可重复的，使用Set存储所的entry
+* entry:`key-value`构成了一个`Entry`对象。无序的、不可重复的，使用Set`存储所的``entry`
 
 
 
@@ -5013,19 +4929,9 @@ public void test2(){
 | Collection values()                               | 返回所有value构成的Collection集合                            |
 | Set entrySet()                                    | 返回所有key-value对构成的Set集合                             |
 
-遍历：`keySet() / values() / entrySet()`    键/值/键值对 或`forEach`
+遍历：`keySet() / values() / entrySet()`键/值/键值对 或`forEach`
 
 `映射对象变量.forEach( (k,v) -> System.out.println("name = " + name + ",age = " + age));`
-
-
-
-4.4 LinkedHashMap的底层实现原理(了解)
-
-LinkedHashMap底层使用的结构与HashMap相同，因为LinkedHashMap继承于HashMap.
-
-区别就在于：LinkedHashMap内部提供了Entry，替换HashMap中的Node.
-
-**![img](java.assets/clip_image004-16533898784522.jpg)**
 
  
 
@@ -5070,7 +4976,6 @@ public class TreeMapTest {
         map.put(u2,89);
     }
 }
-
 ````
 
 
@@ -5150,7 +5055,7 @@ public static void main(String[] args)  {
 
 所谓扰动函数指的就是 `HashMap` 的 `hash` 方法。使用 `hash` 方法也就是扰动函数是为了防止一些实现比较差的 `hashCode()` 方法 换句话说使用扰动函数之后可以减少碰撞。
 
- JDK 1.8 HashMap 的 hash 方法源码:JDK 1.8 的 hash 方法 相比于 JDK 1.7 hash 方法更加简化，但是原理不变。
+JDK 1.8 HashMap 的 hash 方法源码:JDK 1.8 的 hash 方法 相比于 JDK 1.7 hash 方法更加简化，但是原理不变。
 
 ````java
 static final int hash(Object key) {
@@ -5659,8 +5564,6 @@ LinkedHashMap 的排序方式有两种：
 - 根据写入顺序排序。
 - 根据访问顺序排序。
 
- 
-
 **属性**         
 
 ````java
@@ -5948,7 +5851,7 @@ public V put(K key, V value) {
 | swap(List，int， int)                                       | 将指定 list 集合中的 i 处元素和 j 处元素进行交换           |
 | Object max(Collection)                                      | 根据元素的自然顺序，返回给定集合中的最大元素               |
 | Object max(Collection，Comparator)                          | 根据 Comparator 指定的顺序，返回给定集合中的最大元素       |
-| Object min(Collection)                                      |                                                            |
+| Object min(Collection)                                      | 根据元素的自然顺序，返回给定集合中的最小元素               |
 | int frequency(Collection，Object)                           | 返回指定集合中指定元素的出现次数                           |
 | void copy(List dest,List src)                               | 将src中的内容复制到dest中  注意：dest长度不可以小于src长度 |
 | boolean replaceAll(List list，Object oldVal，Object newVal) | 使用新值替换 List 对象的所旧值                             |
@@ -6072,7 +5975,7 @@ public static void main(String[] args) throws Exception {
 
 - 再次应证：Java中的泛型基本上都是在编译器这个层次来实现的“伪泛型”。
 
-- 但是，并不推荐以这种方式操作泛型类型，因为这违背了泛型的初衷（减少强制类型转换以及确保类型安全）。当我们从集合中获取元素时，默认会将对象强制转换成泛型参数指定的类型（这里是Integer），如果放入了非法的对象这个强制转换过程就会出现异常。
+- 但是，并不推荐以这种方式操作泛型类型，因为这违背了泛型的初衷（减少强制类型转换以及确保类型安全）。当我们从集合中获取元素时，默认会将对象强制转换成泛型参数指定的类型（这里是`Integer`），如果放入了非法的对象这个强制转换过程就会出现异常。
 
  
 
@@ -6515,15 +6418,9 @@ public <T extends Number> T Test(Generic<T> container){
 
 这样也是可以的：`List<String>[] ls = new ArrayList[10];`
 
- 
-
-
-
 
 
 # IO流
-
-
 
 ## IO流概述
 
@@ -6541,9 +6438,22 @@ public <T extends Number> T Test(Generic<T> container){
 
 **IO流分类**
 
-![img](java.assets/clip_image002-16538949381001.jpg)
+| 分类       | 字节输入流           | 字节输出流           | 字符输入流        | 字符输出流         |
+| ---------- | -------------------- | -------------------- | ----------------- | ------------------ |
+| 抽象基类   | InputStream          | OutpurStream         | Reader            | Writer             |
+| 访问文件   | FileInputStream      | FileOutputStream     | FileReader        | FileWriter         |
+| 访问数组   | ByteArrayInoutStream | ByteArrayOutStream   | CharArrayReader   | CharArrayWriter    |
+| 访问管道   | PipedInputStrean     | PipedOutputStream    | PipedReader       | PipedWriter        |
+| 访问字符串 |                      |                      | StrinngReader     | StringWriter       |
+| 缓冲流     | BufferedInputStream  | BufferedOutputStream | BufferedReader    | BufferedWriter     |
+| 转换流     |                      |                      | InputStreamReader | OutputStreamWriter |
+| 对象流     | ObjectInputStream    | ObjectOutputStream   |                   |                    |
+|            | FilteInputStream     | FilteOutputStream    | FilteReader       | FilteWriter        |
+| 打印流     |                      | PrintStream          |                   | PrintWriter        |
+| 推回输入流 | PushbackInputStream  |                      | PushbackReader    |                    |
+| 特殊流     | DataInputStream      | DataOutputStream     |                   |                    |
 
-说明：红框对应的是IO流中的4个抽象基类。
+**IO流中的4个抽象基类**
 
 | 抽象基类     | 节点流（或文件流）                           | 缓冲流（处理流的一种）                                       |
 | ------------ | -------------------------------------------- | ------------------------------------------------------------ |
@@ -6571,7 +6481,7 @@ IO流分类：
 
 **字节流与字符流**
 
-字节流和字符流的用法几乎完成全一样，区别在于字节流和字符流所操作的数据单元不同，字节流操作的单元是数据单元是8位的字节(Byte)，字符流操作的是数据单元为16位的字符（char）。
+字节流和字符流的用法几乎完成全一样，区别在于字节流和字符流所操作的数据单元不同，字节流操作的单元是数据单元是8位的字节(`Byte`)，字符流操作的是数据单元为16位的字符（`char`）。
 
 
 
@@ -7350,10 +7260,10 @@ public void testObjectInputStream(){
 
 ## RandomAccessFile
 
-* RandomAccessFile直接继承于java.lang.Object类，实现了DataInput和DataOutput接口
-* RandomAccessFile既可以作为一个输入流，又可以作为一个输出流
-* 如果RandomAccessFile作为输出流时，写出到的文件如果不存在，则在执行过程中自动创建。如果写出到的文件存在，则会对原文件内容进行覆盖。（默认情况下，从头覆盖）
-* 可以通过相关的操作，实现RandomAccessFile“插入”数据的效果。seek(int pos)
+* `RandomAccessFile`直接继承于java.lang.Object类，实现了`DataInput`和`DataOutput`接口
+* `RandomAccessFile`既可以作为一个输入流，又可以作为一个输出流
+* 如果`RandomAccessFile`作为输出流时，写出到的文件如果不存在，则在执行过程中自动创建。如果写出到的文件存在，则会对原文件内容进行覆盖。（默认情况下，从头覆盖）
+* 可以通过相关的操作，实现`RandomAccessFile`“插入”数据的效果。`seek(int pos)`
 
  
 
@@ -7438,10 +7348,6 @@ public void test3() throws IOException {
     //思考：将StringBuilder替换为ByteArrayOutputStream
 }
 ````
-
-
-
-
 
 
 
@@ -7580,7 +7486,7 @@ public void test3() throws IOException {
 **概述**
 
 * `Properties` 继承于 `Hashtable`。表示一个持久的属性集，属性列表以`key-value`的形式存在，`key`和`value`都是字符串。
-* Java中有个比较重要的类`Java.util.Properties`，主要用于读取Java的配置文件，各种语言都有自己所支持的配置文件，配置文件中很多变量是经常改变的，这样做也是为了方便用户，让用户能够脱离程序本身去修改相关的变量设置。
+* Jav中有个比较重要的类`Java.util.Properties`，主要用于读取Java的配置文件，各种语言都有自己所支持的配置文件，配置文件中很多变量是经常改变的，这样做也是为了方便用户，让用户能够脱离程序本身去修改相关的变量设置。
 * 文件的内容的格式是“键=值”的格式，文本注释信息可以用"#"来注释。
 
 
@@ -7918,9 +7824,9 @@ ServerSocket类：这个类实现了**服务器**套接字，该对象等待通�
 
 **常用方法摘要**
 
-| 方法               | 作用                                                         |
-| ------------------ | ------------------------------------------------------------ |
-| Socket accept() ： | 侦听并接受连接，返回一个新的Socket对象，用于和客户端实现通信。该方法会一直阻塞直到建立连接。 |
+| 方法            | 作用                                                         |
+| --------------- | ------------------------------------------------------------ |
+| Socket accept() | 侦听并接受连接，返回一个新的Socket对象，用于和客户端实现通信。该方法会一直阻塞直到建立连接。 |
 
 
 
@@ -9236,9 +9142,93 @@ Comparator<Integer> con = (x,y)->{
 
 **Lambda表达式提供的4个基本的函数式接口：**
 
-![img](java.assets/clip_image002-16558841004214.jpg)
+| 函数式接口    | 参数类型 | 返回类型 | 用途                                                         |
+| ------------- | -------- | -------- | ------------------------------------------------------------ |
+| Consumer<T>   | T        | void     | 对类型为T的对象应用操作，包含方法accept(T t)                 |
+| Supplier<T>   | 无       | T        | 返回类型为T的对象，包含方法T get()                           |
+| Function<T,R> | T        | R        | 对类型为T的对象应用操作，并返回R类型的结果，包含方法R apply(T t) |
+| predicate<T>  | T        | boolean  | 确定类型为T的对象是否满足某约束，并返回boolean值，包含方法boolean test(T t) |
 
 
+
+**案例**
+
+> 消费型接口
+
+````java
+@Test
+public void consumerTest(){
+    consumerInterFace(200,(num) -> System.out.println("消费：" + num + "元"));
+}
+private void consumerInterFace(int num, Consumer<Integer> con){
+    con.accept(num);
+}
+
+//输出  消费：200元
+````
+
+> 供给型接口
+
+````java
+//返回随机数字集合
+@Test
+public void SupplierTest(){
+    List<Integer> list = supplierInterFace(5, () -> (int)(Math.random() * 100));
+
+    for (Integer integer : list) {
+        System.out.println(integer);
+    }
+}
+
+private List<Integer> supplierInterFace(int num, Supplier<Integer> sup){
+    List<Integer> list = new ArrayList<>();
+
+    for (int i = 0; i < num; i++) {
+        list.add(sup.get());
+    }
+    return list;
+}
+````
+
+> 函数型接口
+
+````java
+@Test
+public void FunctionTest(){
+    String str = FunctionInterFace("你好JAVA", (fun) -> fun.substring(2, 6));    //截取2到6的字符串
+    System.out.println(str);
+
+    String str1 = FunctionInterFace("     rain", (fun) -> fun.trim());          //去除前面的空格
+    System.out.println(str1);
+}
+
+private String FunctionInterFace(String str, Function<String,String> fun){
+    return fun.apply(str);
+}
+````
+
+> 断言型接口
+
+```java
+@Test
+public void PredicateTest(){
+    List<String> list = Arrays.asList("你好JAVA", "Hello word", "Rain upup", "L337");
+    List<String> list1 = PredicateInterFace(list, (str) -> str.length() > 5);
+    for (String s : list1) {
+        System.out.println(s);
+    }
+}
+private List<String> PredicateInterFace(List<String> list, Predicate<String> pre){
+    List<String> retrunList = new ArrayList<>();
+
+    for (String s : list) {
+        if(pre.test(s)){
+            retrunList.add(s);
+        }
+    }
+    return retrunList;
+}
+```
 
 **总结**
 
@@ -9253,23 +9243,17 @@ Comparator<Integer> con = (x,y)->{
 
 ## 方法引用
 
-**理解：**方法引用可以看做是Lambda表达式深层次的表达。换句话说，方法引用就是Lambda表达式，也就是函数式接口的一个实例，
-
-通过方法的名字来指向一个方法。
-
- 
+**理解：**方法引用可以看做是Lambda表达式深层次的表达。换句话说，方法引用就是Lambda表达式，也就是函数式接口的一个实例，通过方法的名字来指向一个方法。
 
 **使用情境：**当要传递给Lambda体的操作，已经实现过，可以使用方法引用！
-
-
 
 **格式：**类(或对象) :: 方法名
 
 分为如下的三种情况：
 
-* 情况1   对象 :: 非静态方法
-* 情况2   类 :: 静态方法
-* 情况3   类 :: 非静态方法
+* 对象 :: 非静态方法
+* 类 :: 静态方法
+* 类 :: 非静态方法
 
  
 
@@ -9286,7 +9270,7 @@ Comparator<Integer> con = (x,y)->{
  public void test1() {
      Consumer<String> con1 = str -> System.out.println(str);
      con1.accept("北京");
-     System.out.println("*******************");
+ 
      PrintStream ps = System.out;
      Consumer<String> con2 = ps::println;
      con2.accept("beijing");
@@ -9298,7 +9282,7 @@ Comparator<Integer> con = (x,y)->{
      Employee emp = new Employee(1001,"Tom",23,5600);
      Supplier<String> sup1 = () -> emp.getName();
      System.out.println(sup1.get());
-     System.out.println("*******************");
+ 
      Supplier<String> sup2 = emp::getName;
      System.out.println(sup2.get());
  }
@@ -9309,7 +9293,7 @@ Comparator<Integer> con = (x,y)->{
  public void test3() {
      Comparator<Integer> com1 = (t1,t2) -> Integer.compare(t1,t2);
      System.out.println(com1.compare(12,21));
-     System.out.println("*******************");
+ 
      Comparator<Integer> com2 = Integer::compare;
      System.out.println(com2.compare(12,3));
  }
@@ -9323,10 +9307,10 @@ Comparator<Integer> con = (x,y)->{
              return Math.round(d);
          }
      };
-     System.out.println("*******************");
-     Function<Double,Long> func1 = d -> Math.round(d);
+ 
+     Function<Double,Long> func1 = d -> Math.round(d);//四舍五入
      System.out.println(func1.apply(12.3));
-     System.out.println("*******************");
+ 
      Function<Double,Long> func2 = Math::round;
      System.out.println(func2.apply(12.6));
  }
@@ -9337,7 +9321,7 @@ Comparator<Integer> con = (x,y)->{
  public void test5() {
      Comparator<String> com1 = (s1,s2) -> s1.compareTo(s2);
      System.out.println(com1.compare("abc","abd"));
-     System.out.println("*******************");
+ 
      Comparator<String> com2 = String :: compareTo;
      System.out.println(com2.compare("abd","abm"));
  }
@@ -9347,7 +9331,7 @@ Comparator<Integer> con = (x,y)->{
  public void test6() {
      BiPredicate<String,String> pre1 = (s1,s2) -> s1.equals(s2);
      System.out.println(pre1.test("abc","abc"));
-     System.out.println("*******************");
+ 
      BiPredicate<String,String> pre2 = String :: equals;
      System.out.println(pre2.test("abc","abd"));
  }
@@ -9358,7 +9342,7 @@ Comparator<Integer> con = (x,y)->{
      Employee employee = new Employee(1001, "Jerry", 23, 6000);
      Function<Employee,String> func1 = e -> e.getName();
      System.out.println(func1.apply(employee));
-     System.out.println("*******************");
+ 
      Function<Employee,String> func2 = Employee::getName;
      System.out.println(func2.apply(employee));
  }
@@ -9366,7 +9350,7 @@ Comparator<Integer> con = (x,y)->{
 
 
 
-
+ 
 
 ## 构造器引用和数组引用
 
@@ -9455,11 +9439,479 @@ public void test4(){
 
 ## Stream API
 
+**概述**
+
+`Stream` 是 Java8 中处理集合的关键抽象概念，它可以指定你希望对集合进行的操作，可以执行非常复杂的查找、过滤和映射数据等操作。使用Stream API 对集合数据进行操作，就类似于使用 SQL 执行的数据库查询。也可以使用 Stream API 来并行执行操作。简而言之，Stream API 提供了一种高效且易于使用的处理数据的方式。
+
+**特点：**
+
+* 不是数据结构，不会保存数据。
+* 不会修改原来的数据源，它会将操作后的数据保存到另外一个对象中。（保留意见：毕竟peek方法可以修改流中元素）
+* 惰性求值，流在中间处理过程中，只是对操作进行了记录，并不会立即执行，需要等到执行终止操作的时候才会进行实际的计算。
+
+**理解:**
+
+* `Stream`与`Collection`的区别：
+  * `Collection`是一种静态的内存数据结构，面向内存，储存在内存中
+  * `Stream`关注的是对数据的运算，与CPU打交道,集合关注的是数据的存储，与内存打交道
+
+* 这套api可以对内存中的数据进行过滤、排序、映射、归约等操作。类似于sql对数据库中表的相关操作。
+
+**Stream的使用流程：**
+
+* Stream的实例化
+* 一系列的中间操作（过滤、映射、...)
+* 终止操作
+
+**注意点：**
+
+* `Stream` 自己不会存储元素。
+* `Stream` 不会改变源对象。相反，他们会返回一个持有结果的新`Stream`。
+* `Stream` 操作是延迟执行的。这意味着他们会等到需要结果的时候才执行。
+* 一个中间操作链，对数据源的数据进行处理
+* 一旦执行终止操作，就执行中间操作链，并产生结果。(**不执行终止操作，中间操作就不会执行**)
+
+
+
+### 获得Stream实例
+
+| 方法           | 描述                                                     |
+| -------------- | -------------------------------------------------------- |
+| 通过集合获取   | List.strea()<br />List.paralleStream()  获取并行流       |
+| 通过数组获取   | Arrays.stream(数组)                                      |
+| 通过Stream本身 | Stream.of()<br />Stream.iterate()<br />Stream.generate() |
+
+**通过集合**，使用`Collection`下的 `stream()` 和 `parallelStream()` 方法
+
+````java
+List<String> list = new ArrayList<>();
+
+Stream<String> stream = list.stream();         //获取一个顺序流
+//Stream有串行和并行两种，串行Stream上的操作是在一个线程中依次完成，而并行Stream则是在多个线程上同时执行。
+Stream<String> parallelStream = list.parallelStream(); //获取一个并行流
+````
+
+**通过数组**，使用`Arrays` 中的 `stream()` 方法，将数组转成流
+
+````java
+Integer[] nums = new Integer[10];
+Stream<Integer> stream = Arrays.stream(nums);
+````
+
+**通过Stream本身**，使用Stream中的静态方法：`of()、iterate()、generate()`
+
+````java
+Stream<Integer> stream = Stream.of(1,2,3,4,5,6);
+
+//无限流，迭代，函数式接口，不常用
+Stream<Integer> stream2 = Stream.iterate(0, (x) -> x + 2).limit(6); //从0开始获取6个
+stream2.forEach(System.out::println); // 0 2 4 6 8 10
+
+Stream<Double> stream3 = Stream.generate(Math::random).limit(2);  //获取2个随机数
+stream3.forEach(System.out::println);
+````
+
+**通过BufferedReader**，使用 `BufferedReader.lines()` 方法，将每行内容转成流
+
+````java
+BufferedReader reader = new BufferedReader(new FileReader("F:\\test_stream.txt"));
+Stream<String> lineStream = reader.lines();
+lineStream.forEach(System.out::println);
+````
+
+**通过Pattern**，使用 `Pattern.splitAsStream()` 方法，将字符串分隔成流
+
+````java
+Pattern pattern = Pattern.compile(",");
+Stream<String> stringStream = pattern.splitAsStream("a,b,c,d");
+stringStream.forEach(System.out::println);
+````
+
+
+
+### 中间操作
+
+> **筛选与切片**
+
+| 方法                | 作用                                                |
+| ------------------- | --------------------------------------------------- |
+| filter(Predicate p) | 过滤流中的某些元素(像mysql中按照规则选择行)         |
+| limit(n)            | 获取n个元素                                         |
+| skip(n)             | 跳过n元素，配合limit(n)可实现分页                   |
+| distinct()          | 通过流中元素的 hashCode() 和  equals() 去除重复元素 |
+
+````java
+Stream<Integer> stream = Stream.of(6, 4, 6, 7, 3, 9, 8, 10, 12, 14, 14);            //实例一个Stream流
+Stream<Integer> newStream = stream.filter(s -> s > 5) //6 6 7 9 8 10 12 14 14       //中间操作
+       .distinct() //6 7 9 8 10 12 14
+       .skip(2) //9 8 10 12 14
+       .limit(2); //9 8
+newStream.forEach(System.out::println);  //forEach为终止操作
+````
+
+
+
+> **映射**     相当于mysql里的按照规则选择列？
+
+| 方法                 | 作用                                                         |
+| -------------------- | ------------------------------------------------------------ |
+| Map(Function f)      | 接收一个函数接口作为参数，该函数接口会被应用到每个元素上，并将其映射成一个新的元素。 |
+| flatMap(Function  f) | 接收一个函数接口作为参数，将流中的每个值都换成另一个流，然后把所有流连接成一个流。 |
+
+````java
+List<String> list = Arrays.asList("a,b,c", "1,2,3");
+//将每个元素转成一个新的且不带逗号的元素
+Stream<String> s1 = list.stream().map(s -> s.replaceAll(",", ""));
+s1.forEach(System.out::println); // abc  123
+
+
+Stream<String> s3 = list.stream().flatMap(s -> {
+   //将每个元素转换成一个stream
+   String[] split = s.split(",");
+   Stream<String> s2 = Arrays.stream(split);
+   return s2;
+});
+s3.forEach(System.out::println); // a b c 1 2 3
+````
+
  
+
+> **排序**
+
+| 方法                   | 作用                                   |
+| ---------------------- | -------------------------------------- |
+| sorted()               | 自然排序，流中元素需实现Comparable接口 |
+| sorted(Comparator com) | 定制排序，自定义Comparator排序器       |
+
+````java
+List<String> list = Arrays.asList("aa", "ff", "dd");
+//String 类自身已实现Compareable接口
+list.stream().sorted().forEach(System.out::println);// aa dd ff
+
+Student s1 = new Student("aa", 10);
+Student s2 = new Student("bb", 20);
+Student s3 = new Student("aa", 30);
+Student s4 = new Student("dd", 40);
+List<Student> studentList = Arrays.asList(s1, s2, s3, s4);
+
+//定制排序：先按姓名升序，姓名相同则按年龄升序
+studentList.stream().sorted(
+       (o1, o2) -> {
+           if (o1.getName().equals(o2.getName())) {
+               return o1.getAge() - o2.getAge();
+           } else {
+               return o1.getName().compareTo(o2.getName());
+           }
+       }
+).forEach(System.out::println);
+````
+
+
+
+> **消费**
+
+| 方法 | 作用                                                         |
+| ---- | ------------------------------------------------------------ |
+| peek | 如同于map，能得到流中的每一个元素。但map接收的是一个Function表达式，有返回值；而peek接收的是Consumer表达式，没有返回值。 |
+
+````java
+Student s1 = new Student("aa", 10);
+Student s2 = new Student("bb", 20);
+List<Student> studentList = Arrays.asList(s1, s2);
+
+studentList.stream()
+       .peek(o -> o.setAge(100))
+       .forEach(System.out::println);   
+
+//结果：
+Student{name='aa', age=100}
+Student{name='bb', age=100} 
+````
+
+
+
+### 终止操作
+
+> **匹配、聚合**
+
+| 方法                   | 作用                                                         |
+| ---------------------- | ------------------------------------------------------------ |
+| allMatch(Predicate p)  | 接收一个  Predicate 函数，当流中每个元素都符合该断言时才返回true，否则返回false |
+| noneMatch(Predicate p) | 接收一个  Predicate 函数，当流中每个元素都不符合该断言时才返回true，否则返回false |
+| anyMatch(Predicate p)  | 接收一个  Predicate 函数，只要流中有一个元素满足该断言则返回true，否则返回false |
+| findFirst()            | 返回流中第一个元素                                           |
+| findAny()              | 返回流中的任意元素                                           |
+| count()                | 返回流中元素的总个数                                         |
+| max()                  | 返回流中元素最大值                                           |
+| min()                  | 返回流中元素最小值                                           |
+| forEach(consumer c)    | 内部迭代                                                     |
+
+````java
+List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+
+boolean allMatch = list.stream().allMatch(e -> e > 10); //false
+boolean noneMatch = list.stream().noneMatch(e -> e > 10); //true
+boolean anyMatch = list.stream().anyMatch(e -> e > 4);  //true
+
+Integer findFirst = list.stream().findFirst().get(); //1
+Integer findAny = list.stream().findAny().get(); //1
+
+long count = list.stream().count(); //5
+Integer max = list.stream().max(Integer::compareTo).get(); //5
+Integer min = list.stream().min(Integer::compareTo).get(); //1
+
+list.stream().forEach(System.out::println);
+````
+
+
+
+> **规约操作**      像Excel中的求和等函数
+
+| 方法                                                         | 作用                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| reduce(BinaryOperator<T> accumulator)                        | 第一次执行时，accumulator函数的第一个参数为流中的第一个元素，第二个参数为流中元素的第二个元素；第二次执行时，第一个参数为第一次函数执行的结果，第二个参数为流中的第三个元素；依次类推。 |
+| reduce(T identity, BinaryOperator<T> accumulator)            | 流程跟上面一样，只是第一次执行时，accumulator函数的第一个参数为identity，而第二个参数为流中的第一个元素。 |
+| reduce(U identity,BiFunction<U, ? super T, U> accumulator,BinaryOperator<U> combiner) | 在串行流(stream)中，该方法跟第二个方法一样，即第三个参数combiner不会起作用。在并行流(parallelStream)中,我们知道流被fork join出多个线程进行执行，此时每个线程的执行流程就跟第二个方法reduce(identity,accumulator)一样，而第三个参数combiner函数，则是将每个线程的执行结果当成一个新的流，然后使用第一个方法reduce(accumulator)流程进行规约。 |
+
+````java
+//经过测试，当元素个数小于24时，并行时线程数等于元素个数，当大于等于24时，并行时线程数为16
+List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24);
+
+Integer v = list.stream().reduce((x1, x2) -> x1 + x2).get();
+System.out.println(v);   // 300
+
+Integer v1 = list.stream().reduce(10, (x1, x2) -> x1 + x2);
+System.out.println(v1);  //310
+
+Integer v2 = list.stream().reduce(0,
+       (x1, x2) -> {
+           System.out.println("stream accumulator: x1:" + x1 + "  x2:" + x2);
+           return x1 - x2;
+       },
+       (x1, x2) -> {
+           System.out.println("stream combiner: x1:" + x1 + "  x2:" + x2);
+           return x1 * x2;
+       });
+System.out.println(v2); // -300
+
+Integer v3 = list.parallelStream().reduce(0,
+       (x1, x2) -> {
+           System.out.println("parallelStream accumulator: x1:" + x1 + "  x2:" + x2);
+           return x1 - x2;
+       },
+       (x1, x2) -> {
+           System.out.println("parallelStream combiner: x1:" + x1 + "  x2:" + x2);
+           return x1 * x2;
+       });
+System.out.println(v3); //197474048
+````
+
+
+
+> **收集**
+
+| 方法                 | 作用                                                         |
+| -------------------- | ------------------------------------------------------------ |
+| collect(Collector c) | 将流转换为其他形式(List/set/map等)。<br />接受一个Collector接口的实现，用于给Stream中元素做汇总的方法(List/set/map等) |
+
+Collector工具类Collectors
+
+| 方法         | 返回值        | 作用                       |
+| ------------ | ------------- | -------------------------- |
+| toList       | List<T>       | 把流中元素收集到List       |
+| toSet        | Set<T>        | 把流中元素收集到Set        |
+| toCollection | Collection<T> | 把流中元素收集到创建的集合 |
+
+````java
+Student s1 = new Student("aa", 10,1);
+Student s2 = new Student("bb", 20,2);
+Student s3 = new Student("cc", 10,3);
+List<Student> list = Arrays.asList(s1, s2, s3);
+
+//装成list
+List<Integer> ageList = list.stream().map(Student::getAge).collect(Collectors.toList()); // [10, 20, 10]
+
+//转成set
+Set<Integer> ageSet = list.stream().map(Student::getAge).collect(Collectors.toSet()); // [20, 10]
+
+//转成map,注:key不能相同，否则报错
+Map<String, Integer> studentMap = list.stream().collect(Collectors.toMap(Student::getName, Student::getAge)); // {cc=10, bb=20, aa=10}
+
+//字符串分隔符连接
+String joinName = list.stream().map(Student::getName).collect(Collectors.joining(",", "(", ")")); // (aa,bb,cc)
+
+//聚合操作
+//1.学生总数
+Long count = list.stream().collect(Collectors.counting()); // 3
+//2.最大年龄 (最小的minBy同理)
+Integer maxAge = list.stream().map(Student::getAge).collect(Collectors.maxBy(Integer::compare)).get(); // 20
+//3.所有人的年龄
+Integer sumAge = list.stream().collect(Collectors.summingInt(Student::getAge)); // 40
+//4.平均年龄
+Double averageAge = list.stream().collect(Collectors.averagingDouble(Student::getAge)); // 13.333333333333334
+// 带上以上所有方法
+DoubleSummaryStatistics statistics = list.stream().collect(Collectors.summarizingDouble(Student::getAge));
+System.out.println("count:" + statistics.getCount() + ",max:" + statistics.getMax() + ",sum:" + statistics.getSum() + ",average:" + statistics.getAverage());
+
+//分组
+Map<Integer, List<Student>> ageMap = list.stream().collect(Collectors.groupingBy(Student::getAge));
+//多重分组,先根据类型分再根据年龄分
+Map<Integer, Map<Integer, List<Student>>> typeAgeMap = list.stream().collect(Collectors.groupingBy(Student::getType, Collectors.groupingBy(Student::getAge)));
+
+//分区
+//分成两部分，一部分大于10岁，一部分小于等于10岁
+Map<Boolean, List<Student>> partMap = list.stream().collect(Collectors.partitioningBy(v -> v.getAge() > 10));
+
+//规约
+Integer allAge = list.stream().map(Student::getAge).collect(Collectors.reducing(Integer::sum)).get(); //40
+````
+
+ 
+
+
 
 ## Optional类
 
+**概述**
 
+`Optional` 类主要解决的问题是臭名昭著的空指针异常（`NullPointerException`）`Optional` 的完整路径是 `java.util.Optional`，使用它是为了避免代码中的 `if (obj != null) { }` 这样范式的代码，可以采用链式编程的风格。而且通过 `Optional` 中提供的 `filter` 方法可以判断对象是否符合条件，在符合条件的情况下才会返回，map 方法可以在返回对象前修改对象中的属性。
+
+
+
+**构造函数**
+
+| 方法                     | 作用                                                         |
+| ------------------------ | ------------------------------------------------------------ |
+| Optional.of(obj)         | 它要求传入的obj不能是 null 值的, 否则直接报NullPointerException 异常。 |
+| Optional.ofNullable(obj) | 它以一种智能的，宽容的方式来构造一个Optional实例。来者不拒，传null进到就得到 Optional.empty()，非null就调用 Optional.of(obj). |
+| Optional.empty()         | 返回一个空的Optional对象                                     |
+
+**常用函数**
+
+> **获取：**
+
+| 方法  | 作用                                                 |
+| ----- | ---------------------------------------------------- |
+| get() | 获取optional实例中的对象，当optional  容器为空时报错 |
+
+> **判断：**
+
+| 方法                                | 作用                                                         |
+| ----------------------------------- | ------------------------------------------------------------ |
+| isPresent()                         | 判断optional是否为空，如果空则返回false，否则返回true        |
+| ifPresent(Consumer  c)              | 如果optional不为空，则将optional中的对象传给Comsumer函数     |
+| orElse(T  other)                    | 如果optional不为空，则返回optional中的对象；如果为null，则返回  other 这个默认值 |
+| orElseGet(Supplier<T>  other)       | 如果optional不为空，则返回optional中的对象；如果为null，则使用Supplier函数生成默认值other |
+| orElseThrow(Supplier<X>  exception) | 如果optional不为空，则返回optional中的对象；如果为null，则抛出Supplier函数生成的异常 |
+
+> **过滤：**
+
+| 方法                    | 作用                                                         |
+| ----------------------- | ------------------------------------------------------------ |
+| filter(Predicate<T>  p) | 如果optional不为空，则执行断言函数p，如果p的结果为true，则返回原本的optional，否则返回空的optional |
+
+> **映射：**
+
+| 方法                                      | 作用                                                         |
+| ----------------------------------------- | ------------------------------------------------------------ |
+| map(Function<T,  U> mapper)               | 如果optional不为空，则将optional中的对象  t 映射成另外一个对象 u，并将 u 存放到一个新的optional容器中 |
+| flatMap(Function<  T,Optional<U>> mapper) | 跟上面一样，在optional不为空的情况下，将对象t映射成另外一个optional |
+
+区别：map会自动将u放到optional中，而flatMap则需要手动给u创建一个optional
+
+**案例：**
+
+````java
+//需求：
+//学校想从一批学生中，选出年龄大于等于18，参加过考试并且成绩大于80的人去参加比赛。
+//准备数据：
+public class Student {
+    private String name;
+    private int age;
+    private Integer score;
+
+    //省略 construct get set
+}
+
+public List<Student> initData(){
+    Student s1 = new Student("张三", 19, 80);
+    Student s2 = new Student("李四", 19, 50);
+    Student s3 = new Student("王五", 23, null);
+    Student s4 = new Student("赵六", 16, 90);
+    Student s5 = new Student("钱七", 18, 99);
+    Student s6 = new Student("孙八", 20, 40);
+    Student s7 = new Student("吴九", 21, 88);
+
+    return Arrays.asList(s1, s2, s3, s4, s5, s6, s7);
+}
+java8 之前写法：
+@Test
+public void beforeJava8() {
+    List<Student> studentList = initData();
+
+    for (Student student : studentList) {
+        if (student != null) {
+            if (student.getAge() >= 18) {
+                Integer score = student.getScore();
+                if (score != null && score > 80) {
+                    System.out.println("入选：" + student.getName());
+                }
+            }
+        }
+    }
+}
+java8 写法：
+@Test
+public void useJava8() {
+    List<Student> studentList = initData();
+    for (Student student : studentList) {
+        Optional<Student> studentOptional = Optional.of(student);
+        Integer score = studentOptional.filter(s -> s.getAge() >= 18).map(Student::getScore).orElse(0);
+
+        if (score > 80) {
+            System.out.println("入选：" + student.getName());
+        }
+    }
+}
+案例2
+
+@Test
+public void test1() {
+    //empty():创建的Optional对象内部的value = null
+    Optional<Object> op1 = Optional.empty();
+    if (!op1.isPresent()) {//Optional封装的数据是否包含数据
+        System.out.println("数据为空");
+    }
+    System.out.println(op1);
+    System.out.println(op1.isPresent());
+    //如果Optional封装的数据value为空，则get()报错。否则，value不为空时，返回value.
+    // System.out.println(op1.get());
+}
+
+@Test
+public void test2() {
+    String str = "hello";
+    //str = null;
+    //of(T t):封装数据t生成Optional对象。要求t非空，否则报错。
+    Optional<String> op1 = Optional.of(str);
+    //get()通常与of()方法搭配使用。用于获取内部的封装的数据value
+    String str1 = op1.get();
+    System.out.println(str1);
+}
+
+@Test
+public void test3() {
+    String str = "beijing";
+    str = null;
+    //ofNullable(T t) ：封装数据t赋给Optional内部的value。不要求t非空
+    Optional<String> op1 = Optional.ofNullable(str);
+    //orElse(T t1):如果Optional内部的value非空，则返回此value值。如果
+    //为空则返回shanghai
+    String str2 = op1.orElse("shanghai");
+
+    System.out.println(str2);//
+}
+````
 
 
 

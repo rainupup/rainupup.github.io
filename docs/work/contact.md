@@ -1,4 +1,3 @@
-![](../../image/coverpage.png)
 <table>
   <tr>
     <td align="center" style="width: 200px;">
@@ -15,3 +14,4 @@
     </td>
   </tr>
 </table>
+

@@ -17,7 +17,7 @@
 * 请求头
   * key:value组成不同的键值对，表示不同的含义。
 
-![img](JavaWeb.assets/clip_image002.png)
+![img](javaweb.assets/clip_image002.png)
 
  
 
@@ -31,7 +31,7 @@
   * key:value不同的请求头，有不同的含义
 * 请求体:发送给服务器的数据
 
-![img](JavaWeb.assets/clip_image004.png)
+![img](javaweb.assets/clip_image004.png)
 
  
 
@@ -54,7 +54,7 @@
   * key:value不同的响应头，有其不同含义
 * 响应体:回传给客户端的数据
 
-![img](JavaWeb.assets/clip_image006.png)
+![img](javaweb.assets/clip_image006.png)
 
  
 
@@ -92,7 +92,7 @@ MIME类型的格式是`大类型/小类型`，并与某一种文件的扩展名�
 
 谷歌浏览器如何查看HTTP协议：
 
-![img](JavaWeb.assets/clip_image008.png)
+![img](javaweb.assets/clip_image008.png)
 
  
 
@@ -282,7 +282,7 @@ Html的代码注释
 </dl>
 ````
 
-![img](JavaWeb.assets/clip_image009.png)
+![img](javaweb.assets/clip_image009.png)
 
 
 
@@ -434,7 +434,7 @@ Html的代码注释
 </body>
 ````
 
-<img src="JavaWeb.assets/clip_image016.jpg" alt="img" style="zoom:50%;" />
+<img src="javaweb.assets/clip_image016.jpg" alt="img" style="zoom:50%;" />
 
  
 
@@ -481,7 +481,7 @@ Html的代码注释
 </body>
 ````
 
-<img src="JavaWeb.assets/clip_image017.gif" alt="img" style="zoom:67%;" />
+<img src="javaweb.assets/clip_image017.gif" alt="img" style="zoom:67%;" />
 
  
 
@@ -636,7 +636,7 @@ HTML5新增
 </body>
 ````
 
-![img](JavaWeb.assets/clip_image019.jpg)
+![img](javaweb.assets/clip_image019.jpg)
 
 
 
@@ -780,7 +780,7 @@ div {
 
 优先级：方式1 > 方式3 > 方式2
 
-<img src="JavaWeb.assets/css.png" alt="三种方式的优先级" style="zoom:67%;" />
+<img src="javaweb.assets/css.png" alt="三种方式的优先级" style="zoom:67%;" />
 
 ## CSS选择器
 
@@ -852,7 +852,7 @@ HTML代码
 </html>
 ````
 
-![img](JavaWeb.assets/clip_image004-16570135751081.jpg)
+![img](javaweb.assets/clip_image004-16570135751081.jpg)
 
 
 
@@ -1098,7 +1098,7 @@ for(var i in d){
 
 查看数据类型可以使用`typeof()`
 
-<img src="JavaWeb.assets/clip_image002-16570742697054.jpg" alt="img" style="zoom:67%;" />
+<img src="javaweb.assets/clip_image002-16570742697054.jpg" alt="img" style="zoom:67%;" />
 
 
 
@@ -2136,7 +2136,7 @@ input.value = 'test@example.com'; // 文本框的内容已更新
 
 ​		例：
 
-​			![](JavaWeb.assets/clip_image002-16571645154661.jpg)
+​			![](javaweb.assets/clip_image002-16571645154661.jpg)
 
 ​		`<scriptsrc="${pageContext.request.contextPath}/script/jquery-1.7.2.js"></script>`
 
@@ -3222,7 +3222,7 @@ interface java.lang.Cloneable
            interface org.dom4j.ProcessingInstruction  //定义 XML 处理指令
 ````
 
-![image-20220708110253291](JavaWeb.assets/image-20220708110253291.png)
+![image-20220708110253291](javaweb.assets/image-20220708110253291.png)
 
 
 
@@ -3641,7 +3641,7 @@ xpath(//div[contains(text(),”test”)])
 
 **组件**
 
-JavaWeb的三大组件分别是：[Servlet程序](#servlet)、[Filter过滤器](#filter)、[Listener监听器](#listener)
+javaweb的三大组件分别是：[Servlet程序](#servlet)、[Filter过滤器](#filter)、[Listener监听器](#listener)
 
 | 容器    | 功能                                                         |
 | ------- | ------------------------------------------------------------ |
@@ -3684,39 +3684,39 @@ JavaWeb的三大组件分别是：[Servlet程序](#servlet)、[Filter过滤器](
 
 ## **IDEA配置TOMCAT**
 
-![image-20220708142056416](JavaWeb.assets/image-20220708142056416.png)
+![image-20220708142056416](javaweb.assets/image-20220708142056416.png)
 
-![image-20220708142117388](JavaWeb.assets/image-20220708142117388.png)
+![image-20220708142117388](javaweb.assets/image-20220708142117388.png)
 
-![image-20220708142129397](JavaWeb.assets/image-20220708142129397.png)
+![image-20220708142129397](javaweb.assets/image-20220708142129397.png)
 
 右键项目。Add Framework Support
 
-![image-20220708142140605](JavaWeb.assets/image-20220708142140605.png)
+![image-20220708142140605](javaweb.assets/image-20220708142140605.png)
 
-![image-20220708142255287](JavaWeb.assets/image-20220708142255287.png)
+![image-20220708142255287](javaweb.assets/image-20220708142255287.png)
 
 此时我们的项目增加了web目录
 
-![image-20220708142330468](JavaWeb.assets/image-20220708142330468.png)
+![image-20220708142330468](javaweb.assets/image-20220708142330468.png)
 
-![image-20220708142347564](JavaWeb.assets/image-20220708142347564.png)
+![image-20220708142347564](javaweb.assets/image-20220708142347564.png)
 
-![image-20220708142356938](JavaWeb.assets/image-20220708142356938.png)
+![image-20220708142356938](javaweb.assets/image-20220708142356938.png)
 
-![image-20220708142550368](JavaWeb.assets/image-20220708142550368.png)
+![image-20220708142550368](javaweb.assets/image-20220708142550368.png)
 
 启动TOMCAT
 
-![image-20220708142636303](JavaWeb.assets/image-20220708142636303.png)
+![image-20220708142636303](javaweb.assets/image-20220708142636303.png)
 
 **修改默认URL**
 
-![image-20220709141934679](JavaWeb.assets/image-20220709141934679.png)
+![image-20220709141934679](javaweb.assets/image-20220709141934679.png)
 
-![image-20220709142144996](JavaWeb.assets/image-20220709142144996.png)
+![image-20220709142144996](javaweb.assets/image-20220709142144996.png)
 
-![image-20220709142249706](JavaWeb.assets/image-20220709142249706.png)
+![image-20220709142249706](javaweb.assets/image-20220709142249706.png)
 
 
 
@@ -3746,7 +3746,7 @@ JavaWeb的三大组件分别是：[Servlet程序](#servlet)、[Filter过滤器](
 
 * Servlet是JavaEE规范之一。规范就是接口
 
-* JavaWeb的三大组件分别是：[Servlet程序](#servlet)、[Filter过滤器](#filter)、[Listener监听器](#listener)
+* javaweb的三大组件分别是：[Servlet程序](#servlet)、[Filter过滤器](#filter)、[Listener监听器](#listener)
 
 * Servlet是运行在服务器上的一个java小程序
   * 客户端发送请求至服务器
@@ -3813,7 +3813,7 @@ public class HelloWeb implements Servlet {
 * `servlet-name`配置的值不存在
 * `servlet-class`标签的全类名配置错误
 
-![image-20220709130342239](JavaWeb.assets/image-20220709130342239.png)
+![image-20220709130342239](javaweb.assets/image-20220709130342239.png)
 
 **Servlet的生命周期**
 
@@ -3829,7 +3829,7 @@ public class HelloWeb implements Servlet {
 
 ````java
 //ServletRequest子类HttpServletRequest的getMethod获取提交的方式
-public class JavaWebTest implements Servlet {
+public class javawebTest implements Servlet {
     @Override
     public void service(ServletRequest servletRequest, ServletResponse servletResponse) throws ServletException, IOException {
     	//类型转换（因为它有getMethod()方法）
@@ -3887,9 +3887,9 @@ public class HelloWeb2 extends HttpServlet {
 
 **使用IDEA创建Servlet程序**
 
-<img src="JavaWeb.assets/image-20220709131233558.png" alt="image-20220709131233558" style="zoom:67%;" />
+<img src="javaweb.assets/image-20220709131233558.png" alt="image-20220709131233558" style="zoom:67%;" />
 
-![image-20220709131245656](JavaWeb.assets/image-20220709131245656.png)
+![image-20220709131245656](javaweb.assets/image-20220709131245656.png)
 
 会自动创建一个类继承`HttpServlet`类，并重写`doGet`和`doPust`方法
 
@@ -4285,7 +4285,7 @@ req.setCharacterEncoding("UTF-8");
 * 共享request域中的数据
 * 可以访问WEN-INF目录
 
-![image-20220709185304562](JavaWeb.assets/image-20220709185304562.png)
+![image-20220709185304562](javaweb.assets/image-20220709185304562.png)
 
 ````java
 Servlet1代码：
@@ -4461,7 +4461,7 @@ resp.setContentType("text/html;charset=UTF-8");
 * 不能访问WEB-INF下的资源
 * 可以访问工程外的文件
 
-![image-20220709184554077](JavaWeb.assets/image-20220709184554077.png)
+![image-20220709184554077](javaweb.assets/image-20220709184554077.png)
 
 请求重定向的第一种方案：
 
@@ -4484,7 +4484,7 @@ resp.sendRedirect("新地址");
 
 **什么是Listener监听器？**
 
-* Listener监听器它是JavaWeb的三大组件之一
+* Listener监听器它是javaweb的三大组件之一
 * Listener它是JavaEE的规范，就是接口
 * Listener用于监听servlet中的事件，例如context、request、session对象的创建、修改、删除，并触发响应事件。Listener是观察者模式的实现，在servlet中主要用于对context、request、session对象的生命周期进行监控。在servlet2.5规范中共定义了8中Listener。在启动时，`ServletContextListener` 的执行顺序与web.xml中的**配置顺序一致**，停止时执行顺序相反。
 
@@ -4583,7 +4583,7 @@ jsp页面本质上是一个Servlet程序。
 
 打开java源文件
 
-![image-20220710145528756](JavaWeb.assets/image-20220710145528756.png)
+![image-20220710145528756](javaweb.assets/image-20220710145528756.png)
 
 可见jsp源文件继承了`HttpJspBase`类，`HttpJspBase`类直接继承了`HttpServlet`类。
 
@@ -4601,7 +4601,7 @@ JSP源文件将被翻译成为一个Servlet程序的JAVA文件。
 * 最后调用它的`service()`方法
 * 第二次请求同一jsp时，直接调用`service()`方法。
 
-![image-20220710150720842](JavaWeb.assets/image-20220710150720842.png)
+![image-20220710150720842](javaweb.assets/image-20220710150720842.png)
 
 
 
@@ -4683,7 +4683,7 @@ errorPage表示错误后自动跳转去的路径,一般都是以斜杠打头，�
 %>
 ````
 
-![image-20220710154550652](JavaWeb.assets/image-20220710154550652.png)
+![image-20220710154550652](javaweb.assets/image-20220710154550652.png)
 
 > 表达式脚本（常用）
 
@@ -4706,7 +4706,7 @@ errorPage表示错误后自动跳转去的路径,一般都是以斜杠打头，�
 <%= request.getParameter("username")%>
 ````
 
-![image-20220710154828664](JavaWeb.assets/image-20220710154828664.png)
+![image-20220710154828664](javaweb.assets/image-20220710154828664.png)
 
 > 代码脚本
 
@@ -4737,7 +4737,7 @@ errorPage表示错误后自动跳转去的路径,一般都是以斜杠打头，�
 </table>
 ````
 
-![image-20220710155132485](JavaWeb.assets/image-20220710155132485.png)
+![image-20220710155132485](javaweb.assets/image-20220710155132485.png)
 
 HTML标签或文本内容翻译为java源文件后将会被`out.write`语句输出
 
@@ -4783,7 +4783,7 @@ jsp注释可以注掉，jsp页面中所有代码
 
 ### 九大对象
 
-![image-20220710155923383](JavaWeb.assets/image-20220710155923383.png)
+![image-20220710155923383](javaweb.assets/image-20220710155923383.png)
 
 | 内置对象    | 描述               |
 | ----------- | ------------------ |
@@ -4803,7 +4803,7 @@ jsp注释可以注掉，jsp页面中所有代码
 
 `out.write()`和`response.getWriter().write()`都可以为客户端输出内容
 
-![image-20220710163638475](JavaWeb.assets/image-20220710163638475.png)
+![image-20220710163638475](javaweb.assets/image-20220710163638475.png)
 
 当JSP页面中的所以代码执性完毕后，JSP会自动完成两个操作：
 
@@ -4908,7 +4908,7 @@ b.jsp的内容
 </jsp:include>
 ````
 
- ![image-20220710170302234](JavaWeb.assets/image-20220710170302234.png)
+ ![image-20220710170302234](javaweb.assets/image-20220710170302234.png)
 
 
 
@@ -4943,7 +4943,7 @@ b.jsp的内容
 
 > JSP练习:输出一个表格，里面有10个学生信息。
 
-![image-20220710174038897](JavaWeb.assets/image-20220710174038897.png)
+![image-20220710174038897](javaweb.assets/image-20220710174038897.png)
 
 ````java
 //Student类
@@ -5761,7 +5761,7 @@ JSTL替换了JSP中的代码脚本(`<% %>`)
 * 编写服务器代码（Servlet程序）接收，处理上传的数据。
 * `encType=multipart/form-data`表示提交的数据，以多段（每一个表单项一个数据段）的形式进行拼接，然后以二进制流的形式发送给服务器
 
-![image-20220714143122226](JavaWeb.assets/image-20220714143122226.png)
+![image-20220714143122226](javaweb.assets/image-20220714143122226.png)
 
 
 
@@ -5955,7 +5955,7 @@ Cookie cookie = new Cookie("键", "值");  //创建Cookie
 resp.addCookie(cookie);                 //通知客户端
 ````
 
-![image-20220714154628996](JavaWeb.assets/image-20220714154628996.png)
+![image-20220714154628996](javaweb.assets/image-20220714154628996.png)
 
 ````java
 protected void createCookie(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -5998,7 +5998,7 @@ cookie.setValue("key","value被修改");
 
 **浏览器查看Cookie**
 
-![image-20220714155842028](JavaWeb.assets/image-20220714155842028.png)
+![image-20220714155842028](javaweb.assets/image-20220714155842028.png)
 
 
 
@@ -6205,7 +6205,7 @@ Session默认的超时时间长为30分钟:因为在Tomcat服务器的配置文�
 
 **Session原理**
 
-![image-20220714173349175](JavaWeb.assets/image-20220714173349175.png)
+![image-20220714173349175](javaweb.assets/image-20220714173349175.png)
 
 每个Servlet中只有一个Session对象，像Map一样储存着多个Key-value
 
@@ -6257,7 +6257,7 @@ Session默认的超时时间长为30分钟:因为在Tomcat服务器的配置文�
 
 **介绍**
 
-* JavaWeb的三大组件分别是：[Servlet程序](#servlet)、[Filter过滤器](#filter)、Listener监听器
+* javaweb的三大组件分别是：[Servlet程序](#servlet)、[Filter过滤器](#filter)、Listener监听器
 
 * Filter过滤器它是JavaEE的规范。也就是接口
 * Filter过滤器它的作用是：拦截请求，过滤响应
@@ -6279,7 +6279,7 @@ Session默认的超时时间长为30分钟:因为在Tomcat服务器的配置文�
    1. 如果还有Filter，则执行下一个过滤器
    2. 没有，则执行目标资源
 
-![image-20220714175331037](JavaWeb.assets/image-20220714175331037.png)
+![image-20220714175331037](javaweb.assets/image-20220714175331037.png)
 
 **生命周期**
 

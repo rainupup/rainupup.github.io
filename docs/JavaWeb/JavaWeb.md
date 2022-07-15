@@ -265,11 +265,11 @@ Html的代码注释
 
 列表标签，可用于做目录等
 
-列表标签：<dl> (define list)
+列表标签：`<dl>` (define list)
 
-​	上层项目：<dt> (define title)
+​	上层项目：`<dt>` (define title)
 
-​		下层项目：<dd> (define data)
+​		下层项目：`<dd>` (define data)
 
 ````html
 <dl>

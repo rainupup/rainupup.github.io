@@ -1,6 +1,8 @@
 - 分类
   - [**JAVA**](/docs/java/java.md)
   - [**Mysql**](/docs/mysql/mysql.md)
+  - [**JDBC**](/docs/jdbc/jdbc.md)
+  - [**JavaWeb**](/docs/javaweb/javaweb.md)
   - [**Spring**](/docs/spring/spring.md)
   - [**SpringMVC**](/docs/springmvc/springmvc.md)
   - [**Mybatis**](/docs/mybatis/mybatis.md)

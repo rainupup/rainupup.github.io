@@ -434,7 +434,7 @@ Html的代码注释
 </body>
 ````
 
-<img src="javaweb.assets/clip_image016.jpg" alt="img" style="zoom:50%;" />
+![](javaweb.assets/clip_image016.jpg)
 
  
 
@@ -481,7 +481,7 @@ Html的代码注释
 </body>
 ````
 
-<img src="javaweb.assets/clip_image017.gif" alt="img" style="zoom:67%;" />
+![](javaweb.assets/clip_image017.gif)
 
  
 
@@ -780,7 +780,7 @@ div {
 
 优先级：方式1 > 方式3 > 方式2
 
-<img src="javaweb.assets/css.png" alt="三种方式的优先级" style="zoom:67%;" />
+![](javaweb.assets/css.png)
 
 ## CSS选择器
 
@@ -1098,7 +1098,7 @@ for(var i in d){
 
 查看数据类型可以使用`typeof()`
 
-<img src="javaweb.assets/clip_image002-16570742697054.jpg" alt="img" style="zoom:67%;" />
+![](javaweb.assets/clip_image002-16570742697054.jpg)
 
 
 
@@ -2140,7 +2140,7 @@ input.value = 'test@example.com'; // 文本框的内容已更新
 
 ​		`<scriptsrc="${pageContext.request.contextPath}/script/jquery-1.7.2.js"></script>`
 
-* 公网:`<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">`
+* 公网:`<script src="http://code.jquery.com/jquery-latest.js"></script>`
 
 * Maven
 
@@ -3887,7 +3887,7 @@ public class HelloWeb2 extends HttpServlet {
 
 **使用IDEA创建Servlet程序**
 
-<img src="javaweb.assets/image-20220709131233558.png" alt="image-20220709131233558" style="zoom:67%;" />
+![](javaweb.assets/image-20220709131233558.png)
 
 ![image-20220709131245656](javaweb.assets/image-20220709131245656.png)
 
@@ -6613,6 +6613,12 @@ alert(jsonObj2.key2);    //abc
 
 ## Json与Java
 
+Java生态圈中有很多处理JSON和XML格式化的类库，常见的解析器：Jsonlib，Gson，fastjson，Jackson
+
+
+
+### Gson
+
 JSON在java中的使用需要导入谷歌提供的GSON.jar包
 
 ````xml
@@ -6630,8 +6636,6 @@ JSON在java中的使用需要导入谷歌提供的GSON.jar包
     <classifier>jdk15</classifier>
 </dependency>
 ````
-
-
 
 **JavaBean和Json字符串的互转**
 
@@ -6710,6 +6714,88 @@ public void Test3(){
     System.out.println(person.name);
 }
 ```
+
+
+
+
+
+### Jackson
+
+**maven**
+
+````xml
+<dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-databind</artifactId>
+    <version>2.9.8</version>
+</dependency>
+````
+
+ObjectMapper是Jackson的核心对象
+
+| 方法                                             | 描述                     |
+| ------------------------------------------------ | ------------------------ |
+| ObjectMapper.readValue(json字符串数据，类.Class) | Json转Java               |
+| ObjectMapper.writeValueAsString(obj)             | 将对象转为json字符串常用 |
+
+可以使用`@JsonAlias`、`@JsonProperty`注解为JavaBean的属性设置别名。`@JsonAlias`依赖set、get方法，`@JsonProperty`注解不需要
+
+```java
+public class User {
+    @JsonProperty("username")
+    public String name;
+    @JsonAlias("userage")
+    public int age;
+}
+```
+
+
+
+### fastjson
+
+fastjson.jar是阿里开发的一款专门用于Java开发的包，可以方便的实现json对象与JavaBean对象的转换，实现JavaBean对象与json字符串的转换，实现json对象与json字符串的转换。
+
+**maven**
+
+````xml
+<dependency>
+    <groupId>com.alibaba</groupId>
+    <artifactId>fastjson</artifactId>
+    <version>1.2.60</version>
+</dependency>
+````
+
+
+
+**fastjson三个主要的类：**
+
+* JSONObject代表json对象
+
+  - JSONObject实现了Map接口,底层操作是由Map实现的。
+
+  - JSONObject对应json对象，通过各种形式的get()方法可以获取json对象中的数据，也可利用诸如size()，isEmpty()等方法获取"键：值"对的个数和判断是否为空。其本质是通过实现Map接口并调用接口中的方法完成的。
+
+* JSONAray代表json对象数组
+  - 内部是有List接口中的方法来完成操作的。
+
+* JSON代表JSONObject和JSONArray的转化
+
+  - JSON类源码分析与使用
+
+  - 仔细观察这些方法，主要是实现json对象，json对象数组，javabean对象，json字符串之间的相互转化。
+
+| 方法                                                | 描述                 |
+| --------------------------------------------------- | -------------------- |
+| String JSON.toJSONString(JavaBean)                  | java对象转json字符串 |
+| Object JSON.parseObject(json,Javabean.class)        | json字符串转java对象 |
+| JSONObject JSON.toJSON(JavaBean)                    | java对象转json对象   |
+| Object JSON.toJavaObject(JSONObject,JavaBean.class) | json对象转java对象   |
+
+
+
+
+
+
 
 
 
@@ -6960,11 +7046,13 @@ public class Ajax extends HttpServlet {
 | error       | 请求失败函数内容                                             |
 | timeout     | 请求超时时间，单位为毫秒，数值表示                           |
 | cache       | 是否缓存请求结果，bool表示                                   |
-| contentType | 内容类型，默认为"application/x-www-form-urlencoded"          |
+| contentType | 内容类型，默认为"application/x-www-form-urlencoded"。application/json以json字符串形式提交 |
 | complete    | 请求完成后调用的函数，无论请求是成功还是失败，都会调用该函数；如果设置了success与error函数，则该函数在它们之后被调用 |
 | async       | 是否异步处理，bool表示，默认为true；设置该值为false后，JS不会向下执行，而是原地等待服务器返回数据，并完成相应的回调函数后，再向下执行 |
 | username    | 访问认证请求中携带的用户名，字符串表示                       |
 | password    | 返回认证请求中携带的密码，字符串表示                         |
+
+
 
 ````js
 $.ajax({

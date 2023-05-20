@@ -2178,7 +2178,6 @@ KiB Swap: 2097148 total, 2096628 free,   520 used.  838120 avail Mem
 常用：
 
 * `ps aux`  查看系统中所有进程，使用BSD操作系统格式
-
 * `ps -le`  查看系统中所有进程，使用linux标准命令格式
 
 | 内容    | 说明                                                         |

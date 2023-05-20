@@ -163,13 +163,14 @@ WHERE NOT(department_id>=90 AND  department_id<=110) OR salary>15000;
 | %      | 任意多个字符,包含0个字符 |
 | _      | 任意单个字符             |
 
-    ````mysql
-    # 案例1：查询员工名中包含字符a的员工信息
-    select * from employees
-    where last_name like '%a%';#abc
-    ````
+```mysql
+# 案例1：查询员工名中包含字符a的员工信息
+select * from employees
+where last_name like '%a%';#abc
+```
 
  
+
 
 
 
@@ -3115,7 +3116,7 @@ EXPLAIN SELECT * FROM `staffs` WHERE `name` = 2000;
 explain select * from staffs where name = '张三' or name = '李四';
 ````
 
- <img src="mysql.assets/image-20220626155132293.png" alt="image-20220626155132293" style="zoom:150%;" />
+![](mysql.assets/image-20220626155132293.png)
 
 使用覆盖索引可以解决
 

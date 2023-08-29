@@ -8,13 +8,11 @@
 
 ## 关于作者 <!-- {docsify-ignore} -->
 
-**风暴降生的rain，Java Rookie，Robot Engineering，互联网行业从业者，老党员的后裔，两亩土地的正宗继承人，新时代农民工，BUG制造机**
 
 
 
 ## 关于本站 <!-- {docsify-ignore} -->
-
-本项目大部分内容来自**Rain**，版权归作者所有，内容涵盖[JAVA](/docs/java/java.md)、[Mysql](/docs/mysql/mysql.md)、[JavaWeb](/docs/javaweb/javaweb.md)、[Spring](/docs/spring/spring.md)、[SpringMVC](/docs/springmvc/springmvc.md)、[Mybatis](/docs/mybatis/mybatis.md)、[Spring Boot](/docs/springboot/springboot.md)、[Spring Cloud](/docs/springcloud/springcloud.md)等领域知识。并对部分知识做了一个系统的整理，方便学习查阅。
+本项目大部分内容来自**Rain**，版权归作者所有，内容涵盖 **嵌入式**、**Java** 等领域知识。并对部分知识做了一个系统的整理，方便学习查阅。
 
 ------------------------
 
@@ -61,54 +59,30 @@
 
 <br>
 
-
-
 ---------------
-
-
-
 ## 开始阅读 <!-- {docsify-ignore} -->
-
-## [JAVA](/docs/java/java.md) <!-- {docsify-ignore} -->
-
-## [Mysql](/docs/mysql/mysql.md) <!-- {docsify-ignore} -->
-
-## [JavaWeb](/docs/javaweb/javaweb.md) <!-- {docsify-ignore} -->
-
-## [Linux](/docs/linux/linux.md)<!-- {docsify-ignore} -->
-
-## [Maven](/docs/maven/maven.md)<!-- {docsify-ignore} -->
-
-## [Spring](/docs/spring/spring.md)<!-- {docsify-ignore} -->
-## [SpringMVC<!-- {docsify-ignore} -->](/docs/springmvc/springmvc.md)
-## [Mybatis](/docs/mybatis/mybatis.md)<!-- {docsify-ignore} -->
-## [Spring Boot2.0](/docs/springboot/springboot.md)<!-- {docsify-ignore} -->
-## [Spring Cloud](/docs/springcloud/springclouddirectory.md)<!-- {docsify-ignore} -->
-
-## [数据结构](/docs/数据结构/数据结构.md)<!-- {docsify-ignore} -->
-
-## [英语](/docs/英语/英语目录.md)<!-- {docsify-ignore} -->
-
-## [计算机网络](/docs/数据结构/数据结构.md)<!-- {docsify-ignore} -->
-
-## [操作系统](/docs/数据结构/数据结构.md)<!-- {docsify-ignore} -->
-
-## [计算机组成原理](/docs/数据结构/数据结构.md)<!-- {docsify-ignore} -->
-
-## [单片机](/docs/单片机/单片机.md)<!-- {docsify-ignore} -->
-
-## [机器人相关](/docs/robot/robot.md)<!-- {docsify-ignore} -->
-
-## [STM32](/docs/STM32/STM32.md)<!-- {docsify-ignore} -->
-
-
-
+- [**STM32**](/docs/STM32/STM32.md)         <!-- {docsify-ignore} -->
+- [**FreeRTOS**](/docs/FreeRTOS/FreeRTOS.md)
+- [**Linux**](/docs/linux/linux.md)
+- [**嵌入式 Linux**](/docs/linux开发/linux开发.md)
+- [**C 语言**](/docs/C/c.md)
+- [**JAVA**](/docs/java/java.md)
+- [**Mysql**](/docs/mysql/mysql.md)
+- [**JDBC**](/docs/jdbc/jdbc.md)
+- [**JavaWeb**](/docs/javaweb/javaweb.md)
+- [**Maven**](/docs/maven/maven.md)
+- [**Spring**](/docs/spring/spring.md)
+- [**SpringMVC**](/docs/springmvc/springmvc.md)
+- [**Mybatis**](/docs/mybatis/mybatis.md)
+- [**Spring Boot2.0**](/docs/springboot/springboot.md)
+- [**Spring Cloud**](/docs/springcloud/springclouddirectory.md)
+- [**数据结构**](/docs/数据结构/数据结构.md)
+- [**英语**](/docs/英语/英语目录.md)
+- [**博客搭建**](/docs/博客/博客.md)
+- [**单片机**](/docs/单片机/单片机.md)
 <br>
 
-
-
 -----------------------------------
-
 ## 特别鸣谢  <!-- {docsify-ignore} -->
 
 <a href="https://space.bilibili.com/302417610"><img src="/image/atguigu.jpg" width="50px"></a> 

@@ -4,7 +4,7 @@
 
 ## Debug
 
-![1677648637908](STM32.assets/1677648637908.png)
+![1677648637908](STM32.assets/1677648637908-1696063930264-1.png)
 
 1. 重置程序到最初
 
@@ -26,11 +26,125 @@
 
 10. 符号窗口:在这个窗口可以看到变量的变化
 
-    ![image-20230301134159726](STM32.assets/image-20230301134159726.png)
+    ![image-20230301134159726](STM32.assets/image-20230301134159726-1696063930265-2.png)
 
 11. 在Debug模式下，使用Peripherals可以查看寄存器
 
-    ![bdd05e7dc7498f004dc8e0061527791](STM32.assets/bdd05e7dc7498f004dc8e0061527791.png)
+    ![bdd05e7dc7498f004dc8e0061527791](STM32.assets/bdd05e7dc7498f004dc8e0061527791-1696063930265-3.png)
+
+# 新建项目
+
+**工程架构**
+
+![1677302026302](STM32.assets/1677302026302-1696063930265-6.png)
+
+
+
+
+
+**新建项目**
+
+1. 创建文件夹：用来存放以后所有的STM32程序，例如`D:\Code\STM32`
+
+2. 进入软件：`Project->new Project` 在`D:\Code\STM32`目录中再次创建文件夹用于存放本次的项目，进入此文件夹创建工程名称
+
+![18f867acc2c4f71c90830c74bcd26c7](STM32.assets/18f867acc2c4f71c90830c74bcd26c7-1696063930265-4.png)
+
+3. 选择相应的器件型号
+
+   ![eff93557e7a620282cf8dbf361a109d](STM32.assets/eff93557e7a620282cf8dbf361a109d-1696063930265-5.png)
+
+4. 现在进入`D:\Code\STM32\Template`文件夹可以看到已经创建了一些文件。但是此时还不能使用keil来编写程序
+
+5. 引入标准库启动文件
+
+   1. 在`D:\Code\STM32\Template`创建文件夹`Start`(名称可以随便定义，方便后期理解)
+
+   2. 引入`\固件库\STM32F10x_StdPeriph_Lib_V3.5.0\Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x\startup\arm`文件夹下的启动文件`startup_stm32f10****`等到`D:\Code\STM32\Template\Start`
+      ![1677225069611](STM32.assets/1677225069611-1696063930265-7.png)
+
+   3. 引入`\固件库\STM32F10x_StdPeriph_Lib_V3.5.0\Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x`文件夹下的`stm32f10x.h`、`system_stm32f10x.c/.h`文件到`D:\Code\STM32\Template\Start`
+
+      1. `stm32f10x.h`:外设寄存器描述
+      2. `system_stm32f10x.c/.h`:时钟
+
+   4. 引入`\固件库\STM32F10x_StdPeriph_Lib_V3.5.0\Libraries\CMSIS\CM3\CoreSupport`文件夹下的内核寄存器描述文件`core_cm3.c/.h`到`D:\Code\STM32\Template\Start`
+
+   5. 进入keil软件，添加新组`Start`![d1fdc032da1d4539380c72606904d4c](STM32.assets/d1fdc032da1d4539380c72606904d4c-1696063930265-8.png)
+
+      1. 右击Start组->add Existing Files to Group 'Start'
+
+      2. 进入`D:\Code\STM32\Template\Start`目录，选择文件类型为`All file`
+
+         - 引入`startup_stm32f***`开头的启动文件(在下方表格中说明了具体引入什么文件)，本次引入的是`startup_stm32f10x_md.s`，点击`Add`
+         - 引入所有`.c .h`文件，就是刚才添加到`D:\Code\STM32\Template\Start`目录的`.c.h`文件
+         - 支持`Start`文件夹的文件添加完毕![1e41d6fc393e4bf8873be6213eb6b48](STM32.assets/1e41d6fc393e4bf8873be6213eb6b48-1696063930265-9.png)
+
+      3. 在工程选项中添加文件夹的头文件路径：依次点击 魔法棒、C/C++、Include Paths旁边三个点按钮、新建、三个点按钮、选择`D:\Code\STM32\Template\Start`文件夹
+
+         ![ede567fbe8e3211ad753d72797b94fb](STM32.assets/ede567fbe8e3211ad753d72797b94fb-1696063930265-10.png)
+
+6. 在`D:\Code\STM32\Template`创建`User`文件夹
+
+   1. 进入keil软件，添加新组`User`
+   2. 右键User组->Add New Item to Group  'User'
+   3. 添加C File，文件名为main，注意选择`D:\Code\STM32\Template\User`目录![c2aeb25f3ee17465db26bce1c6a0d7a](STM32.assets/c2aeb25f3ee17465db26bce1c6a0d7a-1696063930265-11.png)
+      1. **一定要选择到对应的文件夹**
+   4. 到此处就可以使用寄存器来开发了
+
+7. 库开发
+
+   1. 在`D:\Code\STM32\Template`创建`Library`文件夹
+
+   2. 引入`\固件库\STM32F10x_StdPeriph_Lib_V3.5.0\Libraries\STM32F10x_StdPeriph_Driver\src`文件夹下的`misc.c` 和`stm32f10x_xxx.c`文件到`D:\Code\STM32\Template\Library`文件夹
+
+      ![1677227734565](STM32.assets/1677227734565-1696063930265-12.png)
+
+   3. 引入`\固件库\STM32F10x_StdPeriph_Lib_V3.5.0\Libraries\STM32F10x_StdPeriph_Driver\inc`文件夹下的`misc.h` 和`stm32f10x_xxx.h`文件到`D:\Code\STM32\Template\Library`文件夹
+
+      ![bd7aa879680c1978b02605ee2e0be0b](STM32.assets/bd7aa879680c1978b02605ee2e0be0b-1696063930265-13.png)
+
+   4. 进入keil软件，添加新组`Library`组，右击->add Existing Files to Group 'Library',全选`D:\Code\STM32\Template\Library`中的文件，点添加
+
+   5. 将`\固件库\STM32F10x_StdPeriph_Lib_V3.5.0\Project\STM32F10x_StdPeriph_Template`文件夹下的`stm32f10x_conf.h`、`stm32f10x_it.h`引入到main所在的文件夹，也就是`D:\Code\STM32\Template\User`
+
+      ![1677228221024](STM32.assets/1677228221024-1696063930265-14.png)
+
+      - 再将文件添加到`User`组中
+
+   6. 点击魔法棒、C/C++ 
+
+      1. 将`USE_STDPERIPH_DRIVER`添加到Define栏中
+      2. 再将`User`、`Library`利用Include Paths添加到
+
+
+
+
+**启动文件的选择**
+
+| **缩写** | **释义**           | **Flash容量 ** | **型号**          |
+| -------- | ------------------ | -------------- | ----------------- |
+| LD_VL    | 小容量产品超值系列 | 16~32K         | STM32F100         |
+| MD_VL    | 中容量产品超值系列 | 64~128K        | STM32F100         |
+| HD_VL    | 大容量产品超值系列 | 256~512K       | STM32F100         |
+| LD       | 小容量产品         | 16~32K         | STM32F101/102/103 |
+| MD       | 中容量产品         | 64~128K        | STM32F101/102/103 |
+| HD       | 大容量产品         | 256~512K       | STM32F101/102/103 |
+| XL       | 加大容量产品       | 大于512K       | STM32F101/102/103 |
+| CL       | 互联型产品         | -              | STM32F105/107     |
+
+
+
+
+
+**总结**：
+
+1. 建立工程文件夹，Keil中新建工程，选择型号
+2. 工程文件夹里建立Start、Library、User等文件夹，复制固件库里面的文件到工程文件夹
+3. 工程里对应建立Start、Library、User等同名称的分组，然后将文件夹内的文件添加到工程分组里
+4. 工程选项，C/C++，Include Paths内声明所有包含头文件的文件夹
+5. 工程选项，C/C++，Define内定义`USE_STDPERIPH_DRIVER`
+6. 工程选项，Debug，下拉列表选择对应调试器，Settings，Flash Download里勾选Reset and Run
 
 # 简介
 
@@ -183,118 +297,7 @@ STM32F103C8T6有两组GPIO,分别为GPIOA,GPIOB
 
 
 
-# 新建项目
-
-**工程架构**
-
-![1677302026302](STM32.assets/1677302026302.png)
-
-
-
-
-
-**新建项目**
-
-1. 创建文件夹：用来存放以后所有的STM32程序，例如`D:\Code\STM32`
-
-2. 进入软件：`Project->new Project` 在`D:\Code\STM32`目录中再次创建文件夹用于存放本次的项目，进入此文件夹创建工程名称
-
-![18f867acc2c4f71c90830c74bcd26c7](STM32.assets/18f867acc2c4f71c90830c74bcd26c7.png)
-
-3. 选择相应的器件型号
-
-   ![eff93557e7a620282cf8dbf361a109d](STM32.assets/eff93557e7a620282cf8dbf361a109d.png)
-
-4. 现在进入`D:\Code\STM32\Template`文件夹可以看到已经创建了一些文件。但是此时还不能使用keil来编写程序
-
-5. 引入标准库启动文件
-
-   1. 在`D:\Code\STM32\Template`创建文件夹`Start`(名称可以随便定义，方便后期理解)
-
-   2. 引入`\固件库\STM32F10x_StdPeriph_Lib_V3.5.0\Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x\startup\arm`文件夹下的启动文件`startup_stm32f10****`等到`D:\Code\STM32\Template\Start`
-      ![1677225069611](STM32.assets/1677225069611.png)
-      
-   3. 引入`\固件库\STM32F10x_StdPeriph_Lib_V3.5.0\Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x`文件夹下的`stm32f10x.h`、`system_stm32f10x.c/.h`文件到`D:\Code\STM32\Template\Start`
-      1. `stm32f10x.h`:外设寄存器描述
-      2. `system_stm32f10x.c/.h`:时钟
-      
-   4. 引入`\固件库\STM32F10x_StdPeriph_Lib_V3.5.0\Libraries\CMSIS\CM3\CoreSupport`文件夹下的内核寄存器描述文件`core_cm3.c/.h`到`D:\Code\STM32\Template\Start`
-
-   5. 进入keil软件，添加新组`Start`![d1fdc032da1d4539380c72606904d4c](STM32.assets/d1fdc032da1d4539380c72606904d4c.png)
-
-      1. 右击Start组->add Existing Files to Group 'Start'
-
-      2. 进入`D:\Code\STM32\Template\Start`目录，选择文件类型为`All file`
-
-         - 引入`startup_stm32f***`开头的启动文件(在下方表格中说明了具体引入什么文件)，本次引入的是`startup_stm32f10x_md.s`，点击`Add`
-         - 引入所有`.c .h`文件，就是刚才添加到`D:\Code\STM32\Template\Start`目录的`.c.h`文件
-         - 支持`Start`文件夹的文件添加完毕![1e41d6fc393e4bf8873be6213eb6b48](STM32.assets/1e41d6fc393e4bf8873be6213eb6b48.png)
-
-      3. 在工程选项中添加文件夹的头文件路径：依次点击 魔法棒、C/C++、Include Paths旁边三个点按钮、新建、三个点按钮、选择`D:\Code\STM32\Template\Start`文件夹
-
-         ![ede567fbe8e3211ad753d72797b94fb](STM32.assets/ede567fbe8e3211ad753d72797b94fb.png)
-
-6. 在`D:\Code\STM32\Template`创建`User`文件夹
-
-   1. 进入keil软件，添加新组`User`
-   2. 右键User组->Add New Item to Group  'User'
-   3. 添加C File，文件名为main，注意选择`D:\Code\STM32\Template\User`目录![c2aeb25f3ee17465db26bce1c6a0d7a](STM32.assets/c2aeb25f3ee17465db26bce1c6a0d7a.png)
-      1. **一定要选择到对应的文件夹**
-   4. 到此处就可以使用寄存器来开发了
-
-7. 库开发
-
-   1. 在`D:\Code\STM32\Template`创建`Library`文件夹
-
-   2. 引入`\固件库\STM32F10x_StdPeriph_Lib_V3.5.0\Libraries\STM32F10x_StdPeriph_Driver\src`文件夹下的`misc.c` 和`stm32f10x_xxx.c`文件到`D:\Code\STM32\Template\Library`文件夹
-
-      ![1677227734565](STM32.assets/1677227734565.png)
-
-   3. 引入`\固件库\STM32F10x_StdPeriph_Lib_V3.5.0\Libraries\STM32F10x_StdPeriph_Driver\inc`文件夹下的`misc.h` 和`stm32f10x_xxx.h`文件到`D:\Code\STM32\Template\Library`文件夹
-
-      ![bd7aa879680c1978b02605ee2e0be0b](STM32.assets/bd7aa879680c1978b02605ee2e0be0b.png)
-
-   4. 进入keil软件，添加新组`Library`组，右击->add Existing Files to Group 'Library',全选`D:\Code\STM32\Template\Library`中的文件，点添加
-
-   5. 将`\固件库\STM32F10x_StdPeriph_Lib_V3.5.0\Project\STM32F10x_StdPeriph_Template`文件夹下的`stm32f10x_conf.h`、`stm32f10x_it.h`引入到main所在的文件夹，也就是`D:\Code\STM32\Template\User`
-
-      ![1677228221024](STM32.assets/1677228221024.png)
-
-      - 再将文件添加到`User`组中
-
-   6. 点击魔法棒、C/C++ 
-
-      1. 将`USE_STDPERIPH_DRIVER`添加到Define栏中
-      2. 再将`User`、`Library`利用Include Paths添加到
-
-
-
-
-**启动文件的选择**
-
-| **缩写** | **释义**           | **Flash容量 ** | **型号**          |
-| -------- | ------------------ | -------------- | ----------------- |
-| LD_VL    | 小容量产品超值系列 | 16~32K         | STM32F100         |
-| MD_VL    | 中容量产品超值系列 | 64~128K        | STM32F100         |
-| HD_VL    | 大容量产品超值系列 | 256~512K       | STM32F100         |
-| LD       | 小容量产品         | 16~32K         | STM32F101/102/103 |
-| MD       | 中容量产品         | 64~128K        | STM32F101/102/103 |
-| HD       | 大容量产品         | 256~512K       | STM32F101/102/103 |
-| XL       | 加大容量产品       | 大于512K       | STM32F101/102/103 |
-| CL       | 互联型产品         | -              | STM32F105/107     |
-
-
-
-
-
-**总结**：
-
-1. 建立工程文件夹，Keil中新建工程，选择型号
-2. 工程文件夹里建立Start、Library、User等文件夹，复制固件库里面的文件到工程文件夹
-3. 工程里对应建立Start、Library、User等同名称的分组，然后将文件夹内的文件添加到工程分组里
-4. 工程选项，C/C++，Include Paths内声明所有包含头文件的文件夹
-5. 工程选项，C/C++，Define内定义`USE_STDPERIPH_DRIVER`
-6. 工程选项，Debug，下拉列表选择对应调试器，Settings，Flash Download里勾选Reset and Run
+6. 
 
 
 
@@ -456,7 +459,7 @@ ret = HAL_RCC_ClockConfig(&rcc_clk_init, FLASH_LATENCY_2);  /* 同时设置FLASH
 
 
 
-**外设时钟使能和失能**
+**外设时钟使和失能**
 
 使能某外设时钟：`__HAL_RCC_XXX_CLK_ENABLE();  `
 
@@ -7955,7 +7958,7 @@ SCL时钟周期内的低电平时间：Tlow = 2*TSCL/3
 
 ![image-20230709154731106](STM32.assets/image-20230709154731106.png)
 
-1. 生成起始信号：CR1里的START 位置 1 后，接口会在 SR2的BUSY 位清零后生成一个起始位并切换到主模式。生成起始信号成功后SR1的SB 位会由硬件置 1 ，如果使能了事件中断(CR2的 ITEVFEN 位置 1 )则生成一个中断。这个中断在数据手册里官方命名为EV5。即为事件5中断。至于为什么从5开始，因为事件1到4在从机部分用了。。。接下来主设备会等待软件对 SR1 执行读操作，然后把从设备地址写入 DR 寄存器。只有这样才能清零SR1的SB位。
+1. 生成起始信号：CR1里的START 位置 1 后，接口会在 SR2的BUSY 位清零后生成一个起始位并切换到主模式。生成起始信号成功后SR1的SB 位会由硬件置 1 ，如果使能了事件中断(CR2的 ITEVFEN 位置 1 )则生成一个中断。这个中断在数据手册里官方命名为EV5。即为事件5中断。至于为什么从5开始，因为事件1到4在从机部分用了。接下来主设备会等待软件对 SR1 执行读操作，然后把从设备地址写入 DR 寄存器。只有这样才能清零SR1的SB位。
 
 2. 从地址传输，接下来从地址会通过内部移位寄存器发送到 SDA 线。stm32支持10位和7位地址。大多数使用7位。在 7 位寻址模式下，会发送一个地址字节。地址字节被发出后，SR1的ADDR 位会由硬件置 1 如果使能了事件中断(CR2的 ITEVFEN 位置 1 )则生成一个中断EV6。接下来主设备会等待对 SR1 寄存器执行读操作，然后对 SR2 寄存器执行读操作，只有这样才能清零SR1的ADDR 位。
 
@@ -7974,11 +7977,7 @@ SCL时钟周期内的低电平时间：Tlow = 2*TSCL/3
 
 ## HAL库
 
-
-
 ### 案例
-
-#### 案例1
 
 AT24C02读写数据，使用引脚PB6 PB7；单次读/写，连续读/写
 
@@ -8201,12 +8200,6 @@ int main(void){
 }
 ````
 
-
-
-
-
-
-
 ## 标准库
 
 ### 常用函数
@@ -8220,11 +8213,10 @@ void I2C_StructInit(I2C_InitTypeDef* I2C_InitStruct);
 void I2C_Cmd(I2C_TypeDef* I2Cx, FunctionalState NewState);
 void I2C_DMACmd(I2C_TypeDef* I2Cx, FunctionalState NewState);
 void I2C_DMALastTransferCmd(I2C_TypeDef* I2Cx, FunctionalState NewState);
-// 产生一个开始、结束信号
+// 产生一个开始、结束信号，硬件IIC使用
 void I2C_GenerateSTART(I2C_TypeDef* I2Cx, FunctionalState NewState);
 void I2C_GenerateSTOP(I2C_TypeDef* I2Cx, FunctionalState NewState);
-
-// 接收一个数据后，是否给从机一个应答
+// 接收一个数据后，是否给从机一个应答，硬件IIC使用；在I2C结构体中也可以设置
 void I2C_AcknowledgeConfig(I2C_TypeDef* I2Cx, FunctionalState NewState);
 // 作为从机时，配置自身设备地址2
 void I2C_OwnAddress2Config(I2C_TypeDef* I2Cx, uint8_t Address);
@@ -8234,7 +8226,12 @@ void I2C_ITConfig(I2C_TypeDef* I2Cx, uint16_t I2C_IT, FunctionalState NewState);
 // 发送数据、接收数据
 void I2C_SendData(I2C_TypeDef* I2Cx, uint8_t Data);
 uint8_t I2C_ReceiveData(I2C_TypeDef* I2Cx);
-// 发送一个7位地址，也可以使用上方I2C_SendData()函数进行发送地址
+
+/* 发送一个7位地址，也可以使用上方I2C_SendData()函数进行发送地址
+参数3:
+	@arg I2C_Direction_Transmitter: Transmitter mode	发送模式
+	@arg I2C_Direction_Receiver: Receiver mode			接收模式
+*/
 void I2C_Send7bitAddress(I2C_TypeDef* I2Cx, uint8_t Address, uint8_t I2C_Direction);
 uint16_t I2C_ReadRegister(I2C_TypeDef* I2Cx, uint8_t I2C_Register);
 void I2C_SoftwareResetCmd(I2C_TypeDef* I2Cx, FunctionalState NewState);
@@ -8248,10 +8245,28 @@ void I2C_ARPCmd(I2C_TypeDef* I2Cx, FunctionalState NewState);
 void I2C_StretchClockCmd(I2C_TypeDef* I2Cx, FunctionalState NewState);
 void I2C_FastModeDutyCycleConfig(I2C_TypeDef* I2Cx, uint16_t I2C_DutyCycle);
 
-
 //由于发送或接收数据时，会产生多个标志位的变化，所以需要查看多个标志位
 /**		同时查询1个或多个标志位，重要
-  *     @arg I2C_EVENT_MASTER_MODE_SELECT                          : EV5
+  *     @arg I2C_EVENT_SLAVE_TRANSMITTER_ADDRESS_MATCHED           : EV1
+  *     @arg I2C_EVENT_SLAVE_RECEIVER_ADDRESS_MATCHED              : EV1
+  *     @arg I2C_EVENT_SLAVE_TRANSMITTER_SECONDADDRESS_MATCHED     : EV1
+  *     @arg I2C_EVENT_SLAVE_RECEIVER_SECONDADDRESS_MATCHED        : EV1
+  *     @arg I2C_EVENT_SLAVE_GENERALCALLADDRESS_MATCHED            : EV1
+  *     @arg I2C_EVENT_SLAVE_BYTE_RECEIVED                         : EV2
+  *     @arg (I2C_EVENT_SLAVE_BYTE_RECEIVED | I2C_FLAG_DUALF)      : EV2
+  *     @arg (I2C_EVENT_SLAVE_BYTE_RECEIVED | I2C_FLAG_GENCALL)    : EV2
+  *     @arg I2C_EVENT_SLAVE_BYTE_TRANSMITTED                      : EV3
+  *     @arg (I2C_EVENT_SLAVE_BYTE_TRANSMITTED | I2C_FLAG_DUALF)   : EV3
+  *     @arg (I2C_EVENT_SLAVE_BYTE_TRANSMITTED | I2C_FLAG_GENCALL) : EV3
+  *     @arg I2C_EVENT_SLAVE_ACK_FAILURE                           : EV3_2
+  *     @arg I2C_EVENT_SLAVE_STOP_DETECTED                         : EV4
+  *     @arg I2C_EVENT_MASTER_MODE_SELECT                          : EV5	
+  *     @arg I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED            : EV6	注意有两个事件6     
+  *     @arg I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED               : EV6
+  *     @arg I2C_EVENT_MASTER_BYTE_RECEIVED                        : EV7
+  *     @arg I2C_EVENT_MASTER_BYTE_TRANSMITTING                    : EV8
+  *     @arg I2C_EVENT_MASTER_BYTE_TRANSMITTED                     : EV8_2
+  *     @arg I2C_EVENT_MASTER_MODE_ADDRESS10                       : EV9
   *		…………
   *		返回值：
   * 		- SUCCESS: 指定事件发生
@@ -8275,7 +8290,7 @@ typedef struct
   uint16_t I2C_Mode;                      //工作模式,选择I2C还是SMBus模式
   uint16_t I2C_DutyCycle;                 //时钟信号低电平/高电平的占空比,只有在I2C_ClockSpeed设为快速状态时生效 
   uint16_t I2C_OwnAddress1;               //自身器件地址，从机时使用
-  uint16_t I2C_Ack;                       //ACK应答使能    
+  uint16_t I2C_Ack;                       //ACK应答使能，I2C_AcknowledgeConfig()函数可以设置  
   uint16_t I2C_AcknowledgedAddress;       //I2C寻址模式,7位、10位
 }I2C_InitTypeDef;
 
@@ -8286,16 +8301,147 @@ typedef struct
 #define I2C_Mode_I2C                    ((uint16_t)0x0000)
 #define I2C_Mode_SMBusDevice            ((uint16_t)0x0002)  
 #define I2C_Mode_SMBusHost              ((uint16_t)0x000A)
-//I2C_DutyCycle 高低电平占空比
+//I2C_DutyCycle 高低电平占空比，由于高速模式，SDA线切换数据较快，可能来不及更改，所以增加SCL低电平时间
 #define I2C_DutyCycle_16_9              ((uint16_t)0x4000) 
 #define I2C_DutyCycle_2                 ((uint16_t)0xBFFF)
-//I2C_Ack ACK应答使能 
+//I2C_Ack ACK应答使能 ，
 #define I2C_Ack_Enable                  ((uint16_t)0x0400)
 #define I2C_Ack_Disable                 ((uint16_t)0x0000)
 //I2C_AcknowledgedAddress  I2C寻址模式,7位、10位
 #define I2C_AcknowledgedAddress_7bit    ((uint16_t)0x4000)
 #define I2C_AcknowledgedAddress_10bit   ((uint16_t)0xC000)
 ````
+
+### 案例
+
+硬件IIC
+
+根据 发送接收序列图进行编写
+
+````c
+#define MPU6050_ADDRESS		0xD0
+/*超时函数，在IIC发送或接收时，需要等待众多事件*/
+void MPU6050_WaitEvent(I2C_TypeDef* I2Cx, uint32_t I2C_EVENT){	
+	uint32_t Timeout;
+	Timeout = 10000;
+	while (I2C_CheckEvent(I2Cx, I2C_EVENT) != SUCCESS){
+		Timeout --;
+		if (Timeout == 0){
+			break;
+		}
+	}
+}
+/* 硬件IIC 读*/
+void MPU6050_WriteReg(uint8_t RegAddress, uint8_t Data){
+	I2C_GenerateSTART(I2C2, ENABLE);	// 产生一个起始位
+	MPU6050_WaitEvent(I2C2, I2C_EVENT_MASTER_MODE_SELECT);	// 调用上方编写的超时函数，等待EV5事件
+	
+	I2C_Send7bitAddress(I2C2, MPU6050_ADDRESS, I2C_Direction_Transmitter);	// 发送设备地址，发送模式
+	MPU6050_WaitEvent(I2C2, I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED);	// 等待EV6事件，注意是TRANSMITTER
+	
+	I2C_SendData(I2C2, RegAddress);											// 发送要写的地址
+	MPU6050_WaitEvent(I2C2, I2C_EVENT_MASTER_BYTE_TRANSMITTING);			// 等待EV8事件
+	
+	I2C_SendData(I2C2, Data);												// 发送数据
+	MPU6050_WaitEvent(I2C2, I2C_EVENT_MASTER_BYTE_TRANSMITTED);				// 等待EV8_2事件
+	
+	I2C_GenerateSTOP(I2C2, ENABLE);						// 停止位
+}
+/* 硬件IIC 写*/
+uint8_t MPU6050_ReadReg(uint8_t RegAddress){
+	uint8_t Data;
+	
+	I2C_GenerateSTART(I2C2, ENABLE);										// 产生一个起始位
+	MPU6050_WaitEvent(I2C2, I2C_EVENT_MASTER_MODE_SELECT);					// 等待EV5事件
+	
+	I2C_Send7bitAddress(I2C2, MPU6050_ADDRESS, I2C_Direction_Transmitter);	// 发送设备地址，发送模式
+	MPU6050_WaitEvent(I2C2, I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED);	// 等待EV6事件
+	
+	I2C_SendData(I2C2, RegAddress);											// 发送要写的地址
+	MPU6050_WaitEvent(I2C2, I2C_EVENT_MASTER_BYTE_TRANSMITTED);				// 等待EV8事件
+	
+	I2C_GenerateSTART(I2C2, ENABLE);										// 重新产生起始条件
+	MPU6050_WaitEvent(I2C2, I2C_EVENT_MASTER_MODE_SELECT);					// 等待EV5事件
+	
+	I2C_Send7bitAddress(I2C2, MPU6050_ADDRESS, I2C_Direction_Receiver);		// 发送设备地址，接收模式
+	MPU6050_WaitEvent(I2C2, I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED);
+	
+	I2C_AcknowledgeConfig(I2C2, DISABLE);									// 先不发送 响应
+	I2C_GenerateSTOP(I2C2, ENABLE);											// 停止位
+	
+	MPU6050_WaitEvent(I2C2, I2C_EVENT_MASTER_BYTE_RECEIVED);				// 等待EV7
+	Data = I2C_ReceiveData(I2C2);											// 读取数据
+	
+	I2C_AcknowledgeConfig(I2C2, ENABLE);									// 启动响应位
+	
+	return Data;
+}
+
+void MPU6050_Init(void){
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_I2C2, ENABLE);
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
+	
+	GPIO_InitTypeDef GPIO_InitStructure;
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_OD;
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10 | GPIO_Pin_11;
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+	GPIO_Init(GPIOB, &GPIO_InitStructure);
+	
+	I2C_InitTypeDef I2C_InitStructure;
+	I2C_InitStructure.I2C_Mode = I2C_Mode_I2C;				// IIC模式
+	I2C_InitStructure.I2C_ClockSpeed = 50000;				// 50Khz 低速模式
+	I2C_InitStructure.I2C_DutyCycle = I2C_DutyCycle_2;		// 占空比 2：1
+	I2C_InitStructure.I2C_Ack = I2C_Ack_Enable;				// 发送响应位
+	I2C_InitStructure.I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit;	// 7位寻址模式
+	I2C_InitStructure.I2C_OwnAddress1 = 0x00;				// 做从机时的地址
+	I2C_Init(I2C2, &I2C_InitStructure);
+	
+	I2C_Cmd(I2C2, ENABLE);
+	
+	MPU6050_WriteReg(MPU6050_PWR_MGMT_1, 0x01);
+	MPU6050_WriteReg(MPU6050_PWR_MGMT_2, 0x00);
+	MPU6050_WriteReg(MPU6050_SMPLRT_DIV, 0x09);
+	MPU6050_WriteReg(MPU6050_CONFIG, 0x06);
+	MPU6050_WriteReg(MPU6050_GYRO_CONFIG, 0x18);
+	MPU6050_WriteReg(MPU6050_ACCEL_CONFIG, 0x18);
+}
+
+uint8_t MPU6050_GetID(void){
+	return MPU6050_ReadReg(MPU6050_WHO_AM_I);
+}
+
+void MPU6050_GetData(int16_t *AccX, int16_t *AccY, int16_t *AccZ, 
+						int16_t *GyroX, int16_t *GyroY, int16_t *GyroZ)
+{
+	uint8_t DataH, DataL;
+	
+	DataH = MPU6050_ReadReg(MPU6050_ACCEL_XOUT_H);
+	DataL = MPU6050_ReadReg(MPU6050_ACCEL_XOUT_L);
+	*AccX = (DataH << 8) | DataL;
+	
+	DataH = MPU6050_ReadReg(MPU6050_ACCEL_YOUT_H);
+	DataL = MPU6050_ReadReg(MPU6050_ACCEL_YOUT_L);
+	*AccY = (DataH << 8) | DataL;
+	
+	DataH = MPU6050_ReadReg(MPU6050_ACCEL_ZOUT_H);
+	DataL = MPU6050_ReadReg(MPU6050_ACCEL_ZOUT_L);
+	*AccZ = (DataH << 8) | DataL;
+	
+	DataH = MPU6050_ReadReg(MPU6050_GYRO_XOUT_H);
+	DataL = MPU6050_ReadReg(MPU6050_GYRO_XOUT_L);
+	*GyroX = (DataH << 8) | DataL;
+	
+	DataH = MPU6050_ReadReg(MPU6050_GYRO_YOUT_H);
+	DataL = MPU6050_ReadReg(MPU6050_GYRO_YOUT_L);
+	*GyroY = (DataH << 8) | DataL;
+	
+	DataH = MPU6050_ReadReg(MPU6050_GYRO_ZOUT_H);
+	DataL = MPU6050_ReadReg(MPU6050_GYRO_ZOUT_L);
+	*GyroZ = (DataH << 8) | DataL;
+}
+````
+
+
 
 
 
@@ -9417,7 +9563,7 @@ CAN 是 Controller Area Network 的缩写（以下称为 CAN），是 ISO 国际
 
 **CAN 协议特点：**
 
-1. 多主控制。在总线空闲时，所有单元都可以发送消息（多主控制），而两个以上的单元同时开始发送消息时，根据标识符（Identifier以下称为ID）决定优先级。ID并不是表示发送的目的地址，而是表示访问总线的消息的优先级。两个以上的单元同时开始发送消息时，对各消息ID的每个位进行逐个仲裁比较。仲裁获胜（被判定为优先级最高）的单元可继续发送消息，仲裁失利的单元则立刻停止发送而进行接收工作。
+1. 多主控制。在总线空闲时，所有单元都可以发送消息（多主控制），而两个以上的单元同时开始发送消息时，根据标识符（Identifier以下称为ID）决定优先级。**ID并不是表示发送的目的地址，而是表示访问总线的消息的优先级**。两个以上的单元同时开始发送消息时，对各消息ID的每个位进行逐个仲裁比较。仲裁获胜（被判定为优先级最高）的单元可继续发送消息，仲裁失利的单元则立刻停止发送而进行接收工作。
 2. 系统的柔软性。与总线相连的单元没有类似于“地址”的信息。因此在总线上增加单元时，连接在总线上的其它单元的软硬件及应用层都不需要改变。
 3. 通信速度较快，通信距离远。最高1Mbps（距离小于40M），最远可达10KM（速率低于5Kbps）。
 4. 具有错误检测、错误通知和错误恢复功能。所有单元都可以检测错误（错误检测功能），检测出错误的单元会立即同时通知其他所有单元（错误通知功能），正在发送消息的单元一旦检测出错误，会强制结束当前的发送。强制结束发送的单元会不断反复地重新发送此消息直到成功发送为止（错误恢复功能）。
@@ -9475,7 +9621,7 @@ CAN 物理层的形式主要有两种
 
 #### **通信节点**
 
-从 CAN 通讯网络图可了解到，CAN 总线上可以挂载多个通讯节点，节点之间的信号经过总线传输，实现节点间通讯。由于 CAN 通讯协议不对节点进行地址编码，而是对数据内容进行编码的，所以网络中的节点个数理论上不受限制，只要总线的负载足够即可，可以通过中继器增强负载。
+从 CAN 通讯网络图可了解到，CAN 总线上可以挂载多个通讯节点，节点之间的信号经过总线传输，实现节点间通讯。由于 CAN 通讯协议不对节点进行地址编码，而是**对数据内容进行编码**的，所以网络中的节点个数理论上不受限制，只要总线的负载足够即可，可以通过中继器增强负载。
 
 
 
@@ -9514,7 +9660,7 @@ CAN 协议中对它使用的 CAN_High 及 CAN_Low 表示的差分信号做了规
 
 显性电平具有优先权。发送方通过使总线电平发生变化，将消息发送给接收方。
 
-以高速 CAN 协议为例，当表示逻辑 1 时(隐性电平)，CAN_High 和 CAN_Low线上的电压均为 2.5v，即它们的电压差 VH-VL=0V；而表示逻辑 0 时(显性电平)，CAN_High 的电平为 3.5V，CAN_Low 线的电平为 1.5V，即它们的电压差为 VH-VL=2V。
+以高速 CAN 协议为例，当表示**逻辑 1 时(隐性电平)**，CAN_High 和 CAN_Low线上的电压均为 2.5v，即它们的电压差 VH-VL=0V；而表示**逻辑 0 时(显性电平)**，CAN_High 的电平为 3.5V，CAN_Low 线的电平为 1.5V，即它们的电压差为 VH-VL=2V。
 
 例如，当 CAN 收发器从 CAN_Tx 线接收到来自 CAN 控制器的低电平信号时(逻辑 0)，它会使 CAN_High 输出 3.5V，同时 CAN_Low 输出 1.5V，从而输出显性电平表示逻辑 0。
 
@@ -9530,7 +9676,7 @@ CAN 协议中对它使用的 CAN_High 及 CAN_Low 表示的差分信号做了规
 
 
 
-由于 CAN 总线协议的物理层只有 1 对差分线，在一个时刻只能表示一个信号，所以对通讯节点来说，CAN 通讯是半双工的，收发数据需要分时进行。在 CAN 的通讯网络中，因为共用总线，在整个网络中同一时刻只能有一个通讯节点发送信号，其余的节点在该时刻都只能接收。
+由于 CAN 总线协议的物理层只有 1 对差分线，在一个时刻只能表示一个信号，所以对通讯节点来说，**CAN 通讯是半双工**的，收发数据需要分时进行。在 CAN 的通讯网络中，因为共用总线，在整个网络中同一时刻只能有一个通讯节点发送信号，其余的节点在该时刻都只能接收。
 
 
 
@@ -9538,7 +9684,7 @@ CAN 协议中对它使用的 CAN_High 及 CAN_Low 表示的差分信号做了规
 
 #### **报文(帧)**
 
-在 SPI 通讯中，片选、时钟信号、数据输入及数据输出这 4 个信号都有单独的信号线，I2C 协议包含有时钟信号及数据信号 2 条信号线，异步串口包含接收与发送 2 条信号线，这些协议包含的信号都比 CAN 协议要丰富，它们能轻易进行数据同步或区分数据传输方向。而 CAN 使用的是两条差分信号线，只能表达一个信号，简洁的物理层决定了 CAN 必然要配上一套更复杂的协议，如何用一个信号通道实现同样、甚至更强大的功能呢？CAN协议给出的解决方案是对数据、操作命令(如读/写)以及同步信号进行打包，**打包后的这些内容称为报文**。
+在 SPI 通讯中，片选、时钟信号、数据输入及数据输出这 4 个信号都有单独的信号线，I2C 协议包含有时钟信号及数据信号 2 条信号线，异步串口包含接收与发送 2 条信号线，这些协议包含的信号都比 CAN 协议要丰富，它们能轻易进行数据同步或区分数据传输方向。而 CAN 使用的是两条差分信号线，只能表达一个信号，简洁的物理层决定了 CAN 必然要配上一套更复杂的协议，如何用一个信号通道实现同样、甚至更强大的功能呢？CAN协议给出的解决方案是**对数据、操作命令(如读/写)以及同步信号进行打包**，**打包后的这些内容称为报文**。
 
 
 
@@ -9569,13 +9715,13 @@ CAN 协议中对它使用的 CAN_High 及 CAN_Low 表示的差分信号做了规
 **仲裁段：**当同时有两个报文被发送时，总线会根据仲裁段的内容决定哪个数据包能被传输，这也是它名称的由来。
 仲裁段的内容主要为本数据帧的 ID 信息(标识符)，数据帧具有标准格式和扩展格式两种，区别就在于 ID 信息的长度，标准格式的 ID 为 11 位，扩展格式的 ID 为 29 位，它在标准 ID 的基础上多出 18 位。在 CAN 协议中，ID 起着重要的作用，它决定着数据帧发送的优先级，也决定着其它节点是否会接收这个数据帧。CAN 协议不对挂载在它之上的节点分配优先级和地址，对总线的占有权是由信息的重要性决定的，即对于重要的信息，我们会给它打包上一个优先级高的 ID，使它能够及时地发送出去。也正因为它这样的优先级分配原则，使得 CAN 的扩展性大大加强，在总线上增加或减少节点并不影响其它设备。报文的优先级，是通过对 ID 的仲裁来确定的。根据前面对物理层的分析我们知道如果总线上同时出现显性电平和隐性电平，总线的状态会被置为显性电平，CAN 正是利用这个特性进行仲裁。
 
-若两个节点同时竞争 CAN 总线的占有权，当它们发送报文时，若首先出现隐性电平，则会失去对总线的占有权，进入接收状态。
+若两个节点同时竞争 CAN 总线的占有权，当它们发送报文时，若**首先出现隐性电平，则会失去对总线的占有权**，进入接收状态。
 
 两个设备发送的电平一样，所以它们一直继续发送数据。到了图中箭头所指的时序处，节点单元 1 发送的为隐性电平，而此时节点单元 2 发送的为显性电平，由于总线的“线与”特性使它表达出显示电平，因此单元 2 竞争总线成功，这个报文得以被继续发送出去。
 
 ![565a47d66a4ff3f278a211a435f431a](STM32.assets/565a47d66a4ff3f278a211a435f431a.png)
 
-仲裁段 ID 的优先级也影响着接收设备对报文的反应。因为在 CAN 总线上数据是以**广播**的形式发送的，所有连接在 CAN 总线的节点都会收到所有其它节点发出的有效数据，因而我们的 CAN 控制器大多具有根据 ID 过滤报文的功能，它可以控制自己只接收某些 ID的报文。
+仲裁段 ID 的优先级也影响着接收设备对报文的反应。因为在 CAN 总线上数据是以**广播**的形式发送的，**所有连接在 CAN 总线的节点都会收到所有其它节点发出的有效数据，因而我们的 CAN 控制器大多具有根据 ID 过滤报文的功能，它可以控制自己只接收某些 ID的报文。**
 
 
 
@@ -9779,7 +9925,7 @@ CAN 的标准标识符的总位数为 11 位，而扩展标识符的总位数为
 | CAN_FxR1    | STDID[10:0]、EXTID[17:0]、IDE、RTR | STDID[10:0]、EXTID[17:15]、IDE、RTR |
 | CAN_FxR2    | STDID[10:0]、EXTID[17:0]、IDE、RTR | STDID[10:0]、EXTID[17:15]、IDE、RTR |
 
-​		通过配置筛选尺度寄存器 CAN_FS1R 的 FSCx 位可以设置筛选器工作在哪个尺度。
+通过配置筛选尺度寄存器 CAN_FS1R 的 FSCx 位可以设置筛选器工作在哪个尺度。
 
 而根据过滤的方法分为以下两种模式：
 
@@ -9954,17 +10100,17 @@ Tq = (BRP[9:0]+1) x TPCLK等效于：Tq = CAN_Prescaler x TPCLK
 typedef struct{
     uint32_t StdId;	/* 存储报文的标准标识符 11 位，0-0x7FF. */
     uint32_t ExtId;	/* 存储报文的扩展标识符 29 位，0-0x1FFFFFFF. */
-    uint32_t IDE;     /* 存储 IDE 扩展标志 */
-    uint32_t RTR		/* 存储 RTR 远程帧标志 */
-    uint32_t DLC;     /* 存储报文数据段的长度，0-8 */
+    uint32_t IDE;   /* 存储 IDE 扩展标志 */
+    uint32_t RTR	/* 存储 RTR 远程帧标志 */
+    uint32_t DLC;   /* 存储报文数据段的长度，0-8 */
     FunctionalState TransmitGlobalTime; 
 } CAN_TxHeaderTypeDef;
 typedef struct{
     uint32_t StdId;	/* 存储报文的标准标识符 11 位，0-0x7FF. */
     uint32_t ExtId;	/* 存储报文的扩展标识符 29 位，0-0x1FFFFFFF. */
-    uint32_t IDE;     /* 存储 IDE 扩展标志 */
-    uint32_t RTR;		/* 存储 RTR 远程帧标志 */
-    uint32_t DLC;     /* 存储报文数据段的长度，0-8 */
+    uint32_t IDE;   /* 存储 IDE 扩展标志 */
+    uint32_t RTR;	/* 存储 RTR 远程帧标志 */
+    uint32_t DLC;   /* 存储报文数据段的长度，0-8 */
     uint32_t Timestamp; 
     uint32_t FilterMatchIndex; 
 } CAN_RxHeaderTypeDef;
@@ -10272,6 +10418,134 @@ int main(void){
     }
 }
 ````
+
+
+
+## 标准库
+
+### 常用函数
+
+````c
+/* Initialization and Configuration functions *********************************/ 
+uint8_t CAN_Init(CAN_TypeDef* CANx, CAN_InitTypeDef* CAN_InitStruct);
+void CAN_FilterInit(CAN_FilterInitTypeDef* CAN_FilterInitStruct);//初始化CAN的过滤器
+void CAN_StructInit(CAN_InitTypeDef* CAN_InitStruct);//初始化CAN的控制器
+void CAN_SlaveStartBank(uint8_t CAN_BankNumber); //启动CAN从机过滤器
+void CAN_DBGFreeze(CAN_TypeDef* CANx, FunctionalState NewState);//控制CAN控制器的调试模式
+void CAN_TTComModeCmd(CAN_TypeDef* CANx, FunctionalState NewState);//控制CAN控制器的TT-COM模式
+ 
+/* Transmit functions *********************************************************/
+//用于CAN消息的发送,参数1：CAN1 or CAN2
+uint8_t CAN_Transmit(CAN_TypeDef* CANx, CanTxMsg* TxMessage);
+uint8_t CAN_TransmitStatus(CAN_TypeDef* CANx, uint8_t TransmitMailbox);//用于获取CAN消息发送状态
+void CAN_CancelTransmit(CAN_TypeDef* CANx, uint8_t Mailbox);//取消发送
+ 
+/* Receive functions **********************************************************/
+//CAN消息接收，参数2:CAN_FIFO0 or CAN_FIFO1
+void CAN_Receive(CAN_TypeDef* CANx, uint8_t FIFONumber, CanRxMsg* RxMessage);
+void CAN_FIFORelease(CAN_TypeDef* CANx, uint8_t FIFONumber);//清空缓冲区
+uint8_t CAN_MessagePending(CAN_TypeDef* CANx, uint8_t FIFONumber);//获取CAN接收FIFO中待处理的消息数量
+ 
+/* Operation modes functions **************************************************/
+uint8_t CAN_OperatingModeRequest(CAN_TypeDef* CANx, uint8_t CAN_OperatingMode);
+uint8_t CAN_Sleep(CAN_TypeDef* CANx);
+uint8_t CAN_WakeUp(CAN_TypeDef* CANx);
+ 
+/* Error management functions *************************************************/
+uint8_t CAN_GetLastErrorCode(CAN_TypeDef* CANx);
+uint8_t CAN_GetReceiveErrorCounter(CAN_TypeDef* CANx);
+uint8_t CAN_GetLSBTransmitErrorCounter(CAN_TypeDef* CANx);
+ 
+/* Interrupts and flags management functions **********************************/
+void CAN_ITConfig(CAN_TypeDef* CANx, uint32_t CAN_IT, FunctionalState NewState);
+FlagStatus CAN_GetFlagStatus(CAN_TypeDef* CANx, uint32_t CAN_FLAG);
+void CAN_ClearFlag(CAN_TypeDef* CANx, uint32_t CAN_FLAG);
+ITStatus CAN_GetITStatus(CAN_TypeDef* CANx, uint32_t CAN_IT);
+void CAN_ClearITPendingBit(CAN_TypeDef* CANx, uint32_t CAN_IT);
+````
+
+**CAN初始化结构体**
+
+````c
+typedef struct{
+  uint16_t CAN_Prescaler;   /* 预分频 范围: 1~1024*/ 
+  uint8_t CAN_Mode;         /* 配置 CAN 的工作模式，回环或正常模式 */
+  uint8_t CAN_SJW;          /* 配置 SJW 极限值 */
+  uint8_t CAN_BS1;          /* 时间段1(BS1)长度 */
+  uint8_t CAN_BS2;          /* 时间段1(BS1)长度 */
+  FunctionalState CAN_TTCM; /* 是否使能 TTCM 时间触发功能 */
+  FunctionalState CAN_ABOM;  /* 是否使能 ABOM 自动离线管理功能 */
+  FunctionalState CAN_AWUM;  /* 是否使能 AWUM 自动唤醒功能 */
+  FunctionalState CAN_NART;  /* 是否使能 NART 自动重传功能 */
+  FunctionalState CAN_RFLM;  /* 是否使能 RFLM 锁定 FIFO 功能 */
+  FunctionalState CAN_TXFP;  /* 传输FIFO优先级 */
+} CAN_InitTypeDef;
+````
+
+**CAN过滤结构体**
+
+````c
+typedef struct{
+  uint16_t CAN_FilterIdHigh;			/* ID高字节 */
+  uint16_t CAN_FilterIdLow;				/* ID低字节 */
+  uint16_t CAN_FilterMaskIdHigh;		/* 掩码高字节 */
+  uint16_t CAN_FilterMaskIdLow;			/* 掩码低字节 */
+  uint16_t CAN_FilterFIFOAssignment;	/* 过滤器关联FIFO */
+  uint8_t CAN_FilterNumber;				/* 选择过滤器组 */
+  uint8_t CAN_FilterMode;				/* 过滤器模式*/
+  uint8_t CAN_FilterScale;				/* 过滤器位宽 */
+  FunctionalState CAN_FilterActivation; /* 过滤器使能 */
+} CAN_FilterInitTypeDef;
+````
+
+**CAN发送接收结构体**
+
+````c
+typedef struct {
+    uint32_t StdId;  /* 存储报文的标准标识符11位，0-0x7FF. */
+    uint32_t ExtId;  /* 存储报文的扩展标识符29位，0-0x1FFFFFFF. */
+                     /* ExtId与StdId这两个成员根据IDE位配置，只有一个是有效的。*/
+    uint8_t IDE;     /* 存储IDE扩展标志 */
+                     /* 当它的值为宏CAN_ID_STD时表示本报文是标准帧，使用StdId成员存储报文ID； 
+                        当它的值为宏CAN_ID_EXT时表示本报文是扩展帧，使用ExtId成员存储报文ID。*/
+    uint8_t RTR;     /* 存储RTR远程帧标志*/
+                     /* 当它的值为宏CAN_RTR_Data时表示本报文是数据帧；
+                        当它的值为宏CAN_RTR_Remote时表示本报文是遥控帧， 
+                        由于遥控帧没有数据段，所以当报文是遥控帧时，下面的Data[8]成员的内容是无效的。*/
+    uint8_t DLC;     /* 存储报文数据段的长度，0-8, 当报文是遥控帧时DLC值为0。 */
+    uint8_t Data[8]; /* 存储报文数据段的内容 */
+} CanTxMsg;
+````
+
+````c
+typedef struct {
+    uint32_t StdId;  /* 存储了报文的标准标识符11位，0-0x7FF. */
+    uint32_t ExtId;  /* 存储了报文的扩展标识符29位，0-0x1FFFFFFF. */
+                     /* ExtId与StdId这两个成员根据IDE位配置，只有一个是有效的。*/
+    uint8_t IDE;     /* 存储了IDE扩展标志 */
+                     /* 当它的值为宏CAN_ID_STD时表示本报文是标准帧，使用StdId成员存储报文ID； 
+                        当它的值为宏CAN_ID_EXT时表示本报文是扩展帧，使用ExtId成员存储报文ID。*/
+    uint8_t RTR;     /* 存储了RTR远程帧标志*/
+                     /* 当它的值为宏CAN_RTR_Data时表示本报文是数据帧；
+                        当它的值为宏CAN_RTR_Remote时表示本报文是遥控帧， 
+                        由于遥控帧没有数据段，所以当报文是遥控帧时，下面的Data[8]成员的内容是无效的。*/
+    uint8_t DLC;     /* 存储报文数据段的长度，0-8, 当报文是遥控帧时DLC值为0。 */
+    uint8_t Data[8]; /* 存储了报文数据段的内容 */
+    uint8_t FMI;     /* 存储了筛选器的编号，表示本报文是经过哪个筛选器存储进接收FIFO的，可以用它简化软件处理，0-0xFF */
+} CanRxMsg;
+````
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -12344,6 +12618,8 @@ int main(void){
 
 # 其他
 
+## SysTick
+
 ## FPU
 
 FPU：Float Point Unit，浮点运算单元
@@ -12433,256 +12709,6 @@ USB OTG作为USB协议的补充版本，允许同一设备，在不同场合下�
 ![image-20230816172827460](STM32.assets/image-20230816172827460.png)
 
 48MHz的USB时钟由锁相环经过1.5分频得到
-
-
-
-
-
-
-
-
-
-# 其他硬件
-
-## 舵机
-
-* 舵机是一种根据输入PWM信号占空比来控制输出角度的装置
-* 输入PWM信号要求：周期为20ms，高电平宽度为0.5ms~2.5ms
-
-**180度舵机**
-
-![image-20230706115242630](STM32.assets/image-20230706115242630.png)
-
-
-
-**360度舵机**
-
-360度舵机可以360度旋转，因此与180度舵机有相当大的区别，首先360度舵机不能够控制旋转角度，一般的舵机是给一个特定的PWM，舵机会转到相应的角度，而360度舵机是只能够控制方向和旋转转速，所以360度舵机给定一个PWM，会以特定的速度和方向转动。
-所以有：
-0.5ms----------------正向最大转速；
-1.5ms----------------速度为0；
-2.5ms----------------反向最大转速；
-
-
-
-![image-20230706115256241](STM32.assets/image-20230706115256241.png)
-
-## 直流电机及驱动简介
-
-* 直流电机是一种将电能转换为机械能的装置，有两个电极，当电极正接时，电机正转，当电极反接时，电机反转
-* 直流电机属于大功率器件，GPIO口无法直接驱动，需要配合电机驱动电路来操作
-* TB6612是一款双路H桥型的直流电机驱动芯片，可以驱动两个直流电机并且控制其转速和方向
-
-![1688615635618](STM32.assets/1688615635618.png)
-
-
-
-只有当IN1和IN2输出不一样的电平时电机才可能转，到底转不转还取决于PWM信号
-
-
-
-
-
-## EEPROM
-
-### AT24C02
-
-EEPROM是一种掉电后数据不丢失的储存器，常用来存储一些配置信息，在系统重新上电时就可以加载。注意:EEPROM比较慢，必须等到10ms后再写下一个字节
-
-AT24C02是一个2K bit的EEPROM存储器，使用IIC通信方式。
-
-**AT24Cxx  系列**
-
-| AT24Cxx  | 容量（bit）        | 页数 | 页内字节数 | 数据地址(占用bit数) |
-| -------- | ------------------ | ---- | ---------- | ------------------- |
-| AT24C01  | 1K bit (128 B)     | 16   | 8 Byte     | 7bit                |
-| AT24C02  | 2K bit (256 B)     | 32   | 8 Byte     | 8bit                |
-| AT24C04  | 4K bit (512 B)     | 32   | 16 Byte    | 9bit                |
-| AT24C08  | 8K bit (1024 B)    | 64   | 16 Byte    | 10bit               |
-| AT24C16  | 16K bit (2048 B)   | 128  | 16 Byte    | 11bit               |
-| AT24C32  | 32K bit (4096 B)   | 128  | 32 Byte    | 12bit               |
-| AT24C64  | 64K bit (8192 B)   | 256  | 32 Byte    | 13bit               |
-| AT24C128 | 128K bit (16384 B) | 256  | 64 Byte    | 14bit               |
-| AT24C256 | 256K bit (32768 B) | 512  | 64 Byte    | 15bit               |
-| AT24C512 | 512K bit (65535 B) | 512  | 128 Byte   | 16bit               |
-
-**AT24C02通讯地址**
-
-写操作地址：0xA0  读操作地址：0xA1
-
-**AT24C02读写时序**
-
-写操作
-
-* AT24C02支持字节写模式和页写模式。
-* 字节写模式就是一个地址一个数据进行写入。
-* 页写模式就是连续写入数据。只需要写一个地址，连续写入数据时地址会自增，但存在页的限制，超出一页时，超出数据覆盖原先写入的数据。但读会自动翻页。
-
-读操作
-
-* AT24C02支持当前地址读模式，随机地址读模式和顺序读模式。
-* 当前读模式是基于上一次读/写操作的最后位置继续读出数据。
-* 随机地址读模式是指定地址读出数据。
-* 顺序读模式是连续读出数据。
-
-## Flash
-
-Flash就是ROM
-
-Flash程序存储的地方，RAM 程序运行的地方
-
-
-
-flash ，它在嵌入式系统中的功能可以和硬盘在PC中的功能相比。它们都是用来存储程序和数据的，好比是ROM。而且可以在掉电的情况下继续保存数据使其不会丢失。Flash memory（闪速存储器）作为一种安全、快速的存储体，具有体积小，容量大，成本低，掉电数据不丢失等一系列优点，已成为嵌入式系统中数据和程序最主要的载体。根据结构的不同可以将其分为**NOR Flash**和**NAND Flash**两种。NOR Flash的特点是应用程序可以直接在闪存中运行，不需要再把代码读到系统RAM中运行。NAND Flash不行。而我们单片机基本都是NOR FLASN。而手机我们说的64 128应该是NAND FASH。
-
-毫无疑问，stm32的flash是NOR Flash。
-
-
-
-
-
-**Flash操作注意事项**
-
-* 写入操作时：
-  * 写入操作前，必须先进行写使能
-  * 每个数据位只能由1改写为0，不能由0改写为1   （是不是不可思议，再结合下面擦除操作就能理解了，先擦除，令数据位为1，在进行修改）
-  * 写入数据前必须先擦除，擦除后，所有数据位变为1
-  * 擦除必须按最小擦除单元进行    （不能单独擦除某个字节，要擦除就擦除一偏区域）
-  * 连续写入多字节时，最多写入一页的数据，超过页尾位置的数据，会回到页首覆盖写入
-  * 写入操作结束后，芯片进入忙状态，不响应新的读写操作 (将Buff中的数据放入Flash中)
-
-* 读取操作时：
-  * 直接调用读取时序，无需使能，无需额外操作，没有页的限制，读取操作结束后不会进入忙状态，但不能在忙状态时读取
-
-| 类型       | 特点                                                        | 应用举例         |
-| ---------- | ----------------------------------------------------------- | ---------------- |
-| NOR  FLASH | 基于字节读写，读取速度快，独立地址/数据线，无坏块，支持XIP  | 25Qxx、程序ROM   |
-| NAND FLASH | 基于块读写，读取速度稍慢，地址数据线共用，有坏块，不支持XIP | EMMC、SSD、U盘等 |
-
-### W25Qxx
-
-* W25Qxx系列是一种低成本、小型化、使用简单的非易失性存储器，常应用于数据存储、字库存储、固件程序存储等场景
-* 存储介质：Nor Flash（闪存）这是FLASH，不是RAM
-* 时钟频率：80MHz / 160MHz (Dual SPI) / 320MHz (Quad SPI)
-* 存储容量（24位地址）：
-  * W25Q40：  4Mbit / 512KByte
-  * W25Q80：  8Mbit / 1MByte
-  * W25Q16：  16Mbit / 2MByte
-  * W25Q32：  32Mbit / 4MByte
-  * W25Q64：  64Mbit / 8MByte
-  * W25Q128： 128Mbit / 16MByte
-  * W25Q256： 256Mbit / 32MByte
-
-![image-20230708135005415](STM32.assets/image-20230708135005415.png)
-
-
-
-被分为Block块、Sector扇区、Page页
-
-结尾为0000的为起始，结尾为FF的为结尾，比如000000h为Block0的起始，00FFFFh为Block0的起始
-
-**不可以跨页写入**（每页256个Byte），比如将多个数据写入到FF结尾的地址中，他只会将第一个数据写到结尾，其他数据写到`本页`的开头，而不是写到下一页的开头
-
-扇区擦除后：值为0xff，即全部填充1
-
-
-
-
-
-## 触摸屏
-
-触摸屏按工作原理和传输介质可分为：红外线式、表面声波式、电阻式和电容式
-
-![image-20230816132528714](STM32.assets/image-20230816132528714.png)
-
-
-
-
-
-**电阻式**
-
-分类：四线，五线，七线和八线
-
-电阻式触摸屏驱动IC：XPT2046、TSC2046、HR2046
-
-电阻式传出的是AD信号，需要经过换算才能得到坐标值，而且需要经过校准，因为触摸板和屏幕可能并不重合
-
-
-
-**电容式**
-
-分类：
-
-* 表面电容式（利用电场感应感测屏幕触摸，只能识别一次触摸）
-* 投射式（利用触摸屏电极发射出静电场线）
-  * 自我电容（扫描电极与地构成的电容）
-  * 交互电容（玻璃表面的横向和纵向的ITO电极的交叉处形成的电容）
-
-电容式触摸屏驱动IC：GT9147、GT917S、GT911、GT1151、FT5426
-
-电容式传出的是坐标值，内部有寄存器
-
-直接使用正点原子提供的库即可，电阻式使用SPI通信，电容式使用IIC通信
-
-
-
-## 红外
-
-红外遥控的情景中，必定会有一个红外发射端和红外接收端。要使两者通信成功，收/发红外波长与载波频率需一致，在这里波长就是 940nm，载波频率就是 38kHz。红外发射管也是属于二极管类，红外发射电路通常使用三极管控制红外发射器的导通或者截至，在导通的时候，红外发射管会发射出红外光，反之，就不会发射出红外光。虽然我们用肉眼看不到红外光，但是我们借助手机摄像头就能看到红外光。但是红外接收管的特性是当接收到红外载波信号时，OUT 引脚输出低电平；假如没有接收到红外载波信号时，OUT 引脚输出高电平。
-
-红外载波信号其实就是由一个个红外载波周期组成。在频率为 38KHz 下，红外载波周期约等于 26.3us（1s / 38KHz ≈ 26.3us）。在一个红外载波发射周期里，发射红外光时间 8.77us 和不发射红外光 17.53us，发射红外光的占空比一般为 1/3。相对的，整个周期内不发射红外光，就是载波不发射周期。在红外遥控器内已经把载波和不载波信号处理好，我们需要做的就是识别遥控器按键发射出的信号，信号也是遵循某种协议的。
-
-* 载波周期：1s / 38KHz ≈ 26.3us
-* 载波发射周期：26.3us(一个周期) = 8.77us(发射红外光) + 17.53us(不发射红外光)
-* 载波不发射周期：整个周期内，不发射红外光
-
-### **红外编解码协议**
-
-红外遥控的编码方式目前广泛使用的是：PWM（脉冲宽度调制）的 NEC 协议和 Philips PPM（脉冲位置调制）的 RC-5 协议的。
-
-
-
-下面介绍PWM（脉冲宽度调制）的 NEC 协议
-
-
-
-**红外发射器：**
-
-* 发送协议数据‘0’= 发射载波信号560us + 不发射载波560us
-* 发送协议数据‘1’= 发射载波信号560us + 不发射载波1680us
-
-![image-20230816141419094](STM32.assets/image-20230816141419094.png)
-
-**红外接收器：**OUT引脚电平输出情况（接收到红外载波时，OUT输出低电平，否则输出高电平）
-
-* 接收到协议数据‘0’= 560us低电平 + 560us高电平
-* 接收到协议数据‘1’= 560us低电平 + 1680us高电平
-
-![image-20230816141533655](STM32.assets/image-20230816141533655.png)
-
-
-
-**NEC遥控器指令格式**
-
-* 同步码（引导码），低电平9ms + 高电平4.5ms（对于接收端）
-* 地址码
-* 地址反码
-* 控制码
-* 控制反码
-
-注意：① 地址码、地址反码、控制码、控制反码均是8位数据格式
-
-   ② 按照低位在前，高位在后的顺序发送（低位先行）
-
-   ③ 采用反码是为了增加传输的可靠性（可用于校验）
-
-
-
-
-
-
-
-
 
 # HAL库相关
 

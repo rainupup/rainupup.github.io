@@ -54,10 +54,6 @@
 
 
 
-
-
-
-
 # 编程规范
 
 ## 数据类型
@@ -102,8 +98,6 @@ BaseType_t xReturn；     // x为BaseType_t,Return为含义
 ## 函数名
 
 一个函数名分为三部分，第一部分为返回值类型，第二部分为在哪个文件中定义，第三部分为含义
-
-
 
 |    函数名前缀     |                       含义                       |
 | :---------------: | :----------------------------------------------: |
@@ -185,8 +179,7 @@ void Task2(void* data){
 		printf("2");	
 	}
 }
-int main( void )
-{
+int main( void ){
     prvSetupHardware();
     
 	TaskHandle_t task1Handle;
@@ -275,7 +268,7 @@ TaskHandle_t xTaskCreateStatic( TaskFunction_t 			pxTaskCode,
 #define configSUPPORT_STATIC_ALLOCATION 1 //静态内存
 ````
 
-2. 如果使用静态方法 的 话 需 要 用 户 实 现 两 个 函 数 vApplicationGetIdleTaskMemory() 和vApplicationGetTimerTaskMemory()。通过这两个函数来给空闲任务和定时器服务任务的任务堆栈和任务控制块分配内存，这两个函数我们在 mainc.c 中定义
+2. 如果使用静态方法 的 话 需 要 用 户 实 现 两 个 函 数 vApplicationGetIdleTaskMemory() 和vApplicationGetTimerTaskMemory()。通过这两个函数来给空闲任务和定时器服务任务的任务堆栈和任务控制块分配内存，这两个函数我们在 main.c 中定义
 
 ````c
 void Task3(void* data){
@@ -394,7 +387,7 @@ configTICK_RATE_HZ其含义是1秒钟TICK中断产生的次数，因为FreeRTOS�
 知道了这个宏定义以后，我们就可以进行时间的换算了，例如我们想演示500ms，则可以使用：
 
 ```c
-vTaskDelay(500/portTICK_RATE_MS);
+vTaskDelay(500/portTICK_RATE_MS);			// 可知参数是延迟多少个Tick
 ```
 
  
@@ -447,7 +440,7 @@ Freertos支持三种任务调度方式：
 
 FreeRTOS现在虽然还支持，但是官方已经表示不再更新协程式调度
 
-注：抢占式调度和时间片轮转可以同时存在，当有高优先级任务就绪时，运行高优先级任务；当最高优先级的任务有好几个时，这几个任务可以以时间片轮转方式调度
+注：抢占式调度和时间片轮转可以同时存在，当有高优先级任务就绪时，运行高优先级任务；当最高优先级的任务有好几个时，这几个任务可以以时间片**轮转**方式调度
 
 
 
@@ -596,12 +589,12 @@ int main( void )
 
 # 空闲任务
 
-**空闲任务(Idle 任务)的作用：**释放被删除任务 的内存。
+**空闲任务(Idle 任务)的作用：** **释放被删除任务的内存**。
 
 除了上述目的之外，为什么必须要有空闲任务？一个良好的程序，它的任务都是事件驱动的：平时大部分时间处于阻塞状态。有可能我们自己创建的所有任务都无法执行，但是调度器必须能找到一个可以运行的任务：所以，我们要提供空闲任务。在使用`vTaskStartScheduler()`函数来创建、启动调度器时，这个函数内部会创建空闲任务：
 
-* 空闲任务优先级为 0：它不能阻碍用户任务运行
-* 空闲任务要么处于就绪态，要么处于运行态，永远不会阻塞
+* 空闲任务**优先级为 0**：它不能阻碍用户任务运行
+* **空闲任务要么处于就绪态，要么处于运行态，永远不会阻塞**
 
 空闲任务的优先级为 0，这意味着一旦某个用户的任务变为就绪态，那么空闲任务马上被切换出去，让这个用户任务运行。在这种情况下，我们说用户任务"抢占"(pre-empt)了空闲任务，这是由调度器实现的。
 要注意的是：如果使用 `vTaskDelete()`来删除任务，那么你就要确保空闲任务有机会执行，否则就无法释放被删除任务的内存。
@@ -663,7 +656,7 @@ int main( void )
 
 原理上我们可以直接在FreeRTOS的源码中编写空闲任务，但是破坏FreeRTOS的完整性，所以就引出了钩子函数，我们可以在钩子函数中执行对空闲任务的操作，FreeRTOS最终会调用钩子函数
 
-
+ 
 
 我们可以添加一个空闲任务的钩子函数(Idle Task Hook Functions)，空闲任务的循环每执行一次，就会调用一次钩子函数。钩子函数的作用有这些：
 
@@ -673,7 +666,7 @@ int main( void )
 * 空闲任务的钩子函数的限制：
   * 不能导致空闲任务进入阻塞状态、暂停状态
   * 如果你会使用 `vTaskDelete()`来删除任务，那么钩子函数要非常高效地执行。
-  * 如果空闲任务移植卡在钩子函数里的话，它就无法释放内存。也就是在钩子函数中不能有while等卡死的操作
+  * 如果空闲任务移植卡在钩子函数里的话，它就无法释放内存。也就是在钩子函数中**不能有while等卡死**的操作
 * 钩子函数等源码在tasks.c 中
 
 **钩子函数的使用**
@@ -732,49 +725,6 @@ int main( void ){
 	xTaskCreate(Task1,"task1",100,NULL,0,&task1Handle);      
 	vTaskStartScheduler();
 	return 0;
-}
-````
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-````c
-xIdleTaskHandle = xTaskCreateStatic( prvIdleTask,
-                                                 configIDLE_TASK_NAME,
-                                                 ulIdleTaskStackSize,
-                                                 ( void * ) NULL,       /*lint !e961.  The cast is not redundant for all compilers. */
-                                                 portPRIVILEGE_BIT,     /* In effect ( tskIDLE_PRIORITY | portPRIVILEGE_BIT ), but tskIDLE_PRIORITY is zero. */
-                                                 pxIdleTaskStackBuffer,
-                                                 pxIdleTaskTCBBuffer ); /*lint !e961 MISRA exception, justified as it is not a redundant explicit cast to all supported compilers. */
-
-
-static portTASK_FUNCTION( prvIdleTask, pvParameters )
-{
-    /* Stop warnings. */
-    ( void ) pvParameters;
-        #if ( configUSE_IDLE_HOOK == 1 )
-            {
-                extern void vApplicationIdleHook( void );
-
-                /* Call the user defined function from within the idle task.  This
-                 * allows the application designer to add background functionality
-                 * without the overhead of a separate task.
-                 * NOTE: vApplicationIdleHook() MUST NOT, UNDER ANY CIRCUMSTANCES,
-                 * CALL A FUNCTION THAT MIGHT BLOCK. */
-                vApplicationIdleHook();
-            }
-        #endif /* configUSE_IDLE_HOOK */
 }
 ````
 
@@ -945,7 +895,13 @@ int main( void )
 
 # 同步与互斥
 
-## 同步与互斥的概念
+## 概念
+
+同步：我干完，你才能干
+
+互斥：我用完，你才能用
+
+
 
 一句话理解同步与互斥：我等你用完厕所，我再用厕所。
 
@@ -1107,9 +1063,9 @@ FreeRTOS怎么实现的互斥：
 
 使用队列传输数据时有两种方法：
 
-* 拷贝：把数据、把变量的值复制进队列里
+* **拷贝**：把数据、把变量的值复制进队列里
 
-* 引用：把数据、把变量的地址复制进队列里
+* **引用**：把数据、把变量的地址复制进队列里
 
   
 
@@ -1129,8 +1085,8 @@ FreeRTOS使用拷贝值的方法，这更简单：
 * 任务读写队列时，简单地说：如果读写不成功，则阻塞；可以指定超时时间。口语化地说，就是可以定个闹钟：如果能读写了就马上进入就绪态，否则就阻塞直到超时。
 * 某个任务读队列时，如果队列没有数据，则该任务可以进入阻塞状态：还可以指定阻塞的时间。如果队列有数据了，则该阻塞的任务会变为就绪态。如果一直都没有数据，则时间到之后它也会进入就绪态。
 * 既然读取队列的任务个数没有限制，那么当多个任务读取空队列时，这些任务都会进入阻塞状态：有多个任务在等待同一个队列的数据。当队列中有数据时，哪个任务会进入就绪态？
-  * 优先级最高的任务
-  * 如果大家的优先级相同，那等待时间最久的任务会进入就绪态
+  * **优先级最高的任务**
+  * **如果大家的优先级相同，那等待时间最久的任务会进入就绪态**
 * 跟读队列类似，一个任务要写队列时，如果队列满了，该任务也可以进入阻塞状态：还可以指定阻塞的时间。如果队列有空间了，则该阻塞的任务会变为就绪态。如果一直都没有空间，则时间到之后它也会进入就绪态。
 * 既然写队列的任务个数没有限制，那么当多个任务写"满队列"时，这些任务都会进入阻塞状态：有多个任务在等待同一个队列的空间。当队列中有空间时，哪个任务会进入就绪态？
   * 优先级最高的任务
@@ -1296,7 +1252,7 @@ UBaseType_t uxQueueSpacesAvailable( const QueueHandle_t xQueue );
 ### 覆盖/偷看
 
 当队列长度为1时，可以使用`xQueueOverwrite()`或`xQueueOverwriteFromISR()`来覆盖数据。
-注意，队列长度必须为1。当队列满时，这些函数会覆盖里面的数据，这也以为着这些函数不会被阻塞。
+注意，队列长度必须为1。当队列满时，这些函数会覆盖里面的数据，这也意为着这些函数不会被阻塞。
 函数原型如下：
 
 ````c
@@ -1760,7 +1716,7 @@ int main( void )
 
 ##  信号量函数
 
-* `configSUPPORT_DYNAMIC_ALLOCATION`必须在 FreeRTOSConfig.h 中被设置为 1
+* `configSUPPORT_DYNAMIC_ALLOCATION`必须在 FreeRTOSConfig.h 中被设置为 1，表示使用从FreeRTOS堆中自动分配的RAM创建RTOS对象
 
 * 使用信号量时，先创建、然后去添加资源、获得资源。使用句柄来表示一个信号量。
 
@@ -1772,10 +1728,10 @@ int main( void )
 
 对于二进制信号量、计数型信号量，它们的创建函数不一样：
 
-|          | 二进制信号量                           | 计数型信号量                   |
-| -------- | -------------------------------------- | ------------------------------ |
-| 动态创建 | xSemaphoreCreateBinary 计数值初始值为0 | xSemaphoreCreateCounting       |
-| 静态创建 | xSemaphoreCreateBinaryStatic           | xSemaphoreCreateCountingStatic |
+|          | 二进制信号量                               | 计数型信号量                   |
+| -------- | ------------------------------------------ | ------------------------------ |
+| 动态创建 | xSemaphoreCreateBinary 计数值**初始值为0** | xSemaphoreCreateCounting       |
+| 静态创建 | xSemaphoreCreateBinaryStatic               | xSemaphoreCreateCountingStatic |
 
 **二进制信号量**
 
@@ -1985,18 +1941,25 @@ int main( void )
 * 量：值为0、1
 * 互斥：用来实现互斥访问
 
-它的核心在于：谁上锁，就只能由谁开锁。
+**它的核心在于：谁上锁，就只能由谁开锁。**
 
 很奇怪的是，FreeRTOS的互斥锁，并没有在代码上实现这点：
 
 即使任务A获得了互斥锁，任务B竟然也可以释放互斥锁。
-谁上锁、谁释放：只是约定。
+谁上锁、谁释放：只是**约定**。
 
 
 
 互斥信号量其实就是一个拥有优先级继承的二值信号量，在同步的应用中二值信号量最适合。互斥信号量适合用于那些需要互斥访问的应用中！
 
 ![1689167443414](FreeRTOS.assets/1689167443414.png)
+
+
+
+**自己的理解**
+
+* 信号量：一般会是两个以上的函数调用，为了使函数的同步
+* 互斥量：在单个函数内使用，为了互斥的访问某些内容
 
 ## 使用场合
 
@@ -2025,13 +1988,13 @@ int main( void )
 * 函数重入
   “可重入的函数"是指：多个任务同时调用它、任务和中断同时调用它，函数的运行也是安全的。可重入的函数也被称为"线程安全”(thread safe)。
   每个任务都维持自己的栈、自己的CPU寄存器，如果一个函数只使用局部变量，那么它就是线程安全的。
-  函数中一旦使用了全局变量、静态变量、其他外设，它就不是"可重入的"，如果改函数正在被调用，就必须阻止其他任务、中断再次调用它。
+  函数中一旦使用了**全局变量、静态变量、其他外设，它就不是"可重入的"**，如果改函数正在被调用，就必须阻止其他任务、中断再次调用它。
 
-上述问题的解决方法是：任务A访问这些全局变量、函数代码时，独占它，就是上个锁。这些全局变量、函数代码必须被独占地使用，它们被称为临界资源。
+上述问题的解决方法是：任务A访问这些全局变量、函数代码时，独占它，就是上个锁。这些全局变量、函数代码必须被独占地使用，它们被称为**临界资源**。
 
 互斥量也被称为互斥锁，使用过程如下：
 
-* 互斥量初始值为1
+* 互斥量**初始值为1**；这与信号量不同
 * 任务A想访问临界资源，先获得并占有互斥量，然后开始访问
 * 任务B也想访问临界资源，也要先获得互斥量：被别人占有了，于是阻塞
 * 任务A使用完毕，释放互斥量；任务B被唤醒、得到并占有互斥量，然后开始访问临界资源
@@ -2064,7 +2027,7 @@ int main( void )
  * 此函数内部会分配互斥量结构体 
  * 返回值: 返回句柄，非NULL表示成功
  */
-SemaphoreHandle_t xSemaphoreCreateMutex( void );
+SemaphoreHandle_t xSemaphoreCreateMutex( void );		// 可见互斥量是一种特殊的信号量
 
 /* 创建一个互斥量，返回它的句柄。
  * 此函数无需动态分配内存，所以需要先有一个StaticSemaphore_t结构体，并传入它的指针
@@ -2075,7 +2038,7 @@ SemaphoreHandle_t xSemaphoreCreateMutexStatic( StaticSemaphore_t *pxMutexBuffer 
 
 ### 其他函数
 
-要注意的是，互斥量不能在ISR中使用。
+要注意的是，**互斥量不能在ISR中使用**。
 
 各类操作函数，比如删除、give/take，跟一般是信号量是一样的。
 
@@ -2145,7 +2108,7 @@ int main( void )
 
 如果涉及3个任务，可以让"优先级反转"的后果更加恶劣。
 
-互斥量可以通过"优先级继承"，可以很大程度解决"优先级反转"的问题，这也是FreeRTOS中互斥量和二级制信号量的差别。
+互斥量可以通过"**优先级继承**"，可以很大程度解决"优先级反转"的问题，这也是FreeRTOS中互斥量和二级制信号量的差别。
 
 
 
@@ -2165,7 +2128,7 @@ int main( void )
 	prvSetupHardware();
 	
     /* 创建二进制信号量 */
-	xLock = xSemaphoreCreateMutex( );
+	xLock = xSemaphoreCreateBinary( );
 
 	if( xLock != NULL )
 	{
@@ -2304,7 +2267,7 @@ LPTask/MPTask/HPTask三个任务的代码和运行过程如下图所示：
 
 ## 优先级继承
 
-互斥信号量其实就是一个拥有优先级继承的二值信号量，在同步的应用中二值信号量最适合。互斥信号量适合用于那些需要互斥访问的应用中！
+**互斥信号量其实就是一个拥有优先级继承的二值信号量**，在同步的应用中二值信号量最适合。互斥信号量适合用于那些需要互斥访问的应用中！
 
 优先级继承：当一个互斥信号量正在被一个低优先级的任务持有时， 如果此时有个高优先级的任务也尝试获取这个互斥信号量，那么这个高优先级的任务就会被阻塞。**不过这个高优先级的任务会将低优先级任务的优先级提升到与自己相同的优先级。**
 
@@ -2320,10 +2283,10 @@ LPTask/MPTask/HPTask三个任务的代码和运行过程如下图所示：
 
 优先级继承并不能完全的消除优先级翻转的问题，它只是尽可能的降低优先级翻转带来的影响
 
-注意：互斥信号量不能用于中断服务函数中，原因如下：
+注意：**互斥信号量不能用于中断服务函数中**，原因如下：
 
-* 互斥信号量有任务优先级继承的机制， 但是中断不是任务，没有任务优先级， 所以互斥信号量只能用与任务中，不能用于中断服务函数。
-* 中断服务函数中不能因为要等待互斥信号量而设置阻塞时间进入阻塞态。
+* **互斥信号量有任务优先级继承的机制， 但是中断不是任务，没有任务优先级， 所以互斥信号量只能用与任务中，不能用于中断服务函数。**
+* **中断服务函数中不能因为要等待互斥信号量而设置阻塞时间进入阻塞态。**
 
 
 
@@ -2389,7 +2352,7 @@ int main( void )
 
 递归锁(Recursive Mutexes)，它的特性如下：
 
-- 任务A获得递归锁M后，它还可以多次去获得这个锁
+- **任务A获得递归锁M后，它还可以多次去获得这个锁**
 - "take"了N次，要"give"N次，这个锁才会被释放
 
 `configSUPPORT_DYNAMIC_ALLOCATION` 、`configUSE_MUTEXES`、`#define configUSE_RECURSIVE_MUTEXES   1`必须同时在 FreeRTOSConfig.h 中设置为 1
@@ -2426,8 +2389,6 @@ BaseType_t xSemaphoreTakeRecursive(
                    TickType_t xTicksToWait
                );
 ````
-
-
 
 
 
@@ -2527,7 +2488,7 @@ int main( void )
 
 输出结果：没有混乱
 
-可见递归锁，只有自己能打开自己的锁，其他任务无法打开别的任务的锁
+可见**递归锁，只有自己能打开自己的锁**，其他任务无法打开别的任务的锁
 
 ![14d10844d18d58202cdaa263d3cc9b5](FreeRTOS.assets/14d10844d18d58202cdaa263d3cc9b5.png)
 
@@ -2692,8 +2653,8 @@ EventBits_t xEventGroupWaitBits( EventGroupHandle_t xEventGroup,
 | --------------- | ------------------------------------------------------------ |
 | xEventGroup     | 等待哪个事件组？                                             |
 | uxBitsToWaitFor | 等待哪些位？哪些位要被测试？                                 |
-| xWaitForAllBits | 怎么测试？是"AND"还是"OR"？<br/>pdTRUE: 等待的位，全部为1;<br/>pdFALSE: 等待的位，某一个为1即可 |
 | xClearOnExit    | 函数提出前是否要清除事件？<br/>pdTRUE: 清除uxBitsToWaitFor指定的位<br/>pdFALSE: 不清除 |
+| xWaitForAllBits | 怎么测试？是"AND"还是"OR"？<br/>pdTRUE: 等待的位，全部为1;<br/>pdFALSE: 等待的位，某一个为1即可 |
 | xTicksToWait    | 如果期待的事件未发生，阻塞多久。<br/>可以设置为0：判断后即刻返回；<br/>可设置为portMAX_DELAY：一定等到成功才返回；<br/>可以设置为期望的Tick Count，一般用`pdMS_TO_TICKS()`把ms转换为Tick Count |
 | 返回值          | 返回的是事件值，<br/>如果期待的事件发生了，返回的是"非阻塞条件成立"时的事件值；<br/>如果是超时退出，返回的是超时时刻的事件值。 |
 
@@ -2715,11 +2676,15 @@ EventBits_t xEventGroupWaitBits( EventGroupHandle_t xEventGroup,
 
 ### 同步点
 
+`xEventGroupSetBits`设置某些位，`xEventGroupWaitBits`等待某些位。
+
+`xEventGroupSync()`可以同时 设置某些位 和 等待某些位
+
 使用`xEventGroupSync()`函数可以同步多个任务：
 
 * 可以设置某位、某些位，表示自己做了什么事
 * 可以等待某位、某些位，表示要等等其他任务
-* 期望的时间发生后，xEventGroupSync()才会成功返回。
+* 期望的事件发生后，xEventGroupSync()才会成功返回。
 * `xEventGroupSync`成功返回后，会清除事件
 
 ````c
@@ -4747,7 +4712,7 @@ int main( void )
 
 ![1689074056116](FreeRTOS.assets/1689074056116.png)
 
-栈会从高地址往下增长
+栈会从**高地址往下增长**
 
 
 
@@ -5087,7 +5052,7 @@ typedef struct QueueDefinition /* The old naming convention is used to prevent b
 
 **写数据**
 
-1. 关中断
+1. **关中断**
 2. 如果队列没满，直接写入，并从xTasksWaitingToReceive唤醒等待读的任务，并将等待读的任务从Delay链表移动到ready链中
 3. 如果队列满
    1. 等待：任务进入xTasksWaitingToSend等待写链表，并将任务从ready链表移动到Delay链表中(休眠)
@@ -5455,7 +5420,7 @@ typedef struct EventGroupDef_t
 
 设置事件步骤
 
-* 关闭调度器
+* **关闭调度器**
 * 设置uxEventBits
 * 唤醒xTasksWaitingForBits上**所有**满足条件的任务
 * 开启调度器
@@ -6155,6 +6120,10 @@ typedef struct A_BLOCK_LINK{
 * 把这个结构体放入xStart链表：按照xBlockSize从小到大的顺序插入链表
 
 ### heap4
+
+
+
+
 
 
 

@@ -275,6 +275,77 @@ Ctrl + 点击函数 跳转到函数定义位置
 
 后面会使用SI来查看Linux源码
 
+## VSCode
+
+使用VSCode阅读Linux源码
+
+使用插件Retome-ssh插件
+
+### Remote - SSH
+
+在VSCode Extension组件页搜索Remote - SSH插件安装
+
+Remote-SSH是微软官方推出用于连接远程服务器的插件
+
+### clangd
+
+clangd 插件用于代码语义分析、代码补全、跳转等。能做到代码精准跳转、精准自动补全，其根本原理是通过读取工程编译自动生成的compile_commands.json 文件来索引其中包含的源文件和关联的头文件，因此能避免索引非编译的代码造成解析时语义混乱。
+
+compile_commands.json 文件就是由每个源文件的编译参数、路径等信息组成的一个json文件，clangd 通过这个文件可以准确定位源文件需要引用的头文件从而准确的找到各种宏定义、函数、变量声明的准确值了。
+
+那么问题来了，编译内核的时候也没有生成compile_commands.json这个文件呀。这个文件在编译cmake工程的时候可以自动生成，但是内核用的是make。这时候就需要另一个工具bear了，他就是专门用来生成这个的。
+
+需要注意的是如果VSCode之前安装过C++ Intellisense插件需要禁用或者卸载掉，因为会和clangd插件有冲突。
+
+
+
+
+
+**安装bear**
+
+在Linux中安装bear
+
+````sh
+sudo apt instll bear
+````
+
+bear命令用来生成compile_commands.json，它的用法如下：
+
+````c
+bear make [其他make本身的参数]		// bear 3.0之前的版本
+bear -- make [其他make本身的参数]	// bear 3.0之后的版本
+bear --version					 //查看版本
+````
+
+**生成compile_commands.json**
+
+````sh
+// 如果之前曾经编译过内核，要清除掉
+make clean  
+
+// 然后重新编译
+bear make zImage -j 4
+````
+
+编译成功后就会在当前目录下得到文件compile_commands.json
+
+bear 3.0前的版本生成的compile_commands.json需要如下修改:将cc全部替换为arm-buildroot-linux-gnueabihf-gcc
+
+````sh
+%s/cc/arm-buildroot-linux-gnueabihf-gcc/g
+````
+
+
+
+* https://blog.csdn.net/thisway_diy/article/details/127426986
+* https://blog.csdn.net/xhnmdlfl/article/details/117911630
+
+
+
+
+
+
+
 # 其他
 
 ## man命令
@@ -627,6 +698,8 @@ reboot										/* 重启开发板 */
 uname -a
 Linux imx6ull 4.9.88 #1 SMP PREEMPT Fri Aug 18 03:42:57 EDT 2023 armv7l GNU/Linux		/* 使用了刚才编译的内核 */
 ````
+
+
 
 
 
@@ -3988,6 +4061,41 @@ insmod /mnt/led_drv.ko						/* 安装驱动 */
 /mnt/ledtest /dev/myled on // 点灯
 /mnt/ledtest /dev/myled off // 关灯
 ````
+
+
+
+
+
+
+
+# 中断
+
+Linux中不允许中断嵌套，即高优先级不能打断低优先级。目前不清楚到底能不能中断嵌套
+
+
+
+分为上半部中断，下半部中断
+
+上半部中断执行用时较短的内容
+
+下半部中断执行用时较长的
+
+
+
+Linux上半部(硬件)中断不能被打断，下半部(软件)中断可以被打断
+
+
+
+下半部中断处理的是 所有的软件中断
+
+如果下半部中断用时很长，可以使用线程处理下半部中断
+
+
+
+
+下半部执行时，中断是使能的:如果再次发生了中断，那么下半部被打断，先执行硬件中断的处理函数;硬件中断处理完发现“之前已经在处理软件中断”了，就不会往下“再次开始新的处理软件中断流程而是退出中断处理、并恢复原来的工作:继续执行刚刚被打断的“软件处理函数
+
+
 
 
 

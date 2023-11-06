@@ -5,12 +5,6 @@
 # Rain 的知识分享 
 
 
-
-## 关于作者 <!-- {docsify-ignore} -->
-
-
-
-
 ## 关于本站 <!-- {docsify-ignore} -->
 本项目大部分内容来自**Rain**，版权归作者所有，内容涵盖 **嵌入式**、**Java** 等领域知识。并对部分知识做了一个系统的整理，方便学习查阅。
 
@@ -24,6 +18,7 @@
 
 | 版本 |  更新时间  |     描述     |
 | :--: | :--------: | :----------: |
+| V2.1 | 2023-07-22 | 部署至GitHUB |
 | V2.0 | 2022-07-22 | 部署至腾讯云 |
 | V1.0 | 2022-05-19 |   首次发布   |
 
@@ -66,6 +61,10 @@
 - [**Linux**](/docs/linux/linux.md)
 - [**嵌入式 Linux**](/docs/linux开发/linux开发.md)
 - [**C 语言**](/docs/C/c.md)
+- [**FOC**](/docs/FOC/FOC.md)
+- [**MQTT**](/docs/MQTT/MQTT.md)
+- [**GIT**](/docs/Git/Git.md)
+- [**AltiumDesigner**](/docs/AltiumDesigner/AltiumDesigner.md)
 - [**JAVA**](/docs/java/java.md)
 - [**Mysql**](/docs/mysql/mysql.md)
 - [**JDBC**](/docs/jdbc/jdbc.md)
